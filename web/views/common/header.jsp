@@ -27,11 +27,11 @@
 <%
 	String userid = null;
 	String checkAdmin = null;
-		
+		Object qwerty = session.getAttribute("user");
 		// 로그인한 상태이면
-		if(session.getAttribute("user")!=null){
+		if(qwerty!=null){
 			
-			Users user = (Users) session.getAttribute("user");
+			Users user = (Users) qwerty;
 			
 				if(user!=null){
 					
