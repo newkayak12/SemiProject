@@ -62,24 +62,35 @@
 				
 					}  else {
 						for(Cart temp : list){
-				
-				
 				%>
 					
-					
-					
-					
+					<td>
+						<%= temp.getProductName() %>
+					</td>
+					<td>
+						<%= temp.getProductOptionSize() %>
+					</td>
+					<td>
+						<%= temp.getProductOptionColor() %>
+					</td>
+					<td>
+						<%= temp.getProductPrice() %>
+					</td>
+					<td>
+						<%= temp.getProductCount() %>
+					</td>
 				
 				
 				<%
-						}				
+					}				
 						} %>
 				
 				
 				</table>
 			</div>
 			
-			<div id>
+			<div id = "">
+			
 			
 			</div>
 			
