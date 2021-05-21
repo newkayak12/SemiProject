@@ -17,6 +17,7 @@ html,head,body{
     padding: 5px 5px 5px 5px;
  
     border: 1px black solid;
+    list-style: none; 
     /* 
     그냥 보려고 넣은 것
     
@@ -809,6 +810,9 @@ ul#category-bar>li:hover{
 }
 
 main#category-container{
+	margin: 0 !important ; 
+    padding: 0 !important;
+    box-sizing: border-box !important;
 	position: relative;
 	background-color: rgb(240, 240, 240);
 	top : 90px;
@@ -845,7 +849,7 @@ div#items-container{
 	justify-content : center;
 	
 	grid-template-columns : repeat(3, 250px);
-	grid-template-rows : repeat(3, 420px);
+	/* grid-template-rows : repeat(3, 420px); */
 	grid-gap : 30px 20px;
 	position : relative;
 	top : 130px;

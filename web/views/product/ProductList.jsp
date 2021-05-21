@@ -7,6 +7,20 @@
 	List<Product> list = (List<Product>)request.getAttribute("list");
 %>
 
+<style>
+*{
+	margin : 0px !important;
+ 	padding : 0px !important;
+}
+
+#category-container{
+	position:relative;
+	top:100px;
+}
+
+</style>
+
+
 <script>
 	function hearttoggle(){
 		const heart = document.querySelectorAll(".heart");
@@ -35,7 +49,30 @@
 	</div>
 	
 
-	<div id="items-container"3>
+	<div id="items-container" style="margin : 0px !important; padding : 0px !important;" >
+		
+		<!-- 첫번째 상품  -->
+		<div>
+			<div class="img-container">
+				<a href="<%=request.getContextPath()%>/pdetail">
+					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
+				</a>
+				
+				<a href="<%=request.getContextPath()%>/pdetail">
+					<div class="text">
+						<p>DB에서 받아온 상품 상세설명</p>
+					</div>
+				</a>
+			</div>
+			./../.
+			<div class="content-container">
+				<span>상품</span>
+				<span>가격</span><span>하트</span>
+			</div>
+		</div>
+		
+		<!-- 두번째 상품  -->
+		
 		<div>
 			<div class="img-container">
 				<a href="<%=request.getContextPath()%>/pdetail">
@@ -48,95 +85,29 @@
 				</a>
 			</div>
 			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
+			<div class="content-container">
+				<span>상품</span>
+				<span>가격</span><span>하트</span>
 			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
-				</a>
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
-					</div>
-				</a>
-			</div>
-			
+		</div>
 		
+		<div>
+			<div class="img-container">
+				<a href="<%=request.getContextPath()%>/pdetail">
+					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
+				</a>
+				<a href="<%=request.getContextPath()%>/pdetail">
+					<div class="text">
+						<p>DB에서 받아온 상품 상세설명</p>
+					</div>
+				</a>
+			</div>
+			
+			<div class="content-container">
+				<span>상품</span>
+				<span>가격</span><span>하트</span>
+			</div>
+		</div>
 	</div>
 </main>
 <%@include file="/views/common/footer.jsp" %>
