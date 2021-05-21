@@ -6,6 +6,12 @@
 %>
    
 <%@ include file="/views/common/header.jsp"%> 
+	<section id = notice-container>
+		<h2>Notice</h2>
+	
+	</section>
+
+
 
 
 <%@include file="/views/common/footer.jsp"%>
