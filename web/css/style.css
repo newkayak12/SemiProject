@@ -79,35 +79,13 @@ header{
 
 
 header div{
-    width:  400px;
+  /*   width:  350px; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
-    
 }
 
-
-header span{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 200px;
-    justify-content: center;
-    
-    
-}
-
-header span>a{
-	color : white;
-}
-
-header>div>span#logo>a{
-	font-size : 40px;
-	font-weight : border;
-	font-family: 'Dancing Script', cursive;
-}
 
 
 
@@ -147,7 +125,7 @@ footer>div>span>p{
 }
 
 
-/* 호버시 보이는 하위메뉴 ---------------------------------------*/
+/* ----- header 안에 있는 메뉴들  ---------------------------------------*/
 
 
 ul#header-menuContainer{
@@ -159,12 +137,31 @@ ul#header-menuContainer>li{
 	position : relative;
 	list-style : none;
 	color : white;
-	margin : 50px;
-	height : 100px;
-	padding-top : 40px; 
+	margin : 0px 20px 0px 20px;
+	height : 90px;
+	
+	/*선생님이 가르쳐주신 부분 */
+	padding-top: 30px;
+    box-sizing: border-box;
+	
 }
 
 ul#header-menuContainer>li>a{
+	color : white;
+}
+
+/* div id="header-signContainer"  */
+div#header-signContainer{
+	margin : 0 0 0 0;
+	padding : 0 0 0 0;
+}
+
+/* --- admin용 메뉴 ---*/
+ul#admin_menu{
+	list-style : none;
+}
+
+ul#admin_menu>li>a{
 	color : white;
 }
 
@@ -179,14 +176,42 @@ ul#login_menu>li{
 	position : relative;
 	list-style : none;
 	color : white;
-	margin : 50px;
-	height : 100px;
-	padding-top : 40px; 
+	margin : 10px;
+	height : 50px;
+	
+	padding-top: 15px;
+    box-sizing: border-box;
 }
 
 ul#login_menu>li>a{
 	color : white;
 }
+
+
+
+/* --- logo --- */
+
+div#header-logoContainer{
+	width : 300px;
+}
+
+div#header-logoContainer>ul>li{
+	float : left;
+	position : relative;
+	list-style : none;
+	color : white;
+	margin : 20px;
+	height : 50px;
+}
+
+div#header-logoContainer>ul>li>a{
+	font-size : 40px;
+	font-weight : border;
+	font-family: 'Dancing Script', cursive;
+	color : white;
+}
+
+
 
 /*---mypage 메뉴 ---*/
 ul#mypage_menu{
@@ -198,13 +223,14 @@ ul#mypage_menu>li{
 	position : relative;
 	list-style : none;
 	color : white;
-	margin : 50px;
-	height : 100px;
-	padding-top : 40px; 
+	margin-right : 20px;
+	height : 50px;
 }
 
 ul#mypage_menu>li>a{
 	color : white;
+	padding : 0 0 10px 0;
+	margin : 0 0 0 0;
 }
 
 ul#mypage_menu>a>img#header_mypageIcon{
@@ -212,14 +238,12 @@ ul#mypage_menu>a>img#header_mypageIcon{
 	position : relative;
 	list-style : none;
 	color : white;
-	margin : 50px;
-	height : 100px;
-	padding-top : 40px; 
+	height : 50px;
 }
 
 
 
-/* 하위메뉴박스 */
+/* shop, board 의 하위메뉴 */
 ul#header-menuContainer>li>ul{
 	list-style : none;
 	display : none;
@@ -229,7 +253,7 @@ ul#header-menuContainer>li>ul{
 	/* background-color : rgba(225, 225, 225, 0.6); */
 	background-color : white;
 	left : -60px;
-	top : 100px;
+	top : 90px;
 	margin : 0;
 	color : white !important;
 	padding : 20px;
@@ -263,7 +287,7 @@ ul#header-menuContainer>li>ul>li>a:hover{
 }
 
 
-/*---mypage 메뉴 ---*/
+/*---mypage의 하위메뉴 ---*/
 ul#mypage_menu>li>ul{
 	list-style : none;
 	display : none;
@@ -273,7 +297,7 @@ ul#mypage_menu>li>ul{
 	/* background-color : rgba(225, 225, 225, 0.6); */
 	background-color : white;
 	left : -60px;
-	top : 100px;
+	top : 90px;
 	margin : 0;
 	color : white !important;
 	padding : 20px;
@@ -570,20 +594,7 @@ div#contents_sort>span:hover{
 	
 }
 
-#logo{
-	margin-top:50px;
-	width:500px;
-	height:200px;
-	
-}
 
-#logo>a{
-	text-decoration: none;
-	color: white;
-	text-align: center;
-	font-size:32px;
-
-}
 
 #error_image{
 	width:300px;

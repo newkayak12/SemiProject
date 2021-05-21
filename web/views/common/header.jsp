@@ -74,9 +74,11 @@
 <!-- -------------------------------- -->
 	
 	        <div id="header-logoContainer">
-	            <span id="logo">
-	                <a href="<%=request.getContextPath()%>">die Kleidung</a>
-	           </span>           
+	        
+	            <ul id="logo">
+	                <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li>
+	           </ul> 
+         
 	        </div>
 	
 	
@@ -85,16 +87,13 @@
 
 	        <div id="header-signContainer">
 	
-	
-	            <span id="admin_menu">
+				<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>  
+		            
+		            <ul id="admin_menu">
+		            	<li><a href="">ADMIN</a></li>
+		            </ul>
 	            
-	        		<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>  
-	        		
-	                	<a href="">ADMIN</a>
-	                	
-	        		<% } %>     
-	        		
-	            </span>
+	            <% } %> 
 	            
 	  			       
 <!-- -------------------------------- -->
@@ -103,14 +102,17 @@
 	            <ul id="login_menu">
 	            
 	        		 <%if(userid == null){ %>
+	        		 
 	         			<!-- 로그인을 안 했을 떄 -->
 	                	<li><a href="<%=request.getContextPath()%>/sign/signin/start">SIGN IN</a></li>
 					
 					<%} else { %>
+					
 						<!-- 로그인을 했을 때 --> 
 	                	<li><a href="<%=request.getContextPath()%>/sign/signout">SIGN OUT</a></li>
-	        		<%} %>        
-	<!-- sd -->
+	        		
+	        		<%} %>       
+	        		
 	            </ul>
 	           
  <!-- -------------------------------- -->
@@ -120,8 +122,7 @@
 	            
 	            <% if(userid !=null){ %>    
 		        
-		            <li><a href="<%=request.getContextPath()%>/IList.do"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-		            </a>
+		            <li><a href="<%=request.getContextPath()%>/IList.do"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a>
 		            	<ul>
 		            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
 		            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
@@ -131,8 +132,7 @@
 		            
 		         <% } else { %>  
 		         
-		         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-		            </a></li>
+		         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
 		         
 		         <% } %> 
 		            
