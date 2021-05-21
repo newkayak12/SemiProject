@@ -45,23 +45,28 @@ public class ProductDao{
 			
 			if(category.equals("all")) {
 				query= query.replace("@"," ");
+				
+				System.out.println("product all");
 			} else {
 				query = query.replace("@","where c_id = "+category);
 			}
 			
 			if(sort.equals("p_view_count")) {
-				query = query.replace("#","ordery by "+ sort +"desc");
+				query = query.replace("#","order by "+ sort +" desc");
+				
+				System.out.println("pviewcount"+query);
 				
 			} else {
 				
+				if(sort.equals("high")) {
+					query = query.replace("#", "order by p_price desc");
+				} else {
+					query = query.replace("#", "order by p_price asc ");
+					
+				}
+				
 				
 			}
-			
-			
-			
-			
-			
-			
 			
 			
 			pstmt=conn.prepareStatement(query);
@@ -99,8 +104,11 @@ public class ProductDao{
 		return list;
 	}
 	
+	
+	
+	
 	// 카운트
-	public int countAllProduct(Connection conn) {
+	public int countAllProduct(Connection conn, String sort, String category) {
 		// SQL문 실행
 		PreparedStatement pstmt = null;
 		
@@ -110,7 +118,32 @@ public class ProductDao{
 		
 		try {
 			
-			pstmt = conn.prepareStatement(prop.getProperty("countAllProduct"));
+			String query = prop.getProperty("countAllProduct");
+			
+			if(category.equals("all")) {
+				query= query.replace("@"," ");
+			} else {
+				query = query.replace("@","where c_id = "+category);
+			}
+			
+			if(sort.equals("p_view_count")) {
+				query = query.replace("#","ordery by "+ sort +"desc");
+				
+			} else {
+				
+				if(sort.equals("high")) {
+					query = query.replace("#", "order by p_price desc");
+				} else {
+					query = query.replace("#", "order by p_price asc ");
+					
+				}
+				
+				
+			}
+			
+			
+			
+			pstmt = conn.prepareStatement(query);
 			
 			rs = pstmt.executeQuery();
 			

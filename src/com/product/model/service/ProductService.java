@@ -21,9 +21,9 @@ public class ProductService {
 		return list;
 	}
 	
-	public int countAllProduct() {
+	public int countAllProduct(String sort, String category) {
 		Connection conn = getConnection();
-		int count = dao.countAllProduct(conn);
+		int count = dao.countAllProduct(conn, sort, category);
 		close(conn);
 		return count;
 	}

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.product.model.service.ProductService;
 import com.product.model.vo.Product;
+import static com.common.PageBar.pageBar;
 
 /**
  * Servlet implementation class ProductListServlet
@@ -70,7 +71,14 @@ public class ProductListServlet extends HttpServlet {
 		
 		List<Product> result = new ProductService().selectAllProduct(cPage, numPerPage,sort,category);
 		
+		int count = new ProductService().countAllProduct(sort, category);
 		
+		System.out.println("result size"+result.size());
+		request.setAttribute("result", result);
+		request.setAttribute("pageBar",pageBar(cPage, numPerPage, count, "/product/list", category, sort, null));
+		
+		
+		request.getRequestDispatcher("/views/product/productList").forward(request, response);
 	}
 
 	/**

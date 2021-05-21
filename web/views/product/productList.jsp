@@ -5,7 +5,7 @@
 <%@include file="/views/common/header.jsp" %>
 
 <%
-	List<Product> list = (List<Product>)request.getAttribute("list");
+	List<Product> list = (List<Product>)request.getAttribute("result");
 %>
 
 <style>
@@ -53,29 +53,31 @@
 	<div id="items-container" style="margin : 0px !important; padding : 0px !important;" >
 		
 		<!-- 첫번째 상품  -->
+		
+	<%for (Product p : list ){ %>
 		<div>
 			<div class="img-container">
-				<a href="<%=request.getContextPath()%>/pdetail">
-					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
+				<a href="<%=request.getContextPath()%>/product/detail?category=<%=p.getCategoryId()%>&productid=<%=p.getProductId()%>">
+					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/<%=p.getProductFile() %>" style='width : 100%; height : 100%;'>
 				</a>
 				
-				<a href="<%=request.getContextPath()%>/pdetail">
+				<a href="<%=request.getContextPath()%>/product/detail?category=<%=p.getCategoryId()%>&productid=<%=p.getProductId()%>">
 					<div class="text">
-						<p>DB에서 받아온 상품 상세설명</p>
+						<p><%=p.getProductExplain() %></p>
 					</div>
 				</a>
 			</div>
 
 			<div class="content-container">
-				<span>상품</span>
-				<span>가격</span><span>하트</span>
+				<span> <%=p.getProductName() %></span>
+				<span> <%=p.getProductPrice() %></span><span>하트</span>
 			</div>
 		</div>
 		
-
+	<%} %>
 		
 		<div>
-	<!-- PageBar -->
+		<%=request.getAttribute("pageBar") %>)
 		</div>
 		
 		
