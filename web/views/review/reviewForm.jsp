@@ -4,6 +4,19 @@
     
 <%@ include file = "/views/common/header.jsp"%>
 
+<%
+	
+	String orderNo= null;
+	//orderlist.jsp에서 글쓰기 버튼을 눌렀을 때 가져오는 값
+	String order_no = (String)request.getParameter("orderNo");
+
+	if(orderNo != null) {
+		orderNo = order_no;
+	} else{
+		orderNo = "";
+	}
+%>
+
 
 <main id="reviewForm_main">
 
@@ -65,9 +78,14 @@
 <script>
 	const fn_selectProduct = () => {
 		
+		/* 테스트용 alert("함수실행"); */
 		
+		const url = "<%=request.getContextPath()%>/selectReviewProduct?orderNo=<%=orderNo%>";
+		const title = "selectReviewProduct";
+		const status = "left=500px, top=100px, width=300px, height=300px";
 		
-		window.open();
+		window.open("", title, status); 
+		
 	}
 </script>
 

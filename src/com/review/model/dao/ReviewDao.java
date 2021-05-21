@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.order.model.vo.Order;
 import com.review.model.vo.Review;
 
 public class ReviewDao {
@@ -248,6 +249,11 @@ public class ReviewDao {
 		return result;
 	}
 
+	
+	public List<Order> selectProduct(Connection conn, String orderNo) {
+		
+		return null;
+	}
 
 
 	public int postReview(Connection conn, Review r) {
@@ -289,6 +295,10 @@ public class ReviewDao {
 		
 		return result;
 	}
+
+
+
+	
 	
 	
 

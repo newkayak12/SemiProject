@@ -8,6 +8,7 @@ import static com.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.order.model.vo.Order;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
 
@@ -118,6 +119,20 @@ public class ReviewService {
 		close(conn);
 		
 		return 0;
+	}
+
+
+
+
+	public List<Order> selectProduct(String orderNo) {
+		
+		Connection conn = getConnection();
+		
+		List<Order> list = dao.selectProduct(conn, orderNo);
+		
+		close(conn);
+		
+		return list;
 	}
 
 }
