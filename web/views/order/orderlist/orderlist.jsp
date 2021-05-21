@@ -41,14 +41,18 @@ $(function(){
 <main id="orderOrrefundMain">
 
     <div id="orderOrrefund">
+    
     	<div id="orderOrrefund_selector-container">
 	        <span id="order_selector" onclick="ajax_order()">주문 내역 조회(<%=request.getAttribute("orderCount") %>)</span>
 	        <span id="refund_selector"onclick="">취소/반품/교환 내역()</span>
     	</div>		
+    	
 	    <div id="oderOrrefund-container">
+	    
 	        <p id="orderOrrefundFlag">주문 상품 정보</p>
 	
 	        <table id="orderOrrefund-table" align="center">
+	        
 	            <tr>
 	                <th>
 	                    <p>주문일자</p>
@@ -73,9 +77,9 @@ $(function(){
 	                    취소/교환/반품
 	                </th> -->
 	            </tr>
-			<%for(Order o : result){
-				
-			%>
+	            
+	            
+			<%for(Order o : result){ %>
 			
                 <tr>
                     <td>
@@ -84,9 +88,11 @@ $(function(){
 	                        <p><%=o.getOrderNumber() %></p>
                         </span>
                     </td>
+                    
                     <td>
                         <img src="<%=request.getContextPath() %>/images/product/<%=o.getProductFile() %>" alt="상품 이미지" onclick = "location.assign('<%=request.getContextPath() %>/---- ?productNumber=<%=o.getProductId() %>')">
                     </td>
+                    
                     <td>
                     
                     	<span onclick = "location.assign('<%=request.getContextPath() %>/---- ?productNumber=<%=o.getProductId() %>')" >
@@ -94,29 +100,44 @@ $(function(){
 	                        <p><%=o.getProductSize() %> / <%=o.getProductColor() %> </p>
 	                    </span>    
                     </td>
+                    
                     <td>
                         <%=o.getProductStock()%>
                         
                     </td>
+                    
                     <td>
                         <%=o.getProductPrice() %>
                     </td>
-                    <td>
+                    
+                    <td id="td_orderStatus">
+                    	<!-- 결제전/ 결제완료/ 배송중/ 배송완료/ 구매확정(리뷰쓰기)  -->
+                    	
                         <%=o.getOrderStatus() %>
-                        <!-- 결제전/ 결제완료/ 배송중/ 배송완료/ 구매확정(리뷰쓰기)  -->
+                        
+                        <% if( o.getOrderStatus().equals("구매확정") ) { %>
+                        	<br>
+                        	<button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?orderNo=<%=o.getOrderNumber()%>')">리뷰쓰기</button>
+                        <% } %>
                     </td>
                     <!-- <td>
                        <button type="button" id="status-button"> 취소/교환/환불 상태</button>
                     </td> -->
                 </tr>
+                
 			<%	}	%>
+			
 	        </table>
-	
 	
 	    </div>
 	</div>
+	
+	
 	<div id="pageBar"><%=pageBar %></div>
 	
 </main>
+
 <!-- order 끝 -->
+
+
 <%@ include file = "/views/common/footer.jsp"%>

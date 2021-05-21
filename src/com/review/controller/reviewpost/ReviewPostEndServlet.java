@@ -27,6 +27,9 @@ public class ReviewPostEndServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ReviewService service = new ReviewService();
+		
+		
 		// 리뷰 작성폼에서 입력한 값을 가져와서 db에 저장 
 		
 //		String reviewTitle = request.getParameter("reviewTitle");
@@ -56,6 +59,14 @@ public class ReviewPostEndServlet extends HttpServlet {
 		
 		Review r = new Review();
 		
+		
+		
+		// order테이블과 orderdetail테이블과 product테이블을 join해서 상품정보 가져와야한다
+		
+		
+		
+		
+		
 		// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate,default,0,'파일입니다','1','001','c01');
 		
 		r.setReviewContents(mr.getParameter("reviewContent"));
@@ -65,7 +76,6 @@ public class ReviewPostEndServlet extends HttpServlet {
 		
 		
 		
-		ReviewService service = new ReviewService();
 		
 		int result = service.postReview(r);
 		

@@ -18,7 +18,7 @@
 					<th>상품선택</th>
 					<td>
 						<img src="<%=request.getContextPath() %>/images/noimage.jpg" name="" id="" width="100px" height="100px">
-						<button>상품선택</button>
+						<button onclick="fn_selectProduct();">상품선택</button>
 					</td>
 					<%-- <td>
 						<img src="<%=request.getContextPath() %>/images/pants1.jpg" name="" id="" width="100px" height="100px">
@@ -61,5 +61,14 @@
 	</div>
 	
 </main>
+
+<script>
+	const fn_selectProduct = () => {
+		
+		
+		
+		window.open();
+	}
+</script>
 
 <%@ include file = "/views/common/footer.jsp"%>

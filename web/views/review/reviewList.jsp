@@ -90,12 +90,6 @@
 								
 					<% } %>
 					
-					<tr>
-						<td colspan="3">
-							<button type="button" id="r_btn" name="r_btn" onclick="location.assign('<%=request.getContextPath()%>/review/post/start')">글쓰기</button>
-						</td>
-					</tr>
-					
 				</table>
 					
 			<% } else { %>
