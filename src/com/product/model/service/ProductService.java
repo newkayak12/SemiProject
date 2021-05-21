@@ -14,9 +14,9 @@ public class ProductService {
 	
 	private ProductDao dao = new ProductDao();
 
-	public List<Product> selectAllProduct(int cPage, int numPerpage){
+	public List<Product> selectAllProduct(int cPage, int numPerpage, String sort, String category){
 		Connection conn=getConnection();
-		List<Product> list = dao.selectAllProduct(conn,cPage,numPerpage);
+		List<Product> list = dao.selectAllProduct(conn,cPage,numPerpage,  sort,  category);
 		close(conn);
 		return list;
 	}
