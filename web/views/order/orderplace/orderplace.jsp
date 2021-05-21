@@ -6,15 +6,17 @@
 
 <% 
 	int flag  = (Integer) request.getAttribute("flag");
+	Cart cart = null;
+	List<Cart> list = null;
 
 	if(flag ==0){
 	/* 바로 구매 */
 	
-		Cart list = (Cart) request.getAttribute("list");
+		 cart = (Cart) request.getAttribute("list");
 	}else {
 		/*  장바구니 */
 		
-		List<Cart> list = (List<Cart>) request.getAttribute("list");
+		list = (List<Cart>) request.getAttribute("list");
 	}
 %>
 <main id = "orderplace-main">
@@ -26,9 +28,59 @@
 			</div>
 			<div id="user_info-container">
 				<table id="orderplace-table">
+				<tr>
+					<th>사진</th>
+					<th>제품명</th>
+					<th>사이즈</th>
+					<th>색상</th>
+					<th>가격</th>
+					<th>개수</th>
+					
+				</tr>
+				
+				<%if(flag ==0) {%>
+					<td>
+						<img alt="" src="">
+					</td>
+					<td>
+						<%=cart.getProductName() %>
+					</td>
+					<td>
+						<%=cart.getProductOptionSize() %>
+					</td>
+					<td>
+						<%=cart.getProductOptionColor() %>
+					</td>
+					<td>
+						<%=cart.getProductPrice() %>
+					</td>
+					<td>
+						<%=cart.getProductCount() %>
+					</td>
+				
+				<%
+				
+					}  else {
+						for(Cart temp : list){
+				
+				
+				%>
+					
+					
+					
+					
+				
+				
+				<%
+						}				
+						} %>
 				
 				
 				</table>
+			</div>
+			
+			<div id>
+			
 			</div>
 			
 			
