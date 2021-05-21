@@ -15,8 +15,9 @@ html,head,body{
 *{
     margin: 5px 5px 5px 5px; 
     padding: 5px 5px 5px 5px;
-/* 
-    border: 1px black solid; 
+ 
+    border: 1px black solid;
+    /* 
     그냥 보려고 넣은 것
     
      margin: 0;
@@ -148,21 +149,6 @@ footer>div>span>p{
 
 /* 호버시 보이는 하위메뉴 ---------------------------------------*/
 
-/* section{
-    width:  140px;
-    height: 180px;
-    display: none;
-    z-index: 500;
-    position: fixed;
-    text-align: center;
-    
-
-    top: 95px;
-    left: 6px;
-
-} */
-
-
 
 ul#header-menuContainer{
 	list-style : none;
@@ -177,6 +163,25 @@ ul#header-menuContainer>li{
 	height : 100px;
 	padding-top : 40px; 
 	
+}
+
+ul#header-menuContainer>li>a{
+	color : white;
+}
+
+/*---mypage 메뉴 ---*/
+ul#mypage_menu{
+	list-style : none;
+}
+
+ul#mypage_menu>li{
+	float : left;
+	position : relative;
+	list-style : none;
+	color : white;
+	margin : 50px;
+	height : 100px;
+	padding-top : 40px; 
 }
 
 ul#header-menuContainer>li>a{
@@ -228,6 +233,49 @@ ul#header-menuContainer>li>ul>li>a:hover{
 	font-weight : 900;
 }
 
+
+/*---mypage 메뉴 ---*/
+ul#mypage_menu>li>ul{
+	list-style : none;
+	display : none;
+	position : absolute;
+	width : 160px;
+	/* width : 1366px; */
+	/* background-color : rgba(225, 225, 225, 0.6); */
+	background-color : white;
+	left : -60px;
+	top : 100px;
+	margin : 0;
+	color : white !important;
+	padding : 20px;
+	
+}
+
+ul#mypage_menu>li>ul>li{
+	padding : 10px;
+	
+}
+
+
+ul#mypage_menu>li>ul>li>a{
+	font-size : 15px;
+	padding : 10px;
+	color : #000;
+	text-align : left;
+	
+}
+
+
+ul#mypage_menu>li:hover>ul{
+	display : block;
+	z-index : 10;
+	
+}
+
+ul#mypage_menu>li>ul>li>a:hover{
+	color : orange;
+	font-weight : 900;
+}
 
 
 
@@ -580,7 +628,8 @@ div#contents_sort>span:hover{
 
 /*login*/
 #signinMain{
-	
+	position:relative;
+	top:105px;
 	height: 525px !important;
 	display:flex;
 	justify-content: center;
