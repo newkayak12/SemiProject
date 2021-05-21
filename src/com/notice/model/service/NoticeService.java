@@ -17,6 +17,7 @@ public class NoticeService {
 		List<Notice> list=dao.selectNoticeList(conn,cPage,numPerpage);
 		close(conn);
 		return list;
+		
 	}
 	
 	public int selectNoticeCount() {

@@ -82,8 +82,9 @@ public class NoticeListServlet extends HttpServlet {
 		}
 		// request.setAttribute("객체명", 객체)
 		request.setAttribute("pageBar",pageBar);
-		request.getRequestDispatcher("/views/notice/noticeList.jsp")
+		request.getRequestDispatcher("/views/notice/NoticeList.jsp")
 		.forward(request, response);
+		
 	}
 
 	/**

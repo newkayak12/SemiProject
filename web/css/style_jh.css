@@ -1,2 +1,32 @@
 @charset "UTF-8";
 
+div#notice-container{
+	position : relative;
+	top : 120px;
+	text-align: center;
+}
+
+span#notice{
+	color : orange;
+	font-size : 20px;
+	font-weight : bolder;
+}
+
+.thead-color{
+	background-color : rgb(0, 70, 172);
+	color : white;
+}
+
+table#tbl-notice{
+	margin : 20px auto;
+	border: 1px white solid;
+    border-collapse: collapse;
+}
+
+table#tbl-notice th{
+	border: 1px solid white;
+}
+
+table#tbl-notice th, td{
+	 text-align: center;
+}
