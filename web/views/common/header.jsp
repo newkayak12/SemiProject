@@ -39,36 +39,12 @@
 		}
 %>
 
-
-     <script>
-   /*  $(function(){
-        $("#shop_menu").children().mouseover((e)=>{
-            $("section").css({
-                "display":"block"
-            })
-        })
-
-        $("#shop_menu").children().mouseleave((e)=>{
-            $("section").css({
-                "display":"none"
-            })
-        })
-       
-
-
-    }) */
-    </script>  
-	
     <header>
     	
     	<nav>
     
 	    	<ul id="header-menuContainer">
-		          
-		            <!-- <span id="shop_menu"><a href ="">SHOP</a></span>
-		            <span id="board_menu"><a href ="">BOARD</a></span>
-		            <span id="review_menu"><a href ="">REVIEW</a></span> -->
-		           
+		        
 		            <li><a href="<%=request.getContextPath()%>/IList.do">SHOP</a>
 		            	<ul>
 		            		<li><a href="">OUTTER</a></li>
@@ -81,7 +57,7 @@
 		            <li>
 			            <a href="">BOARD</a>
 			            <ul>
-			            	<li><a href="">NOTICE</a></li>
+			            	<li><a href="<%=request.getContextPath()%>/notice/list">NOTICE</a></li>
 			            	<li><a href="">Q&A</a></li>
 			            </ul>
 			        </li>
@@ -134,7 +110,7 @@
 	           <!-- -------------------------------- -->
 	
 	
-	            <span id="mypage_menu">
+	            <%-- <span id="mypage_menu">
 	        <%if(userid !=null){ %>    
 	                <a href="<%=request.getContextPath()%>/sign/">
 	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
@@ -149,23 +125,36 @@
 	                </a>
 	
 			<%} %>
-	            </span>
+	            </span> --%>
+	            
+	            
+	            
+	            <ul id="mypage_menu">
+	            
+	            <% if(userid !=null){ %>    
+		        
+		            <li><a href="<%=request.getContextPath()%>/IList.do"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
+		            </a>
+		            	<ul>
+		            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
+		            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
+		            		<li><a href="">PROFILE</a></li>
+		            	</ul>
+		            </li>
+		            
+		         <% } else { %>  
+		         
+		         	<a href="<%=request.getContextPath()%>/views/member/login.jsp"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
+		            </a>
+		         
+		         <% } %> 
+		            
+		        </ul>
 	
 	            <!-- -------------------------------- -->
 	
 	        </div>
 
     </header>
-    
-    
-    
-
-    <!-- <section>
-        <div id="shop_dropdown">
-            <div>아우터</div>
-            <div>상의</div>
-            <div>하의</div>
-            <div>액세서리</div>
-        </div> 
-
-    </section>-->
+ 
+ 
