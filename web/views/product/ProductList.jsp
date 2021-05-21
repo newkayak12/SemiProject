@@ -70,14 +70,15 @@
 				<span>상품</span>
 				<span>가격</span><span>하트</span>
 			</div>
-			
+		</div>
+		
+
+		
+		<div>
+	<!-- PageBar -->
 		</div>
 		
 		
-	</div>
-	
-	<div>
-	<!-- PageBar -->
 	</div>
 </main>
 <%@include file="/views/common/footer.jsp" %>
