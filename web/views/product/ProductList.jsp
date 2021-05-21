@@ -47,8 +47,8 @@
 					</div>
 				</a>
 			</div>
-			
-			<div class="img-container">
+
+			 <div class="img-container">
 				<a href="<%=request.getContextPath()%>/pdetail">
 					<img class="product-thumbnail" src ="<%=request.getContextPath() %>/images/pants1.jpg" style='width : 100%; height : 100%;'>
 				</a>
@@ -134,10 +134,10 @@
 						<p>DB에서 받아온 상품 상세설명</p>
 					</div>
 				</a>
-			</div>
-			
-		
-	</div>
+			</div> 
+		</div>
+
+		</div>
 </main>
 <%@include file="/views/common/footer.jsp" %>
 

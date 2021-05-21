@@ -54,7 +54,7 @@ public class ProductDao{
 				i.setProductName(rs.getString("p_name"));
 				i.setProductPrice(rs.getString("p_price"));
 				i.setProductStock(rs.getInt("p_stock"));
-				i.setProductFile(rs.getString("p_file"));
+				i.setProductFile1(rs.getString("p_file"));
 				
 				list.add(i);
 			}
