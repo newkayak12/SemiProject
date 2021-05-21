@@ -9,6 +9,7 @@ public class Product {
 	private String productPrice;
 	private int productStock;
 	private String productFile, productFileDetail1 ,productFileDetail2, productExplain;
+	private int productViewCount;
 	public int getProductId() {
 		return productId;
 	}
@@ -75,10 +76,19 @@ public class Product {
 	public void setProductExplain(String productExplain) {
 		this.productExplain = productExplain;
 	}
-	
-	
-	
-	
-	
+	public int getProductViewCount() {
+		return productViewCount;
+	}
+	public void setProductViewCount(int productViewCount) {
+		this.productViewCount = productViewCount;
+	}
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", categoryId=" + categoryId + ", productOptionSize="
+				+ productOptionSize + ", productOptionColor=" + productOptionColor + ", productName=" + productName
+				+ ", productPrice=" + productPrice + ", productStock=" + productStock + ", productFile=" + productFile
+				+ ", productFileDetail1=" + productFileDetail1 + ", productFileDetail2=" + productFileDetail2
+				+ ", productExplain=" + productExplain + ", productViewCount=" + productViewCount + "]";
+	}
 	
 }

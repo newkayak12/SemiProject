@@ -103,6 +103,7 @@ $(function(){
                     </td>
                     <td>
                         <%=o.getOrderStatus() %>
+                        <!-- 결제전/ 결제완료/ 배송중/ 배송완료/ 구매확정(리뷰쓰기)  -->
                     </td>
                     <!-- <td>
                        <button type="button" id="status-button"> 취소/교환/환불 상태</button>

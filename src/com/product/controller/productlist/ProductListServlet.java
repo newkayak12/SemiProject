@@ -1,0 +1,84 @@
+package com.product.controller.productlist;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.product.model.service.ProductService;
+import com.product.model.vo.Product;
+
+/**
+ * Servlet implementation class ProductListServlet
+ */
+@WebServlet("/product/list")
+public class ProductListServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProductListServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// sort pop/ high/ low
+		// category c01/ c02 /c03 /c04 
+		// cPage 1
+		// numperpage 5
+		// keyword
+		//
+		String sort = request.getParameter("sort");
+		 
+		
+		if(sort == null) {
+			sort  = "p_view_count";
+		} 
+		
+		request.setAttribute("sort", sort);
+		
+		String category = request.getParameter("category");
+		
+		if(category == null) {
+			
+			category = "all";
+		}
+		
+		request.setAttribute("category", category);
+		
+		
+		int cPage = 1;
+		
+			try {
+				cPage = Integer.parseInt(request.getParameter("cPage"));
+			}catch(NumberFormatException e) {
+				
+			
+			}
+		
+		int numPerPage = 9;
+		
+		List<Product> result = new ProductService().selectAllProduct(cPage, numPerPage,sort,category);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

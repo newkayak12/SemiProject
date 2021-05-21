@@ -33,7 +33,7 @@ public class PageBar{
 		
 		
 				if(pageNo == 1) {
-						html+="<span>&nbsp;&nbsp;</span>";
+						html+="<span> < </span>";
 				} else {
 						html+= "<a href='"+url+"?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'> < </a>";
 				}
@@ -49,7 +49,7 @@ public class PageBar{
 				}
 				
 				if(pageNo>totalPage) {
-					html+="<span>&nbsp;&nbsp;</span>";
+					html+="<span> > </span>";
 				} else {
 					html+= "<a href='"+url+"?cPage="+pageNo+"&numPerPage="+numPerPage+"'> > </a>";
 				}
@@ -90,7 +90,7 @@ public class PageBar{
 			
 			
 					if(pageNo == 1) {
-							html+="<span>&nbsp;&nbsp;</span>";
+							html+="<span> < </span>";
 					} else {
 							html+= "<a href='"+url+"?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&keyword="+keyword+"&searchType="+searchType+"'> < </a>";
 					}
@@ -106,7 +106,7 @@ public class PageBar{
 					}
 					
 					if(pageNo>totalPage) {
-						html+="<span>&nbsp;&nbsp;</span>";
+						html+="<span> > </span>";
 					} else {
 						html+= "<a href='"+url+"?cPage="+pageNo+"&numPerPage="+numPerPage+"&keyword="+keyword+"&searchType="+searchType+"'> > </a>";
 					}
