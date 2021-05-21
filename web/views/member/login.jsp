@@ -35,7 +35,7 @@
 				
 
 				<div id="submit_section">
-						<input type="checkbox" name="idsave" style="width:20px; margin-left: 10px !important; margin-right: 15px !important;">
+						아이디저장<input type="checkbox" name="idsave" style="width:20px; margin-left: 10px !important; margin-right: 15px !important;" <%= check!=null? "checked":"" %>>
 						<input type="submit" value="로그인" onsubmit="" style="width:150px; margin-left: 15px !important; margin-right: 10px !important; margin-bottom:10px !important" >
 				</div>
 			</form>
