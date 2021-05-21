@@ -120,21 +120,26 @@
 	            
 	            <ul id="mypage_menu">
 	            
-	            <% if(userid !=null){ %>    
-		        
-		            <li><a href="<%=request.getContextPath()%>/IList.do"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a>
-		            	<ul>
-		            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
-		            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
-		            		<li><a href="">PROFILE</a></li>
-		            	</ul>
-		            </li>
-		            
-		         <% } else { %>  
-		         
-		         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
-		         
-		         <% } %> 
+		           	<!-- 로그인하면 -->
+		            <% if(userid !=null){ %>    
+			        
+			            <li>
+				            <a href="">
+				            	<img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
+				            </a>
+			            	<ul>
+			            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
+			            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
+			            		<li><a href="">PROFILE</a></li>
+			            	</ul>
+		            	</li>
+			            
+			         <!-- 로그인 되어있지않으면 -->
+			         <% } else { %>  
+			         
+			         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
+			         
+			         <% } %> 
 		            
 		        </ul>
 	
