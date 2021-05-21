@@ -56,6 +56,7 @@ public class ProductDao{
 				i.setProductStock(rs.getInt("p_stock"));
 				i.setProductFile1(rs.getString("p_file"));
 				
+				
 				list.add(i);
 			}
 		}catch(SQLException e) {

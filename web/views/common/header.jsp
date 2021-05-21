@@ -26,6 +26,7 @@
 
 <%
 	String userid = null;
+	String checkAdmin = null;
 		
 		// 로그인한 상태이면
 		if(session.getAttribute("user")!=null){
@@ -35,12 +36,13 @@
 				if(user!=null){
 					
 					userid = user.getUserId();
+					checkAdmin = user.getUserAdmin(); // 1이면 admin계정, 0이면 일반사용자
 				}
 		}
 %>
 
     <header>
-    	
+<!-- -------------------------------- -->    	
     	<nav>
     
 	    	<ul id="header-menuContainer">
@@ -69,72 +71,58 @@
 		        </ul>
 	        </nav>
 	        
-	<!-- -------------------------------- -->
+<!-- -------------------------------- -->
 	
 	        <div id="header-logoContainer">
-	            <span id="logo">
-	                <a href="<%=request.getContextPath()%>">die Kleidung</a>
-	           </span>           
+	        
+	            <ul id="logo">
+	                <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li>
+	           </ul> 
+         
 	        </div>
 	
 	
 	
-	        <!-- -------------------------------- -->
+<!-- -------------------------------- -->
+
 	        <div id="header-signContainer">
 	
-	
-	            <span id="admin_menu">
-	        <%if(!true) {%>  
-	                <a href="">ADMIN</a>
-	        <% } %>     
-	            </span>
-	  <!-- ADMIN일 때만 -->        
-	           <!-- -------------------------------- -->
-	
-	           
-	         
-	
-	            <span id="login_menu">
+				<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>  
+		            
+		            <ul id="admin_menu">
+		            	<li><a href="">ADMIN</a></li>
+		            </ul>
 	            
-	         <%if(userid == null){ %>
-	         		<!-- 로그인을 안 했을 떄 -->
-	                <a href="<%=request.getContextPath()%>/sign/signin/start">SIGN IN</a>
+	            <% } %> 
+	            
+	  			       
+<!-- -------------------------------- -->
+	
+	
+	            <ul id="login_menu">
+	            
+	        		 <%if(userid == null){ %>
+	        		 
+	         			<!-- 로그인을 안 했을 떄 -->
+	                	<li><a href="<%=request.getContextPath()%>/sign/signin/start">SIGN IN</a></li>
 					
-			<%} else { %>
-					<!-- 로그인을 했을 때 --> 
-	                <a href="<%=request.getContextPath()%>/sign/signout">SIGN OUT</a>
-	        <%} %>        
-	
-	            </span>
+					<%} else { %>
+					
+						<!-- 로그인을 했을 때 --> 
+	                	<li><a href="<%=request.getContextPath()%>/sign/signout">SIGN OUT</a></li>
+	        		
+	        		<%} %>       
+	        		
+	            </ul>
 	           
-	           <!-- -------------------------------- -->
-	
-	
-	            <%-- <span id="mypage_menu">
-	        <%if(userid !=null){ %>    
-	                <a href="<%=request.getContextPath()%>/sign/">
-	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
+ <!-- -------------------------------- -->
 
-	                </a>
-	        <%} else { %>        
-	
-	
-	                <a href="">
-	                	<!-- 로그인 안 했을 때의 이미지 -->
-	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-	                </a>
-	
-			<%} %>
-	            </span> --%>
-	            
-	            
 	            
 	            <ul id="mypage_menu">
 	            
 	            <% if(userid !=null){ %>    
 		        
-		            <li><a href="<%=request.getContextPath()%>/IList.do"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-		            </a>
+		            <li><a href="<%=request.getContextPath()%>/IList.do"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a>
 		            	<ul>
 		            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
 		            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
@@ -144,14 +132,13 @@
 		            
 		         <% } else { %>  
 		         
-		         	<a href="<%=request.getContextPath()%>/views/member/login.jsp"><img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-		            </a>
+		         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
 		         
 		         <% } %> 
 		            
 		        </ul>
 	
-	            <!-- -------------------------------- -->
+<!-- -------------------------------- -->
 	
 	        </div>
 
