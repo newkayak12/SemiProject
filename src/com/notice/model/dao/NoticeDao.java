@@ -15,9 +15,10 @@ import static com.common.JDBCTemplate.close;
 
 public class NoticeDao {
 private Properties prop=new Properties();
+
 	
 	public NoticeDao() {
-		String path=NoticeDao.class.getResource("/sql/notice_sql.properties").getPath();
+		String path=NoticeDao.class.getResource("/properties/sql/notice_sql.properties").getPath();
 		try {
 			prop.load(new FileReader(path));
 		}catch(IOException e) {

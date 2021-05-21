@@ -6,10 +6,42 @@
 %>
    
 <%@ include file="/views/common/header.jsp"%> 
-	<section id = notice-container>
-		<h2>Notice</h2>
+	<div id = notice-container>
+		
+		<span id ="notice">Notice</span>
+		
+        <table id="tbl-notice">
+            <thead class="thead-color">
+                <th>No</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </thead>
+            
+        <%if(list.isEmpty()){ %>
+        	<td colspan="4">조회된 공지사항이 없습니다.<%System.out.println(list); %></td>
+        <%} 
+          else{ 
+            for(Notice n : list){%>
+            <tr>
+	            <td><%=n.getnSeq() %></td>
+	            <td>
+	            	<a href="<%=request.getContextPath()%>/notice/noticeView?nSeq=<%=n.getnSeq()%>">
+	            	<%=n.getnTitle() %>
+	            	</a>
+	            </td> 
+	            <td>
+	            	<%=n.getUserId() %>
+	            </td>
+	            <td>
+	            	<%=n.getnDate() %>
+	            </td>
+             </tr> 
+            <%}
+            }%>
+        </table>
 	
-	</section>
+	</div>
 
 
 
