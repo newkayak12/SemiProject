@@ -102,10 +102,9 @@ footer{
     
     
     position: relative;
-    bottom: 0px;
     
     padding : 0 0 0 0;
-   
+    
 }
 
 footer>div#footer-container{
@@ -117,6 +116,7 @@ footer>div#footer-container{
     align-items: center;
     text-align: center;
     margin: 5px 0px 0px 0px !important;
+    
    /*  height: fit-content; */
     
     background-color : rgb(9, 74, 169);
@@ -665,7 +665,7 @@ div#contents_sort>span:hover{
 
 
 /*login*/
-#signinMain{
+main#signinMain{
 	position:relative;
 	top:105px;
 	height: 525px !important;
@@ -675,7 +675,7 @@ div#contents_sort>span:hover{
 	margin : 0 0 0 0;
 	padding : 0 0 0 0;
 }
-#signin-container{
+div#signin-container{
 	width:500px;
 	height:400px;
 	display:flex;
@@ -685,7 +685,7 @@ div#contents_sort>span:hover{
 	
 	
 }
-#signin-container form{
+div#signin-container form{
 	width:320px;
 	height:300px;
 	display:flex;
@@ -696,7 +696,7 @@ div#contents_sort>span:hover{
 
 
 
-#signin-container p,input{
+div#signin-container p,input{
 	width:300px;
 	height:30px;
 	margin-top:15px;
@@ -704,7 +704,7 @@ div#contents_sort>span:hover{
 	margin-right:auto !important;
 }
 
-#input_section{
+div#input_section{
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
@@ -712,7 +712,7 @@ div#contents_sort>span:hover{
 	height:200px;
 	
 }
-#submit_section{
+div#submit_section{
 	display:flex;
 	flex-direction:row;
 	justify-content:space-between;
@@ -723,12 +723,12 @@ div#contents_sort>span:hover{
 	
 }
 
-#submit_section *{
+div#submit_section *{
 	padding : 0 0 0 0;
 	margin : 0 0 0 0;
 }
 
-#submit_section span{
+div#submit_section span{
 	box-sizing: border-box;
     padding-top: 5px;
 }
