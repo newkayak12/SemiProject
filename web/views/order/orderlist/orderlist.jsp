@@ -117,7 +117,7 @@ $(function(){
                         
                         <% if( o.getOrderStatus().equals("구매확정") ) { %>
                         	<br>
-                        	<button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?orderNo=<%=o.getOrderNumber()%>')">리뷰쓰기</button>
+                        	<button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?pid=<%=o.getProductId()%>&pname=<%=o.getProductName()%>&color=<%=o.getProductColor()%>&size=<%=o.getProductSize()%>&category=<%=o.getCategoryId()%>&file=<%=o.getProductFile()%>&onumber=<%=o.getOrderNumber()%>')">리뷰쓰기</button>
                         <% } %>
                     </td>
                     <!-- <td>

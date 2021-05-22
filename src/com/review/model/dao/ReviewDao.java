@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.order.model.vo.Order;
+import com.product.model.vo.Product;
 import com.review.model.vo.Review;
 
 public class ReviewDao {
@@ -250,12 +251,55 @@ public class ReviewDao {
 	}
 
 	
-	public List<Order> selectProduct(Connection conn, String orderNo) {
+	public Product selectProduct(Connection conn, String orderNo) {
 		
-		return null;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		
+		Product p = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectProduct"));
+			
+			pstmt.setString(1, orderNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				p = new Product();
+				
+				p.setProductId(rs.getInt("p_id"));
+				p.setProductName(rs.getString("p_name"));
+				p.setProductOptionColor(rs.getString("p_o_color"));
+				p.setProductOptionSize(rs.getString("p_o_size"));
+				p.setProductFile(rs.getString("p_file"));
+				
+				
+						System.out.println("ReviewDao에서 테스트, p : " + p);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return p;
 	}
 
 
+	
+	
+	
+	
+	
 	public int postReview(Connection conn, Review r) {
 		
 		PreparedStatement pstmt = null;

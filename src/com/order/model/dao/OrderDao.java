@@ -119,7 +119,6 @@ public class OrderDao {
 						
 								while(rs.next()) {
 									
-									System.out.println("dao check");
 									order = new Order();
 									order.setOrderNumber(rs.getInt("O_NUMBER"));
 									order.setProductId(rs.getString("P_ID"));

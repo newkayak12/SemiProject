@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.order.model.vo.Order;
+import com.product.model.vo.Product;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
 
@@ -124,15 +125,15 @@ public class ReviewService {
 
 
 
-	public List<Order> selectProduct(String orderNo) {
+	public Product selectProduct(String orderNo) {
 		
 		Connection conn = getConnection();
 		
-		List<Order> list = dao.selectProduct(conn, orderNo);
+		Product p = dao.selectProduct(conn, orderNo);
 		
 		close(conn);
 		
-		return list;
+		return p;
 	}
 
 }

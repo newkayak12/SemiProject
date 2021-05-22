@@ -5,15 +5,11 @@
 <%@ include file = "/views/common/header.jsp"%>
 
 <%
-	
-	String orderNo= null;
-	//orderlist.jsp에서 글쓰기 버튼을 눌렀을 때 가져오는 값
-	String order_no = (String)request.getParameter("orderNo");
 
-	if(orderNo != null) {
-		orderNo = order_no;
-	} else{
-		orderNo = "";
+	Review  selectedProduct = null;
+	Object temp = request.getAttribute("selectedProduct");
+	if(temp != null){
+		selectedProduct = (Review) temp;
 	}
 %>
 
@@ -26,17 +22,19 @@
 	
 		<form action="<%=request.getContextPath()%>/review/post/end" method="post" enctype="multipart/form-data">
 		
-			<table>
+			<table id = "reviewForm-table">
 				<tr>
-					<th>상품선택</th>
+					<th>상품</th>
 					<td>
-						<img src="<%=request.getContextPath() %>/images/noimage.jpg" name="" id="" width="100px" height="100px">
-						<button onclick="fn_selectProduct();">상품선택</button>
+						<% if(selectedProduct != null) { %>
+							<img src="<%=selectedProduct.getProductFile()%>" name="" id="" width="100px" height="100px">
+							<span><%=selectedProduct.getProductName() %></span>
+							<span><%=selectedProduct.getProductOptionColor() %></span>
+							<span><%=selectedProduct.getProductOptionSize()%></span>
+						<% } else { %>
+							<span>선택된 상품이 없습니다</span>
+						<% } %>
 					</td>
-					<%-- <td>
-						<img src="<%=request.getContextPath() %>/images/pants1.jpg" name="" id="" width="100px" height="100px">
-						<span>상품이름</span><span>색상/사이즈</span>
-					</td> --%>
 				</tr>
 			
 			
@@ -75,18 +73,5 @@
 	
 </main>
 
-<script>
-	const fn_selectProduct = () => {
-		
-		/* 테스트용 alert("함수실행"); */
-		
-		const url = "<%=request.getContextPath()%>/selectReviewProduct?orderNo=<%=orderNo%>";
-		const title = "selectReviewProduct";
-		const status = "left=500px, top=100px, width=300px, height=300px";
-		
-		window.open("", title, status); 
-		
-	}
-</script>
 
 <%@ include file = "/views/common/footer.jsp"%>
