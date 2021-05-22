@@ -713,12 +713,24 @@ div#contents_sort>span:hover{
 	
 }
 #submit_section{
-	 display:flex;
+	display:flex;
 	flex-direction:row;
-	justify-content:center;
+	justify-content:space-between;
 	align-content:center; 
 	height:auto !important;
+	padding : 0 0 0 20px;
 	
+	
+}
+
+#submit_section *{
+	padding : 0 0 0 0;
+	margin : 0 0 0 0;
+}
+
+#submit_section span{
+	box-sizing: border-box;
+    padding-top: 5px;
 }
 
 

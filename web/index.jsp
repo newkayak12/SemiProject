@@ -75,7 +75,7 @@
 			<div class="img">img9</div>
 		</div>
 
-			</div>
+	</div>
 	
 
 </main>
