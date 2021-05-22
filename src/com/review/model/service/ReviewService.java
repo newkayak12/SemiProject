@@ -51,15 +51,15 @@ public class ReviewService {
 
 
 
-	public Review selectReview(String reviewNo) {
+	public List<Review> selectReview(String reviewNo) {
 		
 		Connection conn = getConnection();
 		
-		Review r = dao.selectReview(conn, reviewNo);
+		List<Review> list = dao.selectReview(conn, reviewNo);
 		
 		close(conn);
 		
-		return r;
+		return list;
 	}
 
 

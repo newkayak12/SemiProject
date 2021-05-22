@@ -29,9 +29,6 @@ public class ReviewModifyStartServlet extends HttpServlet {
 		
 		ReviewService service = new ReviewService();
 		
-		Review r = service.selectReview(reviewNo);
-		
-		request.setAttribute("review", r);
 		
 		request.getRequestDispatcher("/views/review/reviewFormModify.jsp").forward(request, response);
 	}

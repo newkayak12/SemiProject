@@ -146,11 +146,13 @@ public class ReviewDao {
 
 
 
-	public Review selectReview(Connection conn, String reviewNo) {
+	public List<Review> selectReview(Connection conn, String reviewNo) {
 		
 		PreparedStatement pstmt = null;
 		
 		ResultSet rs = null;
+		
+		List<Review> list = new ArrayList<>();
 		
 		Review r = null;
 		
@@ -183,6 +185,16 @@ public class ReviewDao {
 				r.setProductName(rs.getString("p_name"));
 				r.setProductFile(rs.getString("p_file"));
 				
+				// 추가된 필드 세팅
+//				private String commentUserId;
+//				private String reviewComment;
+//				private String reviewCommentDate;
+				
+				r.setCommentUserId(rs.getString("r_c_user_id"));
+				r.setReviewComment(rs.getString("r_comment"));
+				r.setReviewCommentDate(rs.getString("r_c_date"));
+				
+				list.add(r);
 			}
 			
 		} catch (SQLException e) {
@@ -195,7 +207,7 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		
-		return r;
+		return list;
 	}
 
 

@@ -1,6 +1,7 @@
 package com.review.controller.reviewdetail;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,9 +30,16 @@ public class ReviewDetailServlet extends HttpServlet {
 		
 		
 		// 리뷰번호로 db에 접근해서 해당하는 리뷰글과 댓글 조회 
-		Review r = service.selectReview(reviewNo);
+		List<Review> list = service.selectReview(reviewNo);
 		
-		request.setAttribute("review", r);
+		// 모든 코맨트가 담긴 리스ㅡㅌ가 완성
+		//중복되는 내용은 원래 글 
+		// 이 안에 코맨트 내용은 다르다.
+		// r.get(0) >> 원래 글은 이걸로 쓰면 되고
+		// 나머지 코맨트는 list 안에서 for 
+		
+		
+		request.setAttribute("reviewList", list);
 		
 		request.getRequestDispatcher("/views/review/reviewDetail.jsp").forward(request, response);
 	}
