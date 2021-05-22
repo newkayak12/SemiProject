@@ -1,2 +1,11 @@
 @charset "UTF-8";
 
+#orderdetail-table{
+	border-collapse: collapse;
+	width: 100%;
+	height :auto;
+}
+
+#orderdetail-table td{
+	border: 1px black solid !important;
+}

@@ -61,7 +61,6 @@ public class OrderList extends HttpServlet {
 			int resultCount = new OrderService().showallOrderCount(id);
 			String url = request.getContextPath()+"/order/list";
 			String pageBar = pageBar(cPage, numPerPage, resultCount,url );
-			System.out.println(pageBar);
 				request.setAttribute("pageBar",pageBar);
 				request.setAttribute("result", result);
 				request.setAttribute("orderCount",resultCount);

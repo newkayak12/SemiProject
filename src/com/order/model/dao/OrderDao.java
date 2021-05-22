@@ -68,6 +68,7 @@ public class OrderDao {
 									order.setAddress(rs.getString("user_addr"));
 									order.setZipcode(rs.getString("user_zip"));
 									order.setPhone(rs.getString("o_phone"));
+									order.setOdno(rs.getString("O_D_No"));
 									result.add(order);
 									
 								}
@@ -111,12 +112,18 @@ public class OrderDao {
 		return result;
 	}
 
-	public List<Order> showdetailOrder(String ordernumber, Connection conn) {
+	public List<Order> showdetailOrder(String userid, String productid, String category, String size,  String color, int onumber, int odnum, Connection conn) {
 		List<Order> result = new ArrayList();	
 		Order order = null;
 				try {
 						pstmt = conn.prepareStatement(properties.getProperty("showdetail"));
-						pstmt.setInt(1, Integer.parseInt(ordernumber));
+						pstmt.setString(1, userid);
+						pstmt.setInt(2, onumber);
+						pstmt.setInt(3, odnum);
+						pstmt.setString(4, productid);
+						pstmt.setString(5, category);
+						pstmt.setString(6, size);
+						pstmt.setString(7, color);
 						
 						rs = pstmt.executeQuery();
 						
@@ -138,6 +145,7 @@ public class OrderDao {
 									order.setAddress(rs.getString("user_addr"));
 									order.setZipcode(rs.getString("user_zip"));
 									order.setPhone(rs.getString("o_phone"));
+									order.setOdno(rs.getString("o_d_no"));
 									result.add(order);
 									
 								}

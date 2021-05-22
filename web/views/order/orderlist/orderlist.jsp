@@ -11,7 +11,6 @@
 <!-- java -->
 <% 
 	String pageBar = (String)request.getAttribute("pageBar");
-	System.out.println(pageBar);
 	List<Order> result = (List<Order>) request.getAttribute("result");
 	
 %>
@@ -80,17 +79,22 @@ $(function(){
 	            </tr>
 	            
 	            
-			<%for(Order o : result){ %>
+			<%for(Order o : result){ 
+			
+				
+			%>
 			
                 <tr>
                     <td>
-                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?orderNumber=<%=o.getOrderNumber()%>','_blank','width=500px, height=600px')">
+                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&productid=<%=o.getProductId() %>&category=<%=o.getCategoryId() %>&size=<%=o.getProductSize() %>&color=<%=o.getProductColor() %>&onumber=<%=o.getOrderNumber() %>&odnum=<%=o.getOdno() %>','_blank','width=500px, height=600px')">
 	                        <p><%=o.getOrderDate() %></p>
 	                        <p><%=o.getOrderNumber() %></p>
                         </span>
                     </td>
                     
                     <td>
+                    	
+                    
                         <img src="<%=request.getContextPath() %>/images/product/<%=o.getProductFile() %>" alt="상품 이미지" onclick = "location.assign('<%=request.getContextPath() %>/---- ?productNumber=<%=o.getProductId() %>')">
                     </td>
                     
