@@ -46,7 +46,6 @@ public class ProductDao{
 			if(category.equals("all")) {
 				query= query.replace("@","");
 				
-				System.out.println("product all");
 			} else {
 				query = query.replace("@"," where c_id = "+category );
 			}

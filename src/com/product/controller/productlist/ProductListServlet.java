@@ -75,10 +75,11 @@ public class ProductListServlet extends HttpServlet {
 		
 		System.out.println("result size"+result.size());
 		request.setAttribute("result", result);
-		request.setAttribute("pageBar",pageBar(cPage, numPerPage, count, "/product/list", category, sort, null));
+		String url = request.getContextPath()+"/product/list";
+		request.setAttribute("pageBar",pageBar(cPage, numPerPage, count, url , category, sort, null));
 		
 		
-		request.getRequestDispatcher("/views/product/productList").forward(request, response);
+		request.getRequestDispatcher("/views/product/productlist.jsp").forward(request, response);
 	}
 
 	/**
