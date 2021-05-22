@@ -36,7 +36,7 @@ table#tbl-notice td{
 	padding : 15px 40px;
 }
 
-table#tbl-notice th, td{
+table#tbl-notice th, table#tbl-notice td{
 	 text-align: center;
 }
 /*-----------NoticeDetail.jsp-------------*/

@@ -669,7 +669,7 @@ main#signinMain{
 	position:relative;
 	top:105px;
 
-	height: 525px !important;
+	height: auto !important;
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -678,7 +678,7 @@ main#signinMain{
 }
 div#signin-container{
 	width:500px;
-	height:400px;
+	height:680px;
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
