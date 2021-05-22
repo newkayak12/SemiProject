@@ -40,7 +40,11 @@ public class OrderDao {
 		List<Order> result = new ArrayList();	
 		Order order = null;
 				try {
-						pstmt = conn.prepareStatement(properties.getProperty("showall"));
+					
+						String sql = properties.getProperty("showall");
+						sql = sql.replace("@", "환불처리중");
+						sql = sql.replace("#", "환불완료");
+						pstmt = conn.prepareStatement(sql);
 						pstmt.setString(1,id);
 						pstmt.setInt(2, (cPage-1)*numPerPage+1);
 						pstmt.setInt(3, cPage*numPerPage);
