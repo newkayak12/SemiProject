@@ -10,8 +10,21 @@
 
 <!-- java -->
 <% 
-	String pageBar = (String)request.getAttribute("pageBar");
-	List<Order> result = (List<Order>) request.getAttribute("result");
+
+
+	String pageBar = null;
+	List<Order> result = null;
+	
+	
+	
+	Object temp1 = request.getAttribute("pageBar");
+	Object temp2 = request.getAttribute("result");
+	if(temp1 != null){
+		pageBar = (String) temp1;
+	}
+	if(temp2 != null){
+		result = (List<Order>) temp2;
+	}
 	
 %>
 

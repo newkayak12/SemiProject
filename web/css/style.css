@@ -38,8 +38,9 @@ a {
 main{
 	width : 1366px !important;
 	margin: 0px !important;
-	height : 0px !important;
-	height : auto;
+	height : auto !important;
+	display :relative !important;
+	top : 100px !important;
 	
 }
 
@@ -97,13 +98,9 @@ header div{
 
 footer{
     margin: 0px 0px 0px 0px !important;
-    
     width: 1366px;
-    
-    
     position: relative;
-    bottom: 0px;
-    
+	top:100px;    
     padding : 0 0 0 0;
    
 }
@@ -666,8 +663,6 @@ div#contents_sort>span:hover{
 
 /*login*/
 #signinMain{
-	position:relative;
-	top:105px;
 	height: 525px !important;
 	display:flex;
 	justify-content: center;
