@@ -14,10 +14,7 @@
  	padding : 0px !important;
 }
 
-#category-container{
-	position:relative;
-	top:100px;
-}
+
 
 </style>
 
