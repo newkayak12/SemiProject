@@ -898,7 +898,7 @@ div.img-container{
 
 .text{
 	width : 250px;
-	heigth : 420px;
+	height : 420px;
 	background : #000000;
 	opacity : 0;
 	padding:30px;
@@ -980,10 +980,10 @@ ul.info-bar{
 	position : absolute;
 	top : 300px;
 }
-
+/* 
 ul.info-bar li{
 	
-}
+} */
 
 
 div#info-container{
