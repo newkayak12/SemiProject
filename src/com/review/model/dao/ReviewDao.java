@@ -308,6 +308,7 @@ public class ReviewDao {
 		
 		try {
 			
+			// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', '1', '001', 'c01');
 			pstmt = conn.prepareStatement(prop.getProperty("postReview"));
 			
 //			pstmt.setString(1, );

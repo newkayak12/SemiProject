@@ -111,11 +111,11 @@ $(function(){
                     </td>
                     
                     <td id="td_orderStatus">
-                    	<!-- 결제전/ 결제완료/ 배송중/ 배송완료/ 구매확정(리뷰쓰기)  -->
+                    	<!-- 결제전/ 결제완료/ 배송중/ 배송완료  -->
                     	
                         <%=o.getOrderStatus() %>
                         
-                        <% if( o.getOrderStatus().equals("구매확정") ) { %>
+                        <% if( o.getOrderStatus().equals("배송완료") ) { %>
                         	<br>
                         	<button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?pid=<%=o.getProductId()%>&pname=<%=o.getProductName()%>&color=<%=o.getProductColor()%>&size=<%=o.getProductSize()%>&category=<%=o.getCategoryId()%>&file=<%=o.getProductFile()%>&onumber=<%=o.getOrderNumber()%>')">리뷰쓰기</button>
                         <% } %>

@@ -22,7 +22,17 @@
 	
 		<form action="<%=request.getContextPath()%>/review/post/end" method="post" enctype="multipart/form-data">
 		
+			<input type="hidden" id="cId" name="cId" value="<%=selectedProduct.getCategoryId()%>">
+			<input type="hidden" id="orderNo" name=orderNo"" value="<%=selectedProduct.getOrderNumber()%>">
+			<input type="hidden" id="pFile" name="pFile" value="<%=selectedProduct.getProductFile()%>">
+			<input type="hidden" id="pId" name=pId"" value="<%=selectedProduct.getProductId()%>">
+			<input type="hidden" id="pName" name="pName" value="<%=selectedProduct.getProductName()%>">
+			<input type="hidden" id="pColor" name="pColor" value="<%=selectedProduct.getProductOptionColor()%>">
+			<input type="hidden" id="pSize" name="pSize" value="<%=selectedProduct.getProductOptionSize()%>">
+			<input type="hidden" id="userId" name="userId" value="<%=selectedProduct.getUserId()%>">
+		
 			<table id = "reviewForm-table">
+			
 				<tr>
 					<th>상품</th>
 					<td>
@@ -36,7 +46,6 @@
 						<% } %>
 					</td>
 				</tr>
-			
 			
 				<tr>
 					<th>제&nbsp;&nbsp;&nbsp;목</th>
@@ -65,6 +74,7 @@
 						<input type="reset" value="취소">
 					</th>
 				</tr>
+				
 			</table>
 			
 		</form>
