@@ -26,4 +26,11 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+
+	public Notice selectNotice(String no) {
+		Connection conn=getConnection();
+		Notice n=dao.selectNotice(conn, no);
+		close(conn);
+		return n;
+	}
 }
