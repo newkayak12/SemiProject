@@ -44,24 +44,23 @@ public class ProductDao{
 			String query = prop.getProperty("selectAllProduct");
 			
 			if(category.equals("all")) {
-				query= query.replace("@"," ");
+				query= query.replace("@","");
 				
 				System.out.println("product all");
 			} else {
-				query = query.replace("@","where c_id = "+category);
+				query = query.replace("@"," where c_id = "+category );
 			}
 			
 			if(sort.equals("p_view_count")) {
-				query = query.replace("#","order by "+ sort +" desc");
+				query = query.replace("#"," order by "+ sort +" desc");
 				
-				System.out.println("pviewcount"+query);
 				
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", "order by p_price desc");
+					query = query.replace("#", " order by p_price desc");
 				} else {
-					query = query.replace("#", "order by p_price asc ");
+					query = query.replace("#", " order by p_price asc ");
 					
 				}
 				
@@ -69,10 +68,10 @@ public class ProductDao{
 			}
 			
 			
+			
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, (cPage-1)*numPerpage+1);
 			pstmt.setInt(2, cPage*numPerpage);
-			
 			
 			
 			
@@ -82,7 +81,7 @@ public class ProductDao{
 				i.setProductId(rs.getInt("p_id"));
 				i.setCategoryId(rs.getString("c_id"));
 				i.setProductOptionSize(rs.getString("p_o_size"));
-				i.setProductOptionColor(rs.getString("p_option_color"));
+				i.setProductOptionColor(rs.getString("p_o_color"));
 				i.setProductName(rs.getString("p_name"));
 				i.setProductPrice(rs.getString("p_price"));
 				i.setProductStock(rs.getInt("p_stock"));
@@ -121,20 +120,22 @@ public class ProductDao{
 			String query = prop.getProperty("countAllProduct");
 			
 			if(category.equals("all")) {
-				query= query.replace("@"," ");
+				query= query.replace("@","");
+				
 			} else {
-				query = query.replace("@","where c_id = "+category);
+				query = query.replace("@"," where c_id = "+category );
 			}
 			
 			if(sort.equals("p_view_count")) {
-				query = query.replace("#","ordery by "+ sort +"desc");
+				query = query.replace("#"," order by "+ sort +" desc");
+				
 				
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", "order by p_price desc");
+					query = query.replace("#", " order by p_price desc");
 				} else {
-					query = query.replace("#", "order by p_price asc ");
+					query = query.replace("#", " order by p_price asc ");
 					
 				}
 				

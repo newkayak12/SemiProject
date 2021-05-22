@@ -47,12 +47,12 @@
     
 	    	<ul id="header-menuContainer">
 		        
-		            <li><a href="<%=request.getContextPath()%>/IList.do">SHOP</a>
+		            <li><a href="<%=request.getContextPath()%>/product/list">SHOP</a>
 		            	<ul>
-		            		<li><a href="">OUTTER</a></li>
-		            		<li><a href="">TOP</a></li>
-		            		<li><a href="">BOTTOM</a></li>
-		            		<li><a href="">ACC</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">OUTTER</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">TOP</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">BOTTOM</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">ACC</a></li>
 		            	</ul>
 		            </li>
 		            

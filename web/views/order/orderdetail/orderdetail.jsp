@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_sh.css">
 <meta charset="UTF-8">
 <%
 	List<Order> orderlist = (List<Order>) request.getAttribute("list");
@@ -28,29 +29,22 @@
 
 <% for( Order order : orderlist) {%>
         <tr>
-            <td>
+            <td colspan="4">
                 <%=order.getOrderStatus()%>
             </td>
-            <td rowspan="2">
-                <span>
-                    <button type="button"></button>
-                    <button type="button"></button>
-                    <button type="button"></button>
-                    <button type="button"></button>
-                </span>
-            </td>
+            
         </tr>
         <tr>
-            <td>
-                <div>
-                    <span><img src="" alt="상품이미지"></span>
-                    <span><%=order.getProductName()%></span>
-                    <span>
-                        <p><%=order.getProductPrice()%></p>
-                        <p><%= order.getProductStock()%></p>
-                    
-                    </span>
-                </div>
+        	<td>
+        		<%=order.getProductName()%>
+        	</td>
+        	<td>
+        		<img src="<%=request.getContextPath() %>/upload/product/<%=order.getProductFile() %>" alt="상품이미지">
+        	</td>
+            <td >
+                        <p> 가격 <%=order.getProductPrice()%> 원</p>
+                        <p> 수량 <%= order.getProductStock()%> 개</p>
+                
             </td>
             
         </tr>
