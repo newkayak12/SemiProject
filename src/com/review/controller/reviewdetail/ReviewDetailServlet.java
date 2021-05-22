@@ -27,8 +27,9 @@ public class ReviewDetailServlet extends HttpServlet {
 		
 		ReviewService service = new ReviewService();
 		
-		Review r = service.selectReview(reviewNo);
 		
+		// 리뷰번호로 db에 접근해서 해당하는 리뷰글과 댓글 조회 
+		Review r = service.selectReview(reviewNo);
 		
 		request.setAttribute("review", r);
 		

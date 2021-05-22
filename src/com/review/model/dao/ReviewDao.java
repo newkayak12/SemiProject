@@ -81,6 +81,15 @@ public class ReviewDao {
 				r.setOrderNumber(rs.getString("o_number"));
 				r.setCategoryId(rs.getString("c_id"));
 				
+				// 추가된 필드 세팅
+//				private String commentUserId;
+//				private String reviewComment;
+//				private String reviewCommentDate;
+				
+				r.setCommentUserId(rs.getString("r_c_user_id"));
+				r.setReviewComment(rs.getString("r_comment"));
+				r.setReviewCommentDate(rs.getString("r_c_date"));
+				
 				list.add(r);
 				
 			}

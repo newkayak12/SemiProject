@@ -36,17 +36,53 @@
 		
 		 <!-- 사용자가 업로드한 사진과 내용 -->
 		 <div id="reviewDetail-userImage_reviewContents">
-		 	<%-- <%=r.getReviewFile() %> 으로 불러온 사진파일 보여줘야함--%>
+		 
 		 	<img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>">
 		 	<div><%=r.getReviewContents() %></div>
+		 	
 		 </div>
+		 
+		 
+		 
+		 
 		 
 		 
 		 <!-- 댓글 영역 div-->
 		 <!-- 댓글도 수정삭제 버튼 필요 -->
-		 <div>
+		<div id="review_comment_container">
 		 	
-		 </div>
+		 	
+		 	<!-- 댓글 입력창 -->
+		 	<div id="review_insert_comment">
+		 	
+		 		<form action="" method="post" id="" name="">
+		 			 
+		 			 <textarea name="" rows="3" cols="55"></textarea>
+		 			 <input type="hidden" name="" id="" value="">
+		 			 <input type="hidden" name="" id="" value="">
+		 			 <input type="hidden" name="" id="" value="">
+		 			 <button type="submit" id="">등록</button>
+		 		</form>
+		 		
+		 	</div>
+		 	
+		 	
+		 	<!-- 댓글 목록 -->
+		 	<div id="">
+		 	
+		 		<table>
+		 			
+		 		</table>
+		 	
+		 	</div>
+		 	
+		 	
+		</div>
+		 
+		 
+		 
+		 
+		 
 		
 		<!-- 버튼 div -->
 		<div id="reviewDetail-buttons">
