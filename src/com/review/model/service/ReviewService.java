@@ -104,7 +104,6 @@ public class ReviewService {
 
 
 
-
 	public int postReview(Review r) {
 		
 		Connection conn = getConnection();
@@ -119,7 +118,7 @@ public class ReviewService {
 		
 		close(conn);
 		
-		return 0;
+		return result;
 	}
 
 

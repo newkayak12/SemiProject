@@ -25,7 +25,7 @@
 			<!-- 상품이미지, 상품정보 div -->
 			<div id="reviewDetail-inner2-container">
 			
-				<img src="<%=request.getContextPath() %>/images/pants1.jpg" width="150px" height="150px">
+				<img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="150px">
 				<br>
 				<span><%=r.getProductName() %>/<%=r.getProductOptionColor() %></span>
 			
@@ -37,7 +37,7 @@
 		 <!-- 사용자가 업로드한 사진과 내용 -->
 		 <div id="reviewDetail-userImage_reviewContents">
 		 	<%-- <%=r.getReviewFile() %> 으로 불러온 사진파일 보여줘야함--%>
-		 	<img src="<%=request.getContextPath() %>/images/dummy.jpg">
+		 	<img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>">
 		 	<div><%=r.getReviewContents() %></div>
 		 </div>
 		 

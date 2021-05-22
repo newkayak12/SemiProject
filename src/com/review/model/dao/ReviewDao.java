@@ -308,26 +308,21 @@ public class ReviewDao {
 		
 		try {
 			
-			// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', '1', '001', 'c01');
+			// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', 1, '001', 'c01');
 			pstmt = conn.prepareStatement(prop.getProperty("postReview"));
 			
-//			pstmt.setString(1, );
-//			pstmt.setString(2, x);
-//			pstmt.setString(3, x);
-//			pstmt.setString(4, x);
-//			pstmt.setString(5, x);
-//			pstmt.setString(6, x);
-//			pstmt.setString(7, x);
-//			pstmt.setString(8, x);
-//			pstmt.setString(9, x);
-//			pstmt.setString(10, x);
-//			pstmt.setString(11, x);
-//			pstmt.setString(12, x);
-//			pstmt.setString(13, x);
-//			pstmt.setString(14, x);
-//			pstmt.setString(15, x);
-//			pstmt.setString(16, x);
+			pstmt.setString(1, r.getUserId()); 
+			pstmt.setString(2, r.getProductId());
+			pstmt.setString(3, r.getProductOptionSize());
+			pstmt.setString(4, r.getProductOptionColor());
+			pstmt.setString(5, r.getReviewTitle());
+			pstmt.setString(6, r.getReviewContents());
+			pstmt.setString(7, r.getReviewFile());
+			pstmt.setString(8, r.getOrderNumber());
+			pstmt.setString(9, r.getCategoryId());
 			
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			

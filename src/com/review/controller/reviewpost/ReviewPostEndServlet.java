@@ -3,6 +3,7 @@ package com.review.controller.reviewpost;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.common.renamepolicy.ReviewRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.review.model.service.ReviewService;
 import com.review.model.vo.Review;
 
@@ -46,6 +48,7 @@ public class ReviewPostEndServlet extends HttpServlet {
 		String encode = "utf-8";
 		
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, new ReviewRenamePolicy());
+
 		
 		Review r = new Review();
 		
@@ -54,7 +57,7 @@ public class ReviewPostEndServlet extends HttpServlet {
 		
 		// 16개 중 3개 : 사용자가 입력한 값 : 제목, 파일, 내용
 		r.setReviewContents(mr.getParameter("reviewContent"));
-		r.setReviewFile(mr.getParameter("up_file"));
+		r.setReviewFile(mr.getFilesystemName("up_file"));
 		r.setReviewTitle(mr.getParameter("reviewTitle"));
 		
 		// 16개 중 8개 : orderlist에서 가져온 상품을 hidden으로 가져온 값 
@@ -74,9 +77,20 @@ public class ReviewPostEndServlet extends HttpServlet {
 //		r.setReviewLike();
 //		r.setReviewNo();
 		
-		
+				System.out.println("ReviewPostEndServlet에서 테스트, r : " + r);
 		
 		int result = service.postReview(r);
+		
+		if(result > 0) {
+			// 리뷰 등록 성공
+			request.setAttribute("msg", "리뷰를 성공적으로 등록했습니다");
+			request.setAttribute("loc", "/review/list");
+		} else {
+			request.setAttribute("msg", "리뷰등록을 실패했습니다");
+			request.setAttribute("loc", "/");
+		}
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
 
