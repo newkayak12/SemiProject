@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Review {
 	
-	
+	// 필드 16개
 	private String reviewNo;
 	private String userId;
 	private String productId;

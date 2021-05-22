@@ -87,13 +87,23 @@
 
 	        <div id="header-signContainer">
 	
-				<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>  
+				  
 		            
 		            <ul id="admin_menu">
-		            	<li><a href="">ADMIN</a></li>
+		            	<li>
+				            	<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>
+		            		<a href="">
+				            		ADMIN
+		            		</a>
+				            	<% } else { %> 
+							<p>				            	
+				            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            </p>		
+				            	<% } %>
+		            	</li>
 		            </ul>
 	            
-	            <% } %> 
+	            
 	            
 	  			       
 <!-- -------------------------------- -->

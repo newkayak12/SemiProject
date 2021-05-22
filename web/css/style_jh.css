@@ -1,11 +1,15 @@
 @charset "UTF-8";
 
+/*--------------- NoticeList.jsp ----------------*/
+/*공지 컨테이너 */
 div#notice-container{
+	width : 1368px;
 	position : relative;
 	top : 120px;
 	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
 }
-
 span#notice{
 	color : orange;
 	font-size : 20px;
@@ -20,13 +24,30 @@ span#notice{
 table#tbl-notice{
 	margin : 20px auto;
 	border: 1px white solid;
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 table#tbl-notice th{
 	border: 1px solid white;
 }
 
+table#tbl-notice td{
+	border-bottom: 1px solid grey;
+	padding : 15px 40px;
+}
+
 table#tbl-notice th, td{
 	 text-align: center;
+}
+/*-----------NoticeDetail.jsp-------------*/
+
+
+/*-----------NoticePost.jsp-------------*/
+/* 공지작성 css */
+input#write-notice{
+	margin : 0px 0px 20px 0px ;
+	width : auto;
+	background-color : white;
+	border : 1px  rgb(0, 70, 172) solid;
+	cursor: pointer;
 }
