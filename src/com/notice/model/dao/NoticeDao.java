@@ -18,7 +18,7 @@ private Properties prop=new Properties();
 
 	
 	public NoticeDao() {
-		String path=NoticeDao.class.getResource("/properties/sql/notice_sql.properties").getPath();
+		String path=NoticeDao.class.getResource("/properties/sql/notice.properties").getPath();
 		try {
 			prop.load(new FileReader(path));
 		}catch(IOException e) {
@@ -72,5 +72,33 @@ private Properties prop=new Properties();
 			close(rs);
 			close(pstmt);
 		}return result;
+	}
+
+	public Notice selectNotice(Connection conn, String no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Notice n=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectNotice"));
+			pstmt.setString(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				n=new Notice();
+				n.setnSeq(rs.getString("n_seq"));
+				n.setUserId(rs.getString("user_id"));
+				n.setUserAddr(rs.getString("user_addr"));
+				n.setUserZip(rs.getString("user_zip"));
+				n.setnTitle(rs.getString("n_title"));
+				n.setnContent(rs.getString("n_content"));
+				n.setnDate(rs.getDate("n_date"));
+				n.setnDelete(rs.getInt("n_delete"));
+				n.setnCount(rs.getInt("n_count"));
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}return n;
 	}
 }

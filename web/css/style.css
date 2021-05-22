@@ -98,8 +98,8 @@ footer{
     width: 1366px;
     
     
-    position: relative;
-    top: 115px;
+    position: fixed;
+    bottom: 0px;
     
     padding : 0 0 0 0;
    

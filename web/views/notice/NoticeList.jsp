@@ -26,7 +26,7 @@
             <tr>
 	            <td><%=n.getnSeq() %></td>
 	            <td>
-	            	<a href="<%=request.getContextPath()%>/notice/noticeView?nSeq=<%=n.getnSeq()%>">
+	            	<a href="<%=request.getContextPath()%>/notice/detail?nSeq=<%=n.getnSeq()%>">
 	            	<%=n.getnTitle() %>
 	            	</a>
 	            </td> 
@@ -40,10 +40,16 @@
             <%}
             }%>
         </table>
+        
+        <%if(session.getAttribute("user")!=null &&checkAdmin.equals("1")) {%>
+        	<input type="button" value="공지작성" id="write-notice" onclick="noticeWrite();">
+		<%} %> 
 	
 	</div>
-
-
-
+	<script>
+		const noticeWrite=()=>{
+			location.assign("<%=request.getContextPath()%>/notice/post/start/admin");	
+		}		
+	</script>
 
 <%@include file="/views/common/footer.jsp"%>
