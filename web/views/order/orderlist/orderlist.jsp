@@ -11,6 +11,7 @@
 <!-- java -->
 <% 
 	String pageBar = (String)request.getAttribute("pageBar");
+	System.out.println(pageBar);
 	List<Order> result = (List<Order>) request.getAttribute("result");
 	
 %>

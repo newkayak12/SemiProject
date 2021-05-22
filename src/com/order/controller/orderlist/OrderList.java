@@ -57,11 +57,11 @@ public class OrderList extends HttpServlet {
 						
 			List<Order> result = new OrderService().showallOrder(cPage, numPerPage, id);
 			
-					System.out.println("orderlist list result"+result.size());
 			
 			int resultCount = new OrderService().showallOrderCount(id);
 			String url = request.getContextPath()+"/order/list";
 			String pageBar = pageBar(cPage, numPerPage, resultCount,url );
+			System.out.println(pageBar);
 				request.setAttribute("pageBar",pageBar);
 				request.setAttribute("result", result);
 				request.setAttribute("orderCount",resultCount);
