@@ -1,6 +1,7 @@
 package com.product.controller.productlist;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,10 +35,9 @@ public class ProductDetailServlet extends HttpServlet {
 		String productid= request.getParameter("pid");
 		String category = request.getParameter("category");
 		
-		Product product = new ProductService().productDetail(productid, category);
+		List<Product> product = new ProductService().productDetail(productid, category);
 		
-		
-		request.setAttribute("product", product);
+		request.setAttribute("productlist", product);
 		request.getRequestDispatcher("/views/product/productdetail.jsp").forward(request, response);
 		
 		

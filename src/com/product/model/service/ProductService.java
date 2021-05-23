@@ -28,10 +28,10 @@ public class ProductService {
 		return count;
 	}
 
-	public Product productDetail(String productid, String category) {
+	public List<Product> productDetail(String productid, String category) {
 		Connection conn = getConnection();
 		
-		Product product = dao.productDetail(productid, category, conn);
+		List<Product> product = dao.productDetail(productid, category, conn);
 		
 		close(conn);
 		

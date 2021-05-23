@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
+
 
 import com.product.model.vo.Product;
 
@@ -176,11 +176,12 @@ public class ProductDao{
 		return result;
 	}
 
-	public Product productDetail(String productid, String category, Connection conn) {
+	public List<Product> productDetail(String productid, String category, Connection conn) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Product product = null;
+		List<Product> p = new ArrayList(); 
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("productDetail"));
 			pstmt.setString(1, productid);
@@ -189,7 +190,7 @@ public class ProductDao{
 			rs=pstmt.executeQuery();
 			
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				product = new Product();
 				product.setProductId(rs.getInt("p_id"));
 				product.setCategoryId(rs.getString("c_id"));
@@ -205,7 +206,7 @@ public class ProductDao{
 				product.setProductOptionColor(rs.getString("p_o_color"));
 				product.setProductOptionSize(rs.getString("p_o_size"));
 				product.setProductStock(rs.getInt("p_detail_stock"));
-				
+				p.add(product);
 				
 			}
 			
@@ -218,7 +219,7 @@ public class ProductDao{
 		}
 		
 		
-		return product;
+		return p;
 	}
 		
 }
