@@ -49,22 +49,22 @@ public class ProductDao{
 				query= query.replace("@","");
 				
 			} else {
-				category = "f."+category;
-				query = query.replace("@"," where f.c_id = "+category );
+//				category = "f.".concat(category);
+				query = query.replace("@"," where c_id = '"+category+"'");
 			}
 			
 			if(sort.equals("p_view_count")) {
-				sort = "f."+sort;
-				System.out.println(sort);
+//				sort = "f.".concat(sort);
+//				System.out.println(sort);
 				query = query.replace("#"," order by '"+ sort +"' desc");
 				
 				
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", " order by f.p_price desc");
+					query = query.replace("#", " order by p_price desc");
 				} else {
-					query = query.replace("#", " order by f.p_price asc ");
+					query = query.replace("#", " order by p_price asc ");
 					
 				}
 				
@@ -128,22 +128,22 @@ public class ProductDao{
 				query= query.replace("@","");
 				
 			} else {
-				category = "f."+category;
-				query = query.replace("@"," where f.c_id = "+category );
+//				category = "f.".concat(category);
+				query = query.replace("@"," where c_id = '"+category+"'" );
 			}
 			
 			if(sort.equals("p_view_count")) {
-				sort = "f."+sort;
-				System.out.println(sort);
+//				sort = "f.".concat(sort);
+//				System.out.println(sort);
 				query = query.replace("#"," order by '"+ sort +"' desc");
 				
 				
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", " order by f.p_price desc");
+					query = query.replace("#", " order by p_price desc");
 				} else {
-					query = query.replace("#", " order by f.p_price asc ");
+					query = query.replace("#", " order by p_price asc ");
 					
 				}
 				
@@ -152,7 +152,6 @@ public class ProductDao{
 				
 			}
 			
-			System.out.println(query);
 			
 			pstmt = conn.prepareStatement(query);
 			
@@ -187,16 +186,15 @@ public class ProductDao{
 			pstmt.setString(1, productid);
 			pstmt.setString(2, category);
 			
+			rs=pstmt.executeQuery();
+			
 			
 			if(rs.next()) {
 				product = new Product();
 				product.setProductId(rs.getInt("p_id"));
-				product.setCategoryId(rs.getString("c_productd"));
-				product.setProductOptionSize(rs.getString("p_o_size"));
-				product.setProductOptionColor(rs.getString("p_o_color"));
+				product.setCategoryId(rs.getString("c_id"));
 				product.setProductName(rs.getString("p_name"));
 				product.setProductPrice(rs.getString("p_price"));
-				product.setProductStock(rs.getInt("p_stock"));
 				product.setProductFile(rs.getString("p_FILE"));
 				product.setProductFileDetail1(rs.getString("p_FILE_detail1"));
 				product.setProductFileDetail2(rs.getString("p_FILE_detail2"));
@@ -204,9 +202,13 @@ public class ProductDao{
 				product.setProductViewCount(rs.getInt("p_view_count"));
 				
 				
+				product.setProductOptionColor(rs.getString("p_o_color"));
+				product.setProductOptionSize(rs.getString("p_o_size"));
+				product.setProductStock(rs.getInt("p_detail_stock"));
+				
+				
 			}
 			
-			rs = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
