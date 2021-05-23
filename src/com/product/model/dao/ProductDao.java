@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
+
 import com.product.model.vo.Product;
 
 
@@ -164,6 +166,48 @@ public class ProductDao{
 		
 		
 		return result;
+	}
+
+	public Product productDetail(String productid, String category, Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Product product = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("productDetail"));
+			pstmt.setString(1, productid);
+			pstmt.setString(2, category);
+			
+			
+			if(rs.next()) {
+				product = new Product();
+				product.setProductId(rs.getInt("p_id"));
+				product.setCategoryId(rs.getString("c_productd"));
+				product.setProductOptionSize(rs.getString("p_o_size"));
+				product.setProductOptionColor(rs.getString("p_o_color"));
+				product.setProductName(rs.getString("p_name"));
+				product.setProductPrice(rs.getString("p_price"));
+				product.setProductStock(rs.getInt("p_stock"));
+				product.setProductFile(rs.getString("p_FILE"));
+				product.setProductFileDetail1(rs.getString("p_FILE_detail1"));
+				product.setProductFileDetail2(rs.getString("p_FILE_detail2"));
+				product.setProductExplain(rs.getString("p_explain"));
+				product.setProductViewCount(rs.getInt("p_view_count"));
+				
+				
+			}
+			
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return product;
 	}
 		
 }
