@@ -8,14 +8,14 @@
 <%@ include file="/views/common/header.jsp"%> 
 	<div id = notice-container>
 		
-		<span id ="notice">Notice</span>
+		<span class = "notice">Notice</span>
 		
         <table id="tbl-notice">
             <thead class="thead-color">
-                <th>No</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
+                <th>NO</th>
+                <th>TITLE</th>
+                <th>WRITER</th>
+                <th>DATE</th>
             </thead>
             
         <%if(list.isEmpty()){ %>
@@ -25,7 +25,7 @@
             for(Notice n : list){%>
             <tr>
 	            <td><%=n.getnSeq() %></td>
-	            <td>
+	            <td class="notice-title">
 	            	<a href="<%=request.getContextPath()%>/notice/detail?nSeq=<%=n.getnSeq()%>">
 	            	<%=n.getnTitle() %>
 	            	</a>
@@ -42,7 +42,7 @@
         </table>
         
         <%if(session.getAttribute("user")!=null &&checkAdmin.equals("1")) {%>
-        	<input type="button" value="공지작성" id="write-notice" onclick="noticeWrite();">
+        	<input type="button" value="공지작성" class="notice-btn blue" onclick="noticeWrite();">
 		<%} %> 
 	
 	</div>

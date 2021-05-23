@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="java.util.List, com.notice.model.vo.Notice" %>
-<%
-	List<Notice> list = (List<Notice>)request.getAttribute("list");
-%>
+<%@ page import="com.notice.model.vo.Notice" %>
+<% 
+	Notice n=(Notice)request.getAttribute("notice");
+%>    
    
 <%@ include file="/views/common/header.jsp"%> 
 	<style>
@@ -14,30 +14,32 @@
     table#tbl-notice td {border:1px solid; padding: 5px 0 5px 10px; text-align:left;}
 </style>
 
-<div id="notice-container">
-	<h2>NOTICE</h2>
-        <table id="tbl-notice">
+<div id="notice-detail-container">
+	<span class = "notice">NOTICE : <%=n.getnSeq() %></span>
+	
+        <table id="tbl-deatil-notice">
         <tr>
-            <th>제 목</th>
-            <td>제목 데이터가 들어올 것 </td>
+            <th class="blue">TITLE</th>
+            <td><%=n.getnTitle() %></td>
         </tr>
         <tr>
-            <th>작성자</th>
-            <td>작성자 데이터가 들어올 곳</td>
+            <th class="blue">WRITER</th>
+            <td><%=n.getUserId() %></td>
         </tr>
         
         <tr>
-            <th>내 용</th>
-            <td>내용데이터 들어노는 곳</td>
+            <th class="blue">DATE</th>
+            <td><%=n.getnDate() %></td>
         </tr>
-        <%-- <%if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
         <tr>
-            <th colspan="2">
-                <input type="button" value="수정하기" onclick="location.assign('<%=request.getContextPath() %>/notice/noticeUpdate?no=<%=n.getNoticeNo()%>')">
-                <input type="button" value="삭제하기" onclick="">
-            </th>
+        	<td colspan = "2"><%=n.getnContent() %></td>
         </tr>
-        <%} %> --%>
+        <tr>
+            <td colspan="2" style="text-align : end;">
+                <input type="button" class="notice-btn blue" value="수정하기" onclick="location.assign('<%=request.getContextPath() %>/notice/noticeUpdate?nSeq=<%=n.getnSeq()%>')">
+                <input type="button" class="notice-btn white" value="삭제하기" onclick="">
+            </td>
+        </tr>
     </table>
     </div>
 <%@include file="/views/common/footer.jsp"%>
