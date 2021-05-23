@@ -4,13 +4,14 @@
 /*공지 컨테이너 */
 div#notice-container{
 	width : 1368px;
+	height : 1000px;
 	position : relative;
 	top : 120px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
 }
-span#notice{
+span.notice{
 	color : orange;
 	font-size : 20px;
 	font-weight : bolder;
@@ -22,13 +23,18 @@ span#notice{
 }
 
 table#tbl-notice{
-	margin : 20px auto;
+	margin : 30px auto;
+	width : 700;
 	border: 1px white solid;
 	border-collapse: collapse;
 }
 
 table#tbl-notice th{
 	border: 1px solid white;
+}
+
+.notice-title{
+	width : 400px;
 }
 
 table#tbl-notice td{
@@ -40,6 +46,70 @@ table#tbl-notice th, table#tbl-notice td{
 	 text-align: center;
 }
 /*-----------NoticeDetail.jsp-------------*/
+
+/*수정하기 삭제하기 버튼*/
+#notice-detail-container{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 120px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
+}
+
+table#tbl-deatil-notice{
+	margin : 20px auto;
+	width : 700px;
+	border: 1px white solid;
+	border-collapse: collapse;
+	
+}
+
+table#tbl-deatil-notice tr{
+	border-bottom : 1px solid grey;
+}
+
+table#tbl-deatil-notice tr:nth-of-type(5){
+	border-bottom : none !important;
+}
+
+table#tbl-deatil-notice td{
+	width : 500px;
+	text-align : left;
+	padding : 10px;
+}
+
+table#tbl-deatil-notice td:nth-of-type(5){
+	text-align : right !important;
+}
+
+table#tbl-deatil-notice th{
+	padding : 10px;
+}
+
+
+/*수정하기 삭제하기 버튼*/
+.notice-btn {
+	width : auto;
+	cursor : pointer;
+}
+
+.blue{
+	background-color : rgb(0, 70, 172);
+	color : white;
+}
+
+.white{
+	background-color : white;
+	border : 1px solid rgb(0, 70, 172);
+}
+
+
+
+
+
+
 
 
 /*-----------NoticePost.jsp-------------*/
