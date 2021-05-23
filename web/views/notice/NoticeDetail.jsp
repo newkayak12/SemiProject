@@ -32,7 +32,7 @@
             <td><%=n.getnDate() %></td>
         </tr>
         <tr>
-        	<td colspan = "2"><%=n.getnContent() %></td>
+        	<td colspan = "2" class="content-background clip" ><%=n.getnContent() %></td>
         </tr>
         <tr>
             <td colspan="2" style="text-align : end;">

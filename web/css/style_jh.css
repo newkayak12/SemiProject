@@ -47,7 +47,7 @@ table#tbl-notice th, table#tbl-notice td{
 }
 /*-----------NoticeDetail.jsp-------------*/
 
-/*수정하기 삭제하기 버튼*/
+/* 공지글 테이블 */
 #notice-detail-container{
 	width : 1368px;
 	height : 1000px;
@@ -59,11 +59,9 @@ table#tbl-notice th, table#tbl-notice td{
 }
 
 table#tbl-deatil-notice{
-	margin : 20px auto;
+	margin : 30px auto;
 	width : 700px;
-	border: 1px white solid;
 	border-collapse: collapse;
-	
 }
 
 table#tbl-deatil-notice tr{
@@ -80,9 +78,10 @@ table#tbl-deatil-notice td{
 	padding : 10px;
 }
 
-table#tbl-deatil-notice td:nth-of-type(5){
-	text-align : right !important;
+.clip{
+	background-clip : content-box;
 }
+
 
 table#tbl-deatil-notice th{
 	padding : 10px;
@@ -90,6 +89,10 @@ table#tbl-deatil-notice th{
 
 
 /*수정하기 삭제하기 버튼*/
+table#tbl-deatil-notice td:nth-of-type(5){
+	text-align : right !important;
+}
+
 .notice-btn {
 	width : auto;
 	cursor : pointer;
@@ -106,18 +109,50 @@ table#tbl-deatil-notice th{
 }
 
 
-
-
-
-
-
-
 /*-----------NoticePost.jsp-------------*/
-/* 공지작성 css */
-input#write-notice{
-	margin : 0px 0px 20px 0px ;
-	width : auto;
-	background-color : white;
-	border : 1px  rgb(0, 70, 172) solid;
-	cursor: pointer;
+
+/*테이블 */
+div#post-container{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 120px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
 }
+
+table#tbl-post{
+	margin : 30px auto;
+	width : 700px;
+	border-collapse: collapse;
+}
+
+table#tbl-post td{
+	width : 500px;
+	text-align : left;
+	padding : 10px;
+}
+
+table#tbl-post tr{
+	border-bottom : 1px solid grey;
+}
+
+table#tbl-post tr:nth-of-type(5){
+	border-bottom : none !important;
+}
+
+/*공지내용 적는 부분*/
+table#tbl-post td:nth-of-type(4){
+	text-align : center !important;
+}
+
+.content-background{
+	background-image: url("../images/contentBack.jpg");
+	background-repeat : no-repeat;
+	background-size : cover;
+}
+table#tbl-post td:nth-of-type(5){
+	text-align : right !important;
+}
+
