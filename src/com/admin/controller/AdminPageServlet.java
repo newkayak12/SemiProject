@@ -20,7 +20,7 @@ public class AdminPageServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/admin/adminPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/adminPage.jsp").forward(request, response);
 	}
 
 	
