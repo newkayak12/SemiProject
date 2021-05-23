@@ -55,7 +55,7 @@
 			<div class = "grid_itembox">
 					
 				<div class="cover">
-						<img alt="" src="<%=request.getContextPath()%>/upload/review/review_20210622_04_0619006_643109.jpg">
+						<img alt="" src="<%=request.getContextPath()%>/upload/product/<%=p.getProductFile()%>">
 						
 						<div class="explain">
 							<p><%=p.getProductName() %></p>
@@ -65,7 +65,7 @@
 					
 				
 				 <a class = "thumbnail" href="<%=request.getContextPath()%>/product/detail?pid=<%=p.getProductId()%>&category=<%=p.getCategoryId()%>">
-					<%=p.getProductExplain() %>
+					<p><%=p.getProductExplain() %></p>
 				</a>
 				
 			</div>

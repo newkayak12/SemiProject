@@ -49,21 +49,26 @@ public class ProductDao{
 				query= query.replace("@","");
 				
 			} else {
-				query = query.replace("@"," where c_id = "+category );
+				category = "f."+category;
+				query = query.replace("@"," where f.c_id = "+category );
 			}
 			
 			if(sort.equals("p_view_count")) {
-				query = query.replace("#"," order by "+ sort +" desc");
+				sort = "f."+sort;
+				System.out.println(sort);
+				query = query.replace("#"," order by '"+ sort +"' desc");
 				
 				
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", " order by p_price desc");
+					query = query.replace("#", " order by f.p_price desc");
 				} else {
-					query = query.replace("#", " order by p_price asc ");
+					query = query.replace("#", " order by f.p_price asc ");
 					
 				}
+				
+				
 				
 				
 			}
@@ -81,11 +86,10 @@ public class ProductDao{
 				Product i = new Product();
 				i.setProductId(rs.getInt("p_id"));
 				i.setCategoryId(rs.getString("c_id"));
-				i.setProductOptionSize(rs.getString("p_o_size"));
-				i.setProductOptionColor(rs.getString("p_o_color"));
+				
 				i.setProductName(rs.getString("p_name"));
 				i.setProductPrice(rs.getString("p_price"));
-				i.setProductStock(rs.getInt("p_stock"));
+				
 				i.setProductFile(rs.getString("p_FILE"));
 				i.setProductFileDetail1(rs.getString("p_FILE_detail1"));
 				i.setProductFileDetail2(rs.getString("p_FILE_detail2"));
@@ -124,26 +128,31 @@ public class ProductDao{
 				query= query.replace("@","");
 				
 			} else {
-				query = query.replace("@"," where c_id = "+category );
+				category = "f."+category;
+				query = query.replace("@"," where f.c_id = "+category );
 			}
 			
 			if(sort.equals("p_view_count")) {
-				query = query.replace("#"," order by "+ sort +" desc");
+				sort = "f."+sort;
+				System.out.println(sort);
+				query = query.replace("#"," order by '"+ sort +"' desc");
 				
 				
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", " order by p_price desc");
+					query = query.replace("#", " order by f.p_price desc");
 				} else {
-					query = query.replace("#", " order by p_price asc ");
+					query = query.replace("#", " order by f.p_price asc ");
 					
 				}
 				
 				
+				
+				
 			}
 			
-			
+			System.out.println(query);
 			
 			pstmt = conn.prepareStatement(query);
 			
