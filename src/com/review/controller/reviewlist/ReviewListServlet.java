@@ -53,7 +53,7 @@ public class ReviewListServlet extends HttpServlet {
 		
 		int totalData = service.countAllReview();
 		
-//		String url = request.getContextPath() + "/views/review/reviewList.jsp";
+
 		String url = request.getContextPath() + "/review/list";
 		
 		

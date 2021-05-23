@@ -9,6 +9,7 @@
     
 <%@ include file = "/views/common/header.jsp"%>
 
+	<main>
 
 		<div id="review_bestReviewerContainer">
 		
@@ -109,7 +110,7 @@
 			<%=reviewPageBar %>
 		</div>
 		
-		
+	</main>	
 		
 
 <%@ include file = "/views/common/footer.jsp"%>
