@@ -92,7 +92,7 @@
 		            <ul id="admin_menu">
 		            	<li>
 				            	<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>
-		            		<a href="">
+		            		<a href="<%=request.getContextPath()%>/admin/adminPageStart">
 				            		ADMIN
 		            		</a>
 				            	<% } else { %> 
