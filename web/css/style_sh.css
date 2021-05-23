@@ -288,13 +288,32 @@ div#sort-container li:hover{
 	border: 1px black solid;
 }
 
-hr{
-	margin: auto !important;
-	padding: auto !important;
-}
- 
-
+#detailbox-container{
+	width:1000px;
+	margin:10px 0px 0px 0px !important;
+	padding:0px!important;
+	height: 800px;
 	
+}
+
+#menu_select-container{
+	width:1000px;
+	margin:0px!important;
+	 padding:0px!important; 
+	height: 80px;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+}
+
+#menu_select-container span{
+	width:200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin:10px;
+	
+}	
 
 
 

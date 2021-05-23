@@ -73,7 +73,6 @@ public class ProductListServlet extends HttpServlet {
 		
 		int count = new ProductService().countAllProduct(sort, category);
 		
-		System.out.println("result size"+result.size());
 		request.setAttribute("result", result);
 		String url = request.getContextPath()+"/product/list";
 		request.setAttribute("pageBar",pageBar(cPage, numPerPage, count, url , category, sort, null));
