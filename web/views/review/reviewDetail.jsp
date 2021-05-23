@@ -109,7 +109,7 @@
 		 
 		 
 		
-		<!-- 버튼 div -->
+		<!-- 수정, 삭제 버튼 div -->
 		<div id="reviewDetail-buttons">
 		
 			<% if( userid != null && (userid.equals("admin") || userid.equals(reviewList.get(0).getUserId()) ) ) { %>
@@ -167,15 +167,8 @@
 				} else {
 					return true;
 				} 
-			
 		}
-		
-		
-		
-		
-		
-		
-		
+	
 	}
 	
 	

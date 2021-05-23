@@ -79,7 +79,7 @@
 								
 								
 								<td width="500px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">작성자 : <%=r.getUserId() %><br>상품아이디 : <%=r.getProductId() %><br>컬러 : <%=r.getProductOptionColor() %><br>사이즈 : <%=r.getProductOptionSize() %><br><%=r.getReviewContents() %></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">작성자 : <%=r.getUserId() %><br>상품이름 : <%=r.getProductName() %><br>컬러 : <%=r.getProductOptionColor() %><br>사이즈 : <%=r.getProductOptionSize() %><br><%=r.getReviewContents() %></a>
 								</td>
 								
 								<td width="200px" style="padding:20px;">
@@ -100,7 +100,7 @@
 					
 			<% } else { %>
 				
-				<p>리뷰가 없습니다 :()</p>
+				<p>리뷰가 없습니다</p>
 				
 			<% } %>
 			
@@ -116,13 +116,6 @@
 		</div>
 		
 	</main>	
-	
-	<script>
-		$("#reviewLike").click( (e) => {
-			
-			
-		} );
-	</script>
 		
 
 <%@ include file = "/views/common/footer.jsp"%>
