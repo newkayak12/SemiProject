@@ -85,6 +85,11 @@
 								<td width="200px" style="padding:20px;">
 									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>" width="150px" height="200px"></a>
 								</td>
+								
+								<%-- 좋아요 기능 뺄수도? <td>
+									<img src="<%=request.getContextPath() %>/images/heart.png" id="reviewLike" width="30px" height="30px">
+									<span><%=r.getReviewLike() %></span>
+								</td> --%>
 							</tr>
 							
 						<% } %>
@@ -111,6 +116,13 @@
 		</div>
 		
 	</main>	
+	
+	<script>
+		$("#reviewLike").click( (e) => {
+			
+			
+		} );
+	</script>
 		
 
 <%@ include file = "/views/common/footer.jsp"%>
