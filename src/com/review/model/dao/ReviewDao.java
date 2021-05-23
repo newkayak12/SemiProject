@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.order.model.vo.Order;
 import com.product.model.vo.Product;
 import com.review.model.vo.Review;
+import com.review.model.vo.ReviewComment;
 
 public class ReviewDao {
 	
@@ -342,6 +343,38 @@ public class ReviewDao {
 			pstmt.setString(8, r.getOrderNumber());
 			pstmt.setString(9, r.getCategoryId());
 			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+
+	public int insertReviewComment(Connection conn, ReviewComment comment) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			// insertReviewComment = INSERT INTO REVIEW_COMMENT VALUES(REVIEW_COMMENT_SEQ, ?, ?, SYSDATE, ?)
+																		// r_c_seq, r_c_user_id, r_comment, r_c_date, r_seq_ref
+			pstmt = conn.prepareStatement(prop.getProperty("insertReviewComment"));
+			
+			pstmt.setString(1, comment.getReviewCommentUserId());
+			pstmt.setString(2, comment.getReviewCommentContent());
+			pstmt.setString(3, comment.getReviewNo());
 			
 			result = pstmt.executeUpdate();
 			

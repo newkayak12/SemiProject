@@ -12,6 +12,7 @@ import com.order.model.vo.Order;
 import com.product.model.vo.Product;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
+import com.review.model.vo.ReviewComment;
 
 public class ReviewService {
 	
@@ -133,6 +134,26 @@ public class ReviewService {
 		close(conn);
 		
 		return p;
+	}
+
+
+
+
+	public int insertReviewComment(ReviewComment comment) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.insertReviewComment(conn, comment);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 
 }

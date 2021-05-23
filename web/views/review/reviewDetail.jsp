@@ -1,20 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.review.model.vo.Review, java.util.List" %>    
+<%@ page import="com.review.model.vo.*, java.util.List" %>    
 
 <%@ include file = "/views/common/header.jsp"%>
 
 <%
 	List<Review> reviewList = (List<Review>)request.getAttribute("reviewList");
-
-	if(reviewList != null ) {
-		
-		for(Review r : reviewList) {
-			
-		}
-		
-		
-	} 
 	
 %>
 	
@@ -72,13 +63,16 @@
 		 	<!-- 댓글 입력창 -->
 		 	<div id="review_insert_comment">
 		 	
-		 		<form action="" method="post" id="" name="">
+		 		<form action="<%=request.getContextPath()%>/review/insertReviewComment" method="post" id="" name="" onsubmit="return fn_insertComment();">
 		 			 
-		 			 <textarea name="" rows="3" cols="55"></textarea>
-		 			 <input type="hidden" name="" id="" value="">
-		 			 <input type="hidden" name="" id="" value="">
-		 			 <input type="hidden" name="" id="" value="">
-		 			 <button type="submit" id="">등록</button>
+		 			  <!-- hidden으로 받을 값 : 댓글을 작성한 사용자의 아이디, 해당하는 리뷰번호  -->
+		 			 <input type="hidden" name="userId" id="userId" value="<%=userid%>">
+		 			 <input type="hidden" name="reviewNo" id="reviewNo" value="<%=reviewList.get(0).getReviewNo()%>">
+		 			 
+		 			 <textarea name="reviewCommentContent" id="reviewCommentContent" rows="3" cols="55"></textarea>
+		 			 
+		 			 <button type="submit" id="btn_r_comment">등록</button>
+		 			 
 		 		</form>
 		 		
 		 	</div>
@@ -88,7 +82,7 @@
 		 	<div id="">
 		 	
 		 		<table>
-		 			<% if(reviewList != null ) { %>
+		 			<% if(reviewList != null || !reviewList.isEmpty() ) { %>
 		
 						<% for(Review r : reviewList) { %>
 			
@@ -138,6 +132,8 @@
 		location.replace("<%=request.getContextPath()%>/review/modify/start?no=<%=reviewList.get(0).getReviewNo()%>");
 	}
 	
+	
+	
 	const fn_review_delete = () => {
 		
 		let result = confirm("정말 삭제하시겠습니까?");
@@ -151,6 +147,37 @@
 		}
 		
 	}
+	
+	const fn_insertComment = () => {
+		
+		const content = $("#reviewCommentContent");
+		
+		if(<%= userid == null%>) {
+			
+				alert("로그인이 필요한 서비스입니다");
+				location.assign("<%=request.getContextPath()%>/sign/signin/start");
+				return false;
+			
+		} else {
+		
+				if(content.val().length == 0 || $.trim(content.val()).length == 0) {
+					alert("댓글 내용을 입력해주세요");
+					content.focus();
+					return false;
+				} else {
+					return true;
+				} 
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 </script>
 	 
