@@ -153,7 +153,7 @@ div#sort-container li:hover{
 
 .thumbnail{
 	margin:0px!important;
-	padding:0px!important;
+	padding:30px!important;
 	position: relative;
 	top:-455px;
 	z-index:500;
@@ -167,6 +167,12 @@ div#sort-container li:hover{
 	text-align: center;
 	color:white;
 	vertical-align: center;
+}
+
+.thumbnail>p{
+	width:250px;
+	border:none;
+	
 }
 
 

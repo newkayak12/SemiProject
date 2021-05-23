@@ -27,6 +27,7 @@
 	
 	
 	
+	
 	<div id="todayspick">
 		
 		<p class="section_title">Today's pick</p>
