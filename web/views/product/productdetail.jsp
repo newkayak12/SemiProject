@@ -24,16 +24,10 @@
 		<div id="product_table-container"> 
 			<table id="product-table">
 				<tr>
-<<<<<<< HEAD
+
 					<td rowspan="8"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
 					<td><%=product.get(0).getProductName() %></td>
-=======
-					<td rowspan="9"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
-					<td>
-						<%=product.get(0).getProductName() %>
-						<input type="hidden" value="<%=%>">
-					</td>
->>>>>>> 9f318f33bb27ab93c24067633537462f114d7a2d
+
 				</tr>
 				
 				
@@ -307,10 +301,11 @@
 				let pid = "<%= product.get(0).getProductId()%>";
 				let size =$("#product_size-select").val();
 				let color= $("#product_color-select").val();
-				let pname = "<%=product.get(0).getProductName()%>";
+				<%-- let pname = "<%=product.get(0).getProductName()%>"; --%>
 				let price = "<%=product.get(0).getProductPrice()%>";
 				let stock = $("#product_stock").val();
-				$("#cartadder").val(pid+'_'+pname+'_'+size+'_'+color+'_'+price+'_'+stock);
+				<%-- let category = "<%= product.get(0).getCategoryId()%>"; --%>
+				$("#cartadder").val(pid+'_'+size+'_'+color+'_'+price+'_'+stock+'_'+category);
 				/* 카트 */
 				
 				
