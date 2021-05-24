@@ -75,15 +75,9 @@
 							<tr>
 								<!-- 상품이미지 -->
 								<td width="200px" style="padding:20px;">
-<<<<<<< HEAD
-
 
 									<a href="<%=request.getContextPath() %>/product/detail?pid=<%=r.getProductId()%>&category=<%=r.getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=r.getProductFile() %>" width="150px" height="200px"></a>
 
-
-=======
-									<a href=""><img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="200px"></a>
->>>>>>> parent of 749ad50... yj
 								</td>
 								
 								<!-- 작성자아이디, 상품이름, 리뷰제목 -->
