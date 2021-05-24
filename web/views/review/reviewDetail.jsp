@@ -26,15 +26,8 @@
 			<!-- 상품이미지, 상품정보 div -->
 			<div id="reviewDetail-inner2-container">
 			
-<<<<<<< HEAD
-
-
 				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=reviewList.get(0).getProductId()%>&category=<%=reviewList.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px"></a>
 
-=======
-				<%-- <img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="150px"> --%>
-				<img src="<%=request.getContextPath() %>/upload/review/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px">
->>>>>>> parent of 749ad50... yj
 				<br>
 				<span><%=reviewList.get(0).getProductName() %>/<%=reviewList.get(0).getProductOptionColor() %></span>
 				
