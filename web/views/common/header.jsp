@@ -26,62 +26,40 @@
 
 <%
 	String userid = null;
-		
+	String checkAdmin = null;
+		Object qwerty = session.getAttribute("user");
 		// 로그인한 상태이면
-		if(session.getAttribute("user")!=null){
+		if(qwerty!=null){
 			
-			Users user = (Users) session.getAttribute("user");
+			Users user = (Users) qwerty;
 			
 				if(user!=null){
 					
 					userid = user.getUserId();
+					checkAdmin = user.getUserAdmin(); // 1이면 admin계정, 0이면 일반사용자
 				}
 		}
 %>
 
-
-     <script>
-   /*  $(function(){
-        $("#shop_menu").children().mouseover((e)=>{
-            $("section").css({
-                "display":"block"
-            })
-        })
-
-        $("#shop_menu").children().mouseleave((e)=>{
-            $("section").css({
-                "display":"none"
-            })
-        })
-       
-
-
-    }) */
-    </script>  
-	
     <header>
-    	
+<!-- -------------------------------- -->    	
     	<nav>
     
 	    	<ul id="header-menuContainer">
-		          
-		            <!-- <span id="shop_menu"><a href ="">SHOP</a></span>
-		            <span id="board_menu"><a href ="">BOARD</a></span>
-		            <span id="review_menu"><a href ="">REVIEW</a></span> -->
-		           
-		            <li><a href="<%=request.getContextPath()%>/IList.do">SHOP</a>
+		        
+		            <li><a href="<%=request.getContextPath()%>/product/list">SHOP</a>
 		            	<ul>
-		            		<li><a href="">OUTTER</a></li>
-		            		<li><a href="">TOP</a></li>
-		            		<li><a href="">BOTTOM</a></li>
-		            		<li><a href="">ACC</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">OUTTER</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">TOP</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">BOTTOM</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">ACC</a></li>
 		            	</ul>
 		            </li>
 		            
 		            <li>
 			            <a href="">BOARD</a>
 			            <ul>
-			            	<li><a href="">NOTICE</a></li>
+			            	<li><a href="<%=request.getContextPath()%>/notice/list">NOTICE</a></li>
 			            	<li><a href="">Q&A</a></li>
 			            </ul>
 			        </li>
@@ -93,44 +71,61 @@
 		        </ul>
 	        </nav>
 	        
-	<!-- -------------------------------- -->
+<!-- -------------------------------- -->
 	
 	        <div id="header-logoContainer">
-	            <span id="logo">
-	                <a href="<%=request.getContextPath()%>">die Kleidung</a>
-	           </span>           
+	        
+	            <ul id="logo">
+	                <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li>
+	           </ul> 
+         
 	        </div>
 	
 	
 	
-	        <!-- -------------------------------- -->
+<!-- -------------------------------- -->
+
 	        <div id="header-signContainer">
 	
-	
-	            <span id="admin_menu">
-	        <%if(!true) {%>  
-	                <a href="">ADMIN</a>
-	        <% } %>     
-	            </span>
-	  <!-- ADMIN일 때만 -->        
-	           <!-- -------------------------------- -->
-	
-	           
-	         
-	
-	            <span id="login_menu">
+				  
+		            
+		            <ul id="admin_menu">
+		            	<li>
+				            	<% if( checkAdmin != null && checkAdmin.equals("1") ) { %>
+		            		<a href="<%=request.getContextPath()%>/admin/adminPageStart">
+				            		ADMIN
+		            		</a>
+				            	<% } else { %> 
+							<p>				            	
+				            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				            </p>		
+				            	<% } %>
+		            	</li>
+		            </ul>
 	            
-	         <%if(userid == null){ %>
-	         		<!-- 로그인을 안 했을 떄 -->
-	                <a href="<%=request.getContextPath()%>/sign/signin/start">SIGN IN</a>
-					
-			<%} else { %>
-					<!-- 로그인을 했을 때 --> 
-	                <a href="<%=request.getContextPath()%>/sign/signout">SIGN OUT</a>
-	        <%} %>        
+	            
+	            
+	  			       
+<!-- -------------------------------- -->
 	
-	            </span>
+	
+	            <ul id="login_menu">
+	            
+	        		 <%if(userid == null){ %>
+	        		 
+	         			<!-- 로그인을 안 했을 떄 -->
+	                	<li><a href="<%=request.getContextPath()%>/sign/signin/start">SIGN IN</a></li>
+					
+					<%} else { %>
+					
+						<!-- 로그인을 했을 때 --> 
+	                	<li><a href="<%=request.getContextPath()%>/sign/signout">SIGN OUT</a></li>
+	        		
+	        		<%} %>       
+	        		
+	            </ul>
 	           
+
 	           <!-- -------------------------------- -->
 	
 	
@@ -140,33 +135,36 @@
 	                <a href="<%=request.getContextPath()%>/sign/">
 	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
 
-	                </a>
-	        <%} else { %>        
+	            
+	            <ul id="mypage_menu">
+	            
+		           	<!-- 로그인하면 -->
+		            <% if(userid !=null){ %>    
+			        
+			            <li>
+				            <a href="">
+				            	<img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
+				            </a>
+			            	<ul>
+			            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
+			            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
+			            		<li><a href="">PROFILE</a></li>
+			            	</ul>
+		            	</li>
+			            
+			         <!-- 로그인 되어있지않으면 -->
+			         <% } else { %>  
+			         
+			         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
+			         
+			         <% }} %> 
+		            
+		        </ul>
 	
-	
-	                <a href="">
-	                	<!-- 로그인 안 했을 때의 이미지 -->
-	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-	                </a>
-	
-			<%} %>
-	            </span>
-	
-	            <!-- -------------------------------- -->
+<!-- -------------------------------- -->
 	
 	        </div>
 
     </header>
-    
-    
-    
-
-    <!-- <section>
-        <div id="shop_dropdown">
-            <div>아우터</div>
-            <div>상의</div>
-            <div>하의</div>
-            <div>액세서리</div>
-        </div> 
-
-    </section>-->
+ 
+ 

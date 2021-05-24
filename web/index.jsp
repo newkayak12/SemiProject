@@ -27,6 +27,7 @@
 	
 	
 	
+	
 	<div id="todayspick">
 		
 		<p class="section_title">Today's pick</p>
@@ -75,7 +76,7 @@
 			<div class="img">img9</div>
 		</div>
 
-			</div>
+	</div>
 	
 
 </main>

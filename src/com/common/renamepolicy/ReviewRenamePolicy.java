@@ -25,28 +25,28 @@ public class ReviewRenamePolicy implements FileRenamePolicy {
 			String ext = "";
 			int dot = originalName.lastIndexOf(".");
 			
-					if(dot!=-1) {
+					if(dot != -1) {
 						ext = originalName.substring(dot);
 					}
 					
 			String newName = "review_"+sdf.format(new Date(currentTime))+"_"+randomN+ext;
 			newFile = new File(oldFile.getParent(),newName);
-		}while(!createNewFile(newFile));
-		
+		}while( !createNewFile(newFile) );
 		
 		return newFile;
-	}
+	} 
 	
 	
 	
 	private boolean createNewFile(File newFile) {
+		
 		try {
-			newFile.createNewFile();
+			return newFile.createNewFile();
 		} catch (IOException e) {
-			return false;
+			
 		}
 		
-		return true;
+		return false;
 	}
 
 }

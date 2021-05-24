@@ -41,12 +41,14 @@ if (lg != null) {
 				</div>
 
 				<div id="submit_section">
+
 					<input class= "bigBtn_syle login_loginBtn" type="submit" value="로그인" onsubmit="">
 					<div class="submit_section_idSave">
 						<input type="checkbox" name="idsave">
 						<p>아이디 저장</p>
 					</div>
 				
+
 				</div>
 			</form>
 
@@ -71,7 +73,7 @@ if (lg != null) {
 
 			<div id="lostorsignup-container" class="bigBtn_sylebigBtn_syle">
 				<span><a
-					href="<%=request.getContextPath()%>/sign/signup/start">회원 가입</a></span>
+					href="<%= request.getContextPath()%>/sign/signup/start">회원 가입</a></span>
 				 
 
 			</div>

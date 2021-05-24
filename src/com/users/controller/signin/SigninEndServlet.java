@@ -44,10 +44,10 @@ public class SigninEndServlet extends HttpServlet {
 			
 			session.setAttribute("user", u);
 			
-				if(check.equals("on")) {
+				if(check!=null && check.equals("on")) {
 					
 					Cookie cookie = new Cookie("userid", userId);
-					cookie.setMaxAge(60*60*30);
+					cookie.setMaxAge(60*60*24*7);
 					response.addCookie(cookie);
 				}
 			

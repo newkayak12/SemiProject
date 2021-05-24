@@ -3,6 +3,7 @@ package com.review.controller.reviewpost;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.common.renamepolicy.ReviewRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.review.model.service.ReviewService;
 import com.review.model.vo.Review;
 
@@ -27,16 +29,9 @@ public class ReviewPostEndServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 리뷰 작성폼에서 입력한 값을 가져와서 db에 저장 
+		ReviewService service = new ReviewService();
 		
-//		String reviewTitle = request.getParameter("reviewTitle");
-//		String userId = request.getParameter("userId");
-//		String up_file = request.getParameter("up_file");
-//		String reviewContent = request.getParameter("reviewContent");
-//		
-//		Review r = new Review();
-		
-		
+
 		//파일 업로드
 		
 		if( !ServletFileUpload.isMultipartContent(request) ) {
@@ -53,20 +48,49 @@ public class ReviewPostEndServlet extends HttpServlet {
 		String encode = "utf-8";
 		
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, new ReviewRenamePolicy());
+
 		
 		Review r = new Review();
 		
-		// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate,default,0,'파일입니다','1','001','c01');
 		
+		// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', '1', '001', 'c01');
+		
+		// 16개 중 3개 : 사용자가 입력한 값 : 제목, 파일, 내용
 		r.setReviewContents(mr.getParameter("reviewContent"));
-		r.setReviewFile(mr.getParameter("up_file"));
+		r.setReviewFile(mr.getFilesystemName("up_file"));
 		r.setReviewTitle(mr.getParameter("reviewTitle"));
 		
+		// 16개 중 8개 : orderlist에서 가져온 상품을 hidden으로 가져온 값 
+		r.setCategoryId(mr.getParameter("cId"));
+		r.setOrderNumber(mr.getParameter("orderNo"));
+		r.setProductFile(mr.getParameter("pFile"));
+		r.setProductId(mr.getParameter("pId"));
+		r.setProductName(mr.getParameter("pName"));
+		r.setProductOptionColor(mr.getParameter("pColor"));
+		r.setProductOptionSize(mr.getParameter("pSize"));
+		r.setUserId(mr.getParameter("userId"));
 		
+		// 16개 중 5개 : 관리자가 설정하거나 자동으로 반영되는 값 
+//		r.setReviewCount();
+//		r.setReviewDate();
+//		r.setReviewDelete();
+//		r.setReviewLike();
+//		r.setReviewNo();
 		
-		ReviewService service = new ReviewService();
+				System.out.println("ReviewPostEndServlet에서 테스트, r : " + r);
 		
 		int result = service.postReview(r);
+		
+		if(result > 0) {
+			// 리뷰 등록 성공
+			request.setAttribute("msg", "리뷰를 성공적으로 등록했습니다");
+			request.setAttribute("loc", "/review/list");
+		} else {
+			request.setAttribute("msg", "리뷰등록을 실패했습니다");
+			request.setAttribute("loc", "/");
+		}
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
 

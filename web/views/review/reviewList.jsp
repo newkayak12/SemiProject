@@ -9,6 +9,7 @@
     
 <%@ include file = "/views/common/header.jsp"%>
 
+	<main>
 
 		<div id="review_bestReviewerContainer">
 		
@@ -73,34 +74,33 @@
 								
 							<tr>
 								<td width="200px" style="padding:20px;">
-									<a href=""><img src="<%=request.getContextPath() %>/images/pants1.jpg" width="150px" height="200px"></a>
+									<a href=""><img src="<%=request.getContextPath() %>/upload/product/<%=r.getProductFile() %>" width="150px" height="200px"></a>
 								</td>
 								
-								<!-- 상품아이디가 아니라 상품명이 들어가야함 (sql에서 조인해야해...) -->
+								
 								<td width="500px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">작성자 : <%=r.getUserId() %><br>상품아이디 : <%=r.getProductId() %><br>컬러 : <%=r.getProductOptionColor() %><br>사이즈 : <%=r.getProductOptionSize() %><br><%=r.getReviewContents() %></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">작성자 : <%=r.getUserId() %><br>상품이름 : <%=r.getProductName() %><br>컬러 : <%=r.getProductOptionColor() %><br>사이즈 : <%=r.getProductOptionSize() %><br><%=r.getReviewContents() %></a>
 								</td>
 								
 								<td width="200px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/images/dummy.jpg" width="150px" height="200px"></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>" width="150px" height="200px"></a>
 								</td>
+								
+								<%-- 좋아요 기능 뺄수도? <td>
+									<img src="<%=request.getContextPath() %>/images/heart.png" id="reviewLike" width="30px" height="30px">
+									<span><%=r.getReviewLike() %></span>
+								</td> --%>
 							</tr>
 							
 						<% } %>
 								
 					<% } %>
 					
-					<tr>
-						<td colspan="3">
-							<button type="button" id="r_btn" name="r_btn" onclick="location.assign('<%=request.getContextPath()%>/review/post/start')">글쓰기</button>
-						</td>
-					</tr>
-					
 				</table>
 					
 			<% } else { %>
 				
-				<p>리뷰가 없습니다 :()</p>
+				<p>리뷰가 없습니다</p>
 				
 			<% } %>
 			
@@ -115,7 +115,7 @@
 			<%=reviewPageBar %>
 		</div>
 		
-		
+	</main>	
 		
 
 <%@ include file = "/views/common/footer.jsp"%>

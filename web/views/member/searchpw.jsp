@@ -38,7 +38,7 @@
 				</div>
 				
 				<div class="bigBtn_syle serchid_login_btn">
-					<a href="<%=request.getContextPath() %>/sign/signin/start">로그인하기</a>
+					<a href="<%= request.getContextPath() %>/sign/signin/start">로그인하기</a>
 				</div>
 			</div>
 			

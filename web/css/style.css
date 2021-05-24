@@ -10,20 +10,19 @@ html,head,body{
 }
 
 
-
-
-
 /* 모든 것 ---------------------------------------*/
 
 *{
     margin: 5px 5px 5px 5px; 
-    padding: 5px 5px 5px 5px;
-/* 
-    border: 1px black solid; 
-    그냥 보려고 넣은 것
-    
-     margin: 0;
+    padding: 5px 5px 5px 5px; 
+ 
+    border: 1px black solid;
+    list-style: none; 
+   
+    /* 
+    margin: 0;
     padding: 0;
+    
     box-sizing: border-box;
     list-style: none; 
      border: 1px black solid !important;
@@ -31,15 +30,20 @@ html,head,body{
 }
 
 
-
-
-
-
 a {
     text-decoration: none;
     /* color: black; */
 }
 
+main{
+	width : 1366px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	height : auto !important;
+	position :relative !important;
+	top : 100px !important;
+	
+}
 
 
 
@@ -81,35 +85,13 @@ header{
 
 
 header div{
-    width:  400px;
+  /*   width:  350px; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
-    
 }
 
-
-header span{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 200px;
-    justify-content: center;
-    
-    
-}
-
-header span>a{
-	color : white;
-}
-
-header>div>span#logo>a{
-	font-size : 40px;
-	font-weight : border;
-	font-family: 'Dancing Script', cursive;
-}
 
 
 
@@ -117,15 +99,12 @@ header>div>span#logo>a{
 
 footer{
     margin: 0px 0px 0px 0px !important;
-    
     width: 1366px;
-    
-    
     position: relative;
-    top: 115px;
+	top:100px;    
     
     padding : 0 0 0 0;
-   
+    
 }
 
 footer>div#footer-container{
@@ -137,6 +116,7 @@ footer>div#footer-container{
     align-items: center;
     text-align: center;
     margin: 5px 0px 0px 0px !important;
+    
    /*  height: fit-content; */
     
     background-color : rgb(9, 74, 169);
@@ -149,22 +129,7 @@ footer>div>span>p{
 }
 
 
-/* 호버시 보이는 하위메뉴 ---------------------------------------*/
-
-/* section{
-    width:  140px;
-    height: 180px;
-    display: none;
-    z-index: 500;
-    position: fixed;
-    text-align: center;
-    
-
-    top: 95px;
-    left: 6px;
-
-} */
-
+/* ----- header 안에 있는 메뉴들  ---------------------------------------*/
 
 
 ul#header-menuContainer{
@@ -176,9 +141,12 @@ ul#header-menuContainer>li{
 	position : relative;
 	list-style : none;
 	color : white;
-	margin : 50px;
-	height : 100px;
-	padding-top : 40px; 
+	margin : 0px 20px 0px 20px;
+	height : 90px;
+	
+	/*선생님이 가르쳐주신 부분 */
+	padding-top: 30px;
+    box-sizing: border-box;
 	
 }
 
@@ -186,9 +154,96 @@ ul#header-menuContainer>li>a{
 	color : white;
 }
 
+/* div id="header-signContainer"  */
+div#header-signContainer{
+	margin : 0 0 0 0;
+	padding : 0 0 0 0;
+}
+
+/* --- admin용 메뉴 ---*/
+ul#admin_menu{
+	list-style : none;
+}
+
+ul#admin_menu>li>a{
+	color : white;
+}
 
 
-/* 하위메뉴박스 */
+/*---signin 메뉴---*/
+ul#login_menu{
+	list-style : none;
+}
+
+ul#login_menu>li{
+	float : left;
+	position : relative;
+	list-style : none;
+	color : white;
+	margin : 10px;
+	height : 50px;
+	
+	padding-top: 15px;
+    box-sizing: border-box;
+}
+
+ul#login_menu>li>a{
+	color : white;
+}
+
+
+
+/* --- logo --- */
+
+div#header-logoContainer{
+	width : 300px;
+}
+
+div#header-logoContainer>ul>li{
+	float : left;
+	position : relative;
+	list-style : none;
+	color : white;
+	margin : 20px;
+	height : 50px;
+}
+
+div#header-logoContainer>ul>li>a{
+	font-size : 40px;
+	font-weight : border;
+	font-family: 'Dancing Script', cursive;
+	color : white;
+}
+
+
+
+/*---mypage 메뉴 ---*/
+ul#mypage_menu{
+	list-style : none;
+}
+
+ul#mypage_menu>li{
+	float : left;
+	position : relative;
+	list-style : none;
+	color : white;
+	margin-right : 20px;
+	height : 50px;
+}
+
+ul#mypage_menu>li>a{
+	color : white;
+	padding : 0 0 10px 0;
+	margin : 0 0 0 0;
+}
+
+ul#mypage_menu>a>img#header_mypageIcon{
+	height : 50px;
+}
+
+
+
+/* shop, board 의 하위메뉴 */
 ul#header-menuContainer>li>ul{
 	list-style : none;
 	display : none;
@@ -198,7 +253,7 @@ ul#header-menuContainer>li>ul{
 	/* background-color : rgba(225, 225, 225, 0.6); */
 	background-color : white;
 	left : -60px;
-	top : 100px;
+	top : 90px;
 	margin : 0;
 	color : white !important;
 	padding : 20px;
@@ -231,6 +286,47 @@ ul#header-menuContainer>li>ul>li>a:hover{
 	font-weight : 900;
 }
 
+
+/*---mypage의 하위메뉴 ---*/
+ul#mypage_menu>li>ul{
+	list-style : none;
+	display : none;
+	position : absolute;
+	width : 160px;
+	background-color : white;
+	left : -60px;
+	top : 80px;
+	margin : 0;
+	color : white !important;
+	padding : 20px;
+	
+}
+
+ul#mypage_menu>li>ul>li{
+	padding : 10px;
+	
+}
+
+
+ul#mypage_menu>li>ul>li>a{
+	font-size : 15px;
+	padding : 10px;
+	color : #000;
+	text-align : left;
+	
+}
+
+
+ul#mypage_menu>li:hover>ul{
+	display : block;
+	z-index : 10;
+	
+}
+
+ul#mypage_menu>li>ul>li>a:hover{
+	color : orange;
+	font-weight : 900;
+}
 
 
 
@@ -459,7 +555,7 @@ div#contents_sort>span:hover{
 /*sh*/
 /* errorpage start */
 #error-body{
-	magin:0px auto;
+	margin:0px auto;
 	padding:0px auto;
 }
 
@@ -496,20 +592,7 @@ div#contents_sort>span:hover{
 	
 }
 
-#logo{
-	margin-top:50px;
-	width:500px;
-	height:200px;
-	
-}
 
-#logo>a{
-	text-decoration: none;
-	color: white;
-	text-align: center;
-	font-size:32px;
-
-}
 
 #error_image{
 	width:300px;
@@ -582,23 +665,36 @@ div#contents_sort>span:hover{
 
 
 /*login*/
-/* #signinMain{
+
+/* 
+<<<<<<< HEAD
+#signinMain{
 	
 	height: 525px !important;
+=======
+
+main#signinMain{
+	position:relative;
+	top:105px;
+
+	height: auto !important;
+>>>>>>> 749ad50befa08293ad4f30d6e75705b3131ab122
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	margin : 0 0 0 0;
+	padding : 0 0 0 0;
 }
-#signin-container{
+div#signin-container{
 	width:500px;
-	height:400px;
+	height:680px;
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	
 }
-#signin-container form{
+div#signin-container form{
 	width:320px;
 	height:300px;
 	display:flex;
@@ -609,7 +705,7 @@ div#contents_sort>span:hover{
 
 
 
-#signin-container p,input{
+div#signin-container p,input{
 	width:300px;
 	height:30px;
 	margin-top:15px;
@@ -617,7 +713,7 @@ div#contents_sort>span:hover{
 	margin-right:auto !important;
 }
 
-#input_section{
+div#input_section{
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
@@ -625,13 +721,25 @@ div#contents_sort>span:hover{
 	height:200px;
 	
 }
-#submit_section{
-	 display:flex;
+div#submit_section{
+	display:flex;
 	flex-direction:row;
-	justify-content:center;
+	justify-content:space-between;
 	align-content:center; 
 	height:auto !important;
+	padding : 0 0 0 20px;
 	
+	
+}
+
+div#submit_section *{
+	padding : 0 0 0 0;
+	margin : 0 0 0 0;
+}
+
+div#submit_section span{
+	box-sizing: border-box;
+    padding-top: 5px;
 }
 
 
@@ -705,363 +813,6 @@ div#contents_sort>span:hover{
 	padding:0px;
 	
 }
-
-/*jh */
-
-
-/* ProductList.jsp 부분 */
-/*카테고리 클릭 버튼*/
-
-ul#category-bar{
-	display : flex;
-	flex-direction : row;
-	position : relative;
-	justify-content: center;
-	padding : 10px 0;
-}
-
-ul#category-bar>li{
-	margin: 10px 40px;
-	padding : 10px 0 ;
-	color : rgb(127, 127, 127);
-}
-
-ul#category-bar>li:hover{
-	color : rgb(64, 64, 64);
-	font-weight : bolder;
-	
-}
-
-main#category-container{
-	position: relative;
-	background-color: rgb(240, 240, 240);
-	top : 90px;
-	width : width 1366px;
-}
-
-/* 정렬순 (인기/높은가격순/낮은가격순 ) */
-
-div#sort-container{
-	/* border : 1px solid black; */
-	margin-top : 60px;
-	position : absolute;
-	left : 300px;
-}
-
-div#sort-container>ul {
-	display : flex;
-	flex-direction : row;
-}
-
-div#sort-container li {
-	margin : 0 15px;
-}
-
-div#sort-container li:hover{
-	color : rgb(236, 147, 2);
-	font-weight : bolder;
-}
-
-
-/*상품 정렬 이미지 파트 */
-div#items-container{
-	display : grid;
-	justify-content : center;
-	
-	grid-template-columns : repeat(3, 250px);
-	grid-template-rows : repeat(3, 420px);
-	grid-gap : 30px 20px;
-	position : relative;
-	top : 130px;
-}
-
-div.img-container{
-	width : 250px;
-	height : 350px;
-}
-
-/* div.img-container:hover .text{
-	opacity:0.6; text-align:center; color:#ffffff;
-} */
-
-.items{
-	border : 1px solid black;
-}
-
-.img-container{
-	position : relative;
-}
-
-.items-img{
-	border : 1px solid orange;
-	height : 350px;
-}
-
-.text{
-	width : 246px;
-	height : 348px;
-	position : absolute;
-	top : 0;
-	left : 0;
-	color : #fff;
-	opacity : 0;
-	transition : 0.3s
-	
-}
-
-.text{
-	width : 250px;
-	heigth : 420px;
-	background : #000000;
-	opacity : 0;
-	padding:30px;
-}
-
-.img-container:hover .text{
-	opacity : 0.6;
-}
-
-.items-content{
-	border : 1px solid blue;
-	margin-top : 15px;
-	height : 50px;
-}
-
-img.heart{
-	width: 15px;
-	margin-left : 10px;
-	/*하트 클릭 토글화 해야함.*/
-}
-
-
-/*-----------------------------------------------------------  */
-/* ProductDetail.jsp 부분 */
-
-/*상품 고르기 */
-div#choice-container{
-	border : 1px black solid;
-	display : grid;
-	grid-template-columns : repeat(2, 380px);
-	grid-template-rows : 500px;
-	grid-gap : 30px 40px;
-	justify-content : center;
-	position : relative;
-	top : 50px;
-	
-}
-
-div#item-img{
-	border : 1px blue solid;
-}
-
-
-div#item-comment{
-	border : 1px orange solid;
-	position : relative;
-}
-
-table#comment-table{
-	margin: 20px 30px;
-	border-spacing: 0 20px;
-}
-
-td.text-style{
-	font-size : 20px;
-	color : orange;
-}
-
-div#total{
-	width : 380px;
-	height : 120px;
-	border : solid 1px black;
-	position : abolute;
-	top : 100px;
-}
-
-div#btn {
-	width : 100%;
-	height : 90px;
-	border : 1px solid black;
-	position : relative;
-	text-align : center;
-}
-
-/*상품관련 info */
-ul.info-bar{
-	display : flex;
-	flex-direction : row;
-	position : absolute;
-	top : 300px;
-}
-
-ul.info-bar li{
-	
-}
-
-
-div#info-container{
-	position : absolute;
-	top : 510px;
-	width : 100%;
-	height : auto;
-	
-}
-
-/*yj*/
-
-/* ------ reviewList.jsp --------*/
-
-	/* 베스트 리뷰 3개 */
-	div#review_bestReviewerContainer{
-	    position: relative;
-	    top: 100px;
-	    
-	    width : 1366px;
-	    
-	    margin-bottom : 100px;
-	}
-	
-	div#review_bestReviewerTable>table{
-	 	padding-bottom : 50px;
-		border-bottom : 1px solid black;
-	}
-	 
-	
-	div#review_bestReviewerContainer tr *{
-		text-align : center;
-	}
-	
-	div#review_bestReviewerContainer tr, div#review_bestReviewerContainer td{
-		padding : 30px;
-	}
-	
-	div p.section_title {
-		text-align : center;
-		color : orange;
-		font-weight : bolder;
-		font-size : 25px;
-		margin : 30px;
-	}
-
-
-
-	/* 리뷰 목록*/
-	div#review_reviewListContainer{
-		width : 1366px;
-	}
-	
-	table#reviewTable{
-		width : 1000px;
-		margin-left: auto; 
-		margin-right: auto;
-		padding : 0 0 0 0;
-	}
-	
-	table#reviewTable>tr>td{
-		padding : 30px;
-		border-style : none;
-	}
-	
-	
-	table#reviewTable tr:last-of-type>td{
-		text-align: right;
-	}
-	
-	
-	
-	
-	/* 페이지바 */
-	div#reviewList_pagebar{
-		text-align : center;
-		padding : 50px 0px 0px 0px;
-		width : 1366px;
-		margin : 0 0 0 0;
-		
-	}
-	
-	
-	
-	
-/* -------------reviewForm.jsp------------*/
-
-	div#reviewForm-container table{
-		width : 800px;
-		margin-left: auto; 
-		margin-right: auto; 
-		margin-top : 50px; 
-		margin-bottom : 100px;
-	}
-	
-	div#reviewForm-container input{
-		height : 30px;
-	}
-	
-	div#reviewForm-container td, div#reviewForm-container th{
-		padding : 5px;
-	}
-	
-	div#reviewForm-container th{
-		width : 150px;
-	}
-	
-	div#reviewForm-container td{
-		text-align : left;
-	}
-	
-	/* div#reviewForm-container input#reviewTitle{
-		text-align : left;
-	} */
-	
-	div#reviewForm-container input[type=submit], div#reviewForm-container input[type=reset]{
-		width : 70px;
-		height : 35px;
-		margin-left : 5px;
-		margin-right : 5px;
-	}
-	
-	
-	main#reviewForm_main{
-		height : 1000px;
-	}
-	
-	div#reviewForm-container>h1{
-		text-align : center;
-		margin : 50px auto 0px auto;
-		color : orange;
-		font-weight : bolder;
-		font-size : 25px;
-	}
-	
-	
-	
-	/* -------------- reviewDetail.jsp ---------------- */
-	
-	div#reviewDetail-container{
-		width : 900px;
-		height : 1500px;
-		margin-left : auto;
-		margin-right : auto;
-		
-		padding : 50px;
-		
-	}
-	
-	div#reviewDetail-inner-container{
-		height : 200px;
-		border-bottom : 3px solid pink !important;
-	}
-	
-	div#reviewDetail-inner2-container{
-		float : right;
-	}
-	
-	div#reviewDetail-buttons button{
-		width : 70px;
-		height : 35px;
-		margin-left : 5px;
-		margin-right : 5px;
-	}
-	
 
 
 

@@ -1,11 +1,16 @@
 package com.notice.controller.noticelist;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.notice.model.service.NoticeService;
+import com.notice.model.vo.Notice;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -26,8 +31,60 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 페이징 처리 
+		int cPage; // 현재페이지
+		int numPerpage; // 페이지 당 5개만 띄우도록 하겠음.
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
+		try {
+			numPerpage=Integer.parseInt(request.getParameter("numPerpage"));
+		}catch(NumberFormatException e) {
+			numPerpage=5;
+		}
+		
+		List<Notice> list=new NoticeService().selectNoticeList(cPage,numPerpage);
+		request.setAttribute("list", list);
+		
+		int totalData=new NoticeService().selectNoticeCount();
+		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+		
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		String pageBar="";
+		
+		if(pageNo==1) {
+			pageBar="<span>[이전]</span>";
+		}else {
+			pageBar="<a href='"+request.getContextPath()
+			+"/notice/noticeList?cPage="+(pageNo-1)+"'>[이전]</a>";
+		}
+	
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
+			if(pageNo==cPage) {
+				pageBar+="<span>"+pageNo+"</span>";
+			}else {
+				pageBar+="<a href='"+request.getContextPath()
+				+"/notice/noticeList?cPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		
+		if(pageNo>totalPage) {
+			pageBar+="<span>[다음]</span>";
+		}
+		else {
+			pageBar+="<a href='"+request.getContextPath()
+			+"/notice/noticeList?cPage="+pageNo+"'>[다음]</a>";
+		}
+		// request.setAttribute("객체명", 객체)
+		request.setAttribute("pageBar",pageBar);
+		request.getRequestDispatcher("/views/notice/NoticeList.jsp")
+		.forward(request, response);
+		
 	}
 
 	/**

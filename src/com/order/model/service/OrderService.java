@@ -28,10 +28,10 @@ public class OrderService {
 		return result;
 	}
 
-	public List<Order> showdetailOrder(String ordernumber) {
+	public List<Order> showdetailOrder(String userid, String productid, String category, String size,  String color, int onumber, int odnum) {
 		Connection conn=getConnection();
 		
-		List<Order> result = new OrderDao().showdetailOrder(ordernumber, conn);
+		List<Order> result = new OrderDao().showdetailOrder(userid, productid, category, size, color, onumber, odnum , conn);
 		
 		close(conn);
 		

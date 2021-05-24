@@ -10,8 +10,8 @@
 		
 			<h1>아이디/비밀번호 찾기</h1>
 
-			<span><a class="serch_btn" href="<%=request.getContextPath()%>/search/searchid/start">아이디찾기</a></span>
-			<span><a class="serch_btn" href="<%=request.getContextPath()%>/search/searchpw/start">비밀번호찾기</a></span>	
+			<span><a class="serch_btn" href="<%= request.getContextPath()%>/search/searchid/start">아이디찾기</a></span>
+			<span><a class="serch_btn" href="<%= request.getContextPath()%>/search/searchpw/start">비밀번호찾기</a></span>	
 		
 	</div>
 	</div>

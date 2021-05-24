@@ -1,6 +1,7 @@
 package com.review.controller.reviewmodify;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,11 +28,17 @@ public class ReviewModifyStartServlet extends HttpServlet {
 		
 		String reviewNo = request.getParameter("no");
 		
+//				 System.out.println("ReviewModifyStartServlet에서 테스트, reviewNo : " + reviewNo);
+		
 		ReviewService service = new ReviewService();
 		
-		Review r = service.selectReview(reviewNo);
+		List<Review> list = service.selectReview(reviewNo);
 		
-		request.setAttribute("review", r);
+//				System.out.println("ReviewModifyStartServlet에서 테스트, list : " + list);
+		
+		request.setAttribute("reviewNo", reviewNo);
+		request.setAttribute("reviewList", list);
+		
 		
 		request.getRequestDispatcher("/views/review/reviewFormModify.jsp").forward(request, response);
 	}

@@ -1,5 +1,7 @@
 package com.order.controller.orderlist;
 
+import static com.common.PageBar.pageBar;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -12,8 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.order.model.service.OrderService;
 import com.order.model.vo.Order;
-
-import static com.common.PageBar.pageBar;
+import com.users.model.vo.Users;
 
 @WebServlet("/order/list")
 public class OrderList extends HttpServlet {
@@ -35,9 +36,9 @@ public class OrderList extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession(false);
-//		Users user = (Users) session.getAttribute("user");
-//		String id = user.getUserId();
-		String id = "testusers";
+		Users user = (Users) session.getAttribute("user");
+		String id = user.getUserId();
+//		String id = "testusers";
 		
 		if(id != null) {
 			int cPage = 1;
@@ -55,6 +56,8 @@ public class OrderList extends HttpServlet {
 						}
 						
 			List<Order> result = new OrderService().showallOrder(cPage, numPerPage, id);
+			
+			
 			int resultCount = new OrderService().showallOrderCount(id);
 			String url = request.getContextPath()+"/order/list";
 			String pageBar = pageBar(cPage, numPerPage, resultCount,url );

@@ -14,17 +14,28 @@ public class ProductService {
 	
 	private ProductDao dao = new ProductDao();
 
-	public List<Product> selectAllProduct(int cPage, int numPerpage){
+	public List<Product> selectAllProduct(int cPage, int numPerpage, String sort, String category){
 		Connection conn=getConnection();
-		List<Product> list = dao.selectAllProduct(conn,cPage,numPerpage);
+		List<Product> list = dao.selectAllProduct(conn,cPage,numPerpage,  sort,  category);
 		close(conn);
 		return list;
 	}
 	
-	public int countAllProduct() {
+	public int countAllProduct(String sort, String category) {
 		Connection conn = getConnection();
-		int count = dao.countAllProduct(conn);
+		int count = dao.countAllProduct(conn, sort, category);
 		close(conn);
 		return count;
+	}
+
+	public List<Product> productDetail(String productid, String category) {
+		Connection conn = getConnection();
+		
+		List<Product> product = dao.productDetail(productid, category, conn);
+		
+		close(conn);
+		
+		
+		return product;
 	}
 }

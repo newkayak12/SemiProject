@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.order.model.vo.Order;
+import com.product.model.vo.Product;
 import com.review.model.vo.Review;
+import com.review.model.vo.ReviewComment;
 
 public class ReviewDao {
 	
@@ -79,6 +82,15 @@ public class ReviewDao {
 				r.setOrderNumber(rs.getString("o_number"));
 				r.setCategoryId(rs.getString("c_id"));
 				
+				// 추가된 필드 세팅
+//				private String commentUserId;
+//				private String reviewComment;
+//				private String reviewCommentDate;
+				
+				r.setCommentUserId(rs.getString("r_c_user_id"));
+				r.setReviewComment(rs.getString("r_comment"));
+				r.setReviewCommentDate(rs.getString("r_c_date"));
+				
 				list.add(r);
 				
 			}
@@ -135,11 +147,13 @@ public class ReviewDao {
 
 
 
-	public Review selectReview(Connection conn, String reviewNo) {
+	public List<Review> selectReview(Connection conn, String reviewNo) {
 		
 		PreparedStatement pstmt = null;
 		
 		ResultSet rs = null;
+		
+		List<Review> list = new ArrayList<>();
 		
 		Review r = null;
 		
@@ -172,6 +186,16 @@ public class ReviewDao {
 				r.setProductName(rs.getString("p_name"));
 				r.setProductFile(rs.getString("p_file"));
 				
+				// 추가된 필드 세팅
+//				private String commentUserId;
+//				private String reviewComment;
+//				private String reviewCommentDate;
+				
+				r.setCommentUserId(rs.getString("r_c_user_id"));
+				r.setReviewComment(rs.getString("r_comment"));
+				r.setReviewCommentDate(rs.getString("r_c_date"));
+				
+				list.add(r);
 			}
 			
 		} catch (SQLException e) {
@@ -184,7 +208,7 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		
-		return r;
+		return list;
 	}
 
 
@@ -248,8 +272,56 @@ public class ReviewDao {
 		return result;
 	}
 
+	
+	public Product selectProduct(Connection conn, String orderNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		
+		Product p = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectProduct"));
+			
+			pstmt.setString(1, orderNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				p = new Product();
+				
+				p.setProductId(rs.getInt("p_id"));
+				p.setProductName(rs.getString("p_name"));
+				p.setProductOptionColor(rs.getString("p_o_color"));
+				p.setProductOptionSize(rs.getString("p_o_size"));
+				p.setProductFile(rs.getString("p_file"));
+				
+				
+						System.out.println("ReviewDao에서 테스트, p : " + p);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return p;
+	}
 
 
+	
+	
+	
+	
+	
 	public int postReview(Connection conn, Review r) {
 		
 		PreparedStatement pstmt = null;
@@ -258,25 +330,21 @@ public class ReviewDao {
 		
 		try {
 			
+			// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', 1, '001', 'c01');
 			pstmt = conn.prepareStatement(prop.getProperty("postReview"));
 			
-//			pstmt.setString(1, );
-//			pstmt.setString(2, x);
-//			pstmt.setString(3, x);
-//			pstmt.setString(4, x);
-//			pstmt.setString(5, x);
-//			pstmt.setString(6, x);
-//			pstmt.setString(7, x);
-//			pstmt.setString(8, x);
-//			pstmt.setString(9, x);
-//			pstmt.setString(10, x);
-//			pstmt.setString(11, x);
-//			pstmt.setString(12, x);
-//			pstmt.setString(13, x);
-//			pstmt.setString(14, x);
-//			pstmt.setString(15, x);
-//			pstmt.setString(16, x);
+			pstmt.setString(1, r.getUserId()); 
+			pstmt.setString(2, r.getProductId());
+			pstmt.setString(3, r.getProductOptionSize());
+			pstmt.setString(4, r.getProductOptionColor());
+			pstmt.setString(5, r.getReviewTitle());
+			pstmt.setString(6, r.getReviewContents());
+			pstmt.setString(7, r.getReviewFile());
+			pstmt.setString(8, r.getOrderNumber());
+			pstmt.setString(9, r.getCategoryId());
 			
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			
@@ -289,6 +357,42 @@ public class ReviewDao {
 		
 		return result;
 	}
+
+
+
+	public int insertReviewComment(Connection conn, ReviewComment comment) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			// insertReviewComment = INSERT INTO REVIEW_COMMENT VALUES(REVIEW_COMMENT_SEQ, ?, ?, SYSDATE, ?)
+																		// r_c_seq, r_c_user_id, r_comment, r_c_date, r_seq_ref
+			pstmt = conn.prepareStatement(prop.getProperty("insertReviewComment"));
+			
+			pstmt.setString(1, comment.getReviewCommentUserId());
+			pstmt.setString(2, comment.getReviewCommentContent());
+			pstmt.setString(3, comment.getReviewNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+
+	
 	
 	
 

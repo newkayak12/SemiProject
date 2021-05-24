@@ -8,8 +8,11 @@ import static com.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.order.model.vo.Order;
+import com.product.model.vo.Product;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
+import com.review.model.vo.ReviewComment;
 
 public class ReviewService {
 	
@@ -49,15 +52,15 @@ public class ReviewService {
 
 
 
-	public Review selectReview(String reviewNo) {
+	public List<Review> selectReview(String reviewNo) {
 		
 		Connection conn = getConnection();
 		
-		Review r = dao.selectReview(conn, reviewNo);
+		List<Review> list = dao.selectReview(conn, reviewNo);
 		
 		close(conn);
 		
-		return r;
+		return list;
 	}
 
 
@@ -102,7 +105,6 @@ public class ReviewService {
 
 
 
-
 	public int postReview(Review r) {
 		
 		Connection conn = getConnection();
@@ -117,7 +119,41 @@ public class ReviewService {
 		
 		close(conn);
 		
-		return 0;
+		return result;
+	}
+
+
+
+
+	public Product selectProduct(String orderNo) {
+		
+		Connection conn = getConnection();
+		
+		Product p = dao.selectProduct(conn, orderNo);
+		
+		close(conn);
+		
+		return p;
+	}
+
+
+
+
+	public int insertReviewComment(ReviewComment comment) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.insertReviewComment(conn, comment);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 
 }

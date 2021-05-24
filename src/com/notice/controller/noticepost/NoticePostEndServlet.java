@@ -1,11 +1,14 @@
 package com.notice.controller.noticepost;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.notice.model.vo.Notice;
 
 /**
  * Servlet implementation class NoticePostEndServlet
@@ -26,8 +29,15 @@ public class NoticePostEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Notice n=new Notice();
+		
+		n.setnTitle(request.getParameter("noticeTitle"));
+		n.setUserId(request.getParameter("noticeWriter"));
+//		n.setNoticeTitle(request.getParameter("noticeTitle"));
+//		n.setNoticeWriter(request.getParameter("noticeWrite"));
+//		n.setNoticeContent(request.getParameter("content"));
+//		int result=new NoticeService().insertNotice(n);
+		
 	}
 
 	/**
