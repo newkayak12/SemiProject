@@ -47,12 +47,31 @@ public class CartListServlet extends HttpServlet {
 				
 		Cart cart = null;		
 		temp = temp.substring(1, temp.length());
-		System.out.println(temp);
+		System.out.println("cookies"+temp);
 		
-		String [] temp2 = temp.split("|");
+		String [] temp2 = temp.split("#");
+		
+		for(String test :temp2) {
+			System.out.println(test);
+		}
+		
+		System.out.println("cookie"+temp2[0]);
 		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
 			for(String t :temp2) {
-				String[] t2 = t.split("_");
+				String[] t2 = t.split("@");
+				
+				
+				
+				System.out.println(t2[0]);
+				System.out.println(t2[1]);
+				System.out.println(t2[2]);
+				System.out.println(t2[3]);
+				System.out.println(t2[4]);
+				System.out.println(t2[5]);
+				
+				
+				
+				
 				cart = new Cart();
 				cart.setProductId(t2[0]);
 				cart.setProductOptionSize(t2[1]);
