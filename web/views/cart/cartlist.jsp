@@ -100,7 +100,7 @@
 					%>
 		<div>
 			<span>
-				<button type="button" onclick ="location.assing('<%=request.getContextPath()%>/')">돌아가기</button>
+				<button type="button" onclick ="location.assign('<%=request.getContextPath()%>/')">돌아가기</button>
 			</span>
 			<span>
 				<button type="button" onclick ="fn_buy()">구매하기</button>
@@ -113,12 +113,13 @@
 <!-- 스크립트! -->
 	<script>
 			const fn_checked=()=>{
-					$(".cartchecker").attr("checked", true);
-				if($(".cartchecker").each((i,v=>{
 					
-				})){
-				
-				} 
+
+					if($(".cartchecker").attr("checked")=="checked"){
+						$(".cartchecker").attr("checked", false);
+					} else {
+						$(".cartchecker").attr("checked", true);
+					}
 				
 			}
 			
