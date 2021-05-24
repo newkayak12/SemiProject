@@ -346,7 +346,7 @@ ul#mypage_menu>li>ul>li>a:hover{
 
 /* contents ( bestReviewers ) ---------------------------------------*/
 
-div#bestReviewers>p.section_title{
+div#main_bestReviewerContainer>p.section_title{
 	text-align : center;
 	color : orange;
 	font-weight : bolder;
@@ -354,9 +354,7 @@ div#bestReviewers>p.section_title{
 	margin : 30px;
 }
 
-
-
-div#bestReviewers{
+div#main_bestReviewerContainer{
 	background-color : rgb(9, 74, 169);
 	
 	margin : 0 0 0 0;
@@ -364,49 +362,23 @@ div#bestReviewers{
 	
 }
 
-div#img_name_price{
-	display : grid;
-	justify-content : center;
-	
-	grid-template-columns : 300px 300px 300px;
-	grid-template-rows : 400px;
-	
-	grid-column-gap : 70px;
-	grid-row-gap : 30px;
-	
-	
+.whiteBolderText{
+	color : white;
+	font-weight : bolder;
+	font-size : 20px;
 }
 
-div#inner_nameprice{
-	display : grid;
-	
-	grid-template-columns : 300px 300px 300px;
-	grid-template-rows : 100px;
-	
-	grid-column-gap : 70px;
-	grid-row-gap : 70px;
-	
-	margin : 0 0 0 0;
-	padding : 0 0 0 0;
+.whiteText{
+	color : white;
 }
 
-/* 
+.orangeText{
+	color : orange;
+	font-weight : bolder;
+	font-size : 17px;
+}
 
-div#bestReviewers div.img{
-	border : 1px solid white;	
-} */
-
-div#bestReviewers img{
-	width : 300px;
-	height : 400px;
-} 
-
-
-div#bestReviewers div.name_price{
-	border : 1px solid white;
-} 
-
-
+ 
 
 /* contents ( today's pick ) ---------------------------------------*/
 

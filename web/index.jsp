@@ -1,29 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.main.model.vo.MainProduct, java.util.List" %>
 <%@ include file = "/views/common/header.jsp"%>
-
+<%
+	List<MainProduct> products = (List<MainProduct>)request.getAttribute("products");
+%>
 
 <main id="mainPage-main">
 
-	<div id="bestReviewers">
 	
+	<div id="main_bestReviewerContainer">
+		
 		<p class="section_title">Best Reviewer</p>
-		
-		<!-- 이미지태그 3개  : 가로배열로-->
-		<div id="img_name_price">
-		
-			<img src="<%=request.getContextPath() %>/images/dummy.jpg">
-			<img src="<%=request.getContextPath() %>/images/dummy.jpg">
-			<img src="<%=request.getContextPath() %>/images/dummy.jpg">
-		
-			<div id="inner_nameprice">
-				<div class="name_price">상품명 <br>가격</div>
-				<div class="name_price">상품명 <br>가격</div>
-				<div class="name_price">상품명 <br>가격</div>
+			
+			<div id="review_bestReviewerTable">
+			
+				<table style="margin-left: auto; margin-right: auto; width : 1000px;">
+					
+					<tr>
+						<td>
+							<p class="whiteBolderText">1</p>
+							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
+							<p class="orangeText">상품이름</p>
+							<p class="whiteText">price : 가격</p>
+						</td>
+						
+						<td>
+							<p class="whiteBolderText">2</p>
+							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
+							<p class="orangeText">상품이름</p>
+							<p class="whiteText">price : 가격</p>
+						</td>
+						
+						<td>
+							<p class="whiteBolderText">3</p>
+							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
+							<p class="orangeText">상품이름</p>
+							<p class="whiteText">price : 가격</p>
+						</td>
+					</tr>
+					
+				</table>
+				
 			</div>
-		</div>
-
+			
 	</div>
+		
 	
 	
 	
@@ -42,14 +64,11 @@
 			
 				<div id="disc" style="display:inline-block;"> 상품설명 블라블라블라 어쩌구저쩌구 샬랴샬랴 </div>
 				
-				
-				
 				<button id="btn_next">&rang;</button>
 				 
 			</div>
 			
 		</div>
-		
 		
 		
 	</div>
@@ -78,7 +97,52 @@
 
 	</div>
 	
+	
+	
+	
+	<%-- <div id="main_products">
+		<div id ="grid-container">
+		
+		
+		<% if( products!=null && products.size() > 0 ) { %>
+		
+			<%	for(int i=0; i < 9; i++) { %>
+					
+				<% 	MainProduct p = products.get(i); %>
+			
+				<div class = "grid_itembox">
+						
+					<div class="cover" style="display:inline-block;">
+							<img alt="" src="<%=request.getContextPath()%>/upload/product/<%=p.getProductFile()%>">
+							
+							<div class="explain">
+								<p><%=p.getProductName() %></p>
+								<p><%=p.getProductPrice() %></p>
+							</div>
+					</div>
+				</div>
+				
+				<%  if( i == 8) break; %>
+				
+			<% } %>
+			
+		<% } else { %>	
+			
+			<p> 공사중 ... </p>
+			
+		<% } %>
+		
+		</div>
+	</div> --%>
+	
 
 </main>
+
+<%-- <script>
+	(function(){
+		location.assign("<%=request.getContextPath()%>/main/product/list");
+		return;
+	})();
+</script> --%>
 
 <%@ include file = "/views/common/footer.jsp"%>

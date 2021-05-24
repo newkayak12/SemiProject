@@ -76,6 +76,9 @@
 	        <div id="header-logoContainer">
 	        
 	            <ul id="logo">
+	            
+	                <%-- <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li> --%>
+	                
 	                <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li>
 	           </ul> 
          
