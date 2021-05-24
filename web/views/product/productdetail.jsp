@@ -260,7 +260,12 @@
 	const fn_cart = ()=>{
 		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
 		let pid = "";
-		let size =""
+		let size = $("#product_size-select").val();
+		let color = "";
+		let name = "";
+		let price ="";
+		let stock = "";
+		
 		
 		
 		<%
