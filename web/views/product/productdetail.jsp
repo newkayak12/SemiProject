@@ -24,7 +24,7 @@
 		<div id="product_table-container"> 
 			<table id="product-table">
 				<tr>
-					<td rowspan="9"> <img src="" alt="hello"></td>
+					<td rowspan="9"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
 					<td><%=product.get(0).getProductName() %></td>
 				</tr>
 				<tr>
@@ -157,8 +157,8 @@
 				<tr>
 					<!-- <td></td> -->
 					<td>
-						<button type="button" id="buynow-btn">Buy now</button>
-						<button type="button" id="cart-btn">Cart</button>
+						<button type="button" id="buynow-btn" onclick="fn_buynow()">Buy now</button>
+						<button type="button" id="cart-btn" onclick="fn_cart()">Cart</button>
 					</td>
 				</tr>	
 			
@@ -167,18 +167,112 @@
 	
 		<div id="detailbox-container">
 			<div id="menu_select-container">
-				<span>Detail</span>
-				<span>Notice</span>
-				<span>Review</span>
-				<span>Q&A</span>
+				<span id="detailbtn" onclick="fn_detail()">Detail</span>
+				<span id="noticebtn">Notice</span>
+				<span id="reviewbtn">Review</span>
+				<span id="qnabtn">Q&A</span>
 			</div>
-			<div id="menu_content-container">
 			
+		<%if(product!=null){ %>	
+			<div id="menu_content-container">
+				<div id="menu_content-img" class="menu_content-container1">
+					<div id="menu_content-p">
+						<%
+							String[] a = product.get(0).getProductExplain().split("@");
+							String c = a[0];
+							String b = a[1].replaceAll("-", "<br><br>-");
+							System.out.println(b);
+						%>
+						
+						<%=	c
+						%>
+						
+						<%=
+							b
+						%>
+					</div>				
+					<div>
+						<img alt="사진1" src="<%=request.getContextPath()%>/upload/product/<%=product.get(0).getProductFileDetail1()%>" width="500px">
+						
+						<img alt="사진2" src="<%=request.getContextPath()%>/upload/product/<%=product.get(0).getProductFileDetail2()%>" width="500px">
+					</div>
+				</div>
+
+				<div id="menu_content-notice">
+					notice
+				</div>
+				
+				<div id="menu_content-review">
+					review
+				</div>
+				
+				<div id="menu_content-qna">
+					qna
+				</div>
+				
 			</div>
+			
+			
+			
+			
+			
+		<%} %>
 		</div>
 	</div>
 
-
+<script>
+	const fn_detail=()=>{
+		
+		
+		$("#menu_content-img").css("display","flex");
+		$("#menu_content-notice").css("display","none");
+		$("#menu_content-review").css("display","none");
+		$("#menu_content-qna").css("display","none");
+	}
+	
+	$("#noticebtn").click(()=>{
+		$("#menu_content-img").css("display","none");
+		$("#menu_content-notice").css("display","flex");
+		$("#menu_content-review").css("display","none");
+		$("#menu_content-qna").css("display","none");
+	})
+	
+	$("#reviewbtn").click(()=>{
+		$("#menu_content-img").css("display","none");
+		$("#menu_content-notice").css("display","none");
+		$("#menu_content-review").css("display","flex");
+		$("#menu_content-qna").css("display","none");
+	})
+	
+	$("#qnabtn").click(()=>{
+		$("#menu_content-img").css("display","none");
+		$("#menu_content-notice").css("display","none");
+		$("#menu_content-review").css("display","none");
+		$("#menu_content-qna").css("display","flex");
+	})
+	
+	
+	const fn_buynow=()=>{
+		
+		
+	}
+	
+	const fn_cart = ()=>{
+		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
+		let pid = "";
+		let size =""
+		
+		
+		<%
+		 Cookie cookie = new Cookie("cart","_");
+		 cookie.setMaxAge(60*60*24*365*100);
+		%>
+		
+		location.assign("<%=request.getContextPath()%>/cart/list");
+		
+	}
+	
+</script>
 	
 	
 	

@@ -65,7 +65,8 @@
 					
 				
 				 <a class = "thumbnail" href="<%=request.getContextPath()%>/product/detail?pid=<%=p.getProductId()%>&category=<%=p.getCategoryId()%>">
-					<p><%=p.getProductExplain() %></p>
+				 <%String[] a = p.getProductExplain().split("@"); %>
+					<p><%= a[0]%></p>
 				</a>
 				
 			</div>
