@@ -24,8 +24,16 @@
 		<div id="product_table-container"> 
 			<table id="product-table">
 				<tr>
+<<<<<<< HEAD
 					<td rowspan="8"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
 					<td><%=product.get(0).getProductName() %></td>
+=======
+					<td rowspan="9"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
+					<td>
+						<%=product.get(0).getProductName() %>
+						<input type="hidden" value="<%=%>">
+					</td>
+>>>>>>> 9f318f33bb27ab93c24067633537462f114d7a2d
 				</tr>
 				
 				
@@ -154,6 +162,7 @@
 				
 				<tr>
 					<!-- <td></td> -->
+<<<<<<< HEAD
 					<td rowspan="2">
 						<div id ="product_list-container">
 						
@@ -161,6 +170,10 @@
 						<div id = "product_total-container">
 						 
 						</div>
+=======
+					<td rowspan="2"> 
+						<span id="totalvalue"> total value</span>
+>>>>>>> 9f318f33bb27ab93c24067633537462f114d7a2d
 					</td>
 				</tr>
 				<tr>
@@ -278,7 +291,9 @@
 		
 	}
 	
+
 	const fn_cart =()=>{
+
 		
 		
 		let flag = $("#product_stock").val();
