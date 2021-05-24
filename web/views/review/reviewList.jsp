@@ -73,18 +73,26 @@
 						<% if(r.getReviewDelete().equals("1")) { %>
 								
 							<tr>
+								<!-- 상품이미지 -->
 								<td width="200px" style="padding:20px;">
-									<a href=""><img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="200px"></a>
+									<a href="<%=request.getContextPath() %>/product/detail?pid=<%=r.getProductId()%>&category=<%=r.getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=r.getProductFile() %>" width="150px" height="200px"></a>
 								</td>
 								
-								
+								<!-- 작성자아이디, 상품이름, 리뷰제목 -->
 								<td width="500px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">작성자 : <%=r.getUserId() %><br>상품아이디 : <%=r.getProductId() %><br>컬러 : <%=r.getProductOptionColor() %><br>사이즈 : <%=r.getProductOptionSize() %><br><%=r.getReviewContents() %></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">작성자 : <%=r.getUserId() %><br>상품이름 : <%=r.getProductName() %><br>리뷰내용 : <%=r.getReviewTitle() %></a>
 								</td>
 								
+								<!-- 리뷰이미지 -->
 								<td width="200px" style="padding:20px;">
 									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>" width="150px" height="200px"></a>
 								</td>
+								
+								<%-- 좋아요 기능 뺄수도? <td>
+									<img src="<%=request.getContextPath() %>/images/heart.png" id="reviewLike" width="30px" height="30px">
+									<span><%=r.getReviewLike() %></span>
+								</td> --%>
+								
 							</tr>
 							
 						<% } %>
@@ -95,7 +103,7 @@
 					
 			<% } else { %>
 				
-				<p>리뷰가 없습니다 :()</p>
+				<p>리뷰가 없습니다</p>
 				
 			<% } %>
 			

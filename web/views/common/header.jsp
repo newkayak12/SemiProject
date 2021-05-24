@@ -125,7 +125,15 @@
 	        		
 	            </ul>
 	           
- <!-- -------------------------------- -->
+
+	           <!-- -------------------------------- -->
+	
+	
+	            <span id="mypage_menu">
+	            <!-- wsws -->
+	        <%if(userid !=null){ %>    
+	                <a href="<%=request.getContextPath()%>/sign/">
+	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
 
 	            
 	            <ul id="mypage_menu">
@@ -149,7 +157,7 @@
 			         
 			         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
 			         
-			         <% } %> 
+			         <% }} %> 
 		            
 		        </ul>
 	

@@ -4,8 +4,7 @@
 <main id="mypageMain">
 	<div id="mypage-container">
 		
-		<form action="<%=request.getContextPath() %>">
-		</form>
+		
 	</div>
 </main>
 <%@ include file ="/views/common/footer.jsp" %>

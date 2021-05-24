@@ -18,20 +18,16 @@
 	
 		<div id="reviewDetail-inner-container">
 		
-			<%-- <span><%=r.getReviewTitle() %></span> --%>
 			<span><%=reviewList.get(0).getReviewTitle() %></span>
 			<br>
-			<%-- <span>작성자 : <%=r.getUserId() %></span> --%>
 			<span>작성자 : <%=reviewList.get(0).getUserId() %></span>
 			
 			
 			<!-- 상품이미지, 상품정보 div -->
 			<div id="reviewDetail-inner2-container">
 			
-				<%-- <img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="150px"> --%>
-				<img src="<%=request.getContextPath() %>/upload/review/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px">
+				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=reviewList.get(0).getProductId()%>&category=<%=reviewList.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px"></a>
 				<br>
-				<%-- <span><%=r.getProductName() %>/<%=r.getProductOptionColor() %></span> --%>
 				<span><%=reviewList.get(0).getProductName() %>/<%=reviewList.get(0).getProductOptionColor() %></span>
 				
 			</div>
@@ -42,10 +38,8 @@
 		 <!-- 사용자가 업로드한 사진과 내용 -->
 		 <div id="reviewDetail-userImage_reviewContents">
 		 
-		 	<%-- <img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>"> --%>
 		 	<img src="<%=request.getContextPath() %>/upload/review/<%=reviewList.get(0).getReviewFile()%>">
 		 	
-		 	<%-- <div><%=r.getReviewContents() %></div> --%>
 		 	<div><%=reviewList.get(0).getReviewContents() %></div>
 		 	
 		 </div>
@@ -109,7 +103,7 @@
 		 
 		 
 		
-		<!-- 버튼 div -->
+		<!-- 수정, 삭제 버튼 div -->
 		<div id="reviewDetail-buttons">
 		
 			<% if( userid != null && (userid.equals("admin") || userid.equals(reviewList.get(0).getUserId()) ) ) { %>
@@ -167,15 +161,8 @@
 				} else {
 					return true;
 				} 
-			
 		}
-		
-		
-		
-		
-		
-		
-		
+	
 	}
 	
 	

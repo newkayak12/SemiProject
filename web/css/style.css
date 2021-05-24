@@ -666,11 +666,19 @@ div#contents_sort>span:hover{
 
 /*login*/
 
+/* 
+<<<<<<< HEAD
+#signinMain{
+	
+	height: 525px !important;
+=======
+
 main#signinMain{
 	position:relative;
 	top:105px;
 
 	height: auto !important;
+>>>>>>> 749ad50befa08293ad4f30d6e75705b3131ab122
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -684,7 +692,6 @@ div#signin-container{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	
 	
 }
 div#signin-container form{
@@ -752,7 +759,7 @@ div#submit_section span{
 
 }
 
-
+ */
 /* cart  */
 #cart-main{
 	display:flex;
