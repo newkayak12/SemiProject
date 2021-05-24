@@ -81,6 +81,8 @@ public class ReviewDao {
 				r.setReviewLike(rs.getString("r_like"));
 				r.setOrderNumber(rs.getString("o_number"));
 				r.setCategoryId(rs.getString("c_id"));
+				r.setProductName(rs.getString("p_name"));
+				r.setProductFile(rs.getString("p_file"));
 				
 				// 추가된 필드 세팅
 //				private String commentUserId;

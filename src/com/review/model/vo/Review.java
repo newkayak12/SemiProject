@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class Review {
 	
-	// 필드 16개
+	// 총 필드 19개 
+	
+	// 16개
 	private String reviewNo;
 	private String userId;
 	private String productId;
@@ -22,12 +24,12 @@ public class Review {
 	private String productName;
 	private String productFile;
 	
-	// 리뷰댓글 테이블이랑도 jojin할거라서 필드 3개 추가요~
+	// 리뷰댓글 테이블이랑도 jojin할거라서 
+	// 필드 3개 추가요~
 	private String commentUserId;
 	private String reviewComment;
 	private String reviewCommentDate;
 	
-	// 총 필드 19개 
 	
 	public Review() {
 		
