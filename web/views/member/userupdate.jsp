@@ -10,7 +10,7 @@
 		<form action="" method="post">
 			<tr>
 				<th>아이디</th>
-				<td input type="text' name="userid" value="<%= Users.getUserId()%>"></td>
+				<%-- <td input type="text' name="userid" value="<%= Users.getUserId()%>"></td> --%>
 			</tr>
 		</form>
 		
