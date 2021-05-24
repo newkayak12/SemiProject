@@ -74,7 +74,7 @@
 								
 							<tr>
 								<td width="200px" style="padding:20px;">
-									<a href=""><img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="200px"></a>
+									<a href=""><img src="<%=request.getContextPath() %>/upload/product/<%=r.getProductFile() %>" width="150px" height="200px"></a>
 								</td>
 								
 								

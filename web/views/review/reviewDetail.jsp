@@ -29,7 +29,7 @@
 			<div id="reviewDetail-inner2-container">
 			
 				<%-- <img src="<%=request.getContextPath() %>/upload/review/<%=r.getProductFile() %>" width="150px" height="150px"> --%>
-				<img src="<%=request.getContextPath() %>/upload/review/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px">
+				<img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px">
 				<br>
 				<%-- <span><%=r.getProductName() %>/<%=r.getProductOptionColor() %></span> --%>
 				<span><%=reviewList.get(0).getProductName() %>/<%=reviewList.get(0).getProductOptionColor() %></span>
