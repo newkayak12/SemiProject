@@ -76,7 +76,9 @@
 								<!-- 상품이미지 -->
 								<td width="200px" style="padding:20px;">
 
+
 									<a href="<%=request.getContextPath() %>/product/detail?pid=<%=r.getProductId()%>&category=<%=r.getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=r.getProductFile() %>" width="150px" height="200px"></a>
+
 
 								</td>
 								
