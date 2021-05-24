@@ -135,6 +135,7 @@
 	
 	
 	            <span id="mypage_menu">
+	            <!-- wsws -->
 	        <%if(userid !=null){ %>    
 	                <a href="<%=request.getContextPath()%>/sign/">
 	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
