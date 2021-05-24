@@ -257,6 +257,7 @@ div#sort-container li:hover{
 
 #product-table>tbody>tr:first-child>td:nth-child(2){
 	color:orange;
+	height: 200px;
 }
 
 #product-table td{
@@ -364,4 +365,9 @@ div#sort-container li:hover{
 	text-align: left;
 	padding:40px;
 	
+}
+
+#product_stock{
+	
+	width : 165px;
 }

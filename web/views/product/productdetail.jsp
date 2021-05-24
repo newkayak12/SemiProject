@@ -24,21 +24,23 @@
 		<div id="product_table-container"> 
 			<table id="product-table">
 				<tr>
-					<td rowspan="9"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
+					<td rowspan="8"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
 					<td><%=product.get(0).getProductName() %></td>
 				</tr>
+				
+				
 				<tr>
 					<!-- <td></td> -->
 					<td>
 						<!-- <p>가격</p> -->
-						<%=product.get(0).getProductPrice() %>
+						<%=product.get(0).getProductPrice() %> 원
 					</td>
 				</tr>
 				<tr>
 					<!-- <td></td> -->
 					<td>
-						<select name="product_color-select" id="product_color-select">
-								<option name="prodcut_color-select">
+						<select name="product_color-select" id="product_color-select" onchange="fn_colorselect()">
+								<option name="prodcut_color-select" value="------ 선택 사항 없음 ------">
 							 		------ 선택 사항 없음 ------  
 						 		</option>
 							<% 
@@ -51,7 +53,7 @@
 							%>
 							 	
 							 	
-							 	<option name="prodcut_color-select">
+							 	<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
 							 		<%=product.get(i).getProductOptionColor() %>
 						 		</option>
 						 		
@@ -66,7 +68,7 @@
 							
 							
 							%>
-								<option name="prodcut_color-select">
+								<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
 							 		<%=product.get(i).getProductOptionColor() %>
 						 		</option>
 							
@@ -84,8 +86,8 @@
 					<!-- <td></td> -->
 					<td>
 					
-						<select name="product_size-select" id="product_size-select">
-								<option name="prodcut_size-select">
+						<select name="product_size-select" id="product_size-select" disabled onchange="fn_sizeselect()"> 
+								<option name="prodcut_size-select" value="------ 선택 사항 없음 ------">
 							 		------ 선택 사항 없음 ------  
 						 		</option>
 							
@@ -99,7 +101,7 @@
 							%>
 							
 							
-							 	<option name="prodcut_size-select">
+							 	<option name="prodcut_size-select" value="<%=product.get(i).getProductOptionSize() %>">
 							 		<%=product.get(i).getProductOptionSize() %>
 						 		</option>
 						 		
@@ -113,7 +115,7 @@
 										
 							%>
 								
-							 	<option name="prodcut_size-select">
+							 	<option name="prodcut_size-select" value="<%=product.get(i).getProductOptionSize() %>">
 							 		<%=product.get(i).getProductOptionSize() %>
 						 		</option>
 						 	
@@ -138,17 +140,28 @@
 				</tr>
 				<tr>
 					<!-- <td></td> -->
-					<td rowspan ="2">
-						//// 누르면 아이템의 개수와 색, 가격이 담긴 태그가 추가됨
+					<td>
+						<input type="number" id="product_stock" name="product_stock" max="999" min="1" value="0" disabled>
+							
+
+
+						</select>
 					</td>
 				</tr>
-				<tr>
+				
 					<!-- <td></td> -->
 					<!-- <td>stock</td> -->
-				</tr>
+				
 				<tr>
 					<!-- <td></td> -->
-					<td rowspan="2">total</td>
+					<td rowspan="2">
+						<div id ="product_list-container">
+						
+						</div>
+						<div id = "product_total-container">
+						 
+						</div>
+					</td>
 				</tr>
 				<tr>
 					<!-- <td></td> -->
@@ -158,7 +171,7 @@
 					<!-- <td></td> -->
 					<td>
 						<button type="button" id="buynow-btn" onclick="fn_buynow()">Buy now</button>
-						<button type="button" id="cart-btn" onclick="fn_cart()">Cart</button>
+						<button type="button" id="cart-btn" onclick="fn_cart()";>Cart</button>
 					</td>
 				</tr>	
 			
@@ -220,6 +233,14 @@
 		</div>
 	</div>
 
+<input type = "hidden" id = "cartadder" name="cartadder">
+	
+	
+	
+	
+</main>
+
+<%} %>
 <script>
 	const fn_detail=()=>{
 		
@@ -257,28 +278,73 @@
 		
 	}
 	
-	const fn_cart = ()=>{
-		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
-		let pid = "";
-		let size =""
+	const fn_cart =()=>{
 		
 		
-		<%
-		 Cookie cookie = new Cookie("cart","_");
-		 cookie.setMaxAge(60*60*24*365*100);
-		%>
+		let flag = $("#product_stock").val();
 		
-		location.assign("<%=request.getContextPath()%>/cart/list");
+		if(flag == 0){
+			
+			alert('상품을 선택해주세요!')
+			
+		} else {
+			
+			//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
+			
+			
+			if(confirm('카트에 추가하시겠습니까??')==true){
+				let pid = "<%= product.get(0).getProductId()%>";
+				let size =$("#product_size-select").val();
+				let color= $("#product_color-select").val();
+				let pname = "<%=product.get(0).getProductName()%>";
+				let price = "<%=product.get(0).getProductPrice()%>";
+				let stock = $("#product_stock").val();
+				$("#cartadder").val(pid+'_'+pname+'_'+size+'_'+color+'_'+price+'_'+stock);
+				/* 카트 */
+				
+				
+				location.assign("<%=request.getContextPath()%>/cart/post?cartlist="+$('#cartadder').val()+"&pid=<%=product.get(0).getProductId()%>&category=<%= product.get(0).getCategoryId()%>");
+			}
+		}
+	}
+	
+	$("#product_stock").change((e)=>{
 		
+		
+		let total = $("#product_stock").val()*<%=product.get(0).getProductPrice()%>
+		$("#product_total-container").html("총 가격 : "+ total+"원");
+	})
+	
+	
+	const fn_colorselect=()=>{
+		console.log($("#product_color-select").val());
+		if($("#product_color-select").val() != '------ 선택 사항 없음 ------'){
+			$("#product_size-select").removeAttr("disabled")
+
+		} else {
+
+			$("#product_size-select").attr("disabled","disabled");
+			$("#product_size-select").val('------ 선택 사항 없음 ------');
+
+		}
+		
+	}
+	 
+	const fn_sizeselect=()=>{
+		if($("#product_size-select").val() != '------ 선택 사항 없음 ------'){
+
+			$("#product_stock").removeAttr("disabled");
+
+		} else {
+
+			$("#product_stock").attr("disabled","disabled")
+			$("#product_stock").val(1);
+
+
+		}
+
 	}
 	
 </script>
-	
-	
-	
-	
-</main>
-
-<%} %>
 
 <%@ include file ="/views/common/footer.jsp"%>
