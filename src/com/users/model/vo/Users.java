@@ -1,7 +1,36 @@
 package com.users.model.vo;
 
 public class Users {
-	String userId,userPwd,userName,userEmail,userPhone,userAdmin,userAddr,userZip;
+	private String userId;
+	private String userPwd;
+	private String userName;
+	private String userEmail;
+	private String userPhone;
+	private String userAdmin;
+	private String userAddr;
+	private String userZip;
+	
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public Users(String userId, String userPwd, String userName, String userEmail, String userPhone, String userAdmin,
+			String userAddr, String userZip) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+		this.userAdmin = userAdmin;
+		this.userAddr = userAddr;
+		this.userZip = userZip;
+	}
+
+
 
 	public String getUserId() {
 		return userId;

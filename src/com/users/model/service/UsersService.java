@@ -37,10 +37,20 @@ public class UsersService {
 			
 	}
 	
-	//public Users searchid(Users u) {
-	//	Connection conn=getConnection();
-	//	Users u=dao.searchid()
-	//}
+	public Users searchid(Users u) {
+		Connection conn=getConnection();
+		Users user=dao.searchid(conn,u);
+		close(conn);
+		return user;
+		
+	}
+	
+	public Users searchpw(Users u) {
+		Connection conn=getConnection();
+		Users user=dao.searchpw(conn,u);
+		close(conn);
+		return user;
+	}
 
 }
 

@@ -582,7 +582,7 @@ div#contents_sort>span:hover{
 
 
 /*login*/
-#signinMain{
+/* #signinMain{
 	
 	height: 525px !important;
 	display:flex;
@@ -596,7 +596,6 @@ div#contents_sort>span:hover{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	
 	
 }
 #signin-container form{
@@ -652,7 +651,7 @@ div#contents_sort>span:hover{
 
 }
 
-
+ */
 /* cart  */
 #cart-main{
 	display:flex;

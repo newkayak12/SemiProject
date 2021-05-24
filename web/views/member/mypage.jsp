@@ -5,6 +5,9 @@
 	<div id="mypage-container">
 		
 		<form action="<%=request.getContextPath() %>">
+			<div>
+			
+			</div>
 		</form>
 	</div>
 </main>

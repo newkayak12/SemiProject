@@ -23,6 +23,55 @@ public class UsersDao {
 		}
 	}
 	
+	public Users searchpw(Connection conn, Users u) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Users user = null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectsearchpw"));
+			pstmt.setString(1, u.getUserId());
+			pstmt.setString(2, u.getUserPhone());
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				user=new Users();
+				user.setUserPwd(rs.getString("user_pwd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return user;
+	}
+	
+	public Users searchid(Connection conn, Users u) {
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		Users user=null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectsearchid"));
+			pstmt.setString(1, u.getUserName());
+			pstmt.setString(2, u.getUserPhone());
+			//원래는 이거 받고, api로 검증해서 넘기는거다. 
+			//플래그는 고정이어서 properties에 직접 그냥 쓰면 된다. 
+
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+
+				user=new Users();
+				user.setUserId(rs.getString("user_id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return user;
+	}
+	
 	public Users login(Connection conn, String userId, String userPwd) {
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
