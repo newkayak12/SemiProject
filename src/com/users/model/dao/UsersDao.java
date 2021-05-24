@@ -23,6 +23,60 @@ public class UsersDao {
 		}
 	}
 	
+	public Users selectUsersupdate(Connection conn, String userId) {
+		PreparedStatement pstmt=null;
+		Users u = null;
+		ResultSet rs=null;
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectuserupdate"));
+			
+			pstmt.setString(1, userId);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				u = new Users();
+				u.setUserId(rs.getString("user_id"));
+				u.setUserPwd(rs.getString("user_pwd"));
+				u.setUserAddr(rs.getString("user_addr"));
+				u.setUserZip(rs.getString("user_zip"));
+				u.setUserName(rs.getString("USER_NAME"));
+				u.setUserEmail(rs.getString("user_email"));
+				u.setUserPhone(rs.getString("user_phone"));
+				
+						System.out.println("dao, u : " + u);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return u;
+	}
+	
+	public int updateUsers(Connection conn, Users u) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updateusers"));
+			pstmt.setString(1, u.getUserAddr());
+			pstmt.setString(2, u.getUserPwd());
+			pstmt.setString(3, u.getUserZip());
+			pstmt.setString(4, u.getUserName());
+			pstmt.setString(5, u.getUserEmail());
+			pstmt.setString(6, u.getUserPhone());
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public Users searchpw(Connection conn, Users u) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

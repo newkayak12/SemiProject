@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file ="/views/common/header.jsp" %>
 
-<link rel="stylesheet" href="web/css/style_ws.css">
+<link rel="stylesheet" href="web/css/style.css">
 
 <main id="searchMain">
 	<div class="wrap">

@@ -6,6 +6,7 @@
 	Users users = (Users)request.getAttribute("useridtemp");
 
 %>
+<link rel="stylesheet" href="web/css/style.css">
 <%@ include file ="/views/common/header.jsp" %>
 
 <main id="searchidMain">

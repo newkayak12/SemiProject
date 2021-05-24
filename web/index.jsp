@@ -16,6 +16,7 @@
 			<img src="<%=request.getContextPath() %>/images/dummy.jpg">
 			<img src="<%=request.getContextPath() %>/images/dummy.jpg">
 		
+		
 			<div id="inner_nameprice">
 				<div class="name_price">상품명 <br>가격</div>
 				<div class="name_price">상품명 <br>가격</div>
