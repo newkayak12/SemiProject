@@ -10,26 +10,27 @@
 %>
 	
 <main>
-	 
+
+	<p class="section_title">Review</p>
+	
 	<div id="reviewDetail-container" >
-	
-		<p class="section_title">Review</p>
-	
 	
 		<div id="reviewDetail-inner-container">
 		
-			<span><%=reviewList.get(0).getReviewTitle() %></span>
-			<br>
-			<span>작성자 : <%=reviewList.get(0).getUserId() %></span>
+			<p>
+				<%=reviewList.get(0).getReviewTitle() %> 
+				<br><br>
+				POSTED BY : <%=reviewList.get(0).getUserId() %>
+			</p>
 			
 			
 			<!-- 상품이미지, 상품정보 div -->
 			<div id="reviewDetail-inner2-container">
 			
-				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=reviewList.get(0).getProductId()%>&category=<%=reviewList.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px"></a>
+				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=reviewList.get(0).getProductId()%>&category=<%=reviewList.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="110px" height="160px"></a>
 
 				<br>
-				<span><%=reviewList.get(0).getProductName() %>/<%=reviewList.get(0).getProductOptionColor() %></span>
+				<span><%=reviewList.get(0).getProductName() %></span>
 				
 			</div>
 			
@@ -47,10 +48,48 @@
 		 
 		 
 		 
+		 <!-- 수정, 삭제 버튼 div -->
+		<div id="reviewDetail-buttons">
+		
+			<% if( userid != null && (userid.equals("admin") || userid.equals(reviewList.get(0).getUserId()) ) ) { %>
+				<button onclick="fn_review_update();">수정</button>
+				<button onclick="fn_review_delete();">삭제</button>
+			<% } %>
+			
+			<button onclick="location.assign('<%=request.getContextPath()%>/review/list')">목록</button>
+		</div>
+		
+	
 		 
-		 
-		 
-		 <!-- 댓글 영역 div-->
+		 	
+		 	
+		 	<!-- 댓글 목록 -->
+		 	<div id="">
+		 	
+		 		<table>
+		 			<% if(reviewList != null || !reviewList.isEmpty() ) { %>
+		
+						<% for(Review r : reviewList) { %>
+			
+							<tr>
+		 						<td>
+		 							<%=r.getCommentUserId() %>&nbsp;<%=r.getReviewCommentDate()%>
+		 							<br>
+		 							<%=r.getReviewComment() %>
+		 						</td>
+		 					</tr>
+			
+						<% } %>
+		
+		
+					<% } %>
+		 			
+		 		</table>
+		 	
+		 	</div>
+		 	
+		 	
+		 	<!-- 댓글 영역 div-->
 		 <!-- 댓글도 수정삭제 버튼 필요 -->
 		<div id="review_comment_container">
 		 	
@@ -72,50 +111,10 @@
 		 		
 		 	</div>
 		 	
-		 	
-		 	<!-- 댓글 목록 -->
-		 	<div id="">
-		 	
-		 		<table>
-		 			<% if(reviewList != null || !reviewList.isEmpty() ) { %>
-		
-						<% for(Review r : reviewList) { %>
-			
-							<tr>
-		 						<td><%=r.getCommentUserId() %></td>
-		 						<td><%=r.getReviewComment() %></td>
-		 						<td><%=r.getReviewCommentDate()%></td>
-		 					</tr>
-			
-						<% } %>
-		
-		
-					<% } %>
-		 			
-		 		</table>
-		 	
-		 	</div>
-		 	
-		 	
-		</div>
-		 
-		 
-		 
-		 
-		 
-		
-		<!-- 수정, 삭제 버튼 div -->
-		<div id="reviewDetail-buttons">
-		
-			<% if( userid != null && (userid.equals("admin") || userid.equals(reviewList.get(0).getUserId()) ) ) { %>
-				<button onclick="fn_review_update();">수정</button>
-				<button onclick="fn_review_delete();">삭제</button>
-			<% } %>
-			
-			<button onclick="location.assign('<%=request.getContextPath()%>/review/list')">목록</button>
-		</div>
+		</div> <!-- 댓글입력 div -->
 		
 	</div>
+		 
 
 </main>
 

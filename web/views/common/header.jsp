@@ -50,9 +50,9 @@
 		            <li><a href="<%=request.getContextPath()%>/product/list">SHOP</a>
 		            	<ul>
 		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">OUTTER</a></li>
-		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">TOP</a></li>
-		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">BOTTOM</a></li>
-		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">ACC</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c02">TOP</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c03">BOTTOM</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c04">ACC</a></li>
 		            	</ul>
 		            </li>
 		            
