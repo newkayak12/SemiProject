@@ -162,7 +162,7 @@
 				
 				<tr>
 					<!-- <td></td> -->
-<<<<<<< HEAD
+
 					<td rowspan="2">
 						<div id ="product_list-container">
 						
@@ -170,10 +170,6 @@
 						<div id = "product_total-container">
 						 
 						</div>
-=======
-					<td rowspan="2"> 
-						<span id="totalvalue"> total value</span>
->>>>>>> 9f318f33bb27ab93c24067633537462f114d7a2d
 					</td>
 				</tr>
 				<tr>
