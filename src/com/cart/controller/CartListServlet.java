@@ -58,13 +58,13 @@ public class CartListServlet extends HttpServlet {
 				String[] t2 = t.split("@");
 				
 				
-				System.out.println("\n\n -------");
-				System.out.println(t2[0]);  // pid ..
-				System.out.println(t2[1]);  // size ..
-				System.out.println(t2[2]);  // color ..
-				System.out.println(t2[3]);  // price ..
-				System.out.println(t2[4]);  // stock ..
-				System.out.println(t2[5]);  // category
+//				System.out.println("\n\n -------");
+//				System.out.println(t2[0]);  // pid ..
+//				System.out.println(t2[1]);  // size ..
+//				System.out.println(t2[2]);  // color ..
+//				System.out.println(t2[3]);  // price ..
+//				System.out.println(t2[4]);  // stock ..
+//				System.out.println(t2[5]);  // category
 				
 				
 				
