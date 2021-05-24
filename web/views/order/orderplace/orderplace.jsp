@@ -47,19 +47,19 @@
 						<img alt="" src="">
 					</td>
 					<td>
-						<%=cart.getProductName() %>
+					<%-- 	<%=cart.getProductName() %> --%>
 					</td>
 					<td>
-						<%=cart.getProductOptionSize() %>
+						<%-- <%=cart.getProductOptionSize() %> --%>
 					</td>
 					<td>
-						<%=cart.getProductOptionColor() %>
+						<%-- <%=cart.getProductOptionColor() %> --%>
 					</td>
 					<td>
-						<%=cart.getProductPrice() %>
+						<%-- <%=cart.getProductPrice() %> --%>
 					</td>
 					<td>
-						<%=cart.getProductCount() %>
+						<%-- <%=cart.getProductCount() %> --%>
 					</td>
 				
 				<%
@@ -69,19 +69,19 @@
 				%>
 					
 					<td>
-						<%= temp.getProductName() %>
+						<%-- <%= temp.getProductName() %> --%>
 					</td>
 					<td>
-						<%= temp.getProductOptionSize() %>
+						<%-- <%= temp.getProductOptionSize() %> --%>
 					</td>
 					<td>
-						<%= temp.getProductOptionColor() %>
+						<%-- <%= temp.getProductOptionColor() %> --%>
 					</td>
 					<td>
-						<%= temp.getProductPrice() %>
+						<%-- <%= temp.getProductPrice() %> --%>
 					</td>
 					<td>
-						<%= temp.getProductCount() %>
+						<%-- <%= temp.getProductCount() %> --%>
 					</td>
 				
 				
@@ -98,14 +98,14 @@
 						
 						if(flag ==0){
 						
-							result = cart.getProductPrice();
+							/* result = cart.getProductPrice(); */
 						%>
 						
-							상품 가격 <%=cart.getProductPrice() %> = <%=result +2500 %>원
+							<%-- 상품 가격 <%=cart.getProductPrice() %> = <%=result +2500 %>원 --%>
 							
 						<%}  else {
 							for(Cart c : list){
-								result += c.getProductPrice();
+							/* 	result += c.getProductPrice(); */
 							}
 						%>
 							

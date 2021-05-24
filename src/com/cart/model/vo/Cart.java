@@ -1,8 +1,14 @@
 package com.cart.model.vo;
 
 public class Cart {
-	String productId,categoryId,productOptionSize, productOptionColor, productName;
-	int productPrice, productCount;
+	private String productId;
+	private String categoryId;
+	private String cartOptionSize;
+	private String cartOptionColor;
+	private String cartName;
+	private int cartPrice;
+	private int cartStock;
+	private String productFile, productExplain;
 	public String getProductId() {
 		return productId;
 	}
@@ -15,40 +21,56 @@ public class Cart {
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
-	public String getProductOptionSize() {
-		return productOptionSize;
+	public String getCartOptionSize() {
+		return cartOptionSize;
 	}
-	public void setProductOptionSize(String productOptionSize) {
-		this.productOptionSize = productOptionSize;
+	public void setCartOptionSize(String cartOptionSize) {
+		this.cartOptionSize = cartOptionSize;
 	}
-	public String getProductOptionColor() {
-		return productOptionColor;
+	public String getCartOptionColor() {
+		return cartOptionColor;
 	}
-	public void setProductOptionColor(String productOptionColor) {
-		this.productOptionColor = productOptionColor;
+	public void setCartOptionColor(String cartOptionColor) {
+		this.cartOptionColor = cartOptionColor;
 	}
-	public String getProductName() {
-		return productName;
+	public String getCartName() {
+		return cartName;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setCartName(String cartName) {
+		this.cartName = cartName;
 	}
-	public int getProductPrice() {
-		return productPrice;
+	public int getCartPrice() {
+		return cartPrice;
 	}
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+	public void setCartPrice(int cartPrice) {
+		this.cartPrice = cartPrice;
 	}
-	public int getProductCount() {
-		return productCount;
+	public int getCartStock() {
+		return cartStock;
 	}
-	public void setProductCount(int productCount) {
-		this.productCount = productCount;
+	public void setCartStock(int cartStock) {
+		this.cartStock = cartStock;
+	}
+	public String getProductFile() {
+		return productFile;
+	}
+	public void setProductFile(String productFile) {
+		this.productFile = productFile;
+	}
+	public String getProductExplain() {
+		return productExplain;
+	}
+	public void setProductExplain(String productExplain) {
+		this.productExplain = productExplain;
 	}
 	@Override
 	public String toString() {
-		return "Cart [productId=" + productId + ", categoryId=" + categoryId + ", productOptionSize="
-				+ productOptionSize + ", productOptionColor=" + productOptionColor + ", productName=" + productName
-				+ ", productPrice=" + productPrice + ", productCount=" + productCount + "]";
+		return "Cart [productId=" + productId + ", categoryId=" + categoryId + ", cartOptionSize=" + cartOptionSize
+				+ ", cartOptionColor=" + cartOptionColor + ", cartName=" + cartName + ", cartPrice=" + cartPrice
+				+ ", cartStock=" + cartStock + ", productFile=" + productFile + ", productExplain=" + productExplain
+				+ "]";
 	}
+
+	
+	
 }
