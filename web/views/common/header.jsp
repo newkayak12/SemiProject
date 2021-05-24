@@ -135,7 +135,8 @@
 	                <a href="<%=request.getContextPath()%>/sign/">
 	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
 
-	            
+	        <% } %>
+	        
 	            <ul id="mypage_menu">
 	            
 		           	<!-- 로그인하면 -->
@@ -157,7 +158,7 @@
 			         
 			         	<li><a href="<%=request.getContextPath()%>/views/member/login.jsp"><img id="header_mypageIcon" src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px"></a></li>
 			         
-			         <% }} %> 
+			         <% } %> 
 		            
 		        </ul>
 	
