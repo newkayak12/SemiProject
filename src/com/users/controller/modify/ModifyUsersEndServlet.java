@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.users.model.service.UsersService;
 import com.users.model.vo.Users;
 
-@WebServlet("/sign/modify/start")
+@WebServlet("/sign/modify/end")
 public class ModifyUsersEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,8 +36,22 @@ public class ModifyUsersEndServlet extends HttpServlet {
 		String userzip=request.getParameter("userzip");
 		String userphone=request.getParameter("userphone");
 		
-		UsersService sevice=new UsersService();
-		Users u=new Users(userid,userpw,username,useraddr,useremail,userzip,userphone, null);
+		
+		
+		String userPwdCheck=request.getParameter("userpw-check");
+		String userAddrDetail=request.getParameter("useraddrdetail");
+		
+		UsersService service=new UsersService();
+		Users u=new Users();
+		u.setUserId(userid);
+		u.setUserPwd(userpw);
+		u.setUserName(username);
+		u.setUserAddr(useraddr);
+		u.setUserEmail(useremail);
+		u.setUserZip(userzip);
+		u.setUserPhone(userphone);
+		
+		int result = service.updateUsers(u);
 		
 		
 	}

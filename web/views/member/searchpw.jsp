@@ -5,6 +5,7 @@
 	Users users = (Users)request.getAttribute("userpwtemp");
 
 %>
+<link rel="stylesheet" href="web/css/style.css">
 <%@ include file ="/views/common/header.jsp" %>
 
 <main id="searchpwMain">

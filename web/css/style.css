@@ -817,4 +817,133 @@ div#submit_section span{
 
 
 
+ /* 여기서부터 */
+
+
+
+
+/* common
+.wrap{
+	width:1366px;
+	padding-top: 100px; 헤더 공간
+}
+.container_wrap{
+	width: 500px;
+	margin: 0 auto;
+	padding-top:100px;
+}
+
+타이틀
+h1{
+	font-size: 30px;
+	text-align:center;
+	font-weight:500;
+	margin-bottom:30px;
+}
+인풋 스타일 (공통)
+.input_style{
+	margin-bottom: 26px;
+	width: 100%; height: 45px;
+	border : 1px solid #e0e0e0;
+}
+인풋 타이틀 (아이디/비밀번호 텍스트)
+.input_txt{
+	font-size: 13px;
+	margin-bottom:6px;
+	font-weight: 600;
+}
+큰 버튼 스타일
+.bigBtn_syle{
+	width:100%; height: 45px;
+	border: none;
+	font-size:15px; font-weight:600;
+	color: #fff;
+}
+인풋 옆 작은 버튼
+.smallBtn_syle{
+	height: 45px;
+	background-color: #000;
+	padding: 0 10px;
+	color: #fff;
+	font-size: 13px;
+	border:none;
+}
+
+contants
+
+*** 로그인페이지 ***
+로그인 btn
+.login_loginBtn{
+	background-color:rgb(9, 74, 169);
+	font-size:15px; font-weight:600;
+	margin-bottom:26px;
+}
+
+아이디 저장 check box
+.submit_section_idSave input{float:left; margin-right:5px;}
+.submit_section_idSave p{line-height: 1; float:left;}
+
+아이디/비밀번호 찾기 btn
+#logstorsignup-search a{
+	margin-left: 240px;				이렇게하면 안돼용
+	color: #000;
+}
+
+회원가입 btn
+#lostorsignup-container{margin-top:26px; color:#fff; border : 1px solid #e0e0e0;}
+#lostorsignup-container a{
+	color:orange; text-align: center;
+	display: block;
+    width: 100%;
+    text-align: center;
+    line-height:48px;
+}
+
+
+
+*** 회원가입 페이지 ***
+.join_input_id {width: 73%; margin-right: 18px;}
+
+
+아이디찾기/비밀번호찾기 페이지
+.serchid_submit_btn{background-color: rgb(9, 74, 169); margin-bottom:10px;}
+.serchid_reset_btn{background-color: #e0e0e0; color: #666;}
+.serachid_txt{
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px 0;
+}
+.serachid_txt p{float:left;}
+.serchid_login_btn{background-color:rgb(9, 74, 169); text-align: center;}
+.serchid_login_btn a{
+	color:#fff;
+	font-size:15px; font-weight:600;
+	line-height: 48px;
+}
+
+
+
+아이디/비밀번호찾기 페이지
+common - 아이디/비밀번호찾기 페이지
+.serch_btn{
+    display: inline-block;
+    text-align: center;
+    line-height: 180px;
+    width: 230px; height: 180px;
+    border: 1px solid #e0e0e0;
+    font-size: 16px; color: #000;
+    background-color: #fff;
+    margin-right: 30px;
+}
+.serch_btn:last-child{margin-right: 0px;}
+#search-container span:hover a{background-color:rgb(9, 74, 169); color:#fff;}
+
+
+ */
+
+
+
+
+
 
