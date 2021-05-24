@@ -223,7 +223,7 @@ div#sort-container li:hover{
 	width:1000px !important;
 	margin:0px!important;
 	padding:0px!important;
-	height:600px;
+	height:650px;
 }
 
 #product-table{
@@ -236,7 +236,7 @@ div#sort-container li:hover{
 }
 
 #product-table>tbody>tr:first-child>td:first-child{
-	background-color:green;
+	/* background-color:green; */
 	width:600px;
 	box-sizing: border-box;
 	margin:0px!important;
@@ -271,7 +271,7 @@ div#sort-container li:hover{
 
 	margin:  auto;
 	padding:  auto;
-	width: 180px;
+	width: 150px;
 	height:50px;
 }
 
@@ -290,16 +290,16 @@ div#sort-container li:hover{
 
 #detailbox-container{
 	width:1000px;
-	margin:10px 0px 0px 0px !important;
+	margin:20px 0px 30px 0px !important;
 	padding:0px!important;
-	height: 800px;
+	height: auto;
 	
 }
 
 #menu_select-container{
 	width:1000px;
-	margin:0px!important;
-	 padding:0px!important; 
+	margin:15px 0px 15px 0px!important;
+	padding:0px!important; 
 	height: 80px;
 	display: flex;
 	justify-content: space-around;
@@ -315,5 +315,53 @@ div#sort-container li:hover{
 	
 }	
 
+#menu_content-container{
+	margin : 10px 0px 10px 0px;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center; 
+	padding:0px!important;
+}
 
 
+
+#menu_content-img img{
+	margin:15px 15px 15px 15px!important;
+	padding:0px!important;
+	width:450px;
+}
+
+#menu_content-img{
+	display:flex;
+}
+
+.menu_content-container1{
+	margin:0px!important;
+	padding:0px!important;
+	width:1000px;
+	display:flex;
+	flex-direction:column;
+	justify-content: space-around;
+	
+} 
+
+#menu_content-notice{
+	display: none;
+	
+}
+
+#menu_content-review{
+	display: none;
+	
+}
+#menu_content-qna{
+	display: none;
+	
+}
+
+#menu_content-p{
+	text-align: left;
+	padding:40px;
+	
+}
