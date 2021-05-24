@@ -128,15 +128,6 @@
 
 	           <!-- -------------------------------- -->
 	
-	
-	            <span id="mypage_menu">
-	            <!-- wsws -->
-	        <%if(userid !=null){ %>    
-	                <a href="<%=request.getContextPath()%>/sign/">
-	                    <img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
-
-	        <% } %>
-	        
 	            <ul id="mypage_menu">
 	            
 		           	<!-- 로그인하면 -->
