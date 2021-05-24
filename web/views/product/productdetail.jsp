@@ -25,7 +25,10 @@
 			<table id="product-table">
 				<tr>
 					<td rowspan="9"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
-					<td><%=product.get(0).getProductName() %></td>
+					<td>
+						<%=product.get(0).getProductName() %>
+						<input type="hidden" value="<%=%>">
+					</td>
 				</tr>
 				<tr>
 					<!-- <td></td> -->
@@ -148,7 +151,9 @@
 				</tr>
 				<tr>
 					<!-- <td></td> -->
-					<td rowspan="2">total</td>
+					<td rowspan="2"> 
+						<span id="totalvalue"> total value</span>
+					</td>
 				</tr>
 				<tr>
 					<!-- <td></td> -->
@@ -261,9 +266,9 @@
 		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
 		let pid = "";
 		let size = $("#product_size-select").val();
-		let color = "";
-		let name = "";
-		let price ="";
+		let color = $("#product_color-select");
+		let name = "<%=product.get(0).get%>";
+		let price = "";
 		let stock = "";
 		
 		

@@ -1,4 +1,4 @@
-package com.product.controller.productdetail;
+package com.product.controller.productlist;
 
 import java.io.IOException;
 import java.util.List;
