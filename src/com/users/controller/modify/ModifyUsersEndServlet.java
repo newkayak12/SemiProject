@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.users.model.service.UsersService;
+import com.users.model.vo.Users;
+
 @WebServlet("/sign/modify/start")
 public class ModifyUsersEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +28,18 @@ public class ModifyUsersEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String userid=request.getParameter("userid");
+		String userpw=request.getParameter("userpw");
+		String username=request.getParameter("username");
+		String useraddr=request.getParameter("useraddr");
+		String useremail=request.getParameter("useremail");
+		String userzip=request.getParameter("userzip");
+		String userphone=request.getParameter("userphone");
+		
+		UsersService sevice=new UsersService();
+		Users u=new Users(userid,userpw,username,useraddr,useremail,userzip,userphone, null);
+		
+		
 	}
 
 	/**
