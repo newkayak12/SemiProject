@@ -34,7 +34,7 @@ public class Cartpost extends HttpServlet {
 		Cookie[] list = request.getCookies();
 		String value = "";
 		Cookie a  = null;
-		System.out.println(value);
+		
 		
 		
 //		이미 있을 떄
@@ -42,8 +42,10 @@ public class Cartpost extends HttpServlet {
 			for(Cookie c : list) {
 				if(c.getName().equals("cartlist")) {
 					value=c.getValue();
-					 a = new Cookie("cartlist", c.getValue()+"|"+cartadd);
+					 a = new Cookie("cartlist", c.getValue()+"|"+cartadd+"_"+category);
 					 a.setMaxAge(60*60*24*365*100);
+					
+
 					break;
 				}
 				
@@ -53,10 +55,14 @@ public class Cartpost extends HttpServlet {
 		
 		
 		if( value.equals("")) {
-			a = new Cookie("cartlist","|"+cartadd);
+			
+			a = new Cookie("cartlist","|"+cartadd+"_"+category);
 			a.setMaxAge(60*60*24*365*100);
 		}
+		
+		
 		response.addCookie(a);
+//		response.sendRedirect(request.getContextPath()+"/");
 		request.setAttribute("msg", "카트에 저장했습니다.");
 		request.setAttribute("loc","/product/detail?pid="+pid+"&category="+category);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
