@@ -36,25 +36,30 @@ public class CartListServlet extends HttpServlet {
 		
 		if(cookiejar != null) {
 				for(Cookie cookie : cookiejar) {
-					if(cookie.getName().equals("cart")) {
+					if(cookie.getName().equals("cartlist")) {
 						temp = cookie.getValue();
+						
 						break;
 					}
 					
 				}
+				
+				
 		Cart cart = null;		
-		String [] temp2 = temp.split("||");
+		temp = temp.substring(1, temp.length());
+		System.out.println(temp);
+		
+		String [] temp2 = temp.split("|");
 		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
 			for(String t :temp2) {
 				String[] t2 = t.split("_");
 				cart = new Cart();
 				cart.setProductId(t2[0]);
-				cart.setCategoryId(t2[1]);
-				cart.setProductOptionSize(t2[2]);
-				cart.setProductOptionColor(t2[3]);
-				cart.setProductName(t2[4]);
-				cart.setProductPrice(Integer.parseInt(t2[5]));
-				cart.setProductCount(Integer.parseInt(t2[6]));
+				cart.setProductOptionSize(t2[1]);
+				cart.setProductOptionColor(t2[2]);
+				cart.setProductPrice(Integer.parseInt(t2[3]));
+				cart.setProductCount(Integer.parseInt(t2[4]));
+				cart.setCategoryId(t2[5]);
 				
 				cartlist.add(cart);
 			}

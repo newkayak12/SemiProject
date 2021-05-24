@@ -53,7 +53,7 @@ public class ReviewPostEndServlet extends HttpServlet {
 		Review r = new Review();
 		
 		
-		// insert into review values('r-'||review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', '1', '001', 'c01');
+		// insert into review values(review_seq.nextval, 'testusers','001','XL','red','제목','내용입니다',sysdate, default, 0, '파일입니다', '1', '001', 'c01');
 		
 		// 19개 중 3개 : 사용자가 입력한 값 : 제목, 파일, 내용
 		r.setReviewContents(mr.getParameter("reviewContent"));

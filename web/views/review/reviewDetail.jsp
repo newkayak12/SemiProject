@@ -27,6 +27,7 @@
 			<div id="reviewDetail-inner2-container">
 			
 				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=reviewList.get(0).getProductId()%>&category=<%=reviewList.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="150px" height="150px"></a>
+
 				<br>
 				<span><%=reviewList.get(0).getProductName() %>/<%=reviewList.get(0).getProductOptionColor() %></span>
 				
