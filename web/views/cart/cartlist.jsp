@@ -18,11 +18,14 @@
 	
 	
 	Cookie[] c = request.getCookies();
-	String a = "";
+	String cookieContent = "";
 	
 	if(c!=null){
 		for(Cookie cookie : c){
-			if(cookie.getName().equals("cartlist"));			
+			if(cookie.getName().equals("cartlist")){
+				cookieContent = cookie.getValue();
+				break;
+			}
 		}
 	}
 %> 
@@ -56,8 +59,9 @@
 					%>
 					<tr> 
 						<td >
-							<input type="checkbox" class = "cartchecker" name="cart_list"+<%=i %> id="cart_list"+<%=i%>>
-							
+							<input type="checkbox" class = "cartchecker" name="cart_list" id="cart_list">
+							<!-- pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category -->
+							<input type="hidden" value="<%=cartlist.get(i).getProductId()%>@<%=cartlist.get(i).getCartOptionSize()%>@<%=cartlist.get(i).getCartOptionColor()%>@<%=cartlist.get(i).getCartPrice()%>">
 						</td>
 						<td>
 							
