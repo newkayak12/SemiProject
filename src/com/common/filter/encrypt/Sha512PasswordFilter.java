@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter(urlPatterns = {"/sign/signin/end","/sign/modify/start","/sign/signup/end","/sign/signoff/end"})
+@WebFilter(urlPatterns = {"/sign/signin/end","/sign/modify/start","/sign/signup/end","/sign/signoff/end", "/sign/modify/end"})
 public class Sha512PasswordFilter implements Filter {
 
     /**

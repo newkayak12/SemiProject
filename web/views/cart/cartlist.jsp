@@ -16,6 +16,15 @@
 		cartlist = (List<Cart>) o;
 	}
 	
+	
+	Cookie[] c = request.getCookies();
+	String a = "";
+	
+	if(c!=null){
+		for(Cookie cookie : c){
+			if(cookie.getName().equals("cartlist"));			
+		}
+	}
 %> 
 	
 
@@ -48,6 +57,7 @@
 					<tr> 
 						<td >
 							<input type="checkbox" class = "cartchecker" name="cart_list"+<%=i %> id="cart_list"+<%=i%>>
+							
 						</td>
 						<td>
 							
@@ -105,11 +115,15 @@
 			<span>
 				<button type="button" onclick ="fn_buy()">구매하기</button>
 			</span>
+			<span>
+				<button type="button" ></button>
+			</span>
 		</div>
 		
 		<%}%>
 	</div>
-
+	<input type="hidden" id = "cartCookie">
+</main>
 <!-- 스크립트! -->
 	<script>
 			const fn_checked=()=>{
@@ -126,9 +140,12 @@
 			const fn_buy = () =>{
 				/* 플래그 넘기기 */
 			}
+			
+			
+			
+			
 
 
 	</script>
 
-</main>
 <%@ include file = "/views/common/footer.jsp"%>
