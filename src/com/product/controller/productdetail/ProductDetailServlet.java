@@ -11,44 +11,47 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.product.model.service.ProductService;
 import com.product.model.vo.Product;
+import com.review.model.service.ReviewService;
+import com.review.model.vo.Review;
 
-/**
- * Servlet implementation class ProductDetailServlet
- */
+
 @WebServlet("/product/detail")
 public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public ProductDetailServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 		String productid= request.getParameter("pid");
 		String category = request.getParameter("category");
 		
+		
 		List<Product> product = new ProductService().productDetail(productid, category);
 		
+		List<Review> reviews = new ReviewService().selectProductReview(productid);
+		
+		
+		
 		request.setAttribute("productlist", product);
+		
+		request.setAttribute("reviewlist", reviews);
+		
+		
 		request.getRequestDispatcher("/views/product/productdetail.jsp").forward(request, response);
 		
 		
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

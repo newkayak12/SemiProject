@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/views/common/header.jsp" %>
-<%@ page import="com.product.model.vo.Product" %>
+<%@ page import="com.product.model.vo.Product, com.review.model.vo.Review" %>
 <%@ page import="java.util.List" %>
 <%
 	Object o = request.getAttribute("productlist");
@@ -12,6 +12,9 @@
 		if(o !=null){
 			product = (List<Product>) o;				
 		}
+		
+		
+	List<Review> reviewList = (List<Review>)request.getAttribute("reviewlist");
 
 %>
 <%if(product !=null){ %>
@@ -91,7 +94,8 @@
 						<select name="product_size-select" id="product_size-select" disabled onchange="fn_sizeselect()"> 
 								<option name="prodcut_size-select" value="------ 선택 사항 없음 ------">
 							 		------ 선택 사항 없음 ------  
-						 		</option>
+						 		</option> 
+						 		
 							
 							<% 
 							
@@ -190,9 +194,13 @@
 			</div>
 			
 		<%if(product!=null){ %>	
+		
 			<div id="menu_content-container">
+			
 				<div id="menu_content-img" class="menu_content-container1">
+				
 					<div id="menu_content-p">
+					
 						<%
 							String[] a = product.get(0).getProductExplain().split("@");
 							String c = a[0];
@@ -200,12 +208,9 @@
 							System.out.println(b);
 						%>
 						
-						<%=	c
-						%>
+						<%=	c %>
 						
-						<%=
-							b
-						%>
+						<%= b %>
 					</div>				
 					<div>
 						<img alt="사진1" src="<%=request.getContextPath()%>/upload/product/<%=product.get(0).getProductFileDetail1()%>" width="500px">
@@ -215,12 +220,110 @@
 				</div>
 
 				<div id="menu_content-notice">
-					notice
+					<table>
+						<tr>
+							<td>
+								배송 안내
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								* 주문 후 배송준비기간은 2-7일이 소요됩니다.(주말 및 휴일 제외)<br> 
+								간혹 더 지연되는 경우도 있기에 넉넉히 주문 부탁드립니다.<br> <br> 
+								
+								* 제주도 (편도 5500원), 산간지역의 경우 지역배송비가 추가될 수 있습니다.<br><br>  
+								
+								** 자세한 사항은 NOTICE의 구매전 필독에서 확인 부탁드립니다 :-) !<br> 
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								교환 및 반품 안내
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								교환 및 반품안내
+								* 교환 또는 반품을 원하시는 고객님께서는,<br>
+								택배를 받으신 후 7일이내로 Q&A게시판 또는 고객센터 통해 교환,환불신청을 접수 후<br>
+								반품 시 동봉되어있는 양식서 작성 후 제품과 함께 보내주세요 !<br><br>
+								
+								-대한통운 이용 시<br>
+								고객님께서 직접 대한통운 (1588-1255) 전화 연결 혹은 인터넷 접수를 통하여 반품 접수(운임 신용) 해주세요 !<br>
+								접수 후 2-3일 이내 기사님께서 고객님께 연락 후 방문해주셔서 상품 회수를 진행합니다.<br><br>
+								
+								- 타 택배 이용 시<br>
+								직접 타 택배사 방문, 접수하여 보내주시면 됩니다<br>
+								바온과 계약되어있는 택배회사가 아니기때문에 배송비 선불 결제 후 보내주셔야 합니다 !<br>
+								(타 택배 이용시 반품주소 :  서울특별시 강남구 테헤란로14길 6 남도빌딩 4층 402호 diekleidung / 02-1234-5678)<br>
+								잘못된 주소지로 작성해주실 경우 반송될 수 있습니다  :(<br><br>
+								
+								* 자세한 사항은 NOTICE의 교환 & 환불 안내에서 확인 부탁드립니다 :-) !
+							</td>
+						</tr>
+					</table>
 				</div>
 				
 				<div id="menu_content-review">
-					review
-				</div>
+					
+					<div id="p_review_reviewListContainer">
+					
+						<p class="section_title">Review</p>
+						
+						
+						<% if(reviewList != null && reviewList.size() != 0) { %>
+						
+							<table id="p_reviewTable">
+									
+								<% for(Review r : reviewList) { %>
+								
+									<!-- 리뷰 삭제여부 컬럼 : r_delete,  1 : 삭제안함 (디폴트), 0 : 삭제함 -->
+									<% if(r.getReviewDelete().equals("1")) { %>
+											
+										<tr>
+											<!-- 상품이미지 -->
+											<td width="200px" style="padding:20px;">
+			
+												<a href="<%=request.getContextPath() %>/product/detail?pid=<%=r.getProductId()%>&category=<%=r.getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=r.getProductFile() %>" width="150px" height="200px"></a>
+			
+											</td>
+											
+											<!-- 작성자아이디, 상품이름, 리뷰제목 -->
+											<td width="500px" style="padding:20px;">
+												<a class="blackText" href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">
+													<p class="bolderText"><%=r.getProductName() %></p>
+													<p><%=r.getReviewTitle() %></p>
+													<p><%=r.getUserId() %>님</p>
+												</a>
+											</td>
+											
+											<!-- 리뷰이미지 -->
+											<td width="200px" style="padding:20px;">
+												<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>" width="150px" height="200px"></a>
+											</td>
+											
+										</tr>
+										
+									<% } %>
+											
+								<% } %>
+								
+							</table>
+								
+						<% } else { %>
+							
+							<p>리뷰가 없습니다</p>
+							
+						<% } %>
+						
+						
+					</div>
+					
+				</div> <!-- div id=menu_content-review -->
+				
 				
 				<div id="menu_content-qna">
 					qna
@@ -318,7 +421,7 @@
 		
 		
 		let total = $("#product_stock").val()*<%=product.get(0).getProductPrice()%>
-		$("#product_total-container").html("총 가격 : "+ total+"원");
+		$("#product_total-container").html("<%=product.get(0).getProductName()%><br><%=product.get(0).getProductOptionColor()%>/<%=product.get(0).getProductOptionSize()%>/총 가격 : "+ total+"원");
 	})
 	
 	
