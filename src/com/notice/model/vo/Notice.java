@@ -1,6 +1,6 @@
 package com.notice.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Notice {
 	private String nSeq; // 공지번호 -> 시퀀스 

@@ -304,8 +304,8 @@
 				<%-- let pname = "<%=product.get(0).getProductName()%>"; --%>
 				let price = "<%=product.get(0).getProductPrice()%>";
 				let stock = $("#product_stock").val();
-				<%-- let category = "<%= product.get(0).getCategoryId()%>"; --%>
-				$("#cartadder").val(pid+'_'+size+'_'+color+'_'+price+'_'+stock+'_'+category);
+				let category = "<%= product.get(0).getCategoryId()%>";
+				$("#cartadder").val(pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category);
 				/* 카트 */
 				
 				

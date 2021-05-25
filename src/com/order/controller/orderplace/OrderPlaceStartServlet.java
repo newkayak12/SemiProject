@@ -54,13 +54,13 @@ public class OrderPlaceStartServlet extends HttpServlet {
 					productcount = Integer.parseInt(request.getParameter("productstock"));
 					
 					cart = new Cart();
-					cart.setProductId(productid);
-					cart.setCategoryId(category);
-					cart.setProductName(productname);
-					cart.setProductOptionColor(productcolor);
-					cart.setProductOptionSize(productsize);
-					cart.setProductPrice(productprice);
-					cart.setProductCount(productcount);
+//					cart.setProductId(productid);
+//					cart.setCategoryId(category);
+//					cart.setProductName(productname);
+//					cart.setProductOptionColor(productcolor);
+//					cart.setProductOptionSize(productsize);
+//					cart.setProductPrice(productprice);
+//					cart.setProductCount(productcount);
 					request.setAttribute("list", cart);
 					request.setAttribute("flag", 0);
 					
@@ -83,13 +83,13 @@ public class OrderPlaceStartServlet extends HttpServlet {
 						for(String t :temp2) {
 							String[] t2 = t.split("_");
 							cart = new Cart();
-							cart.setProductId(t2[0]);
-							cart.setCategoryId(t2[1]);
-							cart.setProductOptionSize(t2[2]);
-							cart.setProductOptionColor(t2[3]);
-							cart.setProductName(t2[4]);
-							cart.setProductPrice(Integer.parseInt(t2[5]));
-							cart.setProductCount(Integer.parseInt(t2[6]));
+//							cart.setProductId(t2[0]);
+//							cart.setCategoryId(t2[1]);
+//							cart.setProductOptionSize(t2[2]);
+//							cart.setProductOptionColor(t2[3]);
+//							cart.setProductName(t2[4]);
+//							cart.setProductPrice(Integer.parseInt(t2[5]));
+//							cart.setProductCount(Integer.parseInt(t2[6]));
 							
 							cartlist.add(cart);
 							

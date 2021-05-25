@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/sign/modify/end")
+import com.users.model.service.UsersService;
+import com.users.model.vo.Users;
+
+@WebServlet("/sign/modify/start")
 public class ModifyUsersStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,7 +28,26 @@ public class ModifyUsersStartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String userId=request.getParameter("userId");
+		
+				System.out.println("servlet, userId" + userId);
+		
+		
+		
+		Users u = new UsersService().selectUsersupdate(userId);
+		
+		request.setAttribute("usersinfo", u);
+		
+				System.out.println(u);
+				
+				
+		request.getRequestDispatcher("/views/member/userupdate.jsp").forward(request, response);
+		
+		
+		
+		
+		
 	}
 
 	/**

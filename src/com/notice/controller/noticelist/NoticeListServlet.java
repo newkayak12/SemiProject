@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.PageBar;
 import com.notice.model.service.NoticeService;
 import com.notice.model.vo.Notice;
 
@@ -48,40 +49,15 @@ public class NoticeListServlet extends HttpServlet {
 		List<Notice> list=new NoticeService().selectNoticeList(cPage,numPerpage);
 		request.setAttribute("list", list);
 		
+		// 페이지 바
 		int totalData=new NoticeService().selectNoticeCount();
-		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+		String url = request.getContextPath() + "/notice/list";
+		PageBar pageBar = new PageBar();
 		
-		int pageBarSize=5;
-		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd=pageNo+pageBarSize-1;
-		String pageBar="";
+		String noticePageBar = pageBar.pageBar(cPage, numPerpage, totalData, url);
 		
-		if(pageNo==1) {
-			pageBar="<span>[이전]</span>";
-		}else {
-			pageBar="<a href='"+request.getContextPath()
-			+"/notice/noticeList?cPage="+(pageNo-1)+"'>[이전]</a>";
-		}
-	
-		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar+="<span>"+pageNo+"</span>";
-			}else {
-				pageBar+="<a href='"+request.getContextPath()
-				+"/notice/noticeList?cPage="+pageNo+"'>"+pageNo+"</a>";
-			}
-			pageNo++;
-		}
 		
-		if(pageNo>totalPage) {
-			pageBar+="<span>[다음]</span>";
-		}
-		else {
-			pageBar+="<a href='"+request.getContextPath()
-			+"/notice/noticeList?cPage="+pageNo+"'>[다음]</a>";
-		}
-		// request.setAttribute("객체명", 객체)
-		request.setAttribute("pageBar",pageBar);
+		request.setAttribute("noticePageBar",noticePageBar);
 		request.getRequestDispatcher("/views/notice/NoticeList.jsp")
 		.forward(request, response);
 		

@@ -13,8 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_yj.css">
+<<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_yj.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_jh.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_sh.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_ws.css">
@@ -131,13 +131,14 @@
 
 	           <!-- -------------------------------- -->
 	
+	
 	            <ul id="mypage_menu">
 	            
 		           	<!-- 로그인하면 -->
 		            <% if(userid !=null){ %>    
 			        
 			            <li>
-				            <a href="">
+				            <a href="<%=request.getContextPath()%>/sign/mypage/start">
 				            	<img src="<%=request.getContextPath()%>/images/user.png" height="35px" width="35px">
 				            </a>
 			            	<ul>

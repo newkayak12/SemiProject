@@ -7,7 +7,28 @@
 <%@ page import ="java.util.*" %>
 <%@ page import = "com.cart.model.vo.Cart" %>
 
-<% List<Cart> cartlist = (List<Cart>) request.getAttribute("cartlist"); %> 
+
+
+<%
+	List<Cart> cartlist = new ArrayList();
+	Object o =  request.getAttribute("cartlist");
+	if(o!=null){
+		cartlist = (List<Cart>) o;
+	}
+	
+	
+	Cookie[] c = request.getCookies();
+	String cookieContent = "";
+	
+	if(c!=null){
+		for(Cookie cookie : c){
+			if(cookie.getName().equals("cartlist")){
+				cookieContent = cookie.getValue();
+				break;
+			}
+		}
+	}
+%> 
 	
 
 
@@ -22,7 +43,7 @@
 			<table id="cart-table" class="cartchecker">
 				<tr>
 					<th>
-						<input type="checkbox" name="cart_check_all" id="cart_check_all"  >
+						<input type="checkbox" name="cart_check_all" id="cart_check_all" onchange="fn_checked()" >
 					</th>
 					<th>전체선택</th>
 					<th>상품정보</th>
@@ -37,16 +58,22 @@
 						
 					%>
 					<tr> 
-						<td class = "cartchecker">
-							<input type="checkbox" name="cart_list"+<%=i %> id="cart_list"+<%=i%>>
+						<td >
+							<input type="checkbox" class = "cartchecker" name="cart_list" id="cart_list">
+							<!-- pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category -->
+							<input type="hidden" value="<%=cartlist.get(i).getProductId()%>@<%=cartlist.get(i).getCartOptionSize()%>@<%=cartlist.get(i).getCartOptionColor()%>@<%=cartlist.get(i).getCartPrice()%>">
 						</td>
 						<td>
 							
-							<img alt="" src="<%=request.getContextPath()%>/upload/goods/"<%=cartlist.get(i).getProductId()+"_"+cartlist.get(i).getCategoryId() %>>
+							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%=cartlist.get(i).getProductFile()%>" width="100px">
+							
+							
 									<!--사진이름은? 제품번호+카테고리  -->
 						</td>
-						<td><%=cartlist.get(i).getProductName() %></td>
-						<td id="productPrice"+<%=i %>><%=cartlist.get(i).getProductPrice() %></td>
+						<td><%=cartlist.get(i).getCartName() %></td>
+						<td id="productPrice">
+							<%= cartlist.get(i).getCartPrice() %>
+						</td>
 						<td>2500원</td>
 					</tr>
 					
@@ -54,13 +81,13 @@
 					
 				
 				<tr>
-					<td rowspan="5" id="result">
+					<td colspan="5" id="result">
 						<%
 							int result = 0;
 							int shippay = 2500;
 						for( int i = 0; i<cartlist.size(); i++){
 							
-								result+=cartlist.get(i).getProductPrice();
+								result+=cartlist.get(i).getCartPrice();
 						}
 						%>
 						
@@ -87,30 +114,42 @@
 					%>
 		<div>
 			<span>
-				<button type="button" onclick ="location.assing('<%=request.getContextPath()%>/')">돌아가기</button>
+				<button type="button" onclick ="location.assign('<%=request.getContextPath()%>/')">돌아가기</button>
 			</span>
 			<span>
 				<button type="button" onclick ="fn_buy()">구매하기</button>
+			</span>
+			<span>
+				<button type="button" ></button>
 			</span>
 		</div>
 		
 		<%}%>
 	</div>
-
+	<input type="hidden" id = "cartCookie">
+</main>
 <!-- 스크립트! -->
 	<script>
-			$("#cart_check_all").change((e)=>{
-				$(".cartchecker").children().each((i,v)=>{
-					$(v).attr("check", true);
-				})
-			})
+			const fn_checked=()=>{
+					
+
+					if($(".cartchecker").attr("checked")=="checked"){
+						$(".cartchecker").attr("checked", false);
+					} else {
+						$(".cartchecker").attr("checked", true);
+					}
+				
+			}
 			
 			const fn_buy = () =>{
 				/* 플래그 넘기기 */
 			}
+			
+			
+			
+			
 
 
 	</script>
 
-</main>
 <%@ include file = "/views/common/footer.jsp"%>

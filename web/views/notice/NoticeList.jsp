@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.List, com.notice.model.vo.Notice" %>
 <%
+	String noticePageBar = (String)request.getAttribute("noticePageBar");
 	List<Notice> list = (List<Notice>)request.getAttribute("list");
 %>
    
@@ -31,7 +32,7 @@
 	            	</a>
 	            </td> 
 	            <td>
-	            	<%=n.getUserId() %>
+	            	Kleidung
 	            </td>
 	            <td>
 	            	<%=n.getnDate() %>
@@ -44,6 +45,10 @@
         <%if(session.getAttribute("user")!=null &&checkAdmin.equals("1")) {%>
         	<input type="button" value="공지작성" class="notice-btn blue" onclick="noticeWrite();">
 		<%} %> 
+		
+		<div>
+			<%=noticePageBar %>
+		</div>
 	
 	</div>
 	<script>
