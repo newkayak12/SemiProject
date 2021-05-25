@@ -28,6 +28,7 @@
 		}
 	}
 	
+	String name = "%";
 	Cookie cookie = new Cookie("cartlist", cookieContent);
 	cookie.setMaxAge(60*60*24*365*100);
 %> 
@@ -76,7 +77,10 @@
 						<td>
 							<div>
 								<%=cartlist.get(i).getCartName() %>
+								
 							</div>
+							
+							
 							<div>
 								<span><%=cartlist.get(i).getCartOptionColor() %></span>
 								<span><%=cartlist.get(i).getCartOptionSize() %></span>
@@ -211,7 +215,7 @@
 			const fn_buy = () =>{
 				/* 플래그 넘기기 */
 				
-				location.assign("<%=request.getContextPath()%>/order/place/cart/start?cartshow=<%=cookieContent%>");
+				location.assign("<%=request.getContextPath()%>/order/place/cart/start?name=<%=name%>");
 				
 			}
 			

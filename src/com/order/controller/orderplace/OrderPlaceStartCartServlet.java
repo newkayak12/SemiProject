@@ -31,70 +31,83 @@ public class OrderPlaceStartCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		
+//		String names = request.getParameter("name");
+//			names = names.substring(0,names.length());
+//			String[] name = null;
+//				
+//			if(names.contains("||")) {
+//				 name = names.split("||");
+//						
+//			} 
+//				
+		
 		Cookie[] cookiejar = request.getCookies();
 		String cartlist = "";
-		for(Cookie e : cookiejar) {
-			if(e.getName().equals("cartlist")) {
-				cartlist = e.getValue();
-			}
-		}
-		
+				for(Cookie e : cookiejar) {
+					if(e.getName().equals("cartlist")) {
+						cartlist = e.getValue();
+					}
+				}
+			
 		
 			cartlist = cartlist.substring(1,cartlist.length());
-			System.out.println(cartlist);
-			Cart cart = null;
-			List<Cart> list = new ArrayList();
+			
+		Cart cart = null;
+		List<Cart> list = new ArrayList();
 		
 			
 			
 			
-		if(cartlist.contains("#")){
-			String[] split1 = cartlist.split("#");
-			
-			for(String a : split1) {
-				System.out.println(a);
-				String[] b= a.split("@");
-				
-				cart = new Cart();
-				cart.setProductId(b[0]);
-				cart.setCartOptionSize(b[1]);
-				cart.setCartOptionColor(b[2]);
-				cart.setCartPrice(Integer.parseInt(b[3]));
-				cart.setCartStock(Integer.parseInt(b[4]));
-				cart.setCategoryId(b[5]);
-				Cart ls = new CartService().selectCart(b[0], b[5]);
-				cart.setProductExplain(ls.getProductExplain());
-				cart.setProductFile(ls.getProductFile());
-				
-				
-				
-				list.add(cart);
-				
-				request.setAttribute("list", list);
-				request.setAttribute("flag2", "list");
-				
-			}
-			
-		} else {
-			
-			
-			String[] b = cartlist.split("@");
-			
-			cart = new Cart();
-			cart.setProductId(b[0]);
-			cart.setCartOptionSize(b[1]);
-			cart.setCartOptionColor(b[2]);
-			cart.setCartPrice(Integer.parseInt(b[3]));
-			cart.setCartStock(Integer.parseInt(b[4]));
-			cart.setCategoryId(b[5]);
-			Cart ls = new CartService().selectCart(b[0], b[5]);
-			cart.setProductExplain(ls.getProductExplain());
-			cart.setProductFile(ls.getProductFile());
-			
-			request.setAttribute("list", cart);
-			request.setAttribute("flag2", "cart");
-
-		}
+				if(cartlist.contains("#")){
+					String[] split1 = cartlist.split("#");
+					int i = 0;
+							for(String a : split1) {
+								System.out.println(a);
+								String[] b= a.split("@");
+								
+									cart = new Cart();
+									cart.setProductId(b[0]);
+									cart.setCartOptionSize(b[1]);
+									cart.setCartOptionColor(b[2]);
+									cart.setCartPrice(Integer.parseInt(b[3]));
+									cart.setCartStock(Integer.parseInt(b[4]));
+									cart.setCategoryId(b[5]);
+								Cart ls = new CartService().selectCart(b[0], b[5]);
+									cart.setProductExplain(ls.getProductExplain());
+									cart.setProductFile(ls.getProductFile());
+									cart.setCartName(ls.getCartName());
+								
+								
+								
+								list.add(cart);
+								
+								request.setAttribute("list", list);
+								request.setAttribute("flag2", "list");
+								
+							}
+					
+				} else {
+					
+					
+					String[] b = cartlist.split("@");
+						
+						cart = new Cart();
+						cart.setProductId(b[0]);
+						cart.setCartOptionSize(b[1]);
+						cart.setCartOptionColor(b[2]);
+						cart.setCartPrice(Integer.parseInt(b[3]));
+						cart.setCartStock(Integer.parseInt(b[4]));
+						cart.setCategoryId(b[5]);
+						
+					Cart ls = new CartService().selectCart(b[0], b[5]);
+						cart.setProductExplain(ls.getProductExplain());
+						cart.setProductFile(ls.getProductFile());
+						cart.setCartName(ls.getCartName());
+					
+					request.setAttribute("list", cart);
+					request.setAttribute("flag2", "cart");
+		
+				}
 		
 		request.setAttribute("flag",1);
 		

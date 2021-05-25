@@ -70,7 +70,7 @@
 				<%if(flag ==0 && flag2.equals("cart")) {%>
 				<tr>
 					<td>
-						<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>">
+						<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>" class="order-img">
 					</td>
 					<td>
 					 	<%= cart.getCartName() %> 
@@ -97,7 +97,7 @@
 					
 				<tr>
 					<td>
-							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>">
+							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>" class="order-img">
 					</td>
 					<td>
 					 	<%= temp.getCartName() %> 
@@ -182,19 +182,41 @@
 			
 			<div id = "payment-container">
 				<div id="payment_selector-contianer">
-					<input type = "radio" name = "payraido" id="pay" value="무통장입금" checked>
-					<input type = "radio" name = "payraido"	id="kakao" value = "카카오페이">
+					<input type = "radio" name = "payraido" id="pay"  checked> 무통장 입금
+					<input type = "radio" name = "payraido"	id="kakao" > 카카오페이
+					
 				</div>
 				
-				<table id="pay-table">
-					
-				</table>
+				
+					<table id="pay-table">
+						<tr>
+							<th>입급자명</th>
+							<td>김정은</td>
+						</tr>
+						<tr>
+							<th>입금 은행</th>
+							<td>
+									<select name="pay_sel" id="bank-select">
+											<option value="하나은행 661-910265-*****">하나은행 661-910265-*****</option>
+											<option value="신한은행 910-910265-*****">신한은행 910-910265-*****</option>
+
+									</select>
+
+							</td>
+						</tr>
+					</table>
+
+					<div id="kakaopay" style="display: none;">
+
+							<button>카카오페이</button>
+					</div>
+				
 				
 			</div>
 			
 			<div>
-				<input type="button" value ="결제">
-				<input type="button" value ="취소">
+				<input type="button" value ="결제" onclick="fn_pay()">
+				<input type="button" value ="취소" onclick="fn_cancel()">
 			</div>
 			
 			
@@ -202,27 +224,57 @@
 </main>
 
 <script>
+	const fn_pay = () =>{
+		
+		let bank = $("#bank-select").val();
+		
+		location.assign("<%=request.getContextPath()%>/order/pay?pay="+$("#bank-select").val())
+	}
+
+	const fn_cancel = () =>{
+		if(confirm('장바구니로 돌아가시겠습니까?')==true){
+			location.assign("<%=request.getContextPath()%>/cart/list")
+		}
+	}
 $(function(){
 	
+	
 
-	$("#pay").on("checked",(e)=>{
-		$("#pay-table").append($("<tr>").append($("<th>".html("입금자명"))).append($("<td>").html("<%=user.getUserName()%>")));
-		const opt1 = $("<option>").attr({"value":"하나은행 661-910265-*****",
-			"name":"pay_sel"
-			
-			
-		})
-		const opt2 = $("<option>").attr({
-			"value":"신한은행 910-910265-*****",
-			"name":"pay_sel"
-			
-		})
-		$("#pay-table").append($("<tr>").append($("<th>".html("입금자은행"))) .append($("<td>").append( $("<select>")).append(opt1 ).append(opt2)  ) );
+	$("#pay").click((e)=>{
+		// $("pay-table").html("");
+		// $("#pay-table").append($("<tr>").append($("<th>").html("입금자명")).append($("<td>").html("<%=user.getUserName()%>")));
 		
+
+		// $("#pay-table").append(   $("<tr>").append($("<th>").html("입금자은행")).append($("<td>").append( $("<select>").attr({
+		// 	"id":"bank-select"
+		// 	,"name":"pay_sel"
+			
+		// }).append( $("<option>").attr({"value":"하나은행 661-910265-*****",
+		// 	"name":"pay_sel"
+			
+			
+		// }).html("하나은행 661-910265-*****")).append($("<option>").attr({
+		// 	"value":"신한은행 910-910265-*****",
+		// 	"name":"pay_sel"
+			
+		// }).html("신한은행 910-910265-*****"))  ) ));
+
+	$("#kakaopay").css("display","none");
+	$("#pay-table").css("display","table")
 		
 	})
 
+	$("#kakao").click(()=>{
+		$("#kakaopay").css("display","block");
+	$("#pay-table").css("display","none")
+	})
+
+	$("#bank-select").change((e)=>{
+		console.log($(e.target).val())
+	})
 })
+
+
 </script>
 
 <%@ include file = "/views/common/footer.jsp"%>
