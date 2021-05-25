@@ -1,4 +1,4 @@
-package com.cart.model.servcie;
+package com.cart.model.service;
 
 import static com.common.JDBCTemplate.close;
 import static com.common.JDBCTemplate.getConnection;
@@ -8,7 +8,7 @@ import java.sql.Connection;
 import com.cart.model.dao.CartDao;
 import com.cart.model.vo.Cart;
 
-public class Cartservice {
+public class CartService {
 
 	public Cart selectCart(String pid, String category) {
 		

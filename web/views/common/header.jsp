@@ -50,9 +50,9 @@
 		            <li><a href="<%=request.getContextPath()%>/product/list">SHOP</a>
 		            	<ul>
 		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">OUTTER</a></li>
-		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">TOP</a></li>
-		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">BOTTOM</a></li>
-		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c01">ACC</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c02">TOP</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c03">BOTTOM</a></li>
+		            		<li><a href="<%=request.getContextPath()%>/product/list?category=c04">ACC</a></li>
 		            	</ul>
 		            </li>
 		            
@@ -60,7 +60,7 @@
 			            <a href="">BOARD</a>
 			            <ul>
 			            	<li><a href="<%=request.getContextPath()%>/notice/list">NOTICE</a></li>
-			            	<li><a href="">Q&A</a></li>
+			            	<li><a href="<%=request.getContextPath()%>/qna/qnaList">Q&A</a></li>
 			            </ul>
 			        </li>
 			        
@@ -76,6 +76,9 @@
 	        <div id="header-logoContainer">
 	        
 	            <ul id="logo">
+	            
+	                <%-- <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li> --%>
+	                
 	                <li><a href="<%=request.getContextPath()%>">die Kleidung</a></li>
 	           </ul> 
          

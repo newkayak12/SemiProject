@@ -89,10 +89,10 @@ public class ReviewDao {
 //				private String reviewComment;
 //				private String reviewCommentDate;
 				
-				r.setCommentUserId(rs.getString("r_c_user_id"));
-				r.setReviewComment(rs.getString("r_comment"));
-				r.setReviewCommentDate(rs.getString("r_c_date"));
-				
+//				r.setCommentUserId(rs.getString("r_c_user_id"));
+//				r.setReviewComment(rs.getString("r_comment"));
+//				r.setReviewCommentDate(rs.getString("r_c_date"));
+//				
 				list.add(r);
 				
 			}
@@ -214,7 +214,7 @@ public class ReviewDao {
 	}
 
 
-
+// 푸시 되나?
 	public int deleteReview(Connection conn, String reviewNo) {
 		
 		PreparedStatement pstmt = null;

@@ -18,33 +18,28 @@
 			<div id="review_bestReviewerTable">
 			
 				<table style="margin-left: auto; margin-right: auto; width : 1000px;">
-				
-					<tr>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-					</tr>
-					
-					<tr>
-						<td><img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px"></td>
-						<td><img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px"></td>
-						<td><img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px"></td>
-					</tr>
 					
 					<tr>
 						<td>
-							id님<br>
-							<span>상품이름 옵션</span>
-						</td>
-						<td>
-							id님<br>
-							<span>상품이름 옵션</span>
-						</td>
-						<td>
-							id님<br>
-							<span>상품이름 옵션</span>
+							<p class="blueText">1</p>
+							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
+							<p class="blueText">상품이름</p>
+							<p>price : 가격</p>
 						</td>
 						
+						<td>
+							<p class="blueText">2</p>
+							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
+							<p class="blueText">상품이름</p>
+							<p>price : 가격</p>
+						</td>
+						
+						<td>
+							<p class="blueText">3</p>
+							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
+							<p class="blueText">상품이름</p>
+							<p>price : 가격</p>
+						</td>
 					</tr>
 					
 				</table>
@@ -82,7 +77,11 @@
 								
 								<!-- 작성자아이디, 상품이름, 리뷰제목 -->
 								<td width="500px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><%=r.getProductName() %><br><%=r.getReviewTitle() %><br><%=r.getUserId() %>님<br></a>
+									<a class="blackText" href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">
+										<p class="bolderText"><%=r.getProductName() %></p>
+										<p><%=r.getReviewTitle() %></p>
+										<p><%=r.getUserId() %>님</p>
+									</a>
 								</td>
 								
 								<!-- 리뷰이미지 -->

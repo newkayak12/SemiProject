@@ -1,17 +1,20 @@
 package com.notice.model.dao;
 
+import static com.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.notice.model.vo.Notice;
-import static com.common.JDBCTemplate.close;
 
 public class NoticeDao {
 private Properties prop=new Properties();
@@ -40,8 +43,6 @@ private Properties prop=new Properties();
 				Notice n=new Notice();
 				n.setnSeq(rs.getString("n_seq"));
 				n.setUserId(rs.getString("user_id"));
-				n.setUserAddr(rs.getString("user_addr"));
-				n.setUserZip(rs.getString("user_zip"));
 				n.setnTitle(rs.getString("n_title"));
 				n.setnContent(rs.getString("n_content"));
 				n.setnDate(rs.getDate("n_date"));
@@ -86,19 +87,81 @@ private Properties prop=new Properties();
 				n=new Notice();
 				n.setnSeq(rs.getString("n_seq"));
 				n.setUserId(rs.getString("user_id"));
-				n.setUserAddr(rs.getString("user_addr"));
-				n.setUserZip(rs.getString("user_zip"));
 				n.setnTitle(rs.getString("n_title"));
 				n.setnContent(rs.getString("n_content"));
 				n.setnDate(rs.getDate("n_date"));
 				n.setnDelete(rs.getInt("n_delete"));
 				n.setnCount(rs.getInt("n_count"));
+				
 				}
+			
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
 				close(rs);
 				close(pstmt);
 			}return n;
+	}
+
+	public int postNotice(Connection conn, Notice n) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		System.out.println(prop.getProperty("postNotice"));
+		System.out.println(n.getnDate());
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("postNotice"));
+			pstmt.setString(1, "testusers");
+			pstmt.setString(2,n.getnTitle());
+			pstmt.setString(3, n.getnContent());
+			pstmt.setDate(4, n.getnDate());
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	public int deleteNotice(Connection conn, String NoticeNo) {
+		
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteNotice"));
+			pstmt.setInt(1, 1);
+			pstmt.setString(2, NoticeNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int modifyNotice(Connection conn, Notice n) {
+		PreparedStatement pstmt=null;
+		
+		System.out.println("dao "+n);
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("modifyNotice"));
+			pstmt.setString(1, n.getnTitle());
+//			pstmt.setDate(2, n.getnDate());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setString(3, n.getnSeq());
+			
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("dao "+ result);
+		return result;
 	}
 }
