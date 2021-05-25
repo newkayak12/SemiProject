@@ -60,7 +60,7 @@
 			            <a href="">BOARD</a>
 			            <ul>
 			            	<li><a href="<%=request.getContextPath()%>/notice/list">NOTICE</a></li>
-			            	<li><a href="<%=request.getContextPath()%>/qna/qnaProductList">Q&A</a></li>
+			            	<li><a href="<%=request.getContextPath()%>/qna/qnaList">Q&A</a></li>
 			            </ul>
 			        </li>
 			        
