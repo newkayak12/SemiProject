@@ -40,10 +40,10 @@
 		</div>
 		
 		<div>
-			<table id="cart-table" class="cartchecker">
+			<table id="cart-table" >
 				<tr>
 					<th>
-						<input type="checkbox" name="cart_check_all" id="cart_check_all" onchange="fn_checked()" >
+						<input type="checkbox" name="cart_check_all" id="cart_check_all" onclick="fn_checked()" >
 					</th>
 					<th>전체선택</th>
 					<th>상품정보</th>
@@ -52,16 +52,16 @@
 				</tr>
 				<%
 				
-				if(cartlist!=null){
+				if(cartlist!=null&&cartlist.size()>0){
 					for( int i = 0; i<cartlist.size(); i++) {
 						
 						
 					%>
 					<tr> 
 						<td >
-							<input type="checkbox" class = "cartchecker" name="cart_list" id="cart_list">
-							<!-- pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category -->
-							<input type="hidden" value="<%=cartlist.get(i).getProductId()%>@<%=cartlist.get(i).getCartOptionSize()%>@<%=cartlist.get(i).getCartOptionColor()%>@<%=cartlist.get(i).getCartPrice()%>">
+							<input type="checkbox" class = "cartchecker" name="cart_list" id="cart_list" value="#<%=cartlist.get(i).getProductId()%>@<%=cartlist.get(i).getCartOptionSize()%>@<%=cartlist.get(i).getCartOptionColor()%>@<%=cartlist.get(i).getCartPrice()%>@<%=cartlist.get(i).getCartStock()%>@<%=cartlist.get(i).getCategoryId()%>">
+							<%-- <!-- pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category -->
+							<input type="hidden" value="#<%=cartlist.get(i).getProductId()%>@<%=cartlist.get(i).getCartOptionSize()%>@<%=cartlist.get(i).getCartOptionColor()%>@<%=cartlist.get(i).getCartPrice()%>@<%=cartlist.get(i).getCartStock()%>@<%=cartlist.get(i).getCartStock()%>"> --%>
 						</td>
 						<td>
 							
@@ -120,32 +120,83 @@
 				<button type="button" onclick ="fn_buy()">구매하기</button>
 			</span>
 			<span>
-				<button type="button" ></button>
+				<button type="button" onclick = "fn_cart()"  >선택항목 삭제</button>
 			</span>
 		</div>
 		
 		<%}%>
 	</div>
-	<input type="hidden" id = "cartCookie">
+	
+	<form action="<%=request.getContextPath()%>/cart/update" id = "cartfrom" >
+		<input type="hidden" id = "cartCookie" name="cartCookie">
+	</form>
 </main>
 <!-- 스크립트! -->
 	<script>
-			const fn_checked=()=>{
-					
-
-					if($(".cartchecker").attr("checked")=="checked"){
-						$(".cartchecker").attr("checked", false);
-					} else {
-						$(".cartchecker").attr("checked", true);
-					}
+			const fn_cart=()=>{
+				alert('선택 항목을 삭제합니다.')
+				$("#cartfrom").submit()
 				
 			}
+
+
+			const fn_checked=()=>{
+				
+				if($("#cart_check_all").prop("checked")==false){
+					$(".cartchecker").prop("checked", false);
+
+					$("#cartCookie").val('');
+
+					
+				} else {
+					$(".cartchecker").prop("checked", true);
+					let temp = "";
+				
+					$(".cartchecker").each((i,v)=>{
+						temp += $(v).val();
+					})
+
+					$("#cartCookie").val(temp);
+					
+					
+					
+				}
+			
+
+					
+				
+			}
+			
+			
+			$(".cartchecker").click((e)=>{
+				let cartcookiejar = $("#cartCookie").val();
+
+				if(cartcookiejar.includes($(e.target).val())){
+					cartcookiejar = cartcookiejar.replace($(e.target).val(),"");
+					
+					if($("#cart_check_all").prop("checked")==true){
+						$("#cart_check_all").prop("checked", false)	
+						
+						
+
+					}
+									
+				} else {
+					
+					$("#cartCookie").val(cartcookiejar+'!'+$(e.target).val());
+
+					
+				}
+
+				
+
+			})
 			
 			const fn_buy = () =>{
 				/* 플래그 넘기기 */
 			}
 			
-			
+			/* 카트 삭제?? */
 			
 			
 

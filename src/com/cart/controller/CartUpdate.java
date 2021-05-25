@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Cartpost
+ * Servlet implementation class CartUpdate
  */
-@WebServlet("/cart/post")
-public class Cartpost extends HttpServlet {
+@WebServlet("/cart/update")
+public class CartUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Cartpost() {
+    public CartUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,46 +28,50 @@ public class Cartpost extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cartadd = request.getParameter("cartlist");
-		String pid = request.getParameter("pid");
-		String category = request.getParameter("category");
-		Cookie[] list = request.getCookies();
-		String value = "";
-		Cookie a  = null;
+		// TODO Auto-generated method stub
+		String cartdel = request.getParameter("cartCookie");
+		
+		cartdel = cartdel.substring(0,cartdel.length());
+		System.out.println(cartdel+"  update");
 		
 		
 		
-//		이미 있을 떄
-		if(list != null) {
-			for(Cookie c : list) {
+		String cookiecontent = "";
+		Cookie[] cart = request.getCookies();
+		
+			for(Cookie c : cart) {
 				if(c.getName().equals("cartlist")) {
-					value=c.getValue();
-					 a = new Cookie("cartlist", c.getValue()+"#"+cartadd);
-					 a.setMaxAge(60*60*24*365*100);
+					cookiecontent=c.getValue();
 					
-
+//					System.out.println("cookie " + cookiecontent );
+					
+					if(cartdel.contains("!")) {
+						String[] temp2 = cartdel.split("#");
+						
+						for(String temp3 : temp2) {
+							cookiecontent = cookiecontent.replace("#"+temp3, "");
+						}
+						
+						
+					} else {
+						
+						cookiecontent = cookiecontent.replace(cartdel, "");
+						
+					}
+					
+					
 					break;
 				}
 				
 				
 			}
-		}
-		
-		
-		if( value.equals("")) {
 			
-			a = new Cookie("cartlist","#"+cartadd);
-			a.setMaxAge(60*60*24*365*100);
-		}
-		
-		
-		response.addCookie(a);
-//		response.sendRedirect(request.getContextPath()+"/");
-		request.setAttribute("msg", "카트에 저장했습니다.");
-		request.setAttribute("loc","/product/detail?pid="+pid+"&category="+category);
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		
+//			System.out.println("update "+cookiecontent);
+			Cookie cookie = new Cookie("cartlist", cookiecontent);
+			cookie.setMaxAge(60*60*24*365*100);
+			response.addCookie(cookie);
+			
+			response.sendRedirect(request.getContextPath()+"/cart/list");
 	}
 
 	/**
