@@ -1,4 +1,4 @@
-package com.cart.model.servcie;
+package com.cart.model.service;
 
 import static com.common.JDBCTemplate.close;
 import static com.common.JDBCTemplate.getConnection;
@@ -21,5 +21,7 @@ public class CartService {
 		
 		return cart;
 	}
+
+	
 
 }

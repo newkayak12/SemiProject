@@ -23,6 +23,51 @@ public class UsersDao {
 		}
 	}
 	
+	public int deleteusers(Connection conn, String userId, String userPwd) {
+		PreparedStatement pstmt=null;
+		
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deleteusers"));
+			System.out.println("다오?");
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	
+	public int checkid(Connection conn, String userid) {
+		int result=1;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectone"));
+			pstmt.setString(1, userid);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		return result;
+	}
+	
+	
+	
 	public Users selectUsersupdate(Connection conn, String userId) {
 		PreparedStatement pstmt=null;
 		Users u = null;
@@ -68,6 +113,7 @@ public class UsersDao {
 			pstmt.setString(4, u.getUserName());
 			pstmt.setString(5, u.getUserEmail());
 			pstmt.setString(6, u.getUserPhone());
+			pstmt.setString(7, u.getUserId());
 			result=pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,6 +171,8 @@ public class UsersDao {
 		}
 		return user;
 	}
+	
+	
 	
 	public Users login(Connection conn, String userId, String userPwd) {
 		PreparedStatement pstmt=null;

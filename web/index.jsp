@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.main.model.vo.MainProduct, java.util.List" %>
+<%@ page import="com.product.model.vo.Product, java.util.List" %>
 <%@ include file = "/views/common/header.jsp"%>
 <%
-	List<MainProduct> products = (List<MainProduct>)request.getAttribute("products");
+	List<Product> products = (List<Product>)request.getAttribute("products");
 %>
 
 <main id="mainPage-main">

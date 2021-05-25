@@ -1,6 +1,7 @@
-package com.notice.controller.noticepost;
+package com.users.controller.check;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.notice.model.vo.Notice;
+import com.users.model.service.UsersService;
 
 /**
- * Servlet implementation class NoticePostStartServlet
+ * Servlet implementation class CheckIdAjax
  */
-@WebServlet("/post/postStart")
-public class NoticePostStartServlet extends HttpServlet {
+@WebServlet("/check/checkid/ajax")
+public class CheckIdAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePostStartServlet() {
+    public CheckIdAjax() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +30,24 @@ public class NoticePostStartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Notice n=new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
+		// TODO Auto-generated method stub
 		
-		request.getRequestDispatcher("/views/qna/QnaPost.jsp").forward(request, response);}
+		String userid = request.getParameter("userId");
+		
+		
+		
+		UsersService service = new UsersService();
+		int result= service.checkid(userid);
+		
+//		response.getWriter().print((result>0)?"no":"ok");
+//		response.getWriter().write((result>0)?"no":"ok");
+		PrintWriter out = response.getWriter();
+		out.print((result>0)?"no":"ok");
+		/*
+		 * request.getRequestDispatcher("/views/member/join.jsp").forward(request,
+		 * response);
+		 */
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

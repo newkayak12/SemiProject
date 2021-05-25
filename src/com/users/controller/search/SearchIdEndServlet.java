@@ -39,11 +39,29 @@ public class SearchIdEndServlet extends HttpServlet {
 		Users useridtemp = new UsersService().searchid(u);
 		
 		
-		request.setAttribute("useridtemp", useridtemp);
-		System.out.println(useridtemp);
-		request.getRequestDispatcher("/views/member/searchid.jsp").forward(request, response);
+//		request.setAttribute("useridtemp", useridtemp);
+//		System.out.println(useridtemp);
+//		request.getRequestDispatcher("/views/member/searchid.jsp").forward(request, response);
+//		
 		
-	
+		String msg = "";
+		String loc = "";
+		if(useridtemp != null) {
+			
+			request.setAttribute("msg", "찾으시는 아이디는 "+useridtemp.getUserId()+"입니다.");
+			request.setAttribute("loc", "/sign/signin/start");
+			
+		}
+		else {
+			request.setAttribute("msg", "이름 또는 번호가 틀렸습니다.");
+			request.setAttribute("loc", "/sign/signup/start");
+			
+		}
+		
+		
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		
 		/*
 		input tag에 입력안하면 안넘어가게하는거
 		required > 속성 input 

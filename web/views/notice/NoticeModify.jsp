@@ -14,7 +14,7 @@
 %>
 
 <div id="modi-container">
-	<span class = "notice">게시글 수정</span>
+	<span class = "Menu-name">게시글 수정</span>
     <form action="<%=request.getContextPath() %>/notice/modify/end/admin" method="post">
   		<input type="hidden" value="<%=n.getnSeq() %>" name = "noticeno">
         <table id="tbl-modi">
