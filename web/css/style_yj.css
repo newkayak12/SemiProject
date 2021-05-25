@@ -12,25 +12,34 @@
 	/* 베스트 리뷰 3개 */
 	div#review_bestReviewerContainer{
 	    position: relative;
-	    top: 100px;
-	    
 	    width : 1366px;
 	    
-	    margin-bottom : 100px;
+	    margin-top : 70px;
+	    margin-bottom : 70px;
 	}
 	
-	div#review_bestReviewerTable>table{
+	div#review_bestReviewerTable{
 	 	padding-bottom : 50px;
-		border-bottom : 1px solid black;
 	}
-	 
 	
-	div#review_bestReviewerContainer tr *{
+	
+	div#review_bestReviewerTable tr{
 		text-align : center;
 	}
 	
-	div#review_bestReviewerContainer tr, div#review_bestReviewerContainer td{
-		padding : 30px;
+	div#review_bestReviewerTable>tr>td{
+		text-align : center;
+	}
+	
+	div#review_bestReviewerTable p{
+		margin : 5px 2px 5px 2px;
+		padding : 0 0 0 0;
+	}
+	
+	.blueText{
+		color : rgb(9, 74, 169);
+		font-weight : bolder;
+		font-size : 20px;
 	}
 	
 	div p.section_title {
@@ -53,6 +62,8 @@
 		margin-left: auto; 
 		margin-right: auto;
 		padding : 0 0 0 0;
+		border-bottom : 1px solid gray;
+		border-top : 1px solid gray;
 	}
 	
 	table#reviewTable>tr>td{
@@ -60,17 +71,21 @@
 		border-style : none;
 	}
 	
+	.bolderText{
+		font-weight : bolder;
+	}
 	
-	
-	
+	.blackText{
+		color : black;
+	}
 	
 	
 	/* 페이지바 */
 	div#reviewList_pagebar{
 		text-align : center;
-		padding : 50px 0px 0px 0px;
+		padding : 50px 0px 0px 50px;
 		width : 1366px;
-		margin : 0 0 0 0;
+		margin : 0 0 50px 0;
 		
 	}
 	
@@ -127,60 +142,101 @@
 		font-size : 25px;
 	}
 	
+	.section_title{
+		text-align : center;
+		margin : 50px auto 0px auto;
+		color : orange;
+		font-weight : bolder;
+		font-size : 25px;
+	}
 	
 	
 	/* -------------- reviewDetail.jsp ---------------- */
 	
 	div#reviewDetail-container{
 		width : 900px;
-		height : 1500px;
+		height : fit-content;
+		
 		margin-left : auto;
 		margin-right : auto;
+		margin-top : 50px;
+		margin-bottom : 30px;
 		
-		padding : 50px;
+		padding : 30px;
 		
+		border : 1px solid gray;
+		
+	}
+	
+	div#review_comment_outter_container{
+		width : 900px;
+		height : fit-content;
+		
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : 0px;
+		margin-bottom : 50px;
+		
+		padding : 30px;
+		
+		border : 1px solid gray;
 	}
 	
 	div#reviewDetail-inner-container{
 		height : 200px;
-		border-bottom : 3px solid pink !important;
+		padding : 0px;
+		
+		/* border : 1px solid gray; */
+		
+		border-bottom : 1px solid gray;
+		
+		display : flex;
+		flex-direction: row;
+    	justify-content: space-between;
 	}
 	
+	div#reviewDetail-inner-container p{
+		width : fit-content;
+	}
+	
+	
+	/* 상품이미지, 상품정보 div */
 	div#reviewDetail-inner2-container{
-		float : right;
+		text-align : end;
 	}
 	
-	div#reviewDetail-buttons button{
+	/* 사용자가 업로드한 사진과 내용 */
+	div#reviewDetail-userImage_reviewContents{
+		margin-top : 50px;
+		margin-bottom : 50px;
+	}
+	
+	/* css안먹어서 태그에 직접 작성함 */
+	/* div#reviewDetail-buttons-container{
+		display: flex;
+    	flex-direction: row;
+    	justify-content: flex-end;
+	} */
+	
+	div#reviewDetail-buttons-container>button{
 		width : 70px;
 		height : 35px;
-		margin-left : 5px;
-		margin-right : 5px;
+		margin-left : 3px;
+		margin-right : 3px;
+		border-radius : 0;
+		background-color : white;
+		
+	} 
+	
+	div#review_reply_list>table{
+		width : 900px; 
 	}
 	
-		/* HelloMVC 댓글테이블*/
-	    /* table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
-	    table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
-	    table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
-	    table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
-	    table#tbl-comment button.btn-reply{display:none;}
-	    table#tbl-comment button.btn-delete{display:none;}
-	    table#tbl-comment button.btn-update{display:none;}
-	    
-	    table#tbl-comment tr:hover {background:lightgray;}
-	    
-	    table#tbl-comment tr:hover button.btn-reply{display:inline;}
-	    table#tbl-comment tr:hover button.btn-delete{display:inline;}
-	    table#tbl-comment tr:hover button.btn-update{display:inline;}
-	    
-	    table#tbl-comment tr.level2 {color:gray; font-size: 14px;}
-	    
-	    table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
-	    table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
-	    
-	    table#tbl-comment tr.level2 td:first-of-type{padding-left:100px;}
-	    
-	    table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
-	    table#tbl-comment tr.level2 sub.comment-date {color:#ff9c8a; font-size:10px} */
-	   
+	/* div#review_reply_list tr{
+		border : 1px solid gray;
+		padding : 5px;
+		margin : 10px;
+	} */
+	
 	
 

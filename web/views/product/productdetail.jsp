@@ -197,7 +197,7 @@
 							String[] a = product.get(0).getProductExplain().split("@");
 							String c = a[0];
 							String b = a[1].replaceAll("-", "<br><br>-");
-							System.out.println(b);
+							/* System.out.println(b); */
 						%>
 						
 						<%=	c
@@ -277,6 +277,15 @@
 	
 	
 	const fn_buynow=()=>{
+		let pid = "<%= product.get(0).getProductId()%>";
+		let size =$("#product_size-select").val();
+		let color= $("#product_color-select").val();
+		<%-- let pname = "<%=product.get(0).getProductName()%>"; --%>
+		let price = "<%=product.get(0).getProductPrice()%>";
+		let stock = $("#product_stock").val();
+		let category = "<%= product.get(0).getCategoryId()%>";
+		
+		location.assign("<%=request.getContextPath()%>/order/place?pid="+pid+"&size="+size+"&color="+color+"&price="+price+"&stock="+stock+"&category="+category+"&flag=page");
 		
 		
 	}
@@ -284,7 +293,7 @@
 
 	const fn_cart =()=>{
 
-		
+		 console.log("<%= product.get(0).getCategoryId()%>");
 		
 		let flag = $("#product_stock").val();
 		
@@ -306,6 +315,8 @@
 				let stock = $("#product_stock").val();
 				let category = "<%= product.get(0).getCategoryId()%>";
 				$("#cartadder").val(pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category);
+				
+				/* alert($("#cartadder").val()+"카트 저장하기") */
 				/* 카트 */
 				
 				

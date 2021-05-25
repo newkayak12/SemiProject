@@ -11,7 +11,7 @@ div#notice-container{
 	padding : 0px 0px;
 	margin : 0px 0px;
 }
-span.notice{
+span.Menu-name{
 	color : orange;
 	font-size : 20px;
 	font-weight : bolder;
@@ -64,8 +64,8 @@ table#tbl-deatil-notice{
 	border-collapse: collapse;
 }
 
-table#tbl-deatil-notice tr{
-	border-bottom : 1px solid grey;
+.border-white{
+	border: 1px white solid;
 }
 
 table#tbl-deatil-notice tr:nth-of-type(5){
@@ -134,10 +134,6 @@ table#tbl-post td{
 	padding : 10px;
 }
 
-table#tbl-post tr{
-	border-bottom : 1px solid grey;
-}
-
 table#tbl-post tr:nth-of-type(5){
 	border-bottom : none !important;
 }
@@ -155,4 +151,73 @@ table#tbl-post td:nth-of-type(4){
 table#tbl-post td:nth-of-type(5){
 	text-align : right !important;
 }
+
+/*--------- NoticeModify.jsp --------*/
+div#modi-container{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 120px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
+}
+
+table#tbl-modi{
+	margin : 30px auto;
+	width : 700px;
+}
+
+table#tbl-modi td{
+	width : 500px;
+	text-align : left;
+	padding : 10px;
+}
+
+table#tbl-modi tr:nth-of-type(5){
+	border-bottom : none !important;
+}
+/*공지내용 적는 부분*/
+
+table#tbl-modi td:nth-of-type(4){
+	text-align : center !important;
+}
+
+.content-background{
+	background-image: url("../images/contentBack.jpg");
+	background-repeat : no-repeat;
+	background-size : cover;
+}
+table#tbl-modi td:nth-of-type(5){
+	text-align : right !important;
+}
+	
+
+/*------------------QNA-----------------*/
+/*----- QnaList.jsp -----------------*/
+div#qna-contianer{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 120px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
+}
+
+table#qna-table{
+	margin : 30px auto;
+	width : 900px;
+	border-collapse : collapse;
+}
+
+table#qna-table td{
+	border-bottom : 1px solid grey;
+}
+table#qna-table th{
+	border: 1px solid white;	
+}
+
+
+
 

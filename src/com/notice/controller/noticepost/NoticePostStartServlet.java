@@ -13,7 +13,7 @@ import com.notice.model.vo.Notice;
 /**
  * Servlet implementation class NoticePostStartServlet
  */
-@WebServlet("/notice/post/start/admin")
+@WebServlet("/post/postStart")
 public class NoticePostStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class NoticePostStartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Notice n=new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
 		
-		request.getRequestDispatcher("/views/notice/NoticePost.jsp").forward(request, response);}
+		request.getRequestDispatcher("/views/qna/QnaPost.jsp").forward(request, response);}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

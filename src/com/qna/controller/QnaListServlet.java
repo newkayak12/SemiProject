@@ -1,4 +1,4 @@
-package com.notice.controller.noticelist;
+package com.qna.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.common.PageBar;
 import com.notice.model.service.NoticeService;
-import com.notice.model.vo.Notice;
+import com.qna.model.service.QnaService;
+import com.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class NoticeListServlet
+ * Servlet implementation class QnaListServlet
  */
-@WebServlet("/notice/list")
-public class NoticeListServlet extends HttpServlet {
+@WebServlet("/qna/qnaList")
+public class QnaListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListServlet() {
+    public QnaListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +35,7 @@ public class NoticeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 페이징 처리 
 		int cPage; // 현재페이지
-		int numPerpage; // 페이지 당 5개만 띄우도록 하겠음.
+		int numPerpage; // 페이지 당 7개만 띄우도록 하겠음.
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
@@ -46,22 +47,19 @@ public class NoticeListServlet extends HttpServlet {
 			numPerpage=5;
 		}
 		
-		List<Notice> list=new NoticeService().selectNoticeList(cPage,numPerpage);
+		List<Qna> list = new QnaService().selectQnaList(cPage, numPerpage);
 		request.setAttribute("list", list);
-		
 		// 페이지 바
-		int totalData=new NoticeService().selectNoticeCount();
-		String url = request.getContextPath() + "/notice/list";
+		int totalData = new QnaService().selectQnaCount();
+		String url = request.getContextPath()+"/qna/qnaList";
 		PageBar pageBar = new PageBar();
 		
-		String noticePageBar = pageBar.pageBar(cPage, numPerpage, totalData, url);
+		String qnaPageBar = pageBar.pageBar(cPage, numPerpage, totalData, url);
+		request.setAttribute("qnaPageBar",qnaPageBar);
+		request.getRequestDispatcher("/views/qna/QnaList.jsp").forward(request, response);
+						
+		}
 		
-		
-		request.setAttribute("noticePageBar",noticePageBar);
-		request.getRequestDispatcher("/views/notice/NoticeList.jsp")
-		.forward(request, response);
-		
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

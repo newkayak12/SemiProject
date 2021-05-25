@@ -6,23 +6,44 @@
 <%@ page import = "com.users.model.vo.Users" %>
 
 <% 
-	Users user = (Users) session.getAttribute("user");
-	int flag  = (Integer) request.getAttribute("flag");
-	Cart cart = null;
+	
+
+
+
+	Users user = null;
+	int flag  = 0;
+	String flag2 = null;
+	Object c = request.getAttribute("flag2");
+	
+	
+	if(c!=null){
+		flag2=(String) c;
+	}
+	Object j = request.getSession().getAttribute("user");
+	if(j!= null){
+		user = (Users) j;
+	}
+	
+	 
 	List<Cart> list = null;
+	Cart cart = null;
 	int result = 0;
-	if(flag ==0){
+	if(flag ==0 && flag2.equals("cart")){
 	/* 바로 구매 */
 	
 		 cart = (Cart) request.getAttribute("list");
-		request.setAttribute("list",cart);
+		/* request.setAttribute("list",cart); */
+		
+		
 	}else {
 		/*  장바구니 */
 		
 		list = (List<Cart>) request.getAttribute("list");
-		request.setAttribute("list", list);
+		/* request.setAttribute("list", list); */
 	}
 %>
+
+
 <main id = "orderplace-main">
 
 		<div id="orderplace-container">	
@@ -31,6 +52,8 @@
 				<hr>
 			</div>
 			<div id="product_info-container">
+				
+				
 				<table id="orderplace-table">
 				<tr>
 					<th>사진</th>
@@ -42,25 +65,29 @@
 					
 				</tr>
 				
-				<%if(flag ==0) {%>
+				
+				
+				<%if(flag ==0 && flag2.equals("cart")) {%>
+				<tr>
 					<td>
-						<img alt="" src="">
+						<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>">
 					</td>
 					<td>
-					<%-- 	<%=cart.getProductName() %> --%>
+					 	<%= cart.getCartName() %> 
 					</td>
 					<td>
-						<%-- <%=cart.getProductOptionSize() %> --%>
+						 <%=cart.getCartOptionSize() %> 
 					</td>
 					<td>
-						<%-- <%=cart.getProductOptionColor() %> --%>
+						<%=cart.getCartOptionColor() %>
 					</td>
 					<td>
-						<%-- <%=cart.getProductPrice() %> --%>
+						 <%=cart.getCartPrice()%>
 					</td>
 					<td>
-						<%-- <%=cart.getProductCount() %> --%>
+						 <%=cart.getCartStock() %> 
 					</td>
+				</tr>
 				
 				<%
 				
@@ -68,54 +95,66 @@
 						for(Cart temp : list){
 				%>
 					
+				<tr>
 					<td>
-						<%-- <%= temp.getProductName() %> --%>
+							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>">
 					</td>
 					<td>
-						<%-- <%= temp.getProductOptionSize() %> --%>
+					 	<%= temp.getCartName() %> 
 					</td>
 					<td>
-						<%-- <%= temp.getProductOptionColor() %> --%>
+						 <%=temp.getCartOptionSize() %> 
 					</td>
 					<td>
-						<%-- <%= temp.getProductPrice() %> --%>
+						<%=temp.getCartOptionColor() %>
 					</td>
 					<td>
-						<%-- <%= temp.getProductCount() %> --%>
+						 <%=temp.getCartPrice()%>
+					</td>
+					<td>
+						 <%=temp.getCartStock() %> 
 					</td>
 				
+				</tr>
 				
 				<%
 					}				
 						} %>
+						
+				
+				
 				<tr>
 					<td rowspan="5">
 					
-					총 가격 : 배송비 2500원 +
+					총 가격 : ( 배송비 ) 2500원 +
 					
 						
 						<% 
 						
-						if(flag ==0){
-						
-							/* result = cart.getProductPrice(); */
+						if(flag ==0 && flag2.equals("cart")){
+							result = 0;
+							 result = cart.getCartPrice(); 
 						%>
 						
-							<%-- 상품 가격 <%=cart.getProductPrice() %> = <%=result +2500 %>원 --%>
+							( 상품 가격 ) <%=cart.getCartPrice() %>원  = <%=result +2500 %> 원  
 							
 						<%}  else {
-							for(Cart c : list){
-							/* 	result += c.getProductPrice(); */
+							for(Cart l : list){
+								result = 0;
+								result += l.getCartPrice()*l.getCartStock();
 							}
 						%>
 							
-							상품 가격 <%=result %> = <%=result + 2500 %>원
+							( 상품 가격 ) <%=result %>원  = <%=result + 2500 %>원
 						
 						
 						<%} %>
 					</td>
 				</tr>
-				</table>
+				</table> 
+				
+				
+				
 			</div>
 			
 			<div id = "user_info-container">
@@ -128,15 +167,15 @@
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td><%=user.getUserAddr() %></td>
+						<td> <%=user.getUserAddr() %></td>
 					</tr>		
 					<tr>
 						<th>휴대전화</th>
-						<td><%=user.getUserPhone() %></td>
+						<td> <%=user.getUserPhone() %> </td>
 					</tr>		
 					<tr>
 						<th>이메일</th>
-						<td><%=user.getUserEmail() %></td>
+						<td> <%=user.getUserEmail() %></td>
 					</tr>								
 				</table>
 			</div>

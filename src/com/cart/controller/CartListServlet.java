@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cart.model.servcie.CartService;
+import com.cart.model.service.CartService;
 import com.cart.model.vo.Cart;
+
+
+
+
 
 @WebServlet("/cart/list")
 public class CartListServlet extends HttpServlet {
@@ -46,44 +50,51 @@ public class CartListServlet extends HttpServlet {
 				}
 				
 				
-		Cart cart = null;		
-		temp = temp.substring(1, temp.length());
-		
-		String [] temp2 = temp.split("#");
+//		HttpSession session = request.getSession();
+//		session.setAttribute("cartlist", temp);
 		
 		
-		//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
-			for(String t :temp2) {
-				String[] t2 = t.split("@");
+		Cart cart = null;
+		if(!temp.equals("")) {
+			temp = temp.substring(1, temp.length());
+			
+			String [] temp2 = temp.split("#");
+			
+			
+			//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
+				for(String t :temp2) {
+					String[] t2 = t.split("@");
+					
+					
+//					System.out.println("\n\n -------");
+//					System.out.println(t2[0]);  // pid ..
+//					System.out.println(t2[1]);  // size ..
+//					System.out.println(t2[2]);  // color ..
+//					System.out.println(t2[3]);  // price ..
+//					System.out.println(t2[4]);  // stock ..
+//					System.out.println(t2[5]);  // category
+					
+					
+					
+					
+					cart = new CartService().selectCart(t2[0], t2[5]);
+					cart.setCartStock(Integer.parseInt(t2[4]));
+					cart.setCartOptionColor(t2[2]);
+					cart.setCartOptionSize(t2[1]);
+					cart.setCartPrice(Integer.parseInt(t2[3]));
+					cart.setCategoryId(t2[5]);
+					
+					
+					
+					cartlist.add(cart);
+				}
+			
+
 				
-				
-//				System.out.println("\n\n -------");
-//				System.out.println(t2[0]);  // pid ..
-//				System.out.println(t2[1]);  // size ..
-//				System.out.println(t2[2]);  // color ..
-//				System.out.println(t2[3]);  // price ..
-//				System.out.println(t2[4]);  // stock ..
-//				System.out.println(t2[5]);  // category
-				
-				
-				
-				
-				cart = new CartService().selectCart(t2[0], t2[5]);
-				cart.setCartStock(Integer.parseInt(t2[4]));
-				cart.setCartOptionColor(t2[2]);
-				cart.setCartOptionSize(t2[1]);
-				cart.setCartPrice(Integer.parseInt(t2[3]));
-				cart.setCategoryId(t2[5]);
-				
-				
-				
-				cartlist.add(cart);
+
 			}
-		
+		}	
 			request.setAttribute("cartlist", cartlist);
-			
-		}
-			
 			request.getRequestDispatcher("/views/cart/cartlist.jsp").forward(request, response);
 	
 	}

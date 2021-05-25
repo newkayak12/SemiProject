@@ -42,7 +42,8 @@ public class Cartpost extends HttpServlet {
 			for(Cookie c : list) {
 				if(c.getName().equals("cartlist")) {
 					value=c.getValue();
-					 a = new Cookie("cartlist", c.getValue()+"#"+cartadd+"@"+category);
+					 a = new Cookie("cartlist", c.getValue()+"#"+cartadd);
+					 a.setPath(request.getContextPath()+"/");
 					 a.setMaxAge(60*60*24*365*100);
 					
 
@@ -56,8 +57,9 @@ public class Cartpost extends HttpServlet {
 		
 		if( value.equals("")) {
 			
-			a = new Cookie("cartlist","#"+cartadd+"@"+category);
+			a = new Cookie("cartlist","#"+cartadd);
 			a.setMaxAge(60*60*24*365*100);
+			a.setPath(request.getContextPath()+"/");
 		}
 		
 		
