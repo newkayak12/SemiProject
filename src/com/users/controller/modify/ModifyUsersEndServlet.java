@@ -29,7 +29,7 @@ public class ModifyUsersEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String userid=request.getParameter("userid");
-		String userpw=request.getParameter("userpw");
+		String userpw=request.getParameter("password");
 		String username=request.getParameter("username");
 		String useraddr=request.getParameter("useraddr");
 		String useremail=request.getParameter("useremail");
@@ -51,8 +51,11 @@ public class ModifyUsersEndServlet extends HttpServlet {
 		u.setUserZip(userzip);
 		u.setUserPhone(userphone);
 		
+		System.out.println(u);
+		
 		int result = service.updateUsers(u);
 		
+		request.getRequestDispatcher("/sign/signout").forward(request, response);
 		
 	}
 

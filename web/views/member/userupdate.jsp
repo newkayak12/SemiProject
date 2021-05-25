@@ -16,7 +16,7 @@
 				<input class="input_style join_input_id" type="text" name="userid" placeholder="id" value="<%=userid%>"><br>
 			
 				<p class="input_text">PassWord</p>
-				<input class="input_style" type="password" name="userpw" placeholder="pw" value="<%=user.getUserPwd() %>"><br>
+				<input class="input_style" type="password" name="password" placeholder="pw" value="<%=user.getUserPwd() %>"><br>
 			
 				<p class="input_text">PassWord check</p>
 				<input class="input_style" type="password" name="userpw-check" placeholder="pw-ck" value="<%=user.getUserPwd() %>"><br>

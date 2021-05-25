@@ -33,13 +33,15 @@
 
 			
 			<div>
-				<div class="serachid_txt">
+			
+			
+				<%-- <div class="serachid_txt">
 				<% if(users!=null) {%>
 					<p>찾으시는 아이디는 </p><p><%=users.getUserId()%></p> <p>입니다.</p><br>
 					<%} else { %>
 						<p>해당하는 아이디는 없습니다.</p><br>
 					<%} %>
-				</div>
+				</div> --%>
 				
 				<div class="bigBtn_syle serchid_login_btn">
 					<a href="<%= request.getContextPath() %>/sign/signin/start">로그인하기</a>

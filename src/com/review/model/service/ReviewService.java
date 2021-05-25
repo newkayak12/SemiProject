@@ -156,4 +156,58 @@ public class ReviewService {
 		return result;
 	}
 
+
+
+
+	public int modifyReviewComment(String commentNo, String commentContent) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.modifyReviewComment(conn, commentNo, commentContent);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+
+	public int deleteReviewComment(String commentNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.deleteReviewComment(conn, commentNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+	// 상품상세페이지에서 쓸 리뷰 조회
+	public List<Review> selectProductReview(String productid) {
+		
+		Connection conn = getConnection();
+		
+		List<Review> list = dao.selectProductReview(conn, productid);
+		
+		close(conn);
+		
+		return list;
+	}
+
 }

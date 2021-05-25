@@ -261,7 +261,7 @@ div#sort-container li:hover{
 }
 
 #product-table td{
-	text-align: center;
+	text-align: left;
 	vertical-align: center;
 	border: none !important;
 	font-size:24px;

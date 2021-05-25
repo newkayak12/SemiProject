@@ -53,7 +53,7 @@
 
 
 	/* 리뷰 목록*/
-	div#review_reviewListContainer{
+	main#main_reviewList>div#review_reviewListContainer{
 		width : 1366px;
 	}
 	
@@ -237,6 +237,44 @@
 		padding : 5px;
 		margin : 10px;
 	} */
+	
+	
+	
+	
+	/*  ------ productDetail.jsp에서 리뷰들어가는 부분 --------  */
+	
+	
+	
+	
+		/* 리뷰 목록*/
+	div#p_review_reviewListContainer{
+		width : 970px;
+	}
+	
+	table#p_reviewTable{
+		width : 1000px;
+		margin-left: auto; 
+		margin-right: auto;
+		padding : 0 0 0 0;
+		border-bottom : 1px solid gray;
+		border-top : 1px solid gray;
+	}
+	
+	table#p_reviewTable>tr>td{
+		padding : 30px;
+		border-style : none;
+	}
+	
+	.bolderText{
+		font-weight : bolder;
+	}
+	
+	.blackText{
+		color : black;
+	}
+	
+	
+	
 	
 	
 

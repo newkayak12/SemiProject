@@ -29,7 +29,7 @@
 			</div>
 			
 			
-			<div>
+			<%-- <div>
 				<div class="serachid_txt">
 				<% if(users!=null) {%>
 					<p>찾으시는 비밀번호는 </p><p><%=users.getUserPwd()%></p> <p>입니다.</p><br>
@@ -37,7 +37,7 @@
 						<p>해당하는 비밀번호는 없습니다.</p><br>
 					<%} %>
 				</div>
-				
+	 --%>			
 				<div class="bigBtn_syle serchid_login_btn">
 					<a href="<%= request.getContextPath() %>/sign/signin/start">로그인하기</a>
 				</div>

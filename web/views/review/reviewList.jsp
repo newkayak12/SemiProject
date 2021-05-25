@@ -9,7 +9,7 @@
     
 <%@ include file = "/views/common/header.jsp"%>
 
-	<main>
+	<main id="main_reviewList">
 
 		<div id="review_bestReviewerContainer">
 		

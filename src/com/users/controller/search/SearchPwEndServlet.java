@@ -40,10 +40,25 @@ public class SearchPwEndServlet extends HttpServlet {
 		Users userpwtemp=new UsersService().searchpw(u);
 		
 		
-		request.setAttribute("userpwtemp", userpwtemp);
-		request.getRequestDispatcher("/views/member/searchpw.jsp").forward(request, response);
+		/*
+		 * request.setAttribute("userpwtemp", userpwtemp);
+		 * request.getRequestDispatcher("/views/member/searchpw.jsp").forward(request,
+		 * response);
+		 */
 		
+		String msg="";
+		String loc="";
 		
+		if(userpwtemp!=null) {
+			request.setAttribute("msg", "찾아시는 비밀번호는 "+userpwtemp.getUserPwd()+"입니다.");
+			request.setAttribute("loc", "/sign/signin/start");
+		}
+		else {
+			request.setAttribute("msg", "아이디 또는 번호가 틀렸습니다.");
+			request.setAttribute("loc", "/search/searchid/start");
+		}
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 		
 		
