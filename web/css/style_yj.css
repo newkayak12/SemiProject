@@ -37,7 +37,7 @@
 	}
 	
 	.blueText{
-		color : blue;
+		color : rgb(9, 74, 169);
 		font-weight : bolder;
 		font-size : 20px;
 	}
@@ -160,12 +160,26 @@
 		margin-left : auto;
 		margin-right : auto;
 		margin-top : 50px;
-		margin-bottom : 50px;
+		margin-bottom : 30px;
 		
 		padding : 30px;
 		
 		border : 1px solid gray;
 		
+	}
+	
+	div#review_comment_outter_container{
+		width : 900px;
+		height : fit-content;
+		
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : 0px;
+		margin-bottom : 50px;
+		
+		padding : 30px;
+		
+		border : 1px solid gray;
 	}
 	
 	div#reviewDetail-inner-container{
@@ -197,39 +211,32 @@
 		margin-bottom : 50px;
 	}
 	
+	/* css안먹어서 태그에 직접 작성함 */
+	/* div#reviewDetail-buttons-container{
+		display: flex;
+    	flex-direction: row;
+    	justify-content: flex-end;
+	} */
 	
-	
-	div#reviewDetail-buttons button{
+	div#reviewDetail-buttons-container>button{
 		width : 70px;
 		height : 35px;
-		margin-left : 5px;
-		margin-right : 5px;
+		margin-left : 3px;
+		margin-right : 3px;
+		border-radius : 0;
+		background-color : white;
+		
+	} 
+	
+	div#review_reply_list>table{
+		width : 900px; 
 	}
 	
-		/* HelloMVC 댓글테이블*/
-	    /* table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
-	    table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
-	    table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
-	    table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
-	    table#tbl-comment button.btn-reply{display:none;}
-	    table#tbl-comment button.btn-delete{display:none;}
-	    table#tbl-comment button.btn-update{display:none;}
-	    
-	    table#tbl-comment tr:hover {background:lightgray;}
-	    
-	    table#tbl-comment tr:hover button.btn-reply{display:inline;}
-	    table#tbl-comment tr:hover button.btn-delete{display:inline;}
-	    table#tbl-comment tr:hover button.btn-update{display:inline;}
-	    
-	    table#tbl-comment tr.level2 {color:gray; font-size: 14px;}
-	    
-	    table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
-	    table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
-	    
-	    table#tbl-comment tr.level2 td:first-of-type{padding-left:100px;}
-	    
-	    table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
-	    table#tbl-comment tr.level2 sub.comment-date {color:#ff9c8a; font-size:10px} */
-	   
+	/* div#review_reply_list tr{
+		border : 1px solid gray;
+		padding : 5px;
+		margin : 10px;
+	} */
+	
 	
 
