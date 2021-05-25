@@ -13,6 +13,7 @@
 			<span><a class="serch_btn" href="<%= request.getContextPath()%>/cart/list">장바구니</a></span>
 			<span><a class="serch_btn" href="<%= request.getContextPath()%>/review/list">나의게시글</a></span>
 			<span><a class="serch_btn" href="<%= request.getContextPath()%>/sign/modify/start?userId=<%=userid%>">회원정보수정</a></span>
+			<span><a class="serch_btn" href="<%= request.getContextPath()%>/sign/signoff/start?userId=<%=userid%>">회원탈퇴</a></span>
 		
 		</div>
 		

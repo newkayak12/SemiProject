@@ -13,6 +13,29 @@ public class UsersService {
 	
 	private UsersDao dao = new UsersDao();
 	
+	public int deleteusers(String userId, String userPwd) {
+		Connection conn=getConnection();
+		int result = dao.deleteusers(conn, userId, userPwd);
+		
+		if(result!=0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		System.out.println("서비스?");
+		close(conn);
+		return result;
+	}
+	
+	
+	public int checkid(String userid) {
+		Connection conn=getConnection();
+		int result = dao.checkid(conn,userid);
+		close(conn);
+		return result;
+	}
+	
 	
 	public Users selectUsersupdate(String userId) {
 		Connection conn=getConnection();
@@ -57,6 +80,9 @@ public class UsersService {
 			close(conn);
 			return result;
 	}
+	
+	
+	
 	
 	public Users searchid(Users u) {
 		Connection conn=getConnection();

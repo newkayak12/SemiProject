@@ -8,7 +8,7 @@ import java.sql.Connection;
 import com.cart.model.dao.CartDao;
 import com.cart.model.vo.Cart;
 
-public class Cartservice {
+public class CartService {
 
 	public Cart selectCart(String pid, String category) {
 		

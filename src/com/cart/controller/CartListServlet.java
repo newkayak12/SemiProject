@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import com.cart.model.servcie.Cartservice;
+import com.cart.model.servcie.CartService;
 import com.cart.model.vo.Cart;
 
 @WebServlet("/cart/list")
@@ -69,7 +68,7 @@ public class CartListServlet extends HttpServlet {
 				
 				
 				
-				cart = new Cartservice().selectCart(t2[0], t2[5]);
+				cart = new CartService().selectCart(t2[0], t2[5]);
 				cart.setCartStock(Integer.parseInt(t2[4]));
 				cart.setCartOptionColor(t2[2]);
 				cart.setCartOptionSize(t2[1]);
