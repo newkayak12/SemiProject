@@ -68,6 +68,7 @@ public class CartUpdate extends HttpServlet {
 			
 //			System.out.println("update "+cookiecontent);
 			Cookie cookie = new Cookie("cartlist", cookiecontent);
+			cookie.setPath(request.getContextPath()+"/");
 			cookie.setMaxAge(60*60*24*365*100);
 			response.addCookie(cookie);
 			

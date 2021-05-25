@@ -277,6 +277,15 @@
 	
 	
 	const fn_buynow=()=>{
+		let pid = "<%= product.get(0).getProductId()%>";
+		let size =$("#product_size-select").val();
+		let color= $("#product_color-select").val();
+		<%-- let pname = "<%=product.get(0).getProductName()%>"; --%>
+		let price = "<%=product.get(0).getProductPrice()%>";
+		let stock = $("#product_stock").val();
+		let category = "<%= product.get(0).getCategoryId()%>";
+		
+		location.assign("<%=request.getContextPath()%>/order/place?pid="+pid+"&size="+size+"&color="+color+"&price="+price+"&stock="+stock+"&category="+category+"&flag=page");
 		
 		
 	}
