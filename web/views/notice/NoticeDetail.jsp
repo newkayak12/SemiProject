@@ -32,9 +32,9 @@
             <td><%=n.getnDate() %></td>
         </tr>
         <tr>
-        	<td colspan = "2" style="border : 1px solid grey;">
-        		<textarea rows="30" cols="90" class="content-background" name="noticeContent"><%=n.getnContent() %></textarea>
-        	<td>
+        	<td colspan = "2">
+        		<div class="content-background" name="noticeContent" style="border : 1px solid grey;"><%=n.getnContent() %></div>
+        	</td>
         </tr>
         <tr>
             <td colspan="2" style="text-align : end;">

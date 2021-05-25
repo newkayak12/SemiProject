@@ -67,6 +67,8 @@ public class NoticeService {
 	public int modifyNotice(Notice n) {
 		Connection conn=getConnection();
 		int result=dao.modifyNotice(conn,n);
+		System.out.println("serv "+n);
+		
 		if(result > 0) {
 			commit(conn);
 		} else {

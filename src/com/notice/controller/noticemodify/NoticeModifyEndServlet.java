@@ -35,30 +35,22 @@ public class NoticeModifyEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Notice n=new Notice();
-		
-//		n.setnTitle(request.getParameter("noticeTitle"));
+		n.setnSeq(request.getParameter("noticeno"));
+		n.setnTitle(request.getParameter("noticeTitle"));
 //		n.setUserId(request.getParameter("noticeWriter"));
-		
-		String Title = request.getParameter("noticeTitle");
-		String userId = request.getParameter("noticeWriter");
-		System.out.println(Title);
-		System.out.println(userId);
-		
+
 		
 		// 날짜가져오기
-		try {
-			java.util.Date selectedDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("noticeDate")); 
-		    java.sql.Date dateSelected = new java.sql.Date(selectedDate.getTime());
-			//n.setnDate(new Date(Date.parse(request.getParameter("noticeDate"))));
-		    n.setnDate(dateSelected);
-		    
-		    System.out.println(dateSelected);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-
-		n.setnContent(request.getParameter("noticeContent"));
+//		try {
+//			java.util.Date selectedDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("noticeDate")); 
+//		    java.sql.Date dateSelected = new java.sql.Date(selectedDate.getTime());
+//		    n.setnDate(dateSelected);
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
 		
+		n.setnContent(request.getParameter("noticeContent"));
+
 		int result=new NoticeService().modifyNotice(n);
 		
 		String msg="";

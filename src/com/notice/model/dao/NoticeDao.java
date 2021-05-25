@@ -145,19 +145,23 @@ private Properties prop=new Properties();
 
 	public int modifyNotice(Connection conn, Notice n) {
 		PreparedStatement pstmt=null;
+		
+		System.out.println("dao "+n);
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("modifyNotice"));
 			pstmt.setString(1, n.getnTitle());
-			pstmt.setString(2, "testusers");
-			pstmt.setDate(3, n.getnDate());
-			pstmt.setString(4, n.getnContent());
-			pstmt.setString(5, n.getnSeq());
+//			pstmt.setDate(2, n.getnDate());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setString(3, n.getnSeq());
+			
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
-		}return result;
+		}
+		System.out.println("dao "+ result);
+		return result;
 	}
 }
