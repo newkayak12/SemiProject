@@ -15,7 +15,7 @@
 </style>
 
 <div id="notice-detail-container">
-	<span class = "notice"><%=n.getnTitle() %></span>
+	<span class = "Menu-name"><%=n.getnTitle() %></span>
 	
         <table id="tbl-deatil-notice">
         <tr>

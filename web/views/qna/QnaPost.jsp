@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="com.notice.model.vo.Notice, java.util.Date, java.text.SimpleDateFormat" %>
+<%@ page import ="com.qna.model.vo.Qna, java.util.Date, java.text.SimpleDateFormat" %>
 
-   
 <%@ include file="/views/common/header.jsp"%> 
 
 <%
@@ -11,33 +10,36 @@
 	    String today = sf.format(now);
 %>
 
-<div id="post-container">
-	<span class = "Menu-name">공지사항 작성</span>
-    <form action="<%=request.getContextPath() %>/notice/post/end/admin" method="post">
+<div id="qnaPost-container">
+	<span class = "Menu-name">상품문의</span>
+    <form action="<%=request.getContextPath() %>/qna/post/end" method="post">
   
-        <table id="tbl-post">
+        <table id="tbl-qnaPost">
 	        <tr>
 	            <th class="blue border-white">TITLE</th>
 	            <td>
-	            	<input type="text" name="noticeTitle" id="noticeTitle" style="height : 10px;" required>
+	            	<input type="text" name="qnaTitle" id="qnaTitle" style="height : 10px;" required>
 	            </td>
 	        </tr>
 	        <tr>
 	            <th class="blue border-white">WRITER</th>
 	            <td>
-	            	<input type="text" name="noticeWriter" id="noticeWrite" 
-	            	value="Kleidung" style="height : 10px;" readonly>
+	            	<input type="text" name="qnaWriter" id="qnaWrite" style="height : 10px;" required>
 	            </td>
 	        </tr>
 	        
 	        <tr>
 	            <th class="blue border-white">DATE</th>
-	            <td><input type="text" name="noticeDate" value="<%=today %>" style="height : 10px;"></td>
+	            <td><input type="text" name="qnaDate" value="<%=today %>" style="height : 10px;"></td>
 	        </tr>
 	 
 	        <tr>
 	            <td colspan = "2" style="border : 1px solid grey;">
-	            	<textarea rows="30" cols="90" class="content-background" name="noticeContent"></textarea>
+	            	<textarea rows="30" cols="90" class="content-background" name="qnaContent">
+	            		성함 : <br>
+	            		연락처 : <br>
+	            		주문번호 : <br>
+	            	</textarea>
 	            </td>
 	        </tr>
 	        <tr>
@@ -48,12 +50,12 @@
 	        </tr>
     	</table>
     </form>
-    </div>
-    
-    <script>
+</div>
+
+ <script>
     	const goBack=()=>{
     		window.history.back();
     	}
-    </script>
-
-<%@include file="/views/common/footer.jsp"%>
+ </script>
+ 
+ <%@include file="/views/common/footer.jsp"%>

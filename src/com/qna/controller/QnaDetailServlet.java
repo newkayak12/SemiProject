@@ -1,4 +1,4 @@
-package com.notice.controller.noticepost;
+package com.qna.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.notice.model.vo.Notice;
+import com.qna.model.service.QnaService;
+import com.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class NoticePostStartServlet
+ * Servlet implementation class QnaDetailServlet
  */
-@WebServlet("/post/postStart")
-public class NoticePostStartServlet extends HttpServlet {
+@WebServlet("/qna/qnadetail")
+public class QnaDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePostStartServlet() {
+    public QnaDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +30,12 @@ public class NoticePostStartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Notice n=new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
+		String no = request.getParameter("nSeq");
+		Qna q = new QnaService().selectQna(no);
+		request.setAttribute("Qna", q);
 		
-		request.getRequestDispatcher("/views/qna/QnaPost.jsp").forward(request, response);}
+		request.getRequestDispatcher("/views/qna/qnaDetail.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
