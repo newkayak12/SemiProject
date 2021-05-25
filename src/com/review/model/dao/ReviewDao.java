@@ -214,7 +214,7 @@ public class ReviewDao {
 	}
 
 
-
+// 푸시 되나?
 	public int deleteReview(Connection conn, String reviewNo) {
 		
 		PreparedStatement pstmt = null;
