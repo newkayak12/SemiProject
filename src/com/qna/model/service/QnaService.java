@@ -1,7 +1,9 @@
 package com.qna.model.service;
 
 import static com.common.JDBCTemplate.close;
+import static com.common.JDBCTemplate.commit;
 import static com.common.JDBCTemplate.getConnection;
+import static com.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -31,6 +33,22 @@ public class QnaService {
 	public Qna selectQna(String no) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int postQna(Qna q) {
+		Connection conn = getConnection();
+
+		int result = dao.postQna(conn, q);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 	
 

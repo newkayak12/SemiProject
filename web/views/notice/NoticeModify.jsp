@@ -21,20 +21,20 @@
 	        <tr>
 	            <th class="blue border-white">TITLE</th>
 	            <td>
-	            	<input type="text" name="noticeTitle" id="noticeTitle" value="<%=n.getnTitle() %>" style="height : 15px;" required>
+	            	<input type="text" name="noticeTitle" id="noticeTitle" value="<%=n.getnTitle() %>" style="height : 15px; width : 250px;" required>
 	            </td>
 	        </tr>
 	        <tr>
 	            <th class="blue border-white">WRITER</th>
 	            <td>
 	            	<input type="text" name="noticeWriter" id="noticeWrite" 
-	            	value="Kleidung" style="height : 15px;" readonly>
+	            	value="Kleidung" style="height : 15px; width : 250px;" readonly>
 	            </td>
 	        </tr>
 	        
 	        <tr>
 	            <th class="blue border-white">DATE</th>
-	            <td><input type="text" name="noticeDate" value="<%=today %>"></td>
+	            <td><input type="text" name="noticeDate" value="<%=today %>"  style="height : 15px; width : 250px;" ></td>
 	        </tr>
 	 
 	        <tr>

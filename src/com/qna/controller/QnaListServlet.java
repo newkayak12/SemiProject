@@ -35,7 +35,7 @@ public class QnaListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 페이징 처리 
 		int cPage; // 현재페이지
-		int numPerpage; // 페이지 당 7개만 띄우도록 하겠음.
+		int numPerpage; // 페이지 당 5개만 띄우도록 하겠음.
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {

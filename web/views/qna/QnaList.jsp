@@ -17,14 +17,13 @@
 		<table id="qna-table">
 			<thead class="thead-color">
 				<th>NO</th>
-				<th>IMAGE</th>
 				<th>TITLE</th>
 				<th>WRITER</th>
 				<th>DATE</th>
 			</thead>
 			
 			<%if(list.isEmpty()){ %>
-        		<td colspan="6">조회하실 Q&A가 없습니다.</td>
+        		<td colspan="5">조회하실 Q&A가 없습니다.</td>
         	<%}
 				else{
         		for(Qna q : list){%>
@@ -34,12 +33,7 @@
 						<%=q.getqSeq() %>
 					</a> 
 				</td>
-				
-				<td>
-					<img src="../images/dummy.jpg" alt="" style="width : 50px; height : 60px;">
-				</td>
-				
-				
+									
 				<td class="notice-title">
 					<a href = "<%=request.getContextPath() %>/qna/qnadetail?nSeq=<%=q.getqSeq()%></a>">
 						<%=q.getqTitle() %>
@@ -72,10 +66,10 @@
 <script>
 	const qnaPost=()=>{
 		if(<%= userid != null && checkAdmin.equals("0")%>){
-			location.assign("<%=request.getContextPath() %>/post/postStart");	
+			location.assign("<%=request.getContextPath() %>/qna/qnaPostStart");	
 		}
 		else{
-			if(confirm("회원에게만 글쓰기 권한이 있습니다.")){
+			if(confirm("일반회원에게만 글쓰기 권한이 있습니다.")){
 				location.replace("<%=request.getContextPath()%>/views/member/login.jsp");
 			}
 			else{

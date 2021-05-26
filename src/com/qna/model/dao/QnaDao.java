@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.notice.model.vo.Notice;
 import com.qna.model.vo.Qna;
 
 
@@ -43,24 +42,21 @@ public class QnaDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Qna q = new Qna();
-				q.setqSeq(rs.getString("q_p_seq"));
+				q.setqSeq(rs.getString("q_seq"));
 				q.setUserId(rs.getString("user_id"));
 				q.setqTitle(rs.getString("q_title"));
 				q.setqContents(rs.getString("q_contents"));
 				q.setqFile(rs.getString("q_file"));
 				q.setqDate(rs.getDate("q_date"));
-				q.setcId(rs.getString("c_id"));
-				q.setpId(rs.getString("p_id"));
-				q.setpName(rs.getString("p_name"));
 				list.add(q);
 			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
+		}	catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
 	}
 
 
@@ -78,5 +74,34 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}return result;
+	}
+
+
+	public int postQna(Connection conn, Qna q) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("postQna"));
+			pstmt.setString(1, q.getUserId()); 
+			pstmt.setString(2, q.getqTitle());
+			pstmt.setString(3, q.getqContents());
+			pstmt.setString(4, q.getqFile());
+			pstmt.setDate(5, q.getqDate());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

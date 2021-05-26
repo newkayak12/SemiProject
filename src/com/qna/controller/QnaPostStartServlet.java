@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class QnaPostStartServlet
  */
-@WebServlet("/post/poststart")
+@WebServlet("/qna/qnaPostStart")
 public class QnaPostStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,7 @@ public class QnaPostStartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		// 화면 전환용
 		request.getRequestDispatcher("/views/qna/QnaPost.jsp").forward(request, response);
 	}
 
