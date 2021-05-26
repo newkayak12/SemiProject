@@ -211,7 +211,7 @@ public class ProductDao{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -220,6 +220,55 @@ public class ProductDao{
 		
 		
 		return p;
+	}
+
+	
+	
+	
+	public List<Product> searchProduct(Connection conn, String keyword) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		
+		List<Product> searchResult = new ArrayList(); 
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("searchProduct"));
+			
+			pstmt.setString(1, "%" + keyword + "%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Product p = new Product();
+				
+				p.setProductId(rs.getInt("p_id"));
+				p.setCategoryId(rs.getString("c_id"));
+				p.setProductName(rs.getString("p_name"));
+				p.setProductPrice(rs.getString("p_price"));
+				p.setProductFile(rs.getString("p_file"));
+				p.setProductFileDetail1(rs.getString("p_file_detail1"));
+				p.setProductFileDetail2(rs.getString("p_file_detail2"));
+				p.setProductExplain(rs.getString("p_explain"));
+				p.setProductViewCount(rs.getInt("p_view_count"));
+				
+				searchResult.add(p);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return searchResult;
 	}
 		
 }

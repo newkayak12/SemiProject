@@ -21,6 +21,7 @@
 		heart.classList.toggle("active");
 	}
 </script>
+
 	<nav class="category-bar">
 		<ul id="category-bar">
 			<li><a href= "<%=request.getContextPath()%>/product/list?category=all">ALL</a></li>
@@ -30,9 +31,17 @@
 			<li><a href= "<%=request.getContextPath()%>/product/list?category=c04">ETC</a></li>
 		</ul> 
 	</nav>
+	
 <main id ="category-container">
 
-	
+	<div id="search-product-container">
+		<ul>
+			<li>
+				<input type="text">
+				<button id="search-product">검색</button>
+			</li>
+		</ul>
+	</div>
 	
 	<div id="sort-container">
 		<ul>
@@ -87,12 +96,21 @@
 	<div id="pageBar">
 		<%=request.getAttribute("pageBar") %>
 	</div>
-		
-		
-	
-	
-	
-	
-	
+
 </main>
+
+
+<script>
+	$("#search-product").click( (e) => {
+		
+		const keyword = $(e.target).prev().val();
+		
+				/* console.log(keyword); */
+				
+		location.replace("<%=request.getContextPath()%>/product/searchProductStart?keyword=" + keyword + "")
+		
+	} );
+</script>
+
+
 <%@include file="/views/common/footer.jsp" %>
