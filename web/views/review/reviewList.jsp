@@ -5,6 +5,8 @@
 	String reviewPageBar = (String)request.getAttribute("reviewPageBar");
 
 	List<Review> reviewList = (List<Review>)request.getAttribute("reviewList");
+	
+	List<Review> bestReviewList = (List<Review>)request.getAttribute("bestReviewList");
 %>    
     
 <%@ include file = "/views/common/header.jsp"%>
@@ -20,13 +22,27 @@
 				<table style="margin-left: auto; margin-right: auto; width : 1000px;">
 					
 					<tr>
-						<td>
-							<p class="blueText">1</p>
-							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
-							<p class="blueText">상품이름</p>
-							<p>price : 가격</p>
-						</td>
+						<% if( bestReviewList != null && bestReviewList.size() != 0 ) { %>
 						
+							<% int num = 1; %>
+						
+							<% for(Review br : bestReviewList) { %>
+							
+								<td>
+									<p class="blueText"><%=num %></p>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=br.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=br.getReviewFile()%>.jpg" width="250px" height="350px"></a>
+									<p class="blueSmallText"><%=br.getProductName() %></p>
+									<p class="grayText"><%=br.getUserId()%>님</p>
+									<%-- <p>price : <%=br.get %></p> --%>
+								</td>
+							
+							<% num++; %>	
+								
+							<% } %>
+							
+						<% } %>
+						
+						<%-- 
 						<td>
 							<p class="blueText">2</p>
 							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
@@ -40,6 +56,8 @@
 							<p class="blueText">상품이름</p>
 							<p>price : 가격</p>
 						</td>
+						 --%>
+						
 					</tr>
 					
 				</table>
@@ -80,13 +98,14 @@
 									<a class="blackText" href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>">
 										<p class="bolderText"><%=r.getProductName() %></p>
 										<p><%=r.getReviewTitle() %></p>
-										<p><%=r.getUserId() %>님</p>
+										<p class="grayText"><%=r.getUserId() %>님</p>
+										<p class="grayText">조회수 <%=r.getReviewCount() %></p>
 									</a>
 								</td>
 								
 								<!-- 리뷰이미지 -->
 								<td width="200px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>" width="150px" height="200px"></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>.jpg" width="150px" height="200px"></a>
 								</td>
 								
 								<%-- 좋아요 기능 뺄수도? <td>

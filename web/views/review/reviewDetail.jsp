@@ -5,8 +5,14 @@
 <%@ include file = "/views/common/header.jsp"%>
 
 <%
-	List<Review> reviewList = (List<Review>)request.getAttribute("reviewList");
+	List<Review> review = (List<Review>)request.getAttribute("review");
 	
+	if(review != null && review.size() != 0) {
+		for(Review r : review) {
+			System.out.println("reviewDetail.jsp에서 테스트, r : " + r);
+		}
+	}
+
 %>
 
 
@@ -77,19 +83,21 @@
 		<div id="reviewDetail-inner-container">
 		
 			<p>
-				<%=reviewList.get(0).getReviewTitle() %> 
-				<br><br>
-				POSTED BY : <%=reviewList.get(0).getUserId() %>
+				<%=review.get(0).getReviewTitle() %> 
+				<br><br><br><br><br><br>
+				POSTED BY : <%=review.get(0).getUserId() %>
+				<br>
+				<%=review.get(0).getReviewDate()%> | 조회수 <%=review.get(0).getReviewCount() %>
 			</p>
 			
 			
 			<!-- 상품이미지, 상품정보 div -->
 			<div id="reviewDetail-inner2-container">
 			
-				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=reviewList.get(0).getProductId()%>&category=<%=reviewList.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" width="110px" height="160px"></a>
+				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=review.get(0).getProductId()%>&category=<%=review.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=review.get(0).getProductFile()%>" width="110px" height="160px"></a>
 
 				<br>
-				<span><%=reviewList.get(0).getProductName() %></span>
+				<span><%=review.get(0).getProductName() %></span>
 				
 			</div>
 			
@@ -100,15 +108,15 @@
 		 <div id="reviewDetail-userImage_reviewContents">
 		 
 		 
-		 		<img src="<%=request.getContextPath() %>/upload/review/<%=reviewList.get(0).getReviewFile()%>">
+		 		<img src="<%=request.getContextPath() %>/upload/review/<%=review.get(0).getReviewFile()%>.jpg">
 		 	
-		 		<div><%=reviewList.get(0).getReviewContents() %></div>
+		 		<div><%=review.get(0).getReviewContents() %></div>
 		 	
 		 	
 		 	 	<!-- 수정, 삭제 버튼 div -->
 				<div id="reviewDetail-buttons-container" style="display: flex; justify-content: flex-end;">
 				
-					<% if( userid != null && (userid.equals("admin") || userid.equals(reviewList.get(0).getUserId()) ) ) { %>
+					<% if( userid != null && (userid.equals("admin") || userid.equals(review.get(0).getUserId()) ) ) { %>
 						<button onclick="fn_review_update();" style="width:70px; height:35px;">수정</button>
 						<button onclick="fn_review_delete();" style="width:70px; height:35px;">삭제</button>
 					<% } %>
@@ -129,30 +137,35 @@
 		 	<div id="review_reply_list">
 		 	
 		 		<table>
-		 			<% if(reviewList != null || !reviewList.isEmpty() ) { %>
+		 			<% if(review != null || !review.isEmpty() ) { %>
 		
-						<% for(Review r : reviewList) { %>
-			
-							<tr>
-		 						<td>
-		 							<span><strong><%=r.getCommentUserId() %></strong></span>
-		 							<span><%=r.getReviewCommentDate()%></span>
-		 							
-		 										
-		 							<% if(userid != null && userid.equals(r.getCommentUserId())) { %>
-		 							
-		 								<button class="review_comment_modify" >수정</button>
-		 								<button class="review_comment_delete">삭제</button>
-		 						
-		 										<input  type ="hidden"  value ="<%=r.getReviewCommentNo()%>">
-		 										<input  type ="hidden"  value ="<%=r.getReviewNo()%>">
-		 							
-		 							<% } %>
+						<% for(Review r : review) { %>
+						
+							<% if( r.getCommentUserId() != null && r.getReviewComment() != null && r.getReviewCommentDate() != null && r.getReviewCommentNo() != null) { %>
+				
+								<tr>
+			 						<td>
+			 							<span><strong><%=r.getCommentUserId() %></strong></span>
+			 							<span><%=r.getReviewCommentDate()%></span>
+			 							
+			 										
+			 							<% if(userid != null && userid.equals(r.getCommentUserId())) { %>
+			 							
+			 								<button class="review_comment_modify" >수정</button>
+			 								<button class="review_comment_delete">삭제</button>
+			 						
+			 										<input  type ="hidden"  value ="<%=r.getReviewCommentNo()%>">
+			 										<input  type ="hidden"  value ="<%=r.getReviewNo()%>">
+			 							
+			 							<% } %>
 		 							
 		 							<br>
+		 							
 		 							<p id="rcommentContent"><%=r.getReviewComment() %></p>
 		 						</td>
 		 					</tr>
+		 					
+		 					<% } %>
 			
 						<% } %>
 		
@@ -175,7 +188,7 @@
 		 			 
 		 			  <!-- hidden으로 받을 값 : 댓글을 작성한 사용자의 아이디, 해당하는 리뷰번호  -->
 		 			 <input type="hidden" name="userId" id="userId" value="<%=userid%>">
-		 			 <input type="hidden" name="reviewNo" id="reviewNo" value="<%=reviewList.get(0).getReviewNo()%>">
+		 			 <input type="hidden" name="reviewNo" id="reviewNo" value="<%=review.get(0).getReviewNo()%>">
 		 			 
 		 			 <textarea name="reviewCommentContent" id="reviewCommentContent" rows="5" cols="110"></textarea>
 		 			 
@@ -198,7 +211,7 @@
 	// 리뷰 수정
 	const fn_review_update = () => {
 		
-		location.replace("<%=request.getContextPath()%>/review/modify/start?no=<%=reviewList.get(0).getReviewNo()%>");
+		location.replace("<%=request.getContextPath()%>/review/modify/start?no=<%=review.get(0).getReviewNo()%>");
 	}
 	
 	
@@ -212,7 +225,7 @@
 		
 		if(result) {
 			
-			location.replace("<%=request.getContextPath()%>/review/delete?no=<%=reviewList.get(0).getReviewNo()%>");
+			location.replace("<%=request.getContextPath()%>/review/delete?no=<%=review.get(0).getReviewNo()%>");
 		}
 		
 	}

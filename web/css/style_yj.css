@@ -42,6 +42,12 @@
 		font-size : 20px;
 	}
 	
+	.blueSmallText{
+		color : rgb(9, 74, 169);
+		font-weight : bolder;
+		font-size : 15px;
+	}
+	
 	div p.section_title {
 		text-align : center;
 		color : orange;
@@ -87,6 +93,12 @@
 		width : 1366px;
 		margin : 0 0 50px 0;
 		
+	}
+	
+	
+	.grayText{
+		color : gray;
+		font-size : 13px;
 	}
 	
 	
@@ -208,7 +220,7 @@
 	/* 사용자가 업로드한 사진과 내용 */
 	div#reviewDetail-userImage_reviewContents{
 		margin-top : 50px;
-		margin-bottom : 50px;
+		margin-bottom : 0px;
 	}
 	
 	/* css안먹어서 태그에 직접 작성함 */
