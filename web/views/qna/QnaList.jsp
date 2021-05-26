@@ -29,13 +29,11 @@
         		for(Qna q : list){%>
 			<tr>
 				<td>
-					<a href = "<%=request.getContextPath() %>/qna/qnadetail?nSeq=<%=q.getqSeq()%></a>">
-						<%=q.getqSeq() %>
-					</a> 
+					<%=q.getqSeq() %> 
 				</td>
 									
 				<td class="notice-title">
-					<a href = "<%=request.getContextPath() %>/qna/qnadetail?nSeq=<%=q.getqSeq()%></a>">
+					<a href = "<%=request.getContextPath() %>/qna/qnadetail?qSeq=<%=q.getqSeq()%>">
 						<%=q.getqTitle() %>
 					</a>
 				</td>

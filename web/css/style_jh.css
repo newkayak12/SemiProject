@@ -251,4 +251,40 @@ table#tbl-qnaPost td:nth-of-type(6){
 	text-align : right !important;
 }
 
+/*------------- QnaDetail.jsp -----------------*/
 
+div#qna-detail-container{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 120px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
+}
+
+table#qna-deatil{
+	margin : 30px auto;
+	width : 700px;
+	border-collapse: collapse;
+}
+
+table#qna-deatil td{
+	border-bottom : 1px solid grey;
+	width : 500px;
+	text-align : left;
+	padding : 10px;
+}
+
+table#qna-deatil th{
+	border: 1px solid white;	
+}
+
+table#qna-deatil-notice td{
+	width : 500px;
+	text-align : left;
+	padding : 10px;
+}
+input[type="file" i] {
+    appearance: none;
+}

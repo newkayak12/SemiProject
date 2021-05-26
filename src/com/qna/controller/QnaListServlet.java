@@ -49,6 +49,8 @@ public class QnaListServlet extends HttpServlet {
 		
 		List<Qna> list = new QnaService().selectQnaList(cPage, numPerpage);
 		request.setAttribute("list", list);
+		
+		
 		// 페이지 바
 		int totalData = new QnaService().selectQnaCount();
 		String url = request.getContextPath()+"/qna/qnaList";

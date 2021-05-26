@@ -5,6 +5,7 @@ import static com.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.qna.model.vo.Qna;
+import com.qna.model.vo.QnaComment;
 
 
 
@@ -47,7 +49,7 @@ public class QnaDao {
 				q.setqTitle(rs.getString("q_title"));
 				q.setqContents(rs.getString("q_contents"));
 				q.setqFile(rs.getString("q_file"));
-				q.setqDate(rs.getDate("q_date"));
+				q.setqDate(rs.getDate("q_date"));				
 				list.add(q);
 			}
 		}	catch(SQLException e) {
@@ -104,4 +106,76 @@ public class QnaDao {
 		
 		return result;
 	}
+
+
+	public Qna selectQna(Connection conn, String no) {
+		
+		PreparedStatement pstmt=null;
+		
+		ResultSet rs=null;
+		
+		Qna q=null;
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectQna"));
+			pstmt.setString(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				q = new Qna();
+				q.setqSeq(rs.getString("q_seq"));
+				q.setUserId(rs.getString("user_id"));
+				q.setqTitle(rs.getString("q_title"));
+				q.setqContents(rs.getString("q_contents"));
+				q.setqFile(rs.getString("q_file"));
+				q.setqDate(rs.getDate("q_date"));
+
+//				private String qCommentSeq; // 댓글번호
+//				private String qCommentContens; // 댓글 내용
+//				private Date qCommentDate;
+				
+				q.setqCommentSeq(rs.getString("q_c_seq"));
+				q.setqCommentContens(rs.getString("q_c_comment"));
+				q.setqDate(rs.getDate("q_c_date"));
+				
+				}
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}return q;
+	}
+
+
+	public List<QnaComment> selectQnaComment(Connection conn, String qRef) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<QnaComment> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectQnaComment"));
+			pstmt.setString(1, qRef);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				QnaComment qc = new QnaComment();
+				qc.setqSeq(rs.getString("q_seq"));
+				qc.setUserId(rs.getString("user_id"));
+				qc.setqComment(rs.getString("q_c_comment"));
+				qc.setqDate(rs.getDate("q_c_date"));
+				qc.setqRef(rs.getString("q_c_ref"));
+				
+				list.add(qc);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
+
+
+
+
 }

@@ -11,11 +11,17 @@ public class Qna {
 	private String qContents;
 	private Date qDate;
 	
+	// qna 댓글 
+	private String qCommentSeq; // 댓글번호
+	private String qCommentContens; // 댓글 내용
+	private Date qCommentDate;
+	
 	public Qna() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Qna(String qSeq, String userId, String qTitle, String qFile, String qContents, Date qDate) {
+	public Qna(String qSeq, String userId, String qTitle, String qFile, String qContents, Date qDate,
+			String qCommentSeq, String qCommentContens, Date qCommentDate) {
 		super();
 		this.qSeq = qSeq;
 		this.userId = userId;
@@ -23,6 +29,9 @@ public class Qna {
 		this.qFile = qFile;
 		this.qContents = qContents;
 		this.qDate = qDate;
+		this.qCommentSeq = qCommentSeq;
+		this.qCommentContens = qCommentContens;
+		this.qCommentDate = qCommentDate;
 	}
 
 	public String getqSeq() {
@@ -73,14 +82,38 @@ public class Qna {
 		this.qDate = qDate;
 	}
 
+	public String getqCommentSeq() {
+		return qCommentSeq;
+	}
+
+	public void setqCommentSeq(String qCommentSeq) {
+		this.qCommentSeq = qCommentSeq;
+	}
+
+	public String getqCommentContens() {
+		return qCommentContens;
+	}
+
+	public void setqCommentContens(String qCommentContens) {
+		this.qCommentContens = qCommentContens;
+	}
+
+	public Date getqCommentDate() {
+		return qCommentDate;
+	}
+
+	public void setqCommentDate(Date qCommentDate) {
+		this.qCommentDate = qCommentDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Qna [qSeq=" + qSeq + ", userId=" + userId + ", qTitle=" + qTitle + ", qFile=" + qFile + ", qContents="
-				+ qContents + ", qDate=" + qDate + "]";
+				+ qContents + ", qDate=" + qDate + ", qCommentSeq=" + qCommentSeq + ", qCommentContens="
+				+ qCommentContens + ", qCommentDate=" + qCommentDate + "]";
 	}
 	
 	
-
 	
 }
 
