@@ -84,6 +84,9 @@
 		<div>
 		
 		<div id="contents_imgs">
+		
+		
+			<!--
 			<div class="img">img1</div>
 			<div class="img">img2</div>
 			<div class="img">img3</div>
@@ -92,7 +95,8 @@
 			<div class="img">img6</div>
 			<div class="img">img7</div>
 			<div class="img">img8</div>
-			<div class="img">img9</div>
+			<div class="img">img9</div> 
+			-->
 		</div>
 
 	</div>
@@ -100,49 +104,54 @@
 	
 	
 	
-	<%-- <div id="main_products">
-		<div id ="grid-container">
-		
-		
-		<% if( products!=null && products.size() > 0 ) { %>
-		
-			<%	for(int i=0; i < 9; i++) { %>
-					
-				<% 	MainProduct p = products.get(i); %>
-			
-				<div class = "grid_itembox">
-						
-					<div class="cover" style="display:inline-block;">
-							<img alt="" src="<%=request.getContextPath()%>/upload/product/<%=p.getProductFile()%>">
-							
-							<div class="explain">
-								<p><%=p.getProductName() %></p>
-								<p><%=p.getProductPrice() %></p>
-							</div>
-					</div>
-				</div>
-				
-				<%  if( i == 8) break; %>
-				
-			<% } %>
-			
-		<% } else { %>	
-			
-			<p> 공사중 ... </p>
-			
-		<% } %>
-		
-		</div>
-	</div> --%>
+	
+	
 	
 
 </main>
 
-<%-- <script>
-	(function(){
-		location.assign("<%=request.getContextPath()%>/main/product/list");
-		return;
-	})();
-</script> --%>
+<script>
+	$(function(){
+		$.ajax({
+			url: "<%=request.getContextPath()%>/main/product/list/ajax",
+			success:data=>{
+				// let contentimg= $("#contents_imgs")
+				let container = $("#contents_imgs");
+				console.log(data);
+
+				let divtag = $("<div>").css({
+					"display":"flex",
+					"justify-content":"center",
+					"margin":"0px",
+					"padding":"0px",
+					"box-sizing":"border-box"
+
+				})
+
+				let atag = $("<a>");
+				let imgtag = $("<img>");
+				let spantag = $("<span>");
+
+				for(let i=0; i<data.length; i++){
+					let content = data[i];
+					let productid = data[i]["productId"];
+					let categoryid = data[i]["categoryId"];
+					let productname = data[i]["productName"];
+					let productPrice = data[i]["productPrice"];
+					let productFile = data[i]["productFile"];
+
+
+					console.log(productFile);
+					$("#contents_imgs").append( $("<div>").append($("<a>").attr("src","<%=request.getContextPath()%>/product/detail?pid="+productid+"&category="+categoryid).append($("<img>").attr({"src":"<%=request.getContextPath()%>/upload/product/"+productFile,
+					"width":"200px"
+					}))));
+				}
+
+
+			}
+		})
+	
+	})
+</script> 
 
 <%@ include file = "/views/common/footer.jsp"%>

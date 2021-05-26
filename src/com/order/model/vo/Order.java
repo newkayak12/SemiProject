@@ -3,19 +3,21 @@ package com.order.model.vo;
 import java.util.Date;
 
 public class Order {
-	int OrderNumber;
+	String OrderNumber;
 	String productId, categoryId, productSize, productColor;
-	int productStock;
+	int orderdetailcount;
 	Date orderDate;
-	String orderStatus, orderCompleted, productName;
-	int productPrice;
+	String productprice;
+	int orderStatus, orderCompleted;
+	String productName;
 	String productFile;
 	String address,zipcode,phone;
-	String odno;
-	public int getOrderNumber() {
+	int totalPrice;
+	
+	public String getOrderNumber() {
 		return OrderNumber;
 	}
-	public void setOrderNumber(int orderNumber) {
+	public void setOrderNumber(String orderNumber) {
 		OrderNumber = orderNumber;
 	}
 	public String getProductId() {
@@ -42,11 +44,11 @@ public class Order {
 	public void setProductColor(String productColor) {
 		this.productColor = productColor;
 	}
-	public int getProductStock() {
-		return productStock;
+	public int getOrderdetailcount() {
+		return orderdetailcount;
 	}
-	public void setProductStock(int productStock) {
-		this.productStock = productStock;
+	public void setOrderdetailcount(int orderdetailcount) {
+		this.orderdetailcount = orderdetailcount;
 	}
 	public Date getOrderDate() {
 		return orderDate;
@@ -54,16 +56,22 @@ public class Order {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	public String getOrderStatus() {
+	public String getProductprice() {
+		return productprice;
+	}
+	public void setProductprice(String productprice) {
+		this.productprice = productprice;
+	}
+	public int getOrderStatus() {
 		return orderStatus;
 	}
-	public void setOrderStatus(String orderStatus) {
+	public void setOrderStatus(int orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public String getOrderCompleted() {
+	public int getOrderCompleted() {
 		return orderCompleted;
 	}
-	public void setOrderCompleted(String orderCompleted) {
+	public void setOrderCompleted(int orderCompleted) {
 		this.orderCompleted = orderCompleted;
 	}
 	public String getProductName() {
@@ -71,12 +79,6 @@ public class Order {
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-	public int getProductPrice() {
-		return productPrice;
-	}
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
 	}
 	public String getProductFile() {
 		return productFile;
@@ -102,20 +104,22 @@ public class Order {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getOdno() {
-		return odno;
+	public int getTotalPrice() {
+		return totalPrice;
 	}
-	public void setOdno(String odno) {
-		this.odno = odno;
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
+	@Override
+	public String toString() {
+		return "Order [OrderNumber=" + OrderNumber + ", productId=" + productId + ", categoryId=" + categoryId
+				+ ", productSize=" + productSize + ", productColor=" + productColor + ", orderdetailcount="
+				+ orderdetailcount + ", orderDate=" + orderDate + ", productprice=" + productprice + ", orderStatus="
+				+ orderStatus + ", orderCompleted=" + orderCompleted + ", productName=" + productName + ", productFile="
+				+ productFile + ", address=" + address + ", zipcode=" + zipcode + ", phone=" + phone + ", totalPrice="
+				+ totalPrice + "]";
+	} 
 	
 	
 	
-	
-	
-	
-	
-
-	 
 }
-

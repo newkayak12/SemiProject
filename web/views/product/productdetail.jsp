@@ -185,6 +185,11 @@
 			</table>
 		</div>
 	
+	
+	
+	
+	
+	<!-- detailbox -->
 		<div id="detailbox-container">
 			<div id="menu_select-container">
 				<span id="detailbtn" onclick="fn_detail()">Detail</span>
@@ -380,36 +385,18 @@
 	
 	
 	const fn_buynow=()=>{
-		let pid = "<%= product.get(0).getProductId()%>";
-		let size =$("#product_size-select").val();
-		let color= $("#product_color-select").val();
-		<%-- let pname = "<%=product.get(0).getProductName()%>"; --%>
-		let price = "<%=product.get(0).getProductPrice()%>";
-		let stock = $("#product_stock").val();
-		let category = "<%= product.get(0).getCategoryId()%>";
 		
-		location.assign("<%=request.getContextPath()%>/order/place?pid="+pid+"&size="+size+"&color="+color+"&price="+price+"&stock="+stock+"&category="+category+"&flag=page");
-		
-		
-	}
+	let flag = $("#product_stock").val();
 	
-
-	const fn_cart =()=>{
-
-		 console.log("<%= product.get(0).getCategoryId()%>");
-		
-		let flag = $("#product_stock").val();
-		
-		if(flag == 0){
+		if(<%=userid!=null%>){
 			
-			alert('상품을 선택해주세요!')
-			
-		} else {
-			
-			//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
-			
-			
-			if(confirm('카트에 추가하시겠습니까??')==true){
+				if(flag == 0){
+					
+					alert('상품을 선택해주세요!')
+					
+				}else{
+					
+				let pname = "<%=product.get(0).getProductName() %>";
 				let pid = "<%= product.get(0).getProductId()%>";
 				let size =$("#product_size-select").val();
 				let color= $("#product_color-select").val();
@@ -417,14 +404,62 @@
 				let price = "<%=product.get(0).getProductPrice()%>";
 				let stock = $("#product_stock").val();
 				let category = "<%= product.get(0).getCategoryId()%>";
-				$("#cartadder").val(pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category);
 				
-				/* alert($("#cartadder").val()+"카트 저장하기") */
-				/* 카트 */
+				location.assign("<%=request.getContextPath()%>/order/place/page/start?pid="+pid+"&size="+size+"&color="+color+"&price="+price+"&stock="+stock+"&category="+category+"&flag=page&pname"+pname);
 				
-				
-				location.assign("<%=request.getContextPath()%>/cart/post?cartlist="+$('#cartadder').val()+"&pid=<%=product.get(0).getProductId()%>&category=<%= product.get(0).getCategoryId()%>");
-			}
+				}	
+			
+		} else {
+			
+			alert('로그인이 필요한 서비스입니다.')
+			
+		}
+	
+	} 
+	
+
+	const fn_cart =()=>{
+
+		
+	
+		
+		 console.log("<%= product.get(0).getCategoryId()%>");
+		
+		let flag = $("#product_stock").val();
+	
+		if(<%=userid!= null%>){
+		
+					if(flag == 0){
+						
+						alert('상품을 선택해주세요!')
+						
+					} else {
+						
+						//쿠키 순서 품번_카테고리 번호_사이즈_색깔_제품이름_제품가격_제품개수
+						
+						
+						if(confirm('카트에 추가하시겠습니까??')==true){
+							let pid = "<%= product.get(0).getProductId()%>";
+							let size =$("#product_size-select").val();
+							let color= $("#product_color-select").val();
+							<%-- let pname = "<%=product.get(0).getProductName()%>"; --%>
+							let price = "<%=product.get(0).getProductPrice()%>";
+							let stock = $("#product_stock").val();
+							let category = "<%= product.get(0).getCategoryId()%>";
+							$("#cartadder").val(pid+'@'+size+'@'+color+'@'+price+'@'+stock+'@'+category);
+							
+							/* alert($("#cartadder").val()+"카트 저장하기") */
+							/* 카트 */
+							
+							
+							location.assign("<%=request.getContextPath()%>/cart/post?cartlist="+$('#cartadder').val()+"&pid=<%=product.get(0).getProductId()%>&category=<%= product.get(0).getCategoryId()%>");
+						}
+					}
+		
+		
+		} else {
+			 alert('로그인이 필요한 서비스입니다.')
+			
 		}
 	}
 	

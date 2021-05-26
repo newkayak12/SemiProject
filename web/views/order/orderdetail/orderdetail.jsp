@@ -42,8 +42,8 @@
         		<img src="<%=request.getContextPath() %>/upload/product/<%=order.getProductFile() %>" alt="상품이미지">
         	</td>
             <td >
-                        <p> 가격 <%=order.getProductPrice()%> 원</p>
-                        <p> 수량 <%= order.getProductStock()%> 개</p>
+                        <%-- <p> 가격 <%=order.getProductPrice()%> 원</p>
+                        <p> 수량 <%= order.getProductStock()%> 개</p> --%>
                 
             </td>
             

@@ -376,4 +376,7 @@ div#sort-container li:hover{
 	width:100px;
 }
 
-
+.order-tables{
+	width:400px;
+	border-collapse: collapse;
+}

@@ -72,20 +72,16 @@ $(function(){
 	                    <p>(주문번호)</p>
 	                </th>
 	                <th>
-	                    이미지
+						이미지	                
 	                </th>
 	                <th>
 	                    상품정보
 	                </th>
-	                <th>
-	                    수량
-	                </th>
+	               
 	                <th>
 	                    상품 구매 금액
 	                </th>
-	                <th>
-	                    주문처리상태
-	                </th>
+	                
 	                <!-- <th>
 	                    취소/교환/반품
 	                </th> -->
@@ -99,28 +95,30 @@ $(function(){
 			
                 <tr>
                     <td>
-                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&productid=<%=o.getProductId() %>&category=<%=o.getCategoryId() %>&size=<%=o.getProductSize() %>&color=<%=o.getProductColor() %>&onumber=<%=o.getOrderNumber() %>&odnum=<%=o.getOdno() %>','_blank','width=500px, height=600px')">
+                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&onumber=<%=o.getOrderNumber() %>','_blank','width=500px, height=600px')">
+	                      
+	                      <!-- 날짜/주문 번호  -->
+	                      
 	                        <p><%=o.getOrderDate() %></p>
 	                        <p><%=o.getOrderNumber() %></p>
                         </span>
                     </td>
                     
-                    <td>
-                    	
-                    
-                        <img src="<%=request.getContextPath() %>/images/product/<%=o.getProductFile() %>" alt="상품 이미지" onclick = "location.assign('<%=request.getContextPath() %>/---- ?productNumber=<%=o.getProductId() %>')">
-                    </td>
-                    
+             
                     <td>
                     
                     	<span onclick = "location.assign('<%=request.getContextPath() %>/---- ?productNumber=<%=o.getProductId() %>')" >
+	                        
+	                        <!--  -->
 	                        <h4> <%=o.getProductName() %></h4>
 	                        <p><%=o.getProductSize() %> / <%=o.getProductColor() %> </p>
 	                    </span>    
                     </td>
-                    
                     <td>
-                        <%=o.getProductStock()%>
+                    	<img alt="" src="<%=request.getContextPath()%>/upload/product/">
+                    </td>
+                    <td>
+                    <%--     <%=o.getProductStock()%>
                         
                     </td>
                     
@@ -133,7 +131,7 @@ $(function(){
                     	
                         <%=o.getOrderStatus() %>
                         
-                        <% if( o.getOrderStatus().equals("배송완료") ) { %>
+                        <% if( o.getOrderStatus().equals("배송완료") ) { %> --%>
                         	<br>
                         	<button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?pid=<%=o.getProductId()%>&pname=<%=o.getProductName()%>&color=<%=o.getProductColor()%>&size=<%=o.getProductSize()%>&category=<%=o.getCategoryId()%>&file=<%=o.getProductFile()%>&onumber=<%=o.getOrderNumber()%>')">리뷰쓰기</button>
                         <% } %>
@@ -143,7 +141,7 @@ $(function(){
                     </td> -->
                 </tr>
                 
-			<%	}	%>
+			<%-- <%	}	%> --%>
 			
 	        </table>
 	

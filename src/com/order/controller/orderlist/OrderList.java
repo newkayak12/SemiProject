@@ -55,7 +55,7 @@ public class OrderList extends HttpServlet {
 							
 						}
 						
-			List<Order> result = new OrderService().showallOrder(cPage, numPerPage, id);
+			List<List<Order>> result = new OrderService().showallOrder(cPage, numPerPage, id);
 			
 			
 			int resultCount = new OrderService().showallOrderCount(id);
