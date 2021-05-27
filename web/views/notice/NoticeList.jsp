@@ -7,7 +7,7 @@
 	List<Notice> list = (List<Notice>)request.getAttribute("list");
 %>
    
-<%@ include file="/views/common/header.jsp"%>
+<%@ include file="/views/common/header.jsp"%> 
 	<div id = notice-container>
 		
 		<span class = "Menu-name">Notice</span>
@@ -63,11 +63,4 @@
 	</script>
 
 <%@include file="/views/common/footer.jsp"%>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>

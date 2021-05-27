@@ -13,11 +13,13 @@
 		
 		<p class="section_title">Best Reviewer</p>
 			
-			<div id="review_bestReviewerTable">
+			<div id="review_bestReviewerTable" style="display: flex; align-items: center;">
 			
-				<table style="margin-left: auto; margin-right: auto; width : 1000px;">
+				<div style="padding:auto; margin: auto; width : 1000px; display:flex; justify-content: space-around; background-color: white;" id="reviewmain-table">
 					
-					<tr id="reviewmain-table">
+					<!-- <tr id="reviewmain-table">
+						
+					<%-- 
 						<td>
 							<p class="whiteBolderText">1</p>
 							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
@@ -25,7 +27,7 @@
 							<p class="whiteText">price : 가격</p>
 						</td>
 						
-						<%-- <td>
+						<td>
 							<p class="whiteBolderText">2</p>
 							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
 							<p class="orangeText">상품이름</p>
@@ -38,9 +40,9 @@
 							<p class="orangeText">상품이름</p>
 							<p class="whiteText">price : 가격</p>
 						</td> --%>
-					</tr>
+					</tr> -->
 					
-				</table>
+				</div>
 				
 			</div>
 			
@@ -60,12 +62,19 @@
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
-				<img src="<%=request.getContextPath()%>/images/slideshow_img1.jpg" width="400px" height="300px">
+				<!-- <img src="<%=request.getContextPath()%>/images/slideshow_img1.jpg" width="400px" height="300px">
 			
 				<div id="disc" style="display:inline-block;"> 상품설명 블라블라블라 어쩌구저쩌구 샬랴샬랴 </div>
 				
-				<button id="btn_next">&rang;</button>
-				 
+				<button id="btn_next">&rang;</button> -->
+
+
+		
+
+					
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/ZvE_j5psy6Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					
+
 			</div>
 			
 		</div>
@@ -97,6 +106,7 @@
 			<div class="img">img8</div>
 			<div class="img">img9</div> 
 			-->
+			
 		</div>
 
 	</div>
@@ -112,6 +122,54 @@
 
 <script>
 	$(function(){
+
+		/* 
+		
+review  
+		
+		
+		
+		
+productId: "9"
+productName: "랩 탑"
+productOptionColor: "gray"
+productOptionSize: "M"
+reviewCount: "7"
+reviewFile: "reviewFileName2"
+reviewNo: "28"
+userId: "qwerty2"
+		
+		
+		*/
+		let container_review = $("#reviewmain-table");
+		$.ajax({
+			url:"<%=request.getContextPath()%>/main/review/list/ajax",
+			success:data2 =>{
+				
+					for(let i=0; i<data2.length; i++){
+
+									container_review.append($("<div>").css({"text-align":"center"}).append($("<p>").html(i+1+"위").css("text-align","center")).append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"250px","height":"350px"})).append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))              )
+						// let cotents2 =	$("td").css({"text-align":"center"})
+						
+						// 			content2.append($("<p>").html(i+1+"위").css("text-align","center"))
+									
+									
+						// 			content2.append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"200px","height":"200px"}))
+									
+									
+						// 			content2.append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))
+						// 			console.log(contents2);
+									
+					}
+
+
+
+
+			}
+		
+		});
+		
+/* 상품 ajax */		
 		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/main/product/list/ajax",
@@ -119,7 +177,7 @@
 				$("#contents_imgs").html("");
 				// let contentimg= $("#contents_imgs")
 				let container = $("#contents_imgs");
-				console.log(data);
+				
 
 				let divtag = $("<div>").css({
 					"display":"flex",
@@ -143,7 +201,7 @@
 					let productFile = data[i]["productFile"];
 
 
-					console.log(productFile);
+					
 					$("#contents_imgs").append( $("<div>").css({
 						"display":"flex",
 						"justify-content":"center",
@@ -195,7 +253,6 @@
 					$("#contents_imgs").html("");
 					// let contentimg= $("#contents_imgs")
 					let container = $("#contents_imgs");
-					console.log(data);
 
 					let divtag = $("<div>").css({
 						"display":"flex",
@@ -274,7 +331,6 @@
 				$("#contents_imgs").html("");
 				// let contentimg= $("#contents_imgs")
 				let container = $("#contents_imgs");
-				console.log(data);
 
 				let divtag = $("<div>").css({
 					"display":"flex",
@@ -356,7 +412,6 @@
 				$("#contents_imgs").html("");
 				// let contentimg= $("#contents_imgs")
 				let container = $("#contents_imgs");
-				console.log(data);
 
 				let divtag = $("<div>").css({
 					"display":"flex",
@@ -420,36 +475,13 @@
 			}
 		})
 		
-		$("#reviewmain-table").
-		
-		let table = $("#reviewmain-table");
-		
-		$.ajax({
-			url:"<%=request.getContextPath()%>/main/review/list/ajax",
-			success:data=>{
-				
-				
-				
-				
-				
-			}
-	<%--
-		 <td>
-			<p class="whiteBolderText">1</p>
-			<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
-			<p class="orangeText">상품이름</p>
-			<p class="whiteText">price : 가격</p>
-		</td>
- --%>
-			
-			
-			
-		})
-		
+		/* $("#reviewmain-table"). */
 		
 		
 		
 	})
+
+
 </script> 
 
 <%@ include file = "/views/common/footer.jsp"%>
