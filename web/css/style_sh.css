@@ -39,13 +39,14 @@ ul#category-bar{
 
 
 ul#category-bar>li{
+	list-style : none;
 	margin: 10px 40px;
 	padding : 10px 0 ;
 	color : rgb(127, 127, 127);
 }
 
 ul#category-bar>li:hover{
-	color : rgb(64, 64, 64);
+	color : orange;
 	font-weight : bolder;
 	
 }
@@ -62,24 +63,37 @@ main#category-container{
 	
 }
 
+
+/* 상품 검색 */
+div#search-product-container{
+	text-align : center;
+	padding-top : 20px;
+	padding-bottom : 10px;
+}
+
+div#search-product-container li{
+	display : inline-block;
+}
+
+
+
+
 /* 정렬순 (인기/높은가격순/낮은가격순 ) */
-
-
-
 
 
 div#sort-container>ul {
 	display : flex;
 	flex-direction : row;
-	justify-content: flex-end;
+	justify-content: center;
 }
 
 div#sort-container li {
 	margin : 0 15px;
+	list-style : none;
 }
 
 div#sort-container li:hover{
-	color : rgb(236, 147, 2);
+	color : orange;
 	font-weight : bolder;
 }
 
@@ -198,7 +212,6 @@ div#sort-container li:hover{
 	margin:0px!important;
 	padding:0px!important;
 	width:1366px;
-	height:auto;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -209,7 +222,7 @@ div#sort-container li:hover{
 	margin-top:100px;
 	margin-bottom:100px;
 	padding:0px!important;
-	height:auto;
+	height: auto !important;
 	width:1000px;
 	display: flex;
 	flex-direction: column;
@@ -250,7 +263,7 @@ div#sort-container li:hover{
 	box-sizing: border-box;
 	margin:0px!important;
 	padding:0px!important;
-	width:600px	;
+	width:470px	;
 	height: 600px;
 	
 }
@@ -261,7 +274,7 @@ div#sort-container li:hover{
 }
 
 #product-table td{
-	text-align: center;
+	text-align: left;
 	vertical-align: center;
 	border: none !important;
 	font-size:24px;
@@ -323,6 +336,8 @@ div#sort-container li:hover{
 	justify-content: center;
 	align-items: center; 
 	padding:0px!important;
+	height:auto;
+	
 }
 
 
@@ -361,13 +376,29 @@ div#sort-container li:hover{
 	
 }
 
-#menu_content-p{
+#menu_content-img:nth-child(2){
+	height: auto;
+}
+
+#menu_content-img{
 	text-align: left;
 	padding:40px;
 	
+}
+menu_content-p{
+	height:auto;
 }
 
 #product_stock{
 	
 	width : 165px;
+}
+
+.order-img{
+	width:100px;
+}
+
+.order-tables{
+	width:400px;
+	border-collapse: collapse;
 }

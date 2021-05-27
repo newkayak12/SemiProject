@@ -21,25 +21,32 @@ public class Review {
 	private String reviewLike;
 	private String orderNumber;
 	private String categoryId;
+	
+	
 	private String productName;
 	private String productFile;
 	
-	// 리뷰댓글 테이블이랑도 jojin할거라서 
+	// 리뷰댓글 테이블이랑도 join할거라서 
 	// 필드 3개 추가요~
 	private String commentUserId;
 	private String reviewComment;
 	private String reviewCommentDate;
 	
+	// 리뷰코멘트번호도 필요해 ㅠㅠㅠ흑흑 귀찮아죽겠네
+	private String reviewCommentNo;
+	
+	private String productPrice;
 	
 	public Review() {
-		
+		// TODO Auto-generated constructor stub
 	}
-
 
 	public Review(String reviewNo, String userId, String productId, String productOptionSize, String productOptionColor,
 			String reviewTitle, String reviewContents, Date reviewDate, String reviewDelete, String reviewCount,
 			String reviewFile, String reviewLike, String orderNumber, String categoryId, String productName,
-			String productFile, String commentUserId, String reviewComment, String reviewCommentDate) {
+			String productFile, String commentUserId, String reviewComment, String reviewCommentDate,
+			String reviewCommentNo, String productPrice) {
+		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
 		this.productId = productId;
@@ -59,198 +66,177 @@ public class Review {
 		this.commentUserId = commentUserId;
 		this.reviewComment = reviewComment;
 		this.reviewCommentDate = reviewCommentDate;
+		this.reviewCommentNo = reviewCommentNo;
+		this.productPrice = productPrice;
 	}
 
+	public String getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(String productPrice) {
+		this.productPrice = productPrice;
+	}
 
 	public String getReviewNo() {
 		return reviewNo;
 	}
 
-
 	public void setReviewNo(String reviewNo) {
 		this.reviewNo = reviewNo;
 	}
-
 
 	public String getUserId() {
 		return userId;
 	}
 
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 	public String getProductId() {
 		return productId;
 	}
 
-
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-
 
 	public String getProductOptionSize() {
 		return productOptionSize;
 	}
 
-
 	public void setProductOptionSize(String productOptionSize) {
 		this.productOptionSize = productOptionSize;
 	}
-
 
 	public String getProductOptionColor() {
 		return productOptionColor;
 	}
 
-
 	public void setProductOptionColor(String productOptionColor) {
 		this.productOptionColor = productOptionColor;
 	}
-
 
 	public String getReviewTitle() {
 		return reviewTitle;
 	}
 
-
 	public void setReviewTitle(String reviewTitle) {
 		this.reviewTitle = reviewTitle;
 	}
-
 
 	public String getReviewContents() {
 		return reviewContents;
 	}
 
-
 	public void setReviewContents(String reviewContents) {
 		this.reviewContents = reviewContents;
 	}
-
 
 	public Date getReviewDate() {
 		return reviewDate;
 	}
 
-
 	public void setReviewDate(Date reviewDate) {
 		this.reviewDate = reviewDate;
 	}
-
 
 	public String getReviewDelete() {
 		return reviewDelete;
 	}
 
-
 	public void setReviewDelete(String reviewDelete) {
 		this.reviewDelete = reviewDelete;
 	}
-
 
 	public String getReviewCount() {
 		return reviewCount;
 	}
 
-
 	public void setReviewCount(String reviewCount) {
 		this.reviewCount = reviewCount;
 	}
-
 
 	public String getReviewFile() {
 		return reviewFile;
 	}
 
-
 	public void setReviewFile(String reviewFile) {
 		this.reviewFile = reviewFile;
 	}
-
 
 	public String getReviewLike() {
 		return reviewLike;
 	}
 
-
 	public void setReviewLike(String reviewLike) {
 		this.reviewLike = reviewLike;
 	}
-
 
 	public String getOrderNumber() {
 		return orderNumber;
 	}
 
-
 	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
-
 
 	public String getCategoryId() {
 		return categoryId;
 	}
 
-
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
-
 
 	public String getProductName() {
 		return productName;
 	}
 
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 
 	public String getProductFile() {
 		return productFile;
 	}
 
-
 	public void setProductFile(String productFile) {
 		this.productFile = productFile;
 	}
-
 
 	public String getCommentUserId() {
 		return commentUserId;
 	}
 
-
 	public void setCommentUserId(String commentUserId) {
 		this.commentUserId = commentUserId;
 	}
-
 
 	public String getReviewComment() {
 		return reviewComment;
 	}
 
-
 	public void setReviewComment(String reviewComment) {
 		this.reviewComment = reviewComment;
 	}
-
 
 	public String getReviewCommentDate() {
 		return reviewCommentDate;
 	}
 
-
 	public void setReviewCommentDate(String reviewCommentDate) {
 		this.reviewCommentDate = reviewCommentDate;
 	}
 
+	public String getReviewCommentNo() {
+		return reviewCommentNo;
+	}
+
+	public void setReviewCommentNo(String reviewCommentNo) {
+		this.reviewCommentNo = reviewCommentNo;
+	}
 
 	@Override
 	public String toString() {
@@ -260,8 +246,10 @@ public class Review {
 				+ ", reviewDelete=" + reviewDelete + ", reviewCount=" + reviewCount + ", reviewFile=" + reviewFile
 				+ ", reviewLike=" + reviewLike + ", orderNumber=" + orderNumber + ", categoryId=" + categoryId
 				+ ", productName=" + productName + ", productFile=" + productFile + ", commentUserId=" + commentUserId
-				+ ", reviewComment=" + reviewComment + ", reviewCommentDate=" + reviewCommentDate + "]";
+				+ ", reviewComment=" + reviewComment + ", reviewCommentDate=" + reviewCommentDate + ", reviewCommentNo="
+				+ reviewCommentNo + "]";
 	}
+
 	
 	
 	

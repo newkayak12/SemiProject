@@ -35,7 +35,7 @@ public class SigninEndServlet extends HttpServlet {
 		
 		
 		Users u=new UsersService().login(userId,userPwd);
-
+		System.out.println(u);
 		
 		if(u!=null) {
 			

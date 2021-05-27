@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.order.model.service.OrderService;
-import com.order.model.vo.Orderbk;
+import com.order.model.vo.Order;
 import com.users.model.vo.Users;
 
 @WebServlet("/order/detail")
@@ -39,7 +39,7 @@ public class OrderDetail extends HttpServlet {
 		int onumber = Integer.parseInt(request.getParameter("onumber"));
 		int odnum = Integer.parseInt(request.getParameter("odnum"));
 
-		List<Orderbk> list = new OrderService().showdetailOrder(userid, productid, category, size, color, onumber, odnum);
+		List<Order> list = new OrderService().showdetailOrder(userid, productid, category, size, color, onumber, odnum);
 		
 		
 		
@@ -64,4 +64,5 @@ public class OrderDetail extends HttpServlet {
 	}
 
 }
+
 

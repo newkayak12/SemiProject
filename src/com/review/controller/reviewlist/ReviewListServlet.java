@@ -63,8 +63,16 @@ public class ReviewListServlet extends HttpServlet {
 		
 		String reviewPageBar = pageBar.pageBar(cPage, numPerPage, totalData, url);
 		
+		
+		// 베스트리뷰 3개 뽑아오기 ( 조회수가 높은 순으로 상위 3개 ) 
+		
+		List<Review> bestReviewList = service.selectBestReview();
+		
+		
+		
 		request.setAttribute("reviewList", list);
 		request.setAttribute("reviewPageBar", reviewPageBar);
+		request.setAttribute("bestReviewList", bestReviewList);
 		
 		request.getRequestDispatcher("/views/review/reviewList.jsp").forward(request, response);
 	}

@@ -5,6 +5,7 @@
 	
 	    <div id="footer-container">
 	
+	
 	        <span id="footer_copyright">
 	            <p>die Kleidung</p>
 	        </span>
@@ -24,6 +25,10 @@
 	            <p>email</p>
 	            <p>account</p>
 	        </span>
+        
+	
+	
+		
 	
 	    </div>
 	    

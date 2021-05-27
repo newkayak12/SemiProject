@@ -42,6 +42,12 @@
 		font-size : 20px;
 	}
 	
+	.blueSmallText{
+		color : rgb(9, 74, 169);
+		font-weight : bolder;
+		font-size : 15px;
+	}
+	
 	div p.section_title {
 		text-align : center;
 		color : orange;
@@ -53,7 +59,7 @@
 
 
 	/* 리뷰 목록*/
-	div#review_reviewListContainer{
+	main#main_reviewList>div#review_reviewListContainer{
 		width : 1366px;
 	}
 	
@@ -87,6 +93,12 @@
 		width : 1366px;
 		margin : 0 0 50px 0;
 		
+	}
+	
+	
+	.grayText{
+		color : gray;
+		font-size : 13px;
 	}
 	
 	
@@ -208,7 +220,7 @@
 	/* 사용자가 업로드한 사진과 내용 */
 	div#reviewDetail-userImage_reviewContents{
 		margin-top : 50px;
-		margin-bottom : 50px;
+		margin-bottom : 0px;
 	}
 	
 	/* css안먹어서 태그에 직접 작성함 */
@@ -238,5 +250,59 @@
 		margin : 10px;
 	} */
 	
+	
+	
+	
+	/*  ------ productDetail.jsp에서 리뷰들어가는 부분 --------  */
+	
+	
+	
+	
+	/*   리뷰 목록  */
+	div#p_review_reviewListContainer{
+		width : 970px;
+	}
+	
+	table#p_reviewTable{
+		width : 1000px;
+		margin-left: auto; 
+		margin-right: auto;
+		padding : 0 0 0 0;
+		border-bottom : 1px solid gray;
+		border-top : 1px solid gray;
+	}
+	
+	table#p_reviewTable>tr>td{
+		padding : 30px;
+		border-style : none;
+	}
+	
+	.bolderText{
+		font-weight : bolder;
+	}
+	
+	.blackText{
+		color : black;
+	}
+	
+	
+	
+	
+	
+	/*   검색부분    */
+	#nosearchresult-container{
+		margin-left : auto;
+		margin-right : auto;
+	}
+	
+	div#search-product-container input{
+		outline : none;
+	}
+	
+	
+	#nosearchresult-container>div{
+		padding : 100px !important;
+		text-align : center;
+	}
 	
 

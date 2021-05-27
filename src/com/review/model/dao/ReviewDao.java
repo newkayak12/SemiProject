@@ -197,6 +197,10 @@ public class ReviewDao {
 				r.setReviewComment(rs.getString("r_comment"));
 				r.setReviewCommentDate(rs.getString("r_c_date"));
 				
+				// 추가된 필드
+				
+				r.setReviewCommentNo(rs.getString("r_c_seq"));
+				
 				list.add(r);
 			}
 			
@@ -261,6 +265,7 @@ public class ReviewDao {
 			pstmt.setString(4, r.getReviewNo());
 			
 			result = pstmt.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			
@@ -390,6 +395,281 @@ public class ReviewDao {
 		}
 		
 		return result;
+	}
+
+
+
+	public int modifyReviewComment(Connection conn, String commentNo, String commentContent) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		// modifyReviewComment = UPDATE REVIEW_COMMENT SET R_COMMENT = ?, R_C_DATE = SYSDATE WHERE R_C_SEQ = ?
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("modifyReviewComment"));
+			
+			pstmt.setString(1, commentContent);
+			pstmt.setString(2, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+
+	public int deleteReviewComment(Connection conn, String commentNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("deleteReviewComment"));
+			
+			pstmt.setString(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	// 상품상세페이지에서 쓸 리뷰 조회
+	public List<Review> selectProductReview(Connection conn, String productid) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+				
+		Review r = null;
+		
+		List<Review> list = new ArrayList<Review>();
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectProductReview"));
+			
+			pstmt.setString(1, productid);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				r = new Review();
+				
+				r.setReviewNo(rs.getString("r_seq"));
+				r.setUserId(rs.getString("user_id"));
+				r.setProductId(rs.getString("p_id"));
+				r.setProductOptionSize(rs.getString("p_o_size"));
+				r.setProductOptionColor(rs.getString("p_o_color"));
+				r.setReviewTitle(rs.getString("r_title"));
+				r.setReviewContents(rs.getString("r_contents"));
+				r.setReviewDate(rs.getDate("r_date"));
+				r.setReviewDelete(rs.getString("r_delete"));
+				r.setReviewCount(rs.getString("r_count"));
+				r.setReviewFile(rs.getString("r_file"));
+				r.setReviewLike(rs.getString("r_like"));
+				r.setOrderNumber(rs.getString("o_number"));
+				r.setCategoryId(rs.getString("c_id"));
+				r.setProductName(rs.getString("p_name"));
+				r.setProductFile(rs.getString("p_file"));
+			
+				list.add(r);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	
+	
+	public int modifyReviewReadCount(Connection conn, String reviewNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		// UPDATE REVIEW SET R_COUNT = R_COUNT + 1 WHERE R_SEQ = ?
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("modifyReviewReadCount"));
+			
+			pstmt.setString(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+
+		return result;
+
+	
+	}
+
+
+
+
+	
+	public List<Review> selectBestReview(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+				
+		Review r = null;
+		
+		List<Review> list = new ArrayList<Review>();
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectBestReview"));
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				r = new Review();
+				
+				r.setReviewNo(rs.getString("r_seq"));
+				r.setUserId(rs.getString("user_id"));
+				r.setProductId(rs.getString("p_id"));
+				r.setProductOptionSize(rs.getString("p_o_size"));
+				r.setProductOptionColor(rs.getString("p_o_color"));
+				r.setReviewTitle(rs.getString("r_title"));
+				r.setReviewContents(rs.getString("r_contents"));
+				r.setReviewDate(rs.getDate("r_date"));
+				r.setReviewDelete(rs.getString("r_delete"));
+				r.setReviewCount(rs.getString("r_count"));
+				r.setReviewFile(rs.getString("r_file"));
+				r.setReviewLike(rs.getString("r_like"));
+				r.setOrderNumber(rs.getString("o_number"));
+				r.setCategoryId(rs.getString("c_id"));
+				r.setProductName(rs.getString("p_name"));
+				r.setProductFile(rs.getString("p_file"));
+				
+
+				list.add(r);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	public List<Review> selectmain(Connection conn, int cPage, int numPerPage) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+				
+		Review r = null;
+		
+		List<Review> list = new ArrayList<Review>();
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectmain"));
+			
+			pstmt.setInt(1, cPage);
+			pstmt.setInt(2, numPerPage);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				r = new Review();
+				
+				r.setReviewNo(rs.getString("r_seq"));
+				r.setUserId(rs.getString("user_id"));
+				r.setProductId(rs.getString("p_id"));
+				r.setProductOptionSize(rs.getString("p_o_size"));
+				r.setProductOptionColor(rs.getString("p_o_color"));
+				r.setReviewCount(rs.getString("r_count"));
+				r.setProductName(rs.getString("p_name"));
+				r.setReviewFile(rs.getString("r_file"));
+				r.setProductPrice(rs.getString("p_price"));
+				
+				// 추가된 필드 세팅
+//				private String commentUserId;
+//				private String reviewComment;
+//				private String reviewCommentDate;
+				
+//				r.setCommentUserId(rs.getString("r_c_user_id"));
+//				r.setReviewComment(rs.getString("r_comment"));
+//				r.setReviewCommentDate(rs.getString("r_c_date"));
+//				
+				list.add(r);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return list;
 	}
 
 

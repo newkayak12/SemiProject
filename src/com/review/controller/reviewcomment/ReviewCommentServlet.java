@@ -47,9 +47,9 @@ public class ReviewCommentServlet extends HttpServlet {
 			request.setAttribute("msg", "댓글 등록 실패");
 		}
 		
-		request.setAttribute("loc", "/views/review/reviewDetail.jsp");
+		request.setAttribute("loc", "/review/detail?no=" + reviewNo + "");
 		
-		request.getRequestDispatcher("/review/detail").forward(request, response);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
 

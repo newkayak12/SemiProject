@@ -9,9 +9,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_sh.css">
 <meta charset="UTF-8">
 <%
-List<Orderbk> orderlist = (List<Orderbk>) request.getAttribute("list");
+List<Order> orderlist = (List<Order>) request.getAttribute("list");
 	Users userInfo = (Users) request.getAttribute("user");
-	Orderbk orderInfo =  orderlist.get(0);
+	Order orderInfo =  orderlist.get(0);
 %>
 
 <title>order details</title>
@@ -28,7 +28,7 @@ List<Orderbk> orderlist = (List<Orderbk>) request.getAttribute("list");
     <table id="orderdetail-table">
 
 <%
-for( Orderbk order : orderlist) {
+for( Order order : orderlist) {
 %>
         <tr>
             <td colspan="4">
@@ -44,8 +44,8 @@ for( Orderbk order : orderlist) {
         		<img src="<%=request.getContextPath() %>/upload/product/<%=order.getProductFile() %>" alt="상품이미지">
         	</td>
             <td >
-                        <p> 가격 <%=order.getProductPrice()%> 원</p>
-                        <p> 수량 <%= order.getProductStock()%> 개</p>
+                        <%-- <p> 가격 <%=order.getProductPrice()%> 원</p>
+                        <p> 수량 <%= order.getProductStock()%> 개</p> --%>
                 
             </td>
             

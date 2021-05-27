@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.notice.model.vo.Notice;
 import com.qna.model.vo.Qna;
+import com.qna.model.vo.QnaComment;
 
 
 
@@ -43,24 +43,21 @@ public class QnaDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Qna q = new Qna();
-				q.setqSeq(rs.getString("q_p_seq"));
+				q.setqSeq(rs.getString("q_seq"));
 				q.setUserId(rs.getString("user_id"));
 				q.setqTitle(rs.getString("q_title"));
 				q.setqContents(rs.getString("q_contents"));
 				q.setqFile(rs.getString("q_file"));
-				q.setqDate(rs.getDate("q_date"));
-				q.setcId(rs.getString("c_id"));
-				q.setpId(rs.getString("p_id"));
-				q.setpName(rs.getString("p_name"));
+				q.setqDate(rs.getDate("q_date"));				
 				list.add(q);
 			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
+		}	catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
 	}
 
 
@@ -78,5 +75,128 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}return result;
+	}
+
+
+	public int postQna(Connection conn, Qna q) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("postQna"));
+			pstmt.setString(1, q.getUserId()); 
+			pstmt.setString(2, q.getqTitle());
+			pstmt.setString(3, q.getqContents());
+			pstmt.setString(4, q.getqFile());
+			pstmt.setDate(5, q.getqDate());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public Qna selectQna(Connection conn, String no) {
+		
+		PreparedStatement pstmt=null;
+		
+		ResultSet rs=null;
+		
+		Qna q=null;
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectQna"));
+			pstmt.setString(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				q = new Qna();
+				q.setqSeq(rs.getString("q_seq"));
+				q.setUserId(rs.getString("user_id"));
+				q.setqTitle(rs.getString("q_title"));
+				q.setqContents(rs.getString("q_contents"));
+				q.setqFile(rs.getString("q_file"));
+				q.setqDate(rs.getDate("q_date"));
+
+//				private String qCommentSeq; // 댓글번호
+//				private String qCommentContens; // 댓글 내용
+//				private Date qCommentDate;
+				
+				q.setqCommentSeq(rs.getString("q_c_seq"));
+				q.setqCommentContens(rs.getString("q_c_comment"));
+				q.setqDate(rs.getDate("q_c_date"));
+				
+				}
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}return q;
+	}
+
+
+	public int insertQnaComment(Connection conn, QnaComment qc) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("insertQnaComment"));
+//			insertQnaComment = INSERT INTO QNA_COMMENT VALUES(QC_SEQ.NEXTVAL,?,?,?,?)
+//			USER_ID, Q_C_COMMENT, Q_C_REF = Q_SEQ
+
+			pstmt.setString(1, qc.getUserId());
+			pstmt.setString(2, qc.getqComment());
+			pstmt.setString(3, qc.getqSeq());
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	public List<QnaComment> selectQnaComment(Connection conn, String no){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<QnaComment> list=new ArrayList();
+		try {
+			// selectQnaComment = SELECT * FROM QNA_COMMENT WHERE Q_C_REF = ?
+
+			pstmt=conn.prepareStatement(prop.getProperty("selectQnaComment"));
+			pstmt.setString(1, "q_c_ref");
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				QnaComment qc = new QnaComment();
+				// Q_C_SEQ, USER_ID, Q_C_COMMENT, Q_C_DATE, Q_C_REF = Q_SEQ
+				
+				qc.setqSeq(rs.getString("q_c_seq"));
+				qc.setUserId(rs.getString("user_id"));
+				qc.setqComment(rs.getString("q_c_comment"));
+				qc.setqDate(rs.getDate("q_c_date"));
+				qc.setqRef(rs.getString("q_c_ref"));
+				list.add(qc);
+				
+			}	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+
 	}
 }

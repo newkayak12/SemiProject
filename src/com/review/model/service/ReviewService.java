@@ -62,6 +62,38 @@ public class ReviewService {
 		
 		return list;
 	}
+	
+	
+	
+	public List<Review> selectReview(String reviewNo, boolean readFlag) {
+		
+		Connection conn = getConnection();
+		
+		List<Review> list = dao.selectReview(conn, reviewNo);
+		
+		int result = 0;
+		
+		
+		// 조회수 증가
+		if( !readFlag && list != null ) {
+			
+			result = dao.modifyReviewReadCount(conn, reviewNo);
+		}
+		
+		if( result > 0 ) {
+			
+			commit(conn);
+			
+		} else {
+			
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		
+		return list;
+	}
 
 
 
@@ -154,6 +186,83 @@ public class ReviewService {
 		close(conn);
 		
 		return result;
+	}
+
+
+
+
+	public int modifyReviewComment(String commentNo, String commentContent) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.modifyReviewComment(conn, commentNo, commentContent);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+
+	public int deleteReviewComment(String commentNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.deleteReviewComment(conn, commentNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+	// 상품상세페이지에서 쓸 리뷰 조회
+	public List<Review> selectProductReview(String productid) {
+		
+		Connection conn = getConnection();
+		
+		List<Review> list = dao.selectProductReview(conn, productid);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	
+	// 리뷰메인에서 쓸 베스트리뷰 3개 조회
+		public List<Review> selectBestReview() {
+			
+			Connection conn = getConnection();
+			
+			List<Review> list = dao.selectBestReview(conn);
+			
+			close(conn);
+			
+			return list;
+		}
+
+
+
+	public List<Review> selectmain() {
+		
+		Connection conn = getConnection();
+		List<Review> list = dao.selectmain(conn, 1, 3);
+		close(conn);
+		return list;
 	}
 
 }

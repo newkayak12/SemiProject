@@ -1,6 +1,7 @@
 package com.product.model.vo;
 
 public class Product {
+	
 	private int productId;
 	private String categoryId;
 	private String productOptionSize;
@@ -10,6 +11,7 @@ public class Product {
 	private int productStock;
 	private String productFile, productFileDetail1 ,productFileDetail2, productExplain;
 	private int productViewCount;
+	
 	public int getProductId() {
 		return productId;
 	}
@@ -82,6 +84,7 @@ public class Product {
 	public void setProductViewCount(int productViewCount) {
 		this.productViewCount = productViewCount;
 	}
+	
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", categoryId=" + categoryId + ", productOptionSize="

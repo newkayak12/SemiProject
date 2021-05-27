@@ -38,4 +38,13 @@ public class ProductService {
 		
 		return product;
 	}
+
+	public List<Product> searchProduct(String keyword) {
+		
+		Connection conn = getConnection();
+		
+		List<Product> searchResult = dao.searchProduct(conn, keyword);
+		
+		return searchResult;
+	}
 }

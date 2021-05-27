@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.main.model.service.MainProductService;
 import com.main.model.vo.MainProduct;
+import com.product.model.service.ProductService;
+import com.product.model.vo.Product;
 
 
-@WebServlet("/main/product/list")
+@WebServlet("/main/product/list/ajax")
 public class MainProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,13 +29,35 @@ public class MainProductListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		
-		List<MainProduct> products = new MainProductService().selectProduct();
+		String sort = request.getParameter("sort");
+		 
 		
-		request.setAttribute("products", products);
+		if(sort == null) {
+			sort  = "p_view_count";
+		} 
 		
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.setAttribute("sort", sort);
+		
+		
+		
+		
+		
+		
+		
+		
+		List<Product> result = new ProductService().selectAllProduct(1, 9,sort,"all");
+		
+		Gson gson = new Gson();
+		response.setContentType("application/json;charset=utf-8");
+		gson.toJson(result,response.getWriter());
+		
+		
+		
+		
+		//ajax로 보낼 곳
 	}
-
+	
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

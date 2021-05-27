@@ -39,6 +39,7 @@ public class ReviewDeleteServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("loc", "/review/list");
+				
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
