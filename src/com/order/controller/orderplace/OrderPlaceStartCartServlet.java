@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cart.model.service.CartService;
 import com.cart.model.vo.Cart;
+import com.order.model.service.OrderService;
 
 @WebServlet("/order/place/cart/start")
 public class OrderPlaceStartCartServlet extends HttpServlet {
@@ -39,7 +40,15 @@ public class OrderPlaceStartCartServlet extends HttpServlet {
 //				 name = names.split("||");
 //						
 //			} 
-//				
+		
+		
+		
+		
+		
+//		 cart 1 or many
+//		 page 1
+		
+		
 		
 		Cookie[] cookiejar = request.getCookies();
 		String cartlist = "";
@@ -82,7 +91,8 @@ public class OrderPlaceStartCartServlet extends HttpServlet {
 								list.add(cart);
 								
 								request.setAttribute("list", list);
-								request.setAttribute("flag2", "list");
+								request.setAttribute("flag",2);
+								
 								
 							}
 					
@@ -105,11 +115,11 @@ public class OrderPlaceStartCartServlet extends HttpServlet {
 						cart.setCartName(ls.getCartName());
 					
 					request.setAttribute("list", cart);
-					request.setAttribute("flag2", "cart");
-		
+					request.setAttribute("flag",1);
+//		cart - 1
 				}
 		
-		request.setAttribute("flag",1);
+		request.setAttribute("flag2", "cart");
 		
 		request.getRequestDispatcher("/views/order/orderplace/orderplace.jsp").forward(request, response);
 	

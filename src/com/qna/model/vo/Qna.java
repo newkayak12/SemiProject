@@ -1,176 +1,120 @@
 package com.qna.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Qna {
 	
-	private String qSeq; // qna 시퀀스
-	private String userId; // userId
-	private String qTitle; // qna 제목
-	private String qContents; // qna 내용
-	private String qFile; // qna 파일
-	private Date qDate; // qna 작성날짜
-	private String cId; // 상품 카테고리 아이디
-	private String pId; // 상품 아이디
+	private String qSeq;
+	private String userId;
+	private String qTitle;
+	private String qFile;
+	private String qContents;
+	private Date qDate;
 	
-	// ---- PRODUCT FK ------
-	 private String pName; // 상품 이름
-	 
-	 // ---- QNA_COMMENT FK ----
-	 private String qComment;
-	 private String qCommentId;
-	 private Date qCommentDate;
-	 
+	// qna 댓글 
+	private String qCommentSeq; // 댓글번호
+	private String qCommentContens; // 댓글 내용
+	private Date qCommentDate;
 	
 	public Qna() {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Qna(String qSeq, String userId, String qTitle, String qContents, String qFile, Date qDate, String cId,
-			String pId, String pName, String qComment, String qCommentId, Date qCommentDate) {
+	public Qna(String qSeq, String userId, String qTitle, String qFile, String qContents, Date qDate,
+			String qCommentSeq, String qCommentContens, Date qCommentDate) {
 		super();
 		this.qSeq = qSeq;
 		this.userId = userId;
 		this.qTitle = qTitle;
-		this.qContents = qContents;
 		this.qFile = qFile;
+		this.qContents = qContents;
 		this.qDate = qDate;
-		this.cId = cId;
-		this.pId = pId;
-		this.pName = pName;
-		this.qComment = qComment;
-		this.qCommentId = qCommentId;
+		this.qCommentSeq = qCommentSeq;
+		this.qCommentContens = qCommentContens;
 		this.qCommentDate = qCommentDate;
 	}
-
 
 	public String getqSeq() {
 		return qSeq;
 	}
 
-
 	public void setqSeq(String qSeq) {
 		this.qSeq = qSeq;
 	}
-
 
 	public String getUserId() {
 		return userId;
 	}
 
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 	public String getqTitle() {
 		return qTitle;
 	}
 
-
 	public void setqTitle(String qTitle) {
 		this.qTitle = qTitle;
 	}
-
-
-	public String getqContents() {
-		return qContents;
-	}
-
-
-	public void setqContents(String qContents) {
-		this.qContents = qContents;
-	}
-
 
 	public String getqFile() {
 		return qFile;
 	}
 
-
 	public void setqFile(String qFile) {
 		this.qFile = qFile;
 	}
 
+	public String getqContents() {
+		return qContents;
+	}
+
+	public void setqContents(String qContents) {
+		this.qContents = qContents;
+	}
 
 	public Date getqDate() {
 		return qDate;
 	}
 
-
 	public void setqDate(Date qDate) {
 		this.qDate = qDate;
 	}
 
-
-	public String getcId() {
-		return cId;
+	public String getqCommentSeq() {
+		return qCommentSeq;
 	}
 
-
-	public void setcId(String cId) {
-		this.cId = cId;
+	public void setqCommentSeq(String qCommentSeq) {
+		this.qCommentSeq = qCommentSeq;
 	}
 
-
-	public String getpId() {
-		return pId;
+	public String getqCommentContens() {
+		return qCommentContens;
 	}
 
-
-	public void setpId(String pId) {
-		this.pId = pId;
+	public void setqCommentContens(String qCommentContens) {
+		this.qCommentContens = qCommentContens;
 	}
-
-
-	public String getpName() {
-		return pName;
-	}
-
-
-	public void setpName(String pName) {
-		this.pName = pName;
-	}
-
-
-	public String getqComment() {
-		return qComment;
-	}
-
-
-	public void setqComment(String qComment) {
-		this.qComment = qComment;
-	}
-
-
-	public String getqCommentId() {
-		return qCommentId;
-	}
-
-
-	public void setqCommentId(String qCommentId) {
-		this.qCommentId = qCommentId;
-	}
-
 
 	public Date getqCommentDate() {
 		return qCommentDate;
 	}
 
-
 	public void setqCommentDate(Date qCommentDate) {
 		this.qCommentDate = qCommentDate;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Qna [qSeq=" + qSeq + ", userId=" + userId + ", qTitle=" + qTitle + ", qContents=" + qContents
-				+ ", qFile=" + qFile + ", qDate=" + qDate + ", cId=" + cId + ", pId=" + pId + ", pName=" + pName
-				+ ", qComment=" + qComment + ", qCommentId=" + qCommentId + ", qCommentDate=" + qCommentDate + "]";
+		return "Qna [qSeq=" + qSeq + ", userId=" + userId + ", qTitle=" + qTitle + ", qFile=" + qFile + ", qContents="
+				+ qContents + ", qDate=" + qDate + ", qCommentSeq=" + qCommentSeq + ", qCommentContens="
+				+ qCommentContens + ", qCommentDate=" + qCommentDate + "]";
 	}
+	
+	
+	
 }
 
 	

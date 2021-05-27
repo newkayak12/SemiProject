@@ -1,23 +1,26 @@
-package com.order.controller.orderplace;
+package com.qna.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qna.model.vo.Qna;
+
 /**
- * Servlet implementation class OrderPlaceEndServlet
+ * Servlet implementation class QnaModifyEndServlet
  */
-@WebServlet("/order/place/end")
-public class OrderPlaceEndServlet extends HttpServlet {
+@WebServlet("/qna/qnaModifyEnd")
+public class QnaModifyEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderPlaceEndServlet() {
+    public QnaModifyEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +29,10 @@ public class OrderPlaceEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		
+		Qna a = new Qna();
+		
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

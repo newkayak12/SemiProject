@@ -16,7 +16,6 @@
 		cartlist = (List<Cart>) o;
 	}
 	
-	
 	Cookie[] c = request.getCookies();
 	String cookieContent = "";
 	if(c!=null){
@@ -215,7 +214,7 @@
 			const fn_buy = () =>{
 				/* 플래그 넘기기 */
 				
-				location.assign("<%=request.getContextPath()%>/order/place/cart/start?name=<%=name%>");
+				location.assign("<%=request.getContextPath()%>/order/place/cart/start?name=<%=name%>&flag=cart");
 				
 			}
 			

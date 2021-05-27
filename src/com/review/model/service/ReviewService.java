@@ -50,6 +50,8 @@ public class ReviewService {
 	}
 
 
+
+
 	public List<Review> selectReview(String reviewNo) {
 		
 		Connection conn = getConnection();
@@ -62,7 +64,7 @@ public class ReviewService {
 	}
 	
 	
-
+	
 	public List<Review> selectReview(String reviewNo, boolean readFlag) {
 		
 		Connection conn = getConnection();
@@ -240,17 +242,26 @@ public class ReviewService {
 		return list;
 	}
 
-
-
+	
 	// 리뷰메인에서 쓸 베스트리뷰 3개 조회
-	public List<Review> selectBestReview() {
+		public List<Review> selectBestReview() {
+			
+			Connection conn = getConnection();
+			
+			List<Review> list = dao.selectBestReview(conn);
+			
+			close(conn);
+			
+			return list;
+		}
+
+
+
+	public List<Review> selectmain() {
 		
 		Connection conn = getConnection();
-		
-		List<Review> list = dao.selectBestReview(conn);
-		
+		List<Review> list = dao.selectmain(conn, 1, 3);
 		close(conn);
-		
 		return list;
 	}
 

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.catalina.filters.AddDefaultCharsetFilter;
+
 import com.order.model.vo.Order;
 public class OrderDao {
 	PreparedStatement pstmt = null;
@@ -36,40 +38,34 @@ public class OrderDao {
 				}
 	}
 
-	public List<Order> showallOrder(int cPage, int numPerPage, Connection conn, String id) {
-		List<Order> result = new ArrayList();	
+	public List<List<Order>> showallOrder(int cPage, int numPerPage, Connection conn, String id) {
+		List<List<Order>> result = new ArrayList();	
+		List<Order> semi = new ArrayList();
 		Order order = null;
 				try {
 					
 						String sql = properties.getProperty("showall");
-						sql = sql.replace("@", "환불처리중");
-						sql = sql.replace("#", "환불완료");
+						
 						pstmt = conn.prepareStatement(sql);
 						pstmt.setString(1,id);
 						pstmt.setInt(2, (cPage-1)*numPerPage+1);
 						pstmt.setInt(3, cPage*numPerPage);
-						
 						rs = pstmt.executeQuery();
 						
 								while(rs.next()) {
 									order = new Order();
-									order.setOrderNumber(rs.getInt("O_NUMBER"));
-									order.setProductId(rs.getString("P_ID"));
-									order.setCategoryId(rs.getString("C_ID"));
-									order.setProductSize(rs.getString("p_o_size"));
-									order.setProductColor(rs.getString("P_O_color"));
-									order.setProductStock(rs.getInt("O_D_COUNT"));
-									order.setOrderDate(rs.getDate("O_DATE"));
-									order.setOrderStatus(rs.getString("o_status"));
-									order.setOrderCompleted(rs.getString("O_completed"));
-									order.setProductName(rs.getString("P_NAME"));
-									order.setProductPrice(rs.getInt("p_price"));
+									
+									order.setOrderNumber(rs.getString("o_number"));
+									order.setOrderDate(rs.getDate("o_date"));
 									order.setProductFile(rs.getString("p_file"));
-									order.setAddress(rs.getString("user_addr"));
-									order.setZipcode(rs.getString("user_zip"));
-									order.setPhone(rs.getString("o_phone"));
-									order.setOdno(rs.getString("O_D_No"));
-									result.add(order);
+									order.setProductName(rs.getString("p_name"));
+									order.setTotalPrice(rs.getInt("o_totalprice"));
+									
+								
+									
+									
+									semi.add(order);
+									result.add(semi);
 									
 								}
 						
@@ -89,15 +85,30 @@ public class OrderDao {
 
 	public int showallOrderCount(Connection conn, String id) {
 		int result = 0;
+		Order order = null;
+		List<Order> semi = new ArrayList();
 				try {
 						pstmt = conn.prepareStatement(properties.getProperty("showallCount"));
 						pstmt.setString(1, id);
 						
 						rs = pstmt.executeQuery();
 						
-								if(rs.next()) {
-									result = rs.getInt(1);
-								}
+						while(rs.next()) {
+							order = new Order();
+							
+							order.setOrderNumber(rs.getString("o_number"));
+							order.setOrderDate(rs.getDate("o_date"));
+							order.setProductFile(rs.getString("p_file"));
+							order.setProductName(rs.getString("p_name"));
+							order.setTotalPrice(rs.getInt("o_totalprice"));
+							
+						
+							
+							
+							semi.add(order);
+							
+							
+						}
 						
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -107,7 +118,7 @@ public class OrderDao {
 					close(pstmt);
 				}
 				
-				
+				result = semi.size();
 		
 		return result;
 	}
@@ -130,22 +141,7 @@ public class OrderDao {
 								while(rs.next()) {
 									
 									order = new Order();
-									order.setOrderNumber(rs.getInt("O_NUMBER"));
-									order.setProductId(rs.getString("P_ID"));
-									order.setCategoryId(rs.getString("C_ID"));
-									order.setProductSize(rs.getString("p_o_size"));
-									order.setProductColor(rs.getString("P_O_color"));
-									order.setProductStock(rs.getInt("O_D_COUNT"));
-									order.setOrderDate(rs.getDate("O_DATE"));
-									order.setOrderStatus(rs.getString("o_status"));
-									order.setOrderCompleted(rs.getString("O_completed"));
-									order.setProductName(rs.getString("P_NAME"));
-									order.setProductPrice(rs.getInt("p_price"));
-									order.setProductFile(rs.getString("p_file"));
-									order.setAddress(rs.getString("user_addr"));
-									order.setZipcode(rs.getString("user_zip"));
-									order.setPhone(rs.getString("o_phone"));
-									order.setOdno(rs.getString("o_d_no"));
+									
 									result.add(order);
 									
 								}
@@ -160,6 +156,82 @@ public class OrderDao {
 				
 				
 		
+		
+		return result;
+	}
+
+	public int insertOrder(Connection conn, String oname, String rname, String addr, String phone, String id, String zip, int totalPrice) {
+		int result = 0;
+		
+		try {
+				pstmt = conn.prepareStatement(properties.getProperty("insertorder"));
+				pstmt.setString(1, id);
+				pstmt.setString(2, addr);
+				pstmt.setString(3, zip);
+				pstmt.setString(4, oname);
+				pstmt.setString(5, phone);
+				pstmt.setString(6, rname);
+				pstmt.setInt(7, totalPrice);
+				
+				result = pstmt.executeUpdate();
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+//		id, add, zip, oname, ophone, rname
+		
+		return result;
+	}
+
+	public String oderNum(Connection conn, String oname, String rname) {
+		String onum = "";
+		try {
+			pstmt = conn.prepareStatement(properties.getProperty("onum"));
+			pstmt.setString(1, oname);
+			pstmt.setString(2, rname);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				onum = rs.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		// TODO Auto-generated method stub
+		return onum;
+	}
+
+	public int insertOrderDetail(Connection conn, String onum, String pid, String cid, String size, String color, String stock) {
+		int result = 0;
+		
+				try {
+						pstmt = conn.prepareStatement(properties.getProperty("orderdetail"));
+						pstmt.setString(1, onum);
+						pstmt.setString(2, pid);
+						pstmt.setString(3, cid);
+						pstmt.setString(4, size);
+						pstmt.setString(5, color);
+						pstmt.setInt(6, Integer.parseInt(stock));
+						
+						result = pstmt.executeUpdate();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					close(pstmt);
+				}
 		
 		return result;
 	}

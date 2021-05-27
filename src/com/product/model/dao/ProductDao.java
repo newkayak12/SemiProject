@@ -62,9 +62,9 @@ public class ProductDao{
 			} else {
 				
 				if(sort.equals("high")) {
-					query = query.replace("#", " order by p_price desc");
+					query = query.replace("#", " order by to_number(p_price) desc");
 				} else {
-					query = query.replace("#", " order by p_price asc ");
+					query = query.replace("#", " order by to_number(p_price) asc ");
 					
 				}
 				

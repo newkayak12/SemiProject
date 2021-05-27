@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="com.notice.model.vo.Notice, java.util.Date, java.text.SimpleDateFormat" %>
-<%
-	Notice n=(Notice)request.getAttribute("notice");
-%>
+
    
 <%@ include file="/views/common/header.jsp"%> 
 
@@ -13,42 +11,39 @@
 	    String today = sf.format(now);
 %>
 
-<div id="modi-container">
-	<span class = "Menu-name">게시글 수정</span>
-    <form action="<%=request.getContextPath() %>/notice/modify/end/admin" method="post">
-  		<input type="hidden" value="<%=n.getnSeq() %>" name = "noticeno">
-        <table id="tbl-modi">
+<div id="post-container">
+	<span class = "Menu-name">공지사항 작성</span>
+    <form action="<%=request.getContextPath() %>/notice/post/end/admin" method="post">
+  
+        <table id="tbl-post">
 	        <tr>
 	            <th class="blue border-white">TITLE</th>
 	            <td>
-	            	<input type="text" name="noticeTitle" id="noticeTitle" value="<%=n.getnTitle() %>" style="height : 15px;" required>
+	            	<input type="text" name="noticeTitle" id="noticeTitle" style="height : 10px; width : 250px;" required>
 	            </td>
 	        </tr>
 	        <tr>
 	            <th class="blue border-white">WRITER</th>
 	            <td>
 	            	<input type="text" name="noticeWriter" id="noticeWrite" 
-	            	value="Kleidung" style="height : 15px;" readonly>
+	            	value="Kleidung" style="height : 10px; width : 250px;" readonly>
 	            </td>
 	        </tr>
 	        
 	        <tr>
 	            <th class="blue border-white">DATE</th>
-	            <td><input type="text" name="noticeDate" value="<%=today %>"></td>
+	            <td><input type="text" name="noticeDate" value="<%=today %>" style="height : 10px; width : 250px;"></td>
 	        </tr>
 	 
 	        <tr>
 	            <td colspan = "2" style="border : 1px solid grey;">
-	            	<textarea rows="30" cols="90" class="content-background" name="noticeContent"><%=n.getnContent() %></textarea>
+	            	<textarea rows="30" cols="90" class="content-background" name="noticeContent"></textarea>
 	            </td>
 	        </tr>
-	        
 	        <tr>
 	            <td colspan="2" style="text-align : end;">
-	            	<%if(session.getAttribute("user")!=null &&checkAdmin.equals("1")) {%>
-		                <input type="submit" value="수정완료" class="notice-btn blue"  onclick="">
-		            	<input type="button" value="수정취소" class="notice-btn white" onclick="goBack();">
-	            	<%} %> 
+	                <input type="submit" value="등록하기" class="notice-btn blue"  onclick="">
+	            	<input type="button" value="취소하기" class="notice-btn white" onclick="goBack();">
 	            </td>
 	        </tr>
     	</table>

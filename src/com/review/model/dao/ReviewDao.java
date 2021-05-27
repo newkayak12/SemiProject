@@ -19,7 +19,7 @@ import com.review.model.vo.ReviewComment;
 
 public class ReviewDao {
 	
-	// 주석 ㅎㅎ 
+	
 	
 	private Properties prop = new Properties();
 	
@@ -512,9 +512,9 @@ public class ReviewDao {
 		
 		return list;
 	}
-
-
-
+	
+	
+	
 	public int modifyReviewReadCount(Connection conn, String reviewNo) {
 		
 		PreparedStatement pstmt = null;
@@ -547,6 +547,8 @@ public class ReviewDao {
 
 
 
+
+	
 	public List<Review> selectBestReview(Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -601,6 +603,78 @@ public class ReviewDao {
 		
 		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+
+	public List<Review> selectmain(Connection conn, int cPage, int numPerPage) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+				
+		Review r = null;
+		
+		List<Review> list = new ArrayList<Review>();
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectmain"));
+			
+			pstmt.setInt(1, cPage);
+			pstmt.setInt(2, numPerPage);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				r = new Review();
+				
+				r.setReviewNo(rs.getString("r_seq"));
+				r.setUserId(rs.getString("user_id"));
+				r.setProductId(rs.getString("p_id"));
+				r.setProductOptionSize(rs.getString("p_o_size"));
+				r.setProductOptionColor(rs.getString("p_o_color"));
+				r.setReviewCount(rs.getString("r_count"));
+				r.setProductName(rs.getString("p_name"));
+				r.setProductFile(rs.getString("p_file"));
+				
+				// 추가된 필드 세팅
+//				private String commentUserId;
+//				private String reviewComment;
+//				private String reviewCommentDate;
+				
+//				r.setCommentUserId(rs.getString("r_c_user_id"));
+//				r.setReviewComment(rs.getString("r_comment"));
+//				r.setReviewCommentDate(rs.getString("r_c_date"));
+//				
+				list.add(r);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return list;
+	}
+
+
+
+	
+	
 	
 
 }
