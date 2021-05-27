@@ -64,10 +64,9 @@
 	
 <!-- /////////////////////////////////////////////// -->
 
+<% if(list!=null&&list.size()>0) { %>
+
 	<div id ="grid-container">
-		
-		
-		<% if(list!=null&&list.size()>0) { %>
 		
 			<% for(Product p : list){ %>
 			
@@ -94,25 +93,24 @@
 				
 			<% } %>
 			
-			
+	</div>		
 			
 		
 		<% } else { %>
 		
 			<div id="nosearchresult-container">
-				검색결과가 없습니다!<br>
-				정확한 검색어 인지 확인하시고 다시 검색해 주세요.
+			
+				<div>
+					<strong>검색결과가 없습니다!</strong><br><br>
+					정확한 검색어 인지 확인하시고 다시 검색해 주세요.
+				</div>
+				
 			</div>
 		
-		<%} %>	
-		
-		
+	<%} %>	
 		
 		
 	
-	</div>
-
-
 	<div id="pageBar">
 		<%=request.getAttribute("pageBar") %>
 	</div>

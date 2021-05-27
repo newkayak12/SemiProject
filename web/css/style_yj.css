@@ -300,5 +300,9 @@
 	}
 	
 	
+	#nosearchresult-container>div{
+		padding : 100px !important;
+		text-align : center;
+	}
 	
 

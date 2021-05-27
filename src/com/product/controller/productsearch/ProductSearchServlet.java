@@ -14,11 +14,11 @@ import com.product.model.vo.Product;
 
 
 @WebServlet("/product/searchProduct")
-public class ProductSearchStartServlet extends HttpServlet {
+public class ProductSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public ProductSearchStartServlet() {
+    public ProductSearchServlet() {
        
     }
 
@@ -39,6 +39,18 @@ public class ProductSearchStartServlet extends HttpServlet {
 		
 		// 페이지바 만드는 과정 있어야함
 		// jsp에 검색결과 출력용 페이지바가 따로 필요하기 떄문에
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		request.setAttribute("pageBar", keyword);
 		
 		
