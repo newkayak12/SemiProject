@@ -56,9 +56,9 @@
 		
 		<p class="section_title">Today's pick</p>
 		
-		<div id="slideshow">
+		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px;">
 		
-			<div id="slides">
+			<div id="">
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
@@ -75,6 +75,11 @@
 						<iframe width="560" height="315" src="https://www.youtube.com/embed/ZvE_j5psy6Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					
 
+			</div>
+			
+			
+			<div id="slideshowcontent" style="width:520px;">
+				test
 			</div>
 			
 		</div>

@@ -408,13 +408,17 @@ div#todayspick div#disc{
 }
 
 div#slideshow{
-	clear : both;
-	width : 100%;
+	/* clear : both; */
+	width : 500px;
 	height : 400px;
-	overflow : hidden;
+	/* overflow : hidden; */
 	position : relative;
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto !important;
 	
 }
+
 
 div#slides{
 	position : absolute;
