@@ -6,24 +6,24 @@
 
 
 <main id="joinMain">
-	<div class="wrap">
-		<div class="container_wrap" id="join-container">
+	<div class="wrap"style="margin-bottom:40px; margin-left: 0px; ">
+		<div class="container_wrap" id="join-container" style="margin-bottom:10px; ">
 		
 		<h1>회원가입</h1>
-		
+		<h4 style="text-align: right; color: red;">* 모든 사항이 필수 입력입니다.</h4>
 		<form action="<%=request.getContextPath() %>/sign/signup/end"
 		method="post">
 			<div id="join_input_section">
 			
 				<p class="input_txt">ID</p>
-				<input class="input_style" type="text"  id= "userId"name="userId" placeholder="id" onblur="fn_ajaxcheck()" required>
+				<input class="input_style" type="text"  id= "userId"name="userId" placeholder="ID" onblur="fn_ajaxcheck()" required>
 				<div id="id_check"></div>
 					
 				<p class="input_txt">PassWord</p>
-				<input class="input_style" type="password" name="password" id="password" placeholder="pw"><br>
+				<input class="input_style" type="password" name="password" id="password" placeholder="PASSWORD"><br>
 				
 				<p class="input_txt">PassWord check</p>
-				<input class="input_style" type="password" name="password-check" id="password-check" placeholder="pw-ck"><br>
+				<input class="input_style" type="password" name="password-check" id="password-check" placeholder="PASSWORD"><br>
 				<div id="checkpw"></div>
 					
 				
@@ -34,9 +34,9 @@
 				<p class="input_txt">Phone<p>
 				<input class="input_style" type="text" name="userPhone" placeholder="핸드폰번호"><br>
 				<p class="input_txt">주소</p>
-				<input class="input_style" type="text" name="userzip" placeholder="우편번호"><button class="smallBtn_syle">우편번호 검색</button><br>
-				<input class="input_style" type="text" name="useraddr" placeholder="도로명주소"><br> 
-				<input class="input_style" type="text" name="useraddrdetail" placeholder="상세주소"><br>
+				<input class="input_style" type="text" name="userzip"  id = "userzip"placeholder="우편번호" style="width:70%;"><button class="smallBtn_syle" id="findaddr">우편번호 검색</button><br>
+				<input class="input_style" type="text" name="useraddr" id = "useraddr"placeholder="도로명주소"><br> 
+				<input class="input_style" type="text" name="useraddrdetail"  id = "useraddrdetail" placeholder="상세주소" required><br>
 			</div>
 			
 			
@@ -50,9 +50,34 @@
 	</div>
 </main>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <script>
+$("#findaddr").click(()=>{
+
+new daum.Postcode({
+    oncomplete: function(data) {
+        console.log(data["zonecode"])
+        $("#userzip").val(data["zonecode"])
+        console.log(data["address"])
+        $("#useraddr").val(data["address"])
+        
+       console.log(data)
+    }
+}).open();
+	
+})
+
+
+
+
+
+
+
+
+
+
 
 
 /*  2차 비번에 onkeyup 걸고

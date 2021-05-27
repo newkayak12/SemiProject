@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.users.model.service.UsersService;
 import com.users.model.vo.Users;
 
+
 @WebServlet("/sign/signup/end")
 public class SignupEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +31,7 @@ public class SignupEndServlet extends HttpServlet {
 		
 		String userId=request.getParameter("userId");
 		String useraddr=request.getParameter("useraddr");
+		
 		String userzip=request.getParameter("userzip");
 		String userPwd=request.getParameter("password");
 		String username=request.getParameter("username");
@@ -40,7 +42,7 @@ public class SignupEndServlet extends HttpServlet {
 		String useraddrdetail=request.getParameter("useraddrdetail");
 		
 		
-		
+		String addrs = useraddr+"@"+useraddrdetail;
 		Users u=new Users();
 		u.setUserId(userId);
 		u.setUserAddr(useraddr);
