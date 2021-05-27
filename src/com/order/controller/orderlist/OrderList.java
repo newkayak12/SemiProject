@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.order.model.service.OrderService;
-import com.order.model.vo.Order;
+import com.order.model.vo.Orderbk;
 import com.users.model.vo.Users;
 
 @WebServlet("/order/list")
@@ -55,7 +55,7 @@ public class OrderList extends HttpServlet {
 							
 						}
 						
-			List<Order> result = new OrderService().showallOrder(cPage, numPerPage, id);
+			List<Orderbk> result = new OrderService().showallOrder(cPage, numPerPage, id);
 			
 			
 			int resultCount = new OrderService().showallOrderCount(id);

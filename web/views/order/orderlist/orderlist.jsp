@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "/views/common/header.jsp"%>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style_sh.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_sh.css">
 
 <%@ page import = "java.util.*" %>
-<%@ page import = "com.order.model.vo.Order" %>
+<%@ page import = "com.order.model.vo.Orderbk" %>
 <!-- import -->
 
 
 <!-- java -->
-<% 
-
-
-	String pageBar = null;
-	List<Order> result = null;
+<%
+String pageBar = null;
+	List<Orderbk> result = null;
 	
 	
 	
@@ -23,9 +21,8 @@
 		pageBar = (String) temp1;
 	}
 	if(temp2 != null){
-		result = (List<Order>) temp2;
+		result = (List<Orderbk>) temp2;
 	}
-	
 %>
 
 <%-- 
@@ -56,7 +53,7 @@ $(function(){
     <div id="orderOrrefund">
     
     	<div id="orderOrrefund_selector-container">
-	        <span id="order_selector" onclick="ajax_order()">주문 내역 조회(<%=request.getAttribute("orderCount") %>)</span>
+	        <span id="order_selector" onclick="ajax_order()">주문 내역 조회(<%=request.getAttribute("orderCount")%>)</span>
 	        <span id="refund_selector"onclick="">취소/반품/교환 내역()</span>
     	</div>		
     	
@@ -92,10 +89,9 @@ $(function(){
 	            </tr>
 	            
 	            
-			<%for(Order o : result){ 
-			
-				
-			%>
+			<%
+	            	            			for(Orderbk o : result){
+	            	            			%>
 			
                 <tr>
                     <td>

@@ -81,7 +81,7 @@ public class CartListServlet extends HttpServlet {
 					cart.setCartStock(Integer.parseInt(t2[4]));
 					cart.setCartOptionColor(t2[2]);
 					cart.setCartOptionSize(t2[1]);
-					cart.setCartPrice(Integer.parseInt(t2[3]));
+					cart.setCartPrice((t2[3]));
 					cart.setCategoryId(t2[5]);
 					
 					

@@ -6,7 +6,7 @@ public class Cart {
 	private String cartOptionSize;
 	private String cartOptionColor;
 	private String cartName;
-	private int cartPrice;
+	private String cartPrice;
 	private int cartStock;
 	private String productFile, productExplain;
 	public String getProductId() {
@@ -39,10 +39,10 @@ public class Cart {
 	public void setCartName(String cartName) {
 		this.cartName = cartName;
 	}
-	public int getCartPrice() {
+	public String getCartPrice() {
 		return cartPrice;
 	}
-	public void setCartPrice(int cartPrice) {
+	public void setCartPrice(String cartPrice) {
 		this.cartPrice = cartPrice;
 	}
 	public int getCartStock() {
