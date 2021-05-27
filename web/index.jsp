@@ -97,6 +97,7 @@
 			<div class="img">img8</div>
 			<div class="img">img9</div> 
 			-->
+			
 		</div>
 
 	</div>
@@ -420,7 +421,7 @@
 			}
 		})
 		
-		$("#reviewmain-table").
+		/* $("#reviewmain-table"). */
 		
 		let table = $("#reviewmain-table");
 		
