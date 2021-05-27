@@ -20,6 +20,29 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_ws.css">
 
 <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/images/favicon.png"/>
+
+<script>
+	$("#logout").click(()=>{
+		
+		function kakaoLogout() {
+		    if (Kakao.Auth.getAccessToken()) {
+		      Kakao.API.request({
+		        url: '/v1/user/unlink',
+		        success: function (response) {
+		        	console.log(response)
+		        },
+		        fail: function (error) {
+		          console.log(error)
+		        },
+		      })
+		      Kakao.Auth.setAccessToken(undefined)
+		    }
+		  }  
+		
+	})
+
+
+</script>
 </head>
 
 <body>
@@ -122,7 +145,7 @@
 					<%} else { %>
 					
 						<!-- 로그인을 했을 때 --> 
-	                	<li><a href="<%=request.getContextPath()%>/sign/signout">SIGN OUT</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/sign/signout" id="logout">SIGN OUT</a></li>
 	        		
 	        		<%} %>       
 	        		
@@ -144,7 +167,7 @@
 			            	<ul>
 			            		<li><a href="<%=request.getContextPath() %>/cart/list">CART</a></li>
 			            		<li><a href="<%=request.getContextPath() %>/order/list">ORDER</a></li>
-			            		<li><a href="">PROFILE</a></li>
+			            		<li><a href="<%=request.getContextPath() %>/sign/mypage/start">PROFILE</a></li>
 			            	</ul>
 		            	</li>
 			            

@@ -32,17 +32,22 @@ if (lg != null) {
 					<div class="input_section_id">
 						<p class="input_txt">아이디</p>
 						<input class="input_style" type="text" name="userId" placeholder="ID :)"
-							value="<%=check != null ? check : ""%>" style="margin-left:0px;"> <br>
+							value="<%=check != null ? check : ""%>" > <br>
 					</div>
 					<div class="input_section_pw">
 						<p class="input_txt">PASSWORD</p>
-						<input class="input_style" type="password" name="password" placeholder="PASSWORD" style="margin-left:0px;">
+						<input class="input_style" type="password" name="password" placeholder="PASSWORD" >
 					</div>
 				</div>
 
 				<div id="submit_section" style="display: flex; flex-direction: column;">
 
-					<input class= "bigBtn_syle login_loginBtn" type="submit" value="로그인" onsubmit="">
+					<input class= "bigBtn_syle login_loginBtn" type="submit" value="로그인" onsubmit="" >
+					
+					<!-- 카카오로 로그인 -->
+					<img class="" width = "95%" height="50px" src="<%=request.getContextPath() %>/images/kakao_login_large_wide.png" onclick = "kakaoLogin()" >
+					
+					
 					<div style ="display: flex; justify-content: space-between; flex-direction: row;">
 						<div class="submit_section_idSave" style="display:flex; align-items: center;">
 							<input type="checkbox" name="idsave">
@@ -68,14 +73,14 @@ if (lg != null) {
 				</p>
 			</div>
 			
-			<%-- 
-			<div id="logstorsignup-search">
+			
+			<!-- <div id="logstorsignup-search">
 				<span><a
 					href="<%=request.getContextPath()%>/search/search/start">아이디/비밀번호
 						찾기</a></span>
 			
-			</div>
- --%>
+			</div> -->
+ 
 
 
 			<div id="lostorsignup-container" class="bigBtn_style bigBtn_style">
@@ -86,27 +91,67 @@ if (lg != null) {
 
 		</div>
 	</div>
-
+	
 </main>
 
-<%-- <script>
-	const signin_ajax = () =>{
-		console.log('1');
-		$.ajax({
-			url:"<%=request.getContextPath()%>/sign/signin/end",
-			type:"post",
-			data: {"id":$("#userId").val(),"password":$("#password").val()},
-			success:data=>{
-				
-				console.log('2');
-				console.log(data);
-			}
 
 
+<!-- 카카오 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+	// kakao 195f3373454374ffb5d7e3d8285bf924
+	Kakao.init('195f3373454374ffb5d7e3d8285bf924');
+	Kakao.isInitialized();
+	console.log(Kakao.isInitialized());
 
-		})
-	}
+	function kakaoLogin() {
+
+		
+	    Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          
+	          success: function (response) {
+	        	  console.log(response)
+	        	  
+	        	  
+	        	  
+	        		 $.ajax({
+	        	  	 	url:"<%=request.getContextPath()%>/sign/signin/ajax",
+	        	  	 	data:{"signin": response["id"]},
+	        	  	 	success: data=>{
+	        	  	 		location.assign("<%=request.getContextPath()%>/")
+	        	  			
+	        	  	 	} 
+	        		 })
+	        	  
+	        	  
+	        	  
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+	  }
 
 
-</script> --%>
+	
+	// 
+		
+
+	
+	
+	
+	
+	
+	
+	
+
+</script>
 <%@ include file="/views/common/footer.jsp"%>
