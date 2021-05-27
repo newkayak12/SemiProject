@@ -210,4 +210,15 @@ public class ReviewService {
 		return list;
 	}
 
+
+
+
+	public List<Review> selectmain() {
+		
+		Connection conn = getConnection();
+		List<Review> list = dao.selectmain(conn, 1, 3);
+		close(conn);
+		return list;
+	}
+
 }

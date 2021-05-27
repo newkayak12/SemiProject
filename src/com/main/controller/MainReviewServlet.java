@@ -10,57 +10,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.main.model.service.MainProductService;
-import com.main.model.vo.MainProduct;
-import com.product.model.service.ProductService;
-import com.product.model.vo.Product;
+import com.review.model.service.ReviewService;
+import com.review.model.vo.Review;
 
-
-@WebServlet("/main/product/list/ajax")
-public class MainProductListServlet extends HttpServlet {
+/**
+ * Servlet implementation class MainReviewServlet
+ */
+@WebServlet("/main/review/list/ajax")
+public class MainReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public MainProductListServlet() {
-       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MainReviewServlet() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
-	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
-		String sort = request.getParameter("sort");
-		 
-		
-		if(sort == null) {
-			sort  = "p_view_count";
-		} 
-		
-		request.setAttribute("sort", sort);
-		
-		
-		
-		
-		
-		
-		
-		
-		List<Product> result = new ProductService().selectAllProduct(1, 9,sort,"all");
-		
+		// TODO Auto-generated method stub
+		List<Review> result = new ReviewService().selectmain();
 		Gson gson = new Gson();
 		response.setContentType("application/json;charset=utf-8");
 		gson.toJson(result,response.getWriter());
 		
-		
-		
-		
-		//ajax로 보낼 곳
 	}
-	
-	
-	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
