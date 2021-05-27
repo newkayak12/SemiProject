@@ -12,14 +12,20 @@ import com.product.model.vo.Product;
 
 public class ProductService {
 	
+	
+	
 	private ProductDao dao = new ProductDao();
 
+	
+	
 	public List<Product> selectAllProduct(int cPage, int numPerpage, String sort, String category){
 		Connection conn=getConnection();
 		List<Product> list = dao.selectAllProduct(conn,cPage,numPerpage,  sort,  category);
 		close(conn);
 		return list;
 	}
+	
+	
 	
 	public int countAllProduct(String sort, String category) {
 		Connection conn = getConnection();
@@ -28,6 +34,8 @@ public class ProductService {
 		return count;
 	}
 
+	
+	
 	public List<Product> productDetail(String productid, String category) {
 		Connection conn = getConnection();
 		
@@ -38,6 +46,8 @@ public class ProductService {
 		
 		return product;
 	}
+	
+	
 
 	public List<Product> searchProduct(String keyword) {
 		
@@ -47,4 +57,8 @@ public class ProductService {
 		
 		return searchResult;
 	}
+	
+	
+	
+
 }

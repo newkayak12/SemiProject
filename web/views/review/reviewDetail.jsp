@@ -108,7 +108,7 @@
 		 <div id="reviewDetail-userImage_reviewContents">
 		 
 		 
-		 		<img src="<%=request.getContextPath() %>/upload/review/<%=review.get(0).getReviewFile()%>.jpg">
+		 		<img src="<%=request.getContextPath() %>/upload/review/<%=review.get(0).getReviewFile()%>">
 		 	
 		 		<div><%=review.get(0).getReviewContents() %></div>
 		 	
@@ -116,7 +116,7 @@
 		 	 	<!-- 수정, 삭제 버튼 div -->
 				<div id="reviewDetail-buttons-container" style="display: flex; justify-content: flex-end;">
 				
-					<% if( userid != null && (userid.equals("admin") || userid.equals(review.get(0).getUserId()) ) ) { %>
+					<% if( userid != null && (checkAdmin.equals("1") || userid.equals(review.get(0).getUserId()) ) ) { %>
 						<button onclick="fn_review_update();" style="width:70px; height:35px;">수정</button>
 						<button onclick="fn_review_delete();" style="width:70px; height:35px;">삭제</button>
 					<% } %>

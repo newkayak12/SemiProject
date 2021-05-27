@@ -1,4 +1,4 @@
-package com.review.controller.reviewlist;
+package com.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,27 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.admin.model.service.AdminService;
 import com.common.PageBar;
-import com.review.model.service.ReviewService;
 import com.review.model.vo.Review;
 
-@WebServlet("/review/list")
-public class ReviewListServlet extends HttpServlet {
+
+@WebServlet("/admin/reviewManage")
+public class AdminReviewManageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public ReviewListServlet() {
-        
+    public AdminReviewManageServlet() {
+      
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		ReviewService service = new ReviewService();
-		
-		
-		// cPage, numPerPage 설정
+		AdminService service = new AdminService();
 		
 		int cPage;
 		
@@ -45,38 +42,24 @@ public class ReviewListServlet extends HttpServlet {
 		try {
 			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
 		} catch (NumberFormatException e) {
-			numPerPage = 5;
+			numPerPage = 10;
 		}
 		
+		List<Review> list = service.adminSelectAllReview(cPage, numPerPage);
 		
-		
-		// db에 있는 모든 리뷰 가져오기
-		List<Review> list = service.selectAllReview(cPage, numPerPage);
-		
-		int totalData = service.countAllReview();
-		
+		int totalData = service.adminCountAllReview();
 
-		String url = request.getContextPath() + "/review/list";
+		String url = request.getContextPath() + "/admin/reviewManage";
 		
-		
-		
-		// 페이지바
 		PageBar pageBar = new PageBar();
 		
 		String reviewPageBar = pageBar.pageBar(cPage, numPerPage, totalData, url);
 		
-		
-		// 베스트리뷰 3개 뽑아오기 ( 조회수가 높은 순으로 상위 3개 ) 
-		
-		List<Review> bestReviewList = service.selectBestReview();
-		
-		
-		
 		request.setAttribute("reviewList", list);
 		request.setAttribute("reviewPageBar", reviewPageBar);
-		request.setAttribute("bestReviewList", bestReviewList);
+	
+		request.getRequestDispatcher("/views/admin/reviewManage.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("/views/review/reviewList.jsp").forward(request, response);
 	}
 
 	

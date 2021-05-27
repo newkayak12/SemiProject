@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Review {
 	
-	// 총 필드 19개 
+	// 총 필드 20개 
 	
 	// 16개
 	private String reviewNo;
@@ -35,7 +35,14 @@ public class Review {
 	// 리뷰코멘트번호도 필요해 ㅠㅠㅠ흑흑 귀찮아죽겠네
 	private String reviewCommentNo;
 	
+	// 필요해서 추가한 필드
 	private String productPrice;
+	
+	// 신고컬럼 추가돼서 필드 추가
+	private String reviewReportCount;
+	
+	
+	
 	
 	public Review() {
 		// TODO Auto-generated constructor stub

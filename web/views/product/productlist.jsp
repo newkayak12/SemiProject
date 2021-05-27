@@ -143,7 +143,7 @@
 		
 				/* console.log(keyword); */
 				
-		location.replace("<%=request.getContextPath()%>/product/searchProduct?keyword=" + keyword + "")
+		location.replace("<%=request.getContextPath()%>/product/searchProduct?keyword=" + keyword + "");
 		
 	} );
 </script>
