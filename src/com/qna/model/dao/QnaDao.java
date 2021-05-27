@@ -5,7 +5,6 @@ import static com.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -148,34 +147,56 @@ public class QnaDao {
 	}
 
 
-	public List<QnaComment> selectQnaComment(Connection conn, String qRef) {
+	public int insertQnaComment(Connection conn, QnaComment qc) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("insertQnaComment"));
+//			insertQnaComment = INSERT INTO QNA_COMMENT VALUES(QC_SEQ.NEXTVAL,?,?,?,?)
+//			USER_ID, Q_C_COMMENT, Q_C_REF = Q_SEQ
+
+			pstmt.setString(1, qc.getUserId());
+			pstmt.setString(2, qc.getqComment());
+			pstmt.setString(3, qc.getqSeq());
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	public List<QnaComment> selectQnaComment(Connection conn, String no){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<QnaComment> list=new ArrayList();
 		try {
+			// selectQnaComment = SELECT * FROM QNA_COMMENT WHERE Q_C_REF = ?
+
 			pstmt=conn.prepareStatement(prop.getProperty("selectQnaComment"));
-			pstmt.setString(1, qRef);
+			pstmt.setString(1, "q_c_ref");
 			rs=pstmt.executeQuery();
+			
 			while(rs.next()) {
 				QnaComment qc = new QnaComment();
-				qc.setqSeq(rs.getString("q_seq"));
+				// Q_C_SEQ, USER_ID, Q_C_COMMENT, Q_C_DATE, Q_C_REF = Q_SEQ
+				
+				qc.setqSeq(rs.getString("q_c_seq"));
 				qc.setUserId(rs.getString("user_id"));
 				qc.setqComment(rs.getString("q_c_comment"));
 				qc.setqDate(rs.getDate("q_c_date"));
 				qc.setqRef(rs.getString("q_c_ref"));
-				
 				list.add(qc);
-			}
-			
+				
+			}	
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
 		}return list;
+
 	}
-
-
-
-
 }
