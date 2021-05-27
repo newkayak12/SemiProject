@@ -11,7 +11,7 @@
 
 <div id="qna-detail-container">
 
-		<!-- Q&A 리스트 뜨는 부분 -->
+		<!-- Q&A 리스트 뜨는 부분 깃 수정 -->
 
 		<span class = "Menu-name"><%=q.getqTitle() %></span>
 		
