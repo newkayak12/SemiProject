@@ -641,7 +641,8 @@ public class ReviewDao {
 				r.setProductOptionColor(rs.getString("p_o_color"));
 				r.setReviewCount(rs.getString("r_count"));
 				r.setProductName(rs.getString("p_name"));
-				r.setProductFile(rs.getString("p_file"));
+				r.setReviewFile(rs.getString("r_file"));
+				r.setProductPrice(rs.getString("p_price"));
 				
 				// 추가된 필드 세팅
 //				private String commentUserId;

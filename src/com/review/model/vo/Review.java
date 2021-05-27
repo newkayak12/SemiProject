@@ -35,15 +35,18 @@ public class Review {
 	// 리뷰코멘트번호도 필요해 ㅠㅠㅠ흑흑 귀찮아죽겠네
 	private String reviewCommentNo;
 	
+	private String productPrice;
+	
 	public Review() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public Review(String reviewNo, String userId, String productId, String productOptionSize, String productOptionColor,
 			String reviewTitle, String reviewContents, Date reviewDate, String reviewDelete, String reviewCount,
 			String reviewFile, String reviewLike, String orderNumber, String categoryId, String productName,
 			String productFile, String commentUserId, String reviewComment, String reviewCommentDate,
-			String reviewCommentNo) {
+			String reviewCommentNo, String productPrice) {
+		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
 		this.productId = productId;
@@ -64,6 +67,15 @@ public class Review {
 		this.reviewComment = reviewComment;
 		this.reviewCommentDate = reviewCommentDate;
 		this.reviewCommentNo = reviewCommentNo;
+		this.productPrice = productPrice;
+	}
+
+	public String getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(String productPrice) {
+		this.productPrice = productPrice;
 	}
 
 	public String getReviewNo() {

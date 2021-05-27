@@ -34,6 +34,7 @@ public class MainReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<Review> result = new ReviewService().selectmain();
+		System.out.println(result);
 		Gson gson = new Gson();
 		response.setContentType("application/json;charset=utf-8");
 		gson.toJson(result,response.getWriter());
