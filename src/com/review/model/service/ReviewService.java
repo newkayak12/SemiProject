@@ -8,7 +8,7 @@ import static com.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-import com.order.model.vo.Orderbk;
+import com.order.model.vo.Order;
 import com.product.model.vo.Product;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
