@@ -3,11 +3,11 @@ package com.qna.model.vo;
 import java.sql.Date;
 
 public class QnaComment {
-	private String qSeq;
-	private String userId;
-	private String qComment;
-	private Date qDate;
-	private String qRef;
+	private String qSeq; // 댓글 번호
+	private String userId; // 댓글 작성자
+	private String qComment; // 댓글 내용
+	private Date qDate; // 댓글 작성 날짜
+	private String qRef; // 참조하고 있는 Qna
 	
 	public QnaComment() {
 		// TODO Auto-generated constructor stub
@@ -67,6 +67,5 @@ public class QnaComment {
 		return "QnaComment [qSeq=" + qSeq + ", userId=" + userId + ", qComment=" + qComment + ", qDate=" + qDate
 				+ ", qRef=" + qRef + "]";
 	}
-	
-	
+
 }

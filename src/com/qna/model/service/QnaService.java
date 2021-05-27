@@ -59,14 +59,23 @@ public class QnaService {
 		return result;
 	}
 
-	public List<QnaComment> selectQnaComment(String qRef) {
+	public int insertQnaComment(QnaComment qc) {
 		Connection conn=getConnection();
-		List<QnaComment>  list=dao.selectQnaComment(conn,qRef);
+		int result=dao.insertQnaComment(conn,qc);
+		if(result>0) commit(conn);
+		else rollback(conn);
 		close(conn);
-		return list;
+		return result;
 	}
 
-	// Qna에 달린 댓글
+	// Qna 댓글 등록
+	// 댓글같은 경우 해당 Board를 참조하고 있기 때문에 BoardRef를 매개변수로 받아와야 함.
+		public List<QnaComment> selectQnaComment(String no){
+			Connection conn=getConnection();
+			List<QnaComment> list=dao.selectQnaComment(conn,no);
+			close(conn);
+			return list;
+		}
 	
 
 }

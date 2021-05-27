@@ -13,11 +13,13 @@
 		
 		<p class="section_title">Best Reviewer</p>
 			
-			<div id="review_bestReviewerTable">
+			<div id="review_bestReviewerTable" style="display: flex; align-items: center;">
 			
-				<table style="margin-left: auto; margin-right: auto; width : 1000px;">
+				<div style="padding:auto; margin: auto; width : 1000px; display:flex; justify-content: space-around; background-color: white;" id="reviewmain-table">
 					
-					<tr id="reviewmain-table">
+					<!-- <tr id="reviewmain-table">
+						
+					<%-- 
 						<td>
 							<p class="whiteBolderText">1</p>
 							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
@@ -25,7 +27,7 @@
 							<p class="whiteText">price : 가격</p>
 						</td>
 						
-						<%-- <td>
+						<td>
 							<p class="whiteBolderText">2</p>
 							<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
 							<p class="orangeText">상품이름</p>
@@ -38,9 +40,9 @@
 							<p class="orangeText">상품이름</p>
 							<p class="whiteText">price : 가격</p>
 						</td> --%>
-					</tr>
+					</tr> -->
 					
-				</table>
+				</div>
 				
 			</div>
 			
@@ -60,12 +62,19 @@
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
-				<img src="<%=request.getContextPath()%>/images/slideshow_img1.jpg" width="400px" height="300px">
+				<!-- <img src="<%=request.getContextPath()%>/images/slideshow_img1.jpg" width="400px" height="300px">
 			
 				<div id="disc" style="display:inline-block;"> 상품설명 블라블라블라 어쩌구저쩌구 샬랴샬랴 </div>
 				
-				<button id="btn_next">&rang;</button>
-				 
+				<button id="btn_next">&rang;</button> -->
+
+
+		
+
+					
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/ZvE_j5psy6Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					
+
 			</div>
 			
 		</div>
@@ -113,6 +122,54 @@
 
 <script>
 	$(function(){
+
+		/* 
+		
+review  
+		
+		
+		
+		
+productId: "9"
+productName: "랩 탑"
+productOptionColor: "gray"
+productOptionSize: "M"
+reviewCount: "7"
+reviewFile: "reviewFileName2"
+reviewNo: "28"
+userId: "qwerty2"
+		
+		
+		*/
+		let container_review = $("#reviewmain-table");
+		$.ajax({
+			url:"<%=request.getContextPath()%>/main/review/list/ajax",
+			success:data2 =>{
+				
+					for(let i=0; i<data2.length; i++){
+
+									container_review.append($("<div>").css({"text-align":"center"}).append($("<p>").html(i+1+"위").css("text-align","center")).append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"250px","height":"350px"})).append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))              )
+						// let cotents2 =	$("td").css({"text-align":"center"})
+						
+						// 			content2.append($("<p>").html(i+1+"위").css("text-align","center"))
+									
+									
+						// 			content2.append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"200px","height":"200px"}))
+									
+									
+						// 			content2.append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))
+						// 			console.log(contents2);
+									
+					}
+
+
+
+
+			}
+		
+		});
+		
+/* 상품 ajax */		
 		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/main/product/list/ajax",
@@ -120,7 +177,7 @@
 				$("#contents_imgs").html("");
 				// let contentimg= $("#contents_imgs")
 				let container = $("#contents_imgs");
-				console.log(data);
+				
 
 				let divtag = $("<div>").css({
 					"display":"flex",
@@ -144,7 +201,7 @@
 					let productFile = data[i]["productFile"];
 
 
-					console.log(productFile);
+					
 					$("#contents_imgs").append( $("<div>").css({
 						"display":"flex",
 						"justify-content":"center",
@@ -196,7 +253,6 @@
 					$("#contents_imgs").html("");
 					// let contentimg= $("#contents_imgs")
 					let container = $("#contents_imgs");
-					console.log(data);
 
 					let divtag = $("<div>").css({
 						"display":"flex",
@@ -275,7 +331,6 @@
 				$("#contents_imgs").html("");
 				// let contentimg= $("#contents_imgs")
 				let container = $("#contents_imgs");
-				console.log(data);
 
 				let divtag = $("<div>").css({
 					"display":"flex",
@@ -357,7 +412,6 @@
 				$("#contents_imgs").html("");
 				// let contentimg= $("#contents_imgs")
 				let container = $("#contents_imgs");
-				console.log(data);
 
 				let divtag = $("<div>").css({
 					"display":"flex",
@@ -424,48 +478,10 @@
 		/* $("#reviewmain-table"). */
 		
 		
-/* 
-categoryId: "c04"
-productExplain: "오픈 토 레더 힐 <br><br>\n모든 시즌에 잘 어울리는 광택있는 스타일의 힐입니다. 가죽 소재로 만들어졌으며, 오픈 스퀘어 토로 이루어져 있습니다. 특별한 행사나 저녁 모임에 활용하기 좋습니다.\n@\n- 오픈 스퀘어 토\n- 폭신한 안창\n- 발목의 가죽 끈, 내부의 커버드 엘라스틱\n- 가죽으로 감싼 굽\n\n100% 염소 가죽 / 안감: 100% 염소 가죽 / 밑창: 100% 가죽\n\n힐: 8.5cm\n"
-productFile: "product_20213922_03_3937572_828571.jpg"
-productFileDetail1: "product_20213922_03_3937572_828572.jpg"
-productFileDetail2: "product_20213922_03_3937572_828573.jpg"
-productId: 3
-productName: "오픈 토 레더 힐"
-productPrice: "250000"
-productStock: 0
-productViewCount: 0 
-*/
-		let tr = $("#reviewmain-table");
-		$.ajax({
-			url:"<%=request.getContextPath()%>/main/review/list/ajax",
-			success:data=>{
-				
-				for(let i=0; i<data.length; i++){
-					let content = data[i];
-					
-					tr.append().css({
-						"display":"flex",
-						"justify-content":"center",
-						"align-itmes":"center"
-
-					})
-					
-					
-					
-
-				}
-				
-			}
-			
-		})
-		
-		
-	
-		
-		
 		
 	})
+
+
 </script> 
 
 <%@ include file = "/views/common/footer.jsp"%>
