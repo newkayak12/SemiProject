@@ -423,30 +423,45 @@
 		
 		/* $("#reviewmain-table"). */
 		
-		let table = $("#reviewmain-table");
 		
+/* 
+categoryId: "c04"
+productExplain: "오픈 토 레더 힐 <br><br>\n모든 시즌에 잘 어울리는 광택있는 스타일의 힐입니다. 가죽 소재로 만들어졌으며, 오픈 스퀘어 토로 이루어져 있습니다. 특별한 행사나 저녁 모임에 활용하기 좋습니다.\n@\n- 오픈 스퀘어 토\n- 폭신한 안창\n- 발목의 가죽 끈, 내부의 커버드 엘라스틱\n- 가죽으로 감싼 굽\n\n100% 염소 가죽 / 안감: 100% 염소 가죽 / 밑창: 100% 가죽\n\n힐: 8.5cm\n"
+productFile: "product_20213922_03_3937572_828571.jpg"
+productFileDetail1: "product_20213922_03_3937572_828572.jpg"
+productFileDetail2: "product_20213922_03_3937572_828573.jpg"
+productId: 3
+productName: "오픈 토 레더 힐"
+productPrice: "250000"
+productStock: 0
+productViewCount: 0 
+*/
+		let tr = $("#reviewmain-table");
 		$.ajax({
 			url:"<%=request.getContextPath()%>/main/review/list/ajax",
 			success:data=>{
 				
-				
-				
-				
+				for(let i=0; i<data.length; i++){
+					let content = data[i];
+					
+					tr.append().css({
+						"display":"flex",
+						"justify-content":"center",
+						"align-itmes":"center"
+
+					})
+					
+					
+					
+
+				}
 				
 			}
-	<%--
-		 <td>
-			<p class="whiteBolderText">1</p>
-			<img src="<%=request.getContextPath() %>/images/dummy.jpg" width="250px" height="350px">
-			<p class="orangeText">상품이름</p>
-			<p class="whiteText">price : 가격</p>
-		</td>
- --%>
-			
-			
 			
 		})
 		
+		
+	
 		
 		
 		
