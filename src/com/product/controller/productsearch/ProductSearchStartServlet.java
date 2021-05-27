@@ -13,7 +13,7 @@ import com.product.model.service.ProductService;
 import com.product.model.vo.Product;
 
 
-@WebServlet("/product/searchProductStart")
+@WebServlet("/product/searchProduct")
 public class ProductSearchStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,9 +31,30 @@ public class ProductSearchStartServlet extends HttpServlet {
 		
 		List<Product> searchResult = service.searchProduct(keyword);
 		
-		request.setAttribute("searchResult", searchResult);
 		
-		request.getRequestDispatcher("/views/product/productSearchList.jsp").forward(request, response);
+		// productlist.jsp 에서 request.getAttribute("result");로 불러오기떄문에 key를 맞춰줘야함
+		request.setAttribute("result", searchResult);
+		
+		
+		
+		// 페이지바 만드는 과정 있어야함
+		// jsp에 검색결과 출력용 페이지바가 따로 필요하기 떄문에
+		request.setAttribute("pageBar", keyword);
+		
+		
+	
+		// 정렬기준을 안보이게 할 flag
+		request.setAttribute("sortFlag", "1");
+		
+		
+		
+		// 검색어 유지
+		request.setAttribute("keyword", keyword);
+		
+		
+
+		
+		request.getRequestDispatcher("/views/product/productlist.jsp").forward(request, response);
 		
 	}
 

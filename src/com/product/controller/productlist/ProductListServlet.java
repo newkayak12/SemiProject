@@ -74,8 +74,14 @@ public class ProductListServlet extends HttpServlet {
 		int count = new ProductService().countAllProduct(sort, category);
 		
 		request.setAttribute("result", result);
+		
 		String url = request.getContextPath()+"/product/list";
+		
 		request.setAttribute("pageBar",pageBar(cPage, numPerPage, count, url , category, sort, null));
+		
+		
+		// 정렬기준을 보이게 할 flag
+		request.setAttribute("sortFlag", "0");
 		
 		
 		request.getRequestDispatcher("/views/product/productlist.jsp").forward(request, response);
