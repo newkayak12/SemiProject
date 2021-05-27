@@ -19,7 +19,7 @@ import com.review.model.vo.ReviewComment;
 
 public class ReviewDao {
 	
-	
+	// 주석
 	
 	private Properties prop = new Properties();
 	
