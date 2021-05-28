@@ -223,7 +223,7 @@
 					</table>
 				</div>
 				<div>
-				<p class="bolder">&nbsp&nbsp&nbsp&nbsp배송 정보</p>
+				<p class="bolder">&nbsp&nbsp&nbsp배송 정보</p>
 					<p>주문하는 분과 받는 분이 같습니다. <input type="checkbox" id = "samepeople"></p>
 					
 					
@@ -239,7 +239,11 @@
 							
 							<tr>
 								<th rowspan="3">주소</th>
-								<td id = "user_addr"><span style="font-weight: bold;">주소</span> <%= addrs[0]%></td>
+								<td id = "user_addr">
+								<span style="font-weight: bold;">주소</span> <%= addrs[0]%>
+								<button type="button" class="notice-btn blue" id="addrfind">주소 찾기</button>
+								</td>
+								
 							</tr>
 							<tr>
 								<td id = "user_addrdetail"><span style="font-weight: bold; ">상세주소</span> <%=addrs[1] %></td>
@@ -247,22 +251,7 @@
 							<tr>
 								<td id= "user_zip"> <span style="font-weight: bold;">우편번호</span><%=user.getUserZip() %></td>
 							</tr>
-							
-							
-							
-							<tr>
-								<th rowspan="3">주소</th>
-								<td> <input type ="text" name="receive_addr" id="receive_addr" required>
-								<button type="button" class="smallBtn_syle" id="addrfind">주소 찾기</button>
-								</td>
-					
-							</tr>
-							<tr>
-								상세주소<input type ="text" name="receive_addrdetail" id="receive_addrdetail" required>
-							</tr>	
-							<tr>
-								<td><input type="text" id= "receive_zip" name = "receive_zip" required> </td>			
-							</tr>			
+										
 							<tr>
 								<th>휴대전화</th>
 								<td> <input type ="text" name="receive_phone" id="receive_phone" required></td>
@@ -279,6 +268,7 @@
 			</div>
 			
 			<div id = "payment-container">
+			<p class="bolder">&nbsp&nbsp&nbsp결제 방식</p>
 				<div id="payment_selector-contianer">
 					<input type = "radio" name = "payraido" id="pay"  checked> 무통장 입금
 					<input type = "radio" name = "payraido"	id="kakao" > 카카오페이
@@ -289,7 +279,7 @@
 					<table id="pay-table">
 						<tr>
 							<th>예금주</th>
-							<td>die Kleidung</td>
+							<td>&nbsp&nbspdie Kleidung</td>
 						</tr>
 						<tr>
 							<th>입금 은행</th>
@@ -312,7 +302,7 @@
 				
 			</div>
 			
-			<div>
+			<div id = "pay-choice">
 				<form action="<%=request.getContextPath()%>/order/pay " id="formhidden">
 					<input type ="hidden" id="formnameo" name = "formnameo" value = "<%=user.getUserName() %>" >
 					<input type ="hidden" id="formid" name ="formid" value ="<%=user.getUserId() %>">
@@ -348,8 +338,8 @@
 						
 						
 					<%} %>	
-					<input type="button" value ="결제" onclick="fn_pay()">
-					<input type="button" value ="취소" onclick="fn_cancel()">
+					<input type="button" class ="btn-width blue" value ="결제" onclick="fn_pay()">
+					<input type="button" class ="btn-width white" value ="취소" onclick="fn_cancel()">
 				</form>
 				
 			</div>

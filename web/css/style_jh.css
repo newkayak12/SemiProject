@@ -330,7 +330,7 @@ button#btn-insert{
     margin-top: 10px;
 }
 
-.qna-btn{
+.btn-width{
 	width : 80px;
 }
 
@@ -370,8 +370,9 @@ table#tbl-comment td:nth-of-type(1){
 }
 
 
-/*--------orderList.jsp ----------------*/
+/*--------orderplace.jsp ----------------*/
 
+/*----- 주문정보 부분 ---------*/
 table#orderplace-table{
 	width: 800px;
 	text-align : center;
@@ -418,7 +419,52 @@ table#user-info-tbl th{
 	font-weight : bolder;
 	font-size : 20px;
 }
-    
+
+
+/*----- 배송정보 부분 ---------*/
+table.order-tables{
+	width: 1000px;
+	text-align : start;
+	border-collapse: collapse;
+}
+
+table.order-tables td, table.order-tables th{
+	border : 1px solid lightgrey;
+}
+
+table.order-tables th{
+	width : 120px;
+	padding : 10px;
+}
+
+/*----------결제방식 부분-------------*/
+div#payment-container{
+	width: 1000px;
+	margin : 0px auto;
+}
+
+table#pay-table{
+	border-collapse: collapse;
+    width: 1000px;
+    margin-left: 15px;
+}
+
+table#pay-table td, table#pay-table th{
+	border : 1px solid lightgrey;
+}
+
+div#pay-choice{
+	margin: 0px auto;
+    text-align: center;
+}
+
+table#pay-table  th{
+	width : 120px;
+	padding : 10px;
+}
+
+
+
 
 
 

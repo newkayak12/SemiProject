@@ -69,9 +69,9 @@
 	         
 	         <div id = "btn-container">
 	         	<%if((userid!=null && checkAdmin.equals("1"))  ||  ( userid!=null&& userid.equals(q.getUserId()))){ %>
-		            <input type="button" class="notice-btn blue qna-btn" value="수정하기" onclick="qnaModi();">
+		            <input type="button" class="notice-btn blue btn-width" value="수정하기" onclick="qnaModi();">
 		        	<%} %>
-		        	<input type="button" class="notice-btn white qna-btn" value="목록" onclick="back();">
+		        	<input type="button" class="notice-btn white btn-width" value="목록" onclick="back();">
 	         </div>
 	        	
     	
@@ -88,7 +88,7 @@
 	    			<input type="hidden" name="userId" id="userId" value="<%=userid%>">
 	    			<input type = "hidden" name = "qnaRef" value = "<%=q.getqSeq() %>">
 	    			<!-- 댓글 시퀀스넘버는 자동부여, 날짜는 sysdate로 집어넣으면 됨. -->
-	    			<button type="submit" id="btn-insert" class="notice-btn blue qna-btn">등록</button>
+	    			<button type="submit" id="btn-insert" class="notice-btn blue btn-width">등록</button>
 	    		</form>
 	    	</div>
 	    	
@@ -107,8 +107,8 @@
 						</td>
 						<td style="text-align: end;">
 							<%if(userid!=null && checkAdmin.equals("1") || userid!=null && userid.equals(qc.getUserId())){ %>
-							<button class="btn-modify notice-btn white qna-btn qna_comment_modify">수정</button>
-							<button class="btn-delete notice-btn grey qna-btn" onclick="qnaCommentDelete();">삭제</button>
+							<button class="btn-modify notice-btn white btn-width qna_comment_modify">수정</button>
+							<button class="btn-delete notice-btn grey btn-width" onclick="qnaCommentDelete();">삭제</button>
 							
 							<!-- 댓글 수정이나 삭제는 seq값들 hidden으로 보내줘야 함 -->
 							<input  type ="hidden"  name = "CommentSeq" value ="<%=qc.getqSeq()%>">
@@ -186,7 +186,7 @@
 		const newButton = $("<button>").attr( {
 			
 			name : "", 
-			class : "newButton notice-btn grey qna-btn",
+			class : "newButton notice-btn grey btn-width",
 			
 			
 		} ).text("수정완료");
