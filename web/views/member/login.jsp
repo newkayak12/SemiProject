@@ -114,18 +114,18 @@ if (lg != null) {
 	          
 	          success: function (response) {
 	        	  console.log(response)
-	        	  
+	        	  console.log(response["properties"]["nickname"])
 	        	  
 	        	  
 	        		 $.ajax({
 	        	  	 	url:"<%=request.getContextPath()%>/sign/signin/ajax",
-	        	  	 	data:{"signin": response["id"]},
+	        	  	 	data:{"signin": response["id"], "username":response["properties"]["nickname"]},
 	        	  	 	success: data=>{
 	        	  	 		location.assign("<%=request.getContextPath()%>/")
 	        	  			
 	        	  	 	} 
 	        		 })
-	        	  
+	        	   
 	        	  
 	        	  
 	          },

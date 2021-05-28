@@ -30,10 +30,16 @@ public class SigninAjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("signin");
+		String username = request.getParameter("username");
 		
 		Users user = new Users();
 		user.setUserId(id);
+		user.setUserName(username);
 		user.setUserAdmin("0");
+		user.setUserAddr("카카오로그인 사용자는 직접 입력해주십시오@카카오로그인 사용자는 직접 입력해주십시오");
+		user.setUserZip("카카오로그인 사용자는 직접 입력해주십시오");
+		user.setUserPhone("카카오로그인 사용자는 직접 입력해주십시오");
+		user.setUserEmail("카카오로그인 사용자는 직접 입력해주십시오");
 		
 		
 //		u.setUserId(rs.getString("USER_ID"));
