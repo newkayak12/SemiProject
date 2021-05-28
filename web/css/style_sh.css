@@ -10,8 +10,16 @@
 	border: 1px black solid !important;
 }
 
+#login-container{
+	width:500px;
+	
+}
 
-
+#signinMain1{
+	display: flex;
+	justify-content: center;
+	
+}
 
 /*jh */
 
@@ -212,7 +220,6 @@ div#sort-container li:hover{
 	margin:0px!important;
 	padding:0px!important;
 	width:1366px;
-	height:2000px !important;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -223,7 +230,7 @@ div#sort-container li:hover{
 	margin-top:100px;
 	margin-bottom:100px;
 	padding:0px!important;
-	height:auto;
+	height: auto !important;
 	width:1000px;
 	display: flex;
 	flex-direction: column;
@@ -337,6 +344,7 @@ div#sort-container li:hover{
 	justify-content: center;
 	align-items: center; 
 	padding:0px!important;
+	height:auto;
 	
 }
 
@@ -374,6 +382,10 @@ div#sort-container li:hover{
 #menu_content-qna{
 	display: none;
 	
+}
+
+#menu_content-img:nth-child(2){
+	height: auto;
 }
 
 #menu_content-img{

@@ -7,6 +7,68 @@
 
 /*yj*/
 
+/* class 들  */
+
+	.blueText{
+		color : rgb(9, 74, 169);
+		font-weight : bolder;
+		font-size : 20px;
+	}
+	
+	.blueSmallText{
+		color : rgb(9, 74, 169);
+		font-weight : bolder;
+		font-size : 15px;
+	}
+	
+	.bolderText{
+		font-weight : bolder;
+	}
+	
+	.blackText{
+		color : black;
+	}
+	
+	.grayText{
+		color : gray;
+		font-size : 13px;
+	}
+	
+	.section_title{
+		text-align : center;
+		margin : 50px auto 0px auto;
+		color : orange;
+		font-weight : bolder;
+		font-size : 25px;
+	}
+	
+	.boardTable_margin_width{
+		margin-left: auto; 
+		margin-right: auto; 
+		width : 1000px;
+	}
+	
+	.hrz_li{
+		display : inline-block;
+		padding : 20px 50px 20px 50px;
+	}
+	
+	.text_align_center{
+		text-align : center;
+	}
+	
+	.margin_center_width_1000{
+		margin-left: auto; 
+		margin-right: auto; 
+		width : 1000px;
+	}
+	
+	.margin_50{
+		margin : 50px;
+	}
+	
+	
+
 /* ------ reviewList.jsp --------*/
 
 	/* 베스트 리뷰 3개 */
@@ -36,17 +98,7 @@
 		padding : 0 0 0 0;
 	}
 	
-	.blueText{
-		color : rgb(9, 74, 169);
-		font-weight : bolder;
-		font-size : 20px;
-	}
 	
-	.blueSmallText{
-		color : rgb(9, 74, 169);
-		font-weight : bolder;
-		font-size : 15px;
-	}
 	
 	div p.section_title {
 		text-align : center;
@@ -77,14 +129,6 @@
 		border-style : none;
 	}
 	
-	.bolderText{
-		font-weight : bolder;
-	}
-	
-	.blackText{
-		color : black;
-	}
-	
 	
 	/* 페이지바 */
 	div#reviewList_pagebar{
@@ -95,11 +139,6 @@
 		
 	}
 	
-	
-	.grayText{
-		color : gray;
-		font-size : 13px;
-	}
 	
 	
 	
@@ -154,13 +193,7 @@
 		font-size : 25px;
 	}
 	
-	.section_title{
-		text-align : center;
-		margin : 50px auto 0px auto;
-		color : orange;
-		font-weight : bolder;
-		font-size : 25px;
-	}
+	
 	
 	
 	/* -------------- reviewDetail.jsp ---------------- */
@@ -258,7 +291,7 @@
 	
 	
 	
-		/* 리뷰 목록*/
+	/*   리뷰 목록  */
 	div#p_review_reviewListContainer{
 		width : 970px;
 	}
@@ -277,16 +310,38 @@
 		border-style : none;
 	}
 	
-	.bolderText{
-		font-weight : bolder;
+	
+	
+	
+	
+	/*   검색부분    */
+	#nosearchresult-container{
+		margin-left : auto;
+		margin-right : auto;
 	}
 	
-	.blackText{
-		color : black;
+	div#search-product-container input{
+		outline : none;
+	}
+	
+	
+	#nosearchresult-container>div{
+		padding : 100px !important;
+		text-align : center;
 	}
 	
 	
 	
 	
 	
+	/* ------------------------  reviewManage.jsp    -----------------------------*/
 
+	table#admin_reviewlist{
+		border: 1px white solid;
+		border-collapse: collapse;
+	}
+
+
+	table#admin_reviewlist td{
+		border-bottom: 1px solid grey;
+	}

@@ -200,9 +200,14 @@
 							<th>우편번호</th>
 							<td id= "user_zip"> <%=user.getUserZip() %></td>
 						</tr>
+						<%String[] addrs =user.getUserAddr().split("@");  %>
 						<tr>
 							<th>주소</th>
-							<td id = "user_addr"> <%=user.getUserAddr() %></td>
+							<td id = "user_addr"> <%= addrs[0]%></td>
+						</tr>
+						<tr>
+							<th>상세 주소</th>
+							<td id = "user_addrdetail"> <%=addrs[1] %></td>
 						</tr>		
 						<tr>
 							<th>휴대전화</th>
@@ -232,9 +237,15 @@
 						<tr>
 							<th>주소</th>
 							<td> <input type ="text" name="receive_addr" id="receive_addr" required>
-							<button type="button">주소 찾기</button>
+							<button type="button" class="smallBtn_syle" id="addrfind">주소 찾기</button>
 							</td>
-						</tr>		
+						</tr>	
+						<tr>
+							<th>상세 주소</th>
+							<td> 
+								<input type ="text" name="receive_addrdetail" id="receive_addrdetail" required>
+							</td>
+						</tr>			
 						<tr>
 							<th>휴대전화</th>
 							<td> <input type ="text" name="receive_phone" id="receive_phone" required></td>
@@ -330,12 +341,36 @@
 		</div>
 </main>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	$("#addrfind").click(()=>{
+		new daum.Postcode({
+		    oncomplete: function(data) {
+		        console.log(data["zonecode"])
+		       $("#receive_zip").val(data["zonecode"])
+		        console.log(data["address"])
+		       $("#receive_addr").val(data["address"])
+		        
+		       console.log(data)
+		    }
+		}).open();
+		
+		
+		
+	})
+
+
+
+
+
+
+
 	const fn_pay = () =>{
 		
 		let bank = $("#bank-select").val();
 		let receive_name = $("#receive_name").val()
 		let receive_addr = $("#receive_addr").val()
+		let receive_addrdetail = $("#receive_addrdetail").val()
 		let receive_phone = $("#receive_phone").val()
 		let receive_zip = $("#receive_zip").val()
 		
@@ -343,7 +378,7 @@
 		
 		$("#formbank").val(bank);
 		$("#formnamer").val(receive_name)
-		$("#formaddr").val(receive_addr)
+		$("#formaddr").val(receive_addr+"@"+receive_addrdetail)
 		$("#formphone").val(receive_phone)
 		$("#formzip").val(receive_zip)
 		/* $("#formemail").val() */
@@ -363,29 +398,25 @@
 		if(confirm('장바구니로 돌아가시겠습니까?')==true){
 			location.assign("<%=request.getContextPath()%>/cart/list")
 		}
+
+	
 	}
-$(function(){
+/* 
+ * 카카오주소 막
+ 
+ 	$(function(){
+	console.log($("#user_addr").val())
+	let flg = $("#user_zip").html();
 	
-	
+	if( flg.include('카카오로그인 사용자는 직접 입력해주십시오')){
+		alert('ss')
+		$("#samepeople").css("display","none")
+		
+	}
+	 */
 
 	$("#pay").click((e)=>{
-		// $("pay-table").html("");
-		// $("#pay-table").append($("<tr>").append($("<th>").html("입금자명")).append($("<td>").html("<%=user.getUserName()%>")));
 		
-
-		// $("#pay-table").append(   $("<tr>").append($("<th>").html("입금자은행")).append($("<td>").append( $("<select>").attr({
-		// 	"id":"bank-select"
-		// 	,"name":"pay_sel"
-			
-		// }).append( $("<option>").attr({"value":"하나은행 661-910265-*****",
-		// 	"name":"pay_sel"
-			
-			
-		// }).html("하나은행 661-910265-*****")).append($("<option>").attr({
-		// 	"value":"신한은행 910-910265-*****",
-		// 	"name":"pay_sel"
-			
-		// }).html("신한은행 910-910265-*****"))  ) ));
 
 	$("#kakaopay").css("display","none");
 	$("#pay-table").css("display","table")
@@ -406,6 +437,9 @@ $("#samepeople").change( ()=>{
 	let flag = $("#sameiam");
 	let receive_name = $("#receive_name")
 	let receive_addr = $("#receive_addr")
+	let receive_addredetail = $("#receive_addrdetail")
+	
+	
 	let receive_phone = $("#receive_phone")
 	let receive_email = $("#receive_email")
 	let receive_zip = $("#receive_zip")
@@ -413,6 +447,9 @@ $("#samepeople").change( ()=>{
 	let user_name = $("#user_name")
 	let user_zip = $("#user_zip")
 	let user_addr = $("#user_addr")
+	let user_addrdetail = $("#user_addrdetail")
+	
+	console.log(user_addrdetail.html())
 	let user_phone = $("#user_phone")
 	let user_email = $("#user_email")
 	console.log(user_zip.html());
@@ -424,6 +461,9 @@ $("#samepeople").change( ()=>{
 					receive_phone.val(user_phone.html())
 					receive_email.val(user_email.html())
 					receive_zip.val(user_zip.html())
+					$("#receive_addrdetail").val(user_addrdetail.html())
+					
+					
 					flag.val("1");
 			} else {
 				receive_name.val("")
@@ -431,6 +471,7 @@ $("#samepeople").change( ()=>{
 				receive_phone.val("")
 				receive_email.val("")
 				receive_zip.val("")
+				$("#receive_addrdetail").val("")
 				flag.val("0")
 
 			}

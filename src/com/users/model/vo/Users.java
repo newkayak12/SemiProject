@@ -9,6 +9,7 @@ public class Users {
 	private String userAdmin;
 	private String userAddr;
 	private String userZip;
+	private int userStatus;
 	
 	public Users() {
 		super();
@@ -18,7 +19,7 @@ public class Users {
 	
 	
 	public Users(String userId, String userPwd, String userName, String userEmail, String userPhone, String userAdmin,
-			String userAddr, String userZip) {
+			String userAddr, String userZip, int userStatus) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -28,9 +29,17 @@ public class Users {
 		this.userAdmin = userAdmin;
 		this.userAddr = userAddr;
 		this.userZip = userZip;
+		this.userStatus = userStatus;
 	}
 
-
+	
+	public int getUserStatus() {
+		return userStatus;
+	}
+	
+	public void setUserStatus(int userStatus) {
+		this.userStatus = userStatus;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -98,14 +107,18 @@ public class Users {
 		this.userZip = userZip;
 	}
 
-	
+
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", userPwd=" + userPwd +  ", userName="
-				+ userName + ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", userAdmin=" + userAdmin
-				+ ", userAddr=" + userAddr + ", userZip=" + userZip + "]";
+		return "Users [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userEmail="
+				+ userEmail + ", userPhone=" + userPhone + ", userAdmin=" + userAdmin + ", userAddr=" + userAddr
+				+ ", userZip=" + userZip + ", userStatus=" + userStatus + "]";
 	}
+
+	
+
+	
 	
 	
 }

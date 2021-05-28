@@ -42,7 +42,7 @@ public class SearchIdEndServlet extends HttpServlet {
 //		request.setAttribute("useridtemp", useridtemp);
 //		System.out.println(useridtemp);
 //		request.getRequestDispatcher("/views/member/searchid.jsp").forward(request, response);
-//		
+
 		
 		String msg = "";
 		String loc = "";

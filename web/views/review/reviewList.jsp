@@ -19,7 +19,7 @@
 			
 			<div id="review_bestReviewerTable">
 			
-				<table style="margin-left: auto; margin-right: auto; width : 1000px;">
+				<table class="boardTable_margin_width">
 					
 					<tr>
 						<% if( bestReviewList != null && bestReviewList.size() != 0 ) { %>
@@ -30,7 +30,7 @@
 							
 								<td>
 									<p class="blueText"><%=num %></p>
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=br.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=br.getReviewFile()%>.jpg" width="250px" height="350px"></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=br.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=br.getReviewFile()%>" width="250px" height="350px"></a>
 									<p class="blueSmallText"><%=br.getProductName() %></p>
 									<p class="grayText"><%=br.getUserId()%>님</p>
 									<%-- <p>price : <%=br.get %></p> --%>
@@ -105,13 +105,8 @@
 								
 								<!-- 리뷰이미지 -->
 								<td width="200px" style="padding:20px;">
-									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>.jpg" width="150px" height="200px"></a>
+									<a href="<%=request.getContextPath()%>/review/detail?no=<%=r.getReviewNo()%>"><img src="<%=request.getContextPath() %>/upload/review/<%=r.getReviewFile()%>" width="150px" height="200px"></a>
 								</td>
-								
-								<%-- 좋아요 기능 뺄수도? <td>
-									<img src="<%=request.getContextPath() %>/images/heart.png" id="reviewLike" width="30px" height="30px">
-									<span><%=r.getReviewLike() %></span>
-								</td> --%>
 								
 							</tr>
 							
@@ -123,7 +118,7 @@
 					
 			<% } else { %>
 				
-				<p>리뷰가 없습니다</p>
+				<p>아직 작성된 리뷰가 없습니다.</p>
 				
 			<% } %>
 			

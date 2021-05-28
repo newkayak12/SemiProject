@@ -27,157 +27,162 @@
 	
 		<div id="productcontent-container">
 		
+		
+		
+		
+		
+		
 			<div id="product_table-container"> 
 			
-				<table id="product-table">
-				
-					<tr>
-						<td rowspan="8"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
-						<td><%=product.get(0).getProductName() %></td>
-					</tr>
-					
-					<tr>
-						<!-- <td></td> -->
-						<td>
-							<!-- <p>가격</p> -->
-							<%=product.get(0).getProductPrice() %> 원
-						</td>
-					</tr>
-					
-					<tr>
-						<!-- <td></td> -->
-						<td>
-							<select name="product_color-select" id="product_color-select" onchange="fn_colorselect()">
-									
-									<option name="prodcut_color-select" value="------ 선택 사항 없음 ------">
-								 		------ 선택 사항 없음 ------  
-							 		</option>
-							 		
-								<% 
-									for(int i=0; i<product.size(); i++) {
-										colorflag += "|"+product.get(i).getProductOptionColor()+"|";
-									
-										if(i==0){
-								%>
-								 	
-								 	
-								 	<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
-								 		<%=product.get(i).getProductOptionColor() %>
-							 		</option>
-							 		
-							 		
-								<%
-										} else {
-											
-											
-											if( !colorflag.contains(product.get(i).getProductOptionColor())){
-								%>
-								
-									<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
-								 		<%=product.get(i).getProductOptionColor() %>
-							 		</option>
-								
-								<%	}
-										}
-									}
-								
-								%>
-								
-							</select>
-												
-						</td>
-					</tr>
-					
-					<tr>
-						<!-- <td></td> -->
-						<td>
-						
-							<select name="product_size-select" id="product_size-select" disabled onchange="fn_sizeselect()"> 
-									<option name="prodcut_size-select" value="------ 선택 사항 없음 ------">
-								 		------ 선택 사항 없음 ------  
-							 		</option> 
-							 		
-								
-								<% 
-									for(int i=0; i<product.size(); i++) {
-										sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
-									
-											if(i==0){
-								%>
-								
-								
-								 	<option name="prodcut_size-select" value="<%=product.get(i).getProductOptionSize() %>">
-								 		<%=product.get(i).getProductOptionSize() %>
-							 		</option>
-							 		
-							 		
-								<%
-								
-											} else {
-												
-												if(!colorflag.contains(product.get(i).getProductOptionSize())){
-											
-											
-								%>
-									
-								 	<option name="prodcut_size-select" value="<%=product.get(i).getProductOptionSize() %>">
-								 		<%=product.get(i).getProductOptionSize() %>
-							 		</option>
-							 	
-									
-								<%				
-												}
-											}
-											
-									}		
-								
-								%>
-	
-							</select>	
-								
-						</td>
-					</tr>
-					<tr>
-						<!-- <td></td> -->
-						<td>
-							<input type="number" id="product_stock" name="product_stock" max="999" min="1" value="0" disabled>
-								
-	
-	
-							</select>
-						</td>
-					</tr>
-					
-						<!-- <td></td> -->
-						<!-- <td>stock</td> -->
-					
-					<tr>
-						<!-- <td></td> -->
-	
-						<td rowspan="2">
-							<div id ="product_list-container">
+<!-- 상품 상세 선택 테이블 -->	<table id="product-table">
 							
-							</div>
-							<div id = "product_total-container">
-							 
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<!-- <td></td> -->
-						<!-- <td>total</td> -->
-					</tr>
-					<tr>
-						<!-- <td></td> -->
-						<td>
-							<button type="button" id="buynow-btn" onclick="fn_buynow()">Buy now</button>
-							<button type="button" id="cart-btn" onclick="fn_cart()";>Cart</button>
-						</td>
-					</tr>	
+								<tr>
+									<td rowspan="8"> <img src="<%=request.getContextPath() %>/upload/product/<%=product.get(0).getProductFile() %>" alt="img"></td>
+									<td><%=product.get(0).getProductName() %></td>
+								</tr>
+								
+								<tr>
+									<!-- <td></td> -->
+									<td>
+										<!-- <p>가격</p> -->
+										<%=product.get(0).getProductPrice() %> 원
+									</td>
+								</tr>
+								
+								<tr>
+									<!-- <td></td> -->
+									<td>
+										<select name="product_color-select" id="product_color-select" onchange="fn_colorselect()">
+												
+												<option name="prodcut_color-select" value="------ 선택 사항 없음 ------">
+											 		------ 선택 사항 없음 ------  
+										 		</option>
+										 		
+											<% 
+												for(int i=0; i<product.size(); i++) {
+													colorflag += "|"+product.get(i).getProductOptionColor()+"|";
+												
+													if(i==0){
+											%>
+											 	
+											 	
+											 	<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
+											 		<%=product.get(i).getProductOptionColor() %>
+										 		</option>
+										 		
+										 		
+											<%
+													} else {
+														
+														
+														if( !colorflag.contains(product.get(i).getProductOptionColor())){
+											%>
+											
+												<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
+											 		<%=product.get(i).getProductOptionColor() %>
+										 		</option>
+											
+											<%	}
+													}
+												}
+											
+											%>
+											
+										</select>
+															
+									</td>
+								</tr>
+								
+								<tr>
+									<!-- <td></td> -->
+									<td>
+									
+										<select name="product_size-select" id="product_size-select" disabled onchange="fn_sizeselect()"> 
+												<option name="prodcut_size-select" value="------ 선택 사항 없음 ------">
+											 		------ 선택 사항 없음 ------  
+										 		</option> 
+										 		
+											
+											<% 
+												for(int i=0; i<product.size(); i++) {
+													sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
+												
+														if(i==0){
+											%>
+											
+											
+											 	<option name="prodcut_size-select" value="<%=product.get(i).getProductOptionSize() %>">
+											 		<%=product.get(i).getProductOptionSize() %>
+										 		</option>
+										 		
+										 		
+											<%
+											
+														} else {
+															
+															if(!colorflag.contains(product.get(i).getProductOptionSize())){
+														
+														
+											%>
+												
+											 	<option name="prodcut_size-select" value="<%=product.get(i).getProductOptionSize() %>">
+											 		<%=product.get(i).getProductOptionSize() %>
+										 		</option>
+										 	
+												
+											<%				
+															}
+														}
+														
+												}		
+											
+											%>
 				
-
-				</table>
-
+										</select>	
+											
+									</td>
+								</tr>
+								<tr>
+									<!-- <td></td> -->
+									<td>
+										<input type="number" id="product_stock" name="product_stock" max="999" min="1" value="0" disabled>
+											
+				
+				
+										</select>
+									</td>
+								</tr>
+								
+									<!-- <td></td> -->
+									<!-- <td>stock</td> -->
+								
+								<tr>
+									<!-- <td></td> -->
+				
+									<td rowspan="2">
+										<div id ="product_list-container">
+										
+										</div>
+										<div id = "product_total-container">
+										 
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<!-- <td></td> -->
+									<!-- <td>total</td> -->
+								</tr>
+								<tr>
+									<!-- <td></td> -->
+									<td>
+										<button type="button" id="buynow-btn" onclick="fn_buynow()">Buy now</button>
+										<button type="button" id="cart-btn" onclick="fn_cart()";>Cart</button>
+									</td>
+								</tr>	
+							
+			
+<!-- 상품 상세 선택 테이블 -->	</table>
+			</div>
 			
 			
 			
@@ -463,10 +468,15 @@
 	}
 	
 	$("#product_stock").change((e)=>{
-		
-		
+		$("#product_total-container").html("") 
+		let size = $("#product_size-select").val()
+		let color = $("#product_color-select").val()
 		let total = $("#product_stock").val()*<%=product.get(0).getProductPrice()%>
-		$("#product_total-container").html("<%=product.get(0).getProductName()%><br><%=product.get(0).getProductOptionColor()%>/<%=product.get(0).getProductOptionSize()%>/총 가격 : "+ total+"원");
+		$("#product_total-container").append($("<p>").html("사이즈 :"+size)).append($("<p>").html("색상 :" +color)).append($("<p>").html("총 가격 :" +total))
+		
+		/* result.html(size <br>)
+		
+		<br>color<br>total); */
 	})
 	
 	

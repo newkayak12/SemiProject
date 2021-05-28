@@ -25,7 +25,7 @@ public class ReviewListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// db에 있는 모든 리뷰 가져오기
+		
 		ReviewService service = new ReviewService();
 		
 		
@@ -49,6 +49,8 @@ public class ReviewListServlet extends HttpServlet {
 		}
 		
 		
+		
+		// db에 있는 모든 리뷰 가져오기
 		List<Review> list = service.selectAllReview(cPage, numPerPage);
 		
 		int totalData = service.countAllReview();

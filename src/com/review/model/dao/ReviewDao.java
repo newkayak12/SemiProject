@@ -218,7 +218,7 @@ public class ReviewDao {
 	}
 
 
-// 푸시 되나?
+	
 	public int deleteReview(Connection conn, String reviewNo) {
 		
 		PreparedStatement pstmt = null;
@@ -457,6 +457,8 @@ public class ReviewDao {
 	}
 
 
+	
+	
 	// 상품상세페이지에서 쓸 리뷰 조회
 	public List<Review> selectProductReview(Connection conn, String productid) {
 		
@@ -512,6 +514,8 @@ public class ReviewDao {
 		
 		return list;
 	}
+	
+	
 	
 	
 	

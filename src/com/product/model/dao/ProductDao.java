@@ -176,6 +176,8 @@ public class ProductDao{
 		return result;
 	}
 
+	
+	
 	public List<Product> productDetail(String productid, String category, Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -224,7 +226,7 @@ public class ProductDao{
 
 	
 	
-	
+	// 상품 검색 
 	public List<Product> searchProduct(Connection conn, String keyword) {
 		
 		PreparedStatement pstmt = null;
@@ -270,5 +272,7 @@ public class ProductDao{
 		
 		return searchResult;
 	}
+
+	
 		
 }

@@ -2,10 +2,11 @@ package com.users.model.service;
 
 import static com.common.JDBCTemplate.close;
 import static com.common.JDBCTemplate.commit;
-import static com.common.JDBCTemplate.rollback;
 import static com.common.JDBCTemplate.getConnection;
+import static com.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.users.model.dao.UsersDao;
 import com.users.model.vo.Users;
@@ -98,6 +99,34 @@ public class UsersService {
 		close(conn);
 		return user;
 	}
+	
+	/*여기서 부터 관리자용 */	
+	
+		public List<Users> selectadminUsers() {
+		Connection conn = getConnection();
+		List<Users> list = dao.selectadminUsers(conn);
+		return list;
+	}
 
+
+		public int updateadminUsers(String userId, String userStatus) {
+			Connection conn = getConnection();
+			int result = dao.updateadminUsers(conn, userId, userStatus);
+			
+
+			if(result!=0) {
+				commit(conn);
+			}
+			else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+		
+		
 }
+
+
 
