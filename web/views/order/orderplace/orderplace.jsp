@@ -70,118 +70,118 @@
 
 		<div id="orderplace-container">	
 			<div id = "orderplace_title-container">
-				<h1>주문결제</h1>
+				<h1 class="Menu-name">주문결제</h1>
 				<hr>
 			</div>
 			<div id="product_info-container">
 				
 				
 				<table id="orderplace-table">
-				<tr>
-					<th>사진</th>
-					<th>제품명</th>
-					<th>사이즈</th>
-					<th>색상</th>
-					<th>가격</th>
-					<th>개수</th>
-					
-				</tr>
-				
-<!-- // detail - 0
-// cart - 1		
- -->				
-				<%if( flag2.equals("page")||flag==1) {%>
-				
-				
-				 <!-- 페이지 -->
-				<tr>
-					<td>
-						<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>" class="order-img">
-					</td>
-					<td>
-					 	<%= cart.getCartName() %> 
-					</td>
-					<td>
-						 <%=cart.getCartOptionSize() %> 
-					</td>
-					<td>
-						<%=cart.getCartOptionColor() %>
-					</td>
-					<td>
-						 <%=cart.getCartPrice()%>
-					</td>
-					<td>
-						 <%=cart.getCartStock() %> 
-					</td>
-				</tr>
-				
-				<%
-				
-					}  else {
-						for(Cart temp : list){
-				%>
-					
-				<tr>
-					<td>
-							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>" class="order-img">
-					</td>
-					<td>
-					 	<%= temp.getCartName() %> 
-					</td>
-					<td>
-						 <%=temp.getCartOptionSize() %> 
-					</td>
-					<td>
-						<%=temp.getCartOptionColor() %>
-					</td>
-					<td>
-						 <%=temp.getCartPrice()%>
-					</td>
-					<td>
-						 <%=temp.getCartStock() %> 
-					</td>
-				
-				</tr>
-				
-				<%
-					}				
-						} %>
+					<tr>
+						<th >사진</th>
+						<th >제품명</th>
+						<th >사이즈</th>
+						<th>색상</th>
+						<th>가격</th>
+						<th>개수</th>
 						
-				
-				
-				<tr>
-					<td rowspan="5">
+					</tr>
 					
-					총 가격 : ( 배송비 ) 2500원 +
-			
-			
+	<!-- // detail - 0
+	// cart - 1		
+	 -->				
+					<%if( flag2.equals("page")||flag==1) {%>
+					
+					
+					 <!-- 페이지 -->
+					<tr>
+						<td>
+							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>" class="order-img">
+						</td>
+						<td>
+						 	<%= cart.getCartName() %> 
+						</td>
+						<td>
+							 <%=cart.getCartOptionSize() %> 
+						</td>
+						<td>
+							<%=cart.getCartOptionColor() %>
+						</td>
+						<td>
+							 <%=cart.getCartPrice()%>
+						</td>
+						<td>
+							 <%=cart.getCartStock() %> 
+						</td>
+					</tr>
+					
+					<%
+					
+						}  else {
+							for(Cart temp : list){
+					%>
+						
+					<tr>
+						<td>
+								<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>" class="order-img">
+						</td>
+						<td>
+						 	<%= temp.getCartName() %> 
+						</td>
+						<td>
+							 <%=temp.getCartOptionSize() %> 
+						</td>
+						<td>
+							<%=temp.getCartOptionColor() %>
+						</td>
+						<td>
+							 <%=temp.getCartPrice()%>
+						</td>
+						<td>
+							 <%=temp.getCartStock() %> 
+						</td>
+					
+					</tr>
+					
+					<%
+						}				
+							} %>
 							
-<!-- // detail - 0
-// cart - 1		
- -->				
+					
+					
+					<tr>
+						<td colspan="6" style="padding-top: 20px;">
 						
-						<% 
-						
-						if(flag2.equals("page")||flag==1){
-							result = 0;
-							 result = cart.getCartPrice(); 
-						%>
-						
-							( 상품 가격 ) <%=cart.getCartPrice() %>원  = <%=result +2500 %> 원  
+						총 가격 : <span class="grey-font">( 배송비 )</span> 2500원 +
+				
+				
+								
+	<!-- // detail - 0
+	// cart - 1		
+	 -->				
 							
-						<%}  else {
-							for(Cart l : list){
+							<% 
+							
+							if(flag2.equals("page")||flag==1){
 								result = 0;
-								result += l.getCartPrice()*l.getCartStock();
-							}
-						%>
+								 result = cart.getCartPrice(); 
+							%>
 							
-							( 상품 가격 ) <%=result %>원  = <%=result + 2500 %>원
-						
-						
-						<%} %>
-					</td>
-				</tr>
+								<span class="grey-font">( 상품 가격 )</span> <%=cart.getCartPrice() %>원  = <span class="blue-font bolder"><%=result +2500 %> 원</span>  
+								
+							<%}  else {
+								for(Cart l : list){
+									result = 0;
+									result += l.getCartPrice()*l.getCartStock();
+								}
+							%>
+								
+								<span class="grey-font">(상품 가격)</span> <%=result %>원  = <span class="blue-font bolder"><%=result + 2500 %>원</span>
+							
+							
+							<%} %>
+						</td>
+					</tr>
 				</table> 
 				
 				
@@ -189,73 +189,90 @@
 			</div>
 			
 			<div id = "user_info-container" class ="order-tables">
-				<p>주문 정보</p>
+				<p class="bolder">&nbsp&nbsp&nbsp&nbsp주문 정보</p>
 				<div>	
-					<table>
+					<table id = "user-info-tbl">
 						<tr>
 							<th>주문하시는 분</th>
-							<td id ="user_name"><%=user.getUserName() %></td>
-						</tr>
-						<tr>
-							<th>우편번호</th>
-							<td id= "user_zip"> <%=user.getUserZip() %></td>
+							<td id ="user_name"><span><%=user.getUserName() %></span></td>
 						</tr>
 						<%String[] addrs =user.getUserAddr().split("@");  %>
 						<tr>
-							<th>주소</th>
-							<td id = "user_addr"> <%= addrs[0]%></td>
+							<th rowspan="3">주소</th>
+							<td id = "user_addr"><span style="font-weight: bold;">주소</span> <%= addrs[0]%></td>
 						</tr>
 						<tr>
-							<th>상세 주소</th>
-							<td id = "user_addrdetail"> <%=addrs[1] %></td>
+							<td id = "user_addrdetail"><span style="font-weight: bold; ">상세주소</span> <%=addrs[1] %></td>
+						</tr>
+						<tr>
+							<td id= "user_zip"> <span style="font-weight: bold;">우편번호</span><%=user.getUserZip() %></td>
 						</tr>		
 						<tr>
 							<th>휴대전화</th>
-							<td id ="user_phone"> <%=user.getUserPhone() %> </td>
+							<td id ="user_phone"> <span><%=user.getUserPhone() %></span> </td>
 						</tr>		
 						<tr>
 							<th>이메일</th>
-							<td id = "user_email"> <%=user.getUserEmail() %></td>
+							<td id = "user_email"> <span><%=user.getUserEmail() %></span></td>
 							
 						</tr>								
 					</table>
+					<table>
+						
+					
+					</table>
 				</div>
 				<div>
+				<p class="bolder">&nbsp&nbsp&nbsp&nbsp배송 정보</p>
 					<p>주문하는 분과 받는 분이 같습니다. <input type="checkbox" id = "samepeople"></p>
-					<table class ="order-tables">
-					<input type="hidden" id="sameiam" value= "0">
-						<tr>
-							<th>받는 분</th>
-							<td>
-								<input type ="text" name="receive_name" id="receive_name" required>
-							</td>
-						</tr>
-						<tr>
-							<th>우편번호</th>
-							<td><input type="text" id= "receive_zip" name = "receive_zip" required> </td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td> <input type ="text" name="receive_addr" id="receive_addr" required>
-							<button type="button" class="smallBtn_syle" id="addrfind">주소 찾기</button>
-							</td>
-						</tr>	
-						<tr>
-							<th>상세 주소</th>
-							<td> 
-								<input type ="text" name="receive_addrdetail" id="receive_addrdetail" required>
-							</td>
-						</tr>			
-						<tr>
-							<th>휴대전화</th>
-							<td> <input type ="text" name="receive_phone" id="receive_phone" required></td>
-						</tr>		
-						<tr>
-							<th>이메일</th>
-							<td><input type ="text" name="receive_email" id="receive_email" required></td>
-							
-						</tr>	
 					
+					
+					
+					<table class ="order-tables">
+						<input type="hidden" id="sameiam" value= "0">
+							<tr>
+								<th>받는 분</th>
+								<td>
+									<input type ="text" name="receive_name" id="receive_name" required>
+								</td>
+							</tr>
+							
+							<tr>
+								<th rowspan="3">주소</th>
+								<td id = "user_addr"><span style="font-weight: bold;">주소</span> <%= addrs[0]%></td>
+							</tr>
+							<tr>
+								<td id = "user_addrdetail"><span style="font-weight: bold; ">상세주소</span> <%=addrs[1] %></td>
+							</tr>
+							<tr>
+								<td id= "user_zip"> <span style="font-weight: bold;">우편번호</span><%=user.getUserZip() %></td>
+							</tr>
+							
+							
+							
+							<tr>
+								<th rowspan="3">주소</th>
+								<td> <input type ="text" name="receive_addr" id="receive_addr" required>
+								<button type="button" class="smallBtn_syle" id="addrfind">주소 찾기</button>
+								</td>
+					
+							</tr>
+							<tr>
+								상세주소<input type ="text" name="receive_addrdetail" id="receive_addrdetail" required>
+							</tr>	
+							<tr>
+								<td><input type="text" id= "receive_zip" name = "receive_zip" required> </td>			
+							</tr>			
+							<tr>
+								<th>휴대전화</th>
+								<td> <input type ="text" name="receive_phone" id="receive_phone" required></td>
+							</tr>		
+							<tr>
+								<th>이메일</th>
+								<td><input type ="text" name="receive_email" id="receive_email" required></td>
+								
+							</tr>	
+						
 					</table>
 				</div>
 				

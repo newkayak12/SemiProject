@@ -102,7 +102,7 @@
 						<td>
 							<sub class="comment-writer"><%=qc.getUserId() %></sub><br>
 							<p class="comment-content"><%=qc.getqComment() %></p>
-							<sub class="comment-date"><%=qc.getqDate() %></sub>
+							<sub class="grey-small"><%=qc.getqDate() %></sub>
 							
 						</td>
 						<td style="text-align: end;">

@@ -11,7 +11,7 @@ div#notice-container{
 	padding : 0px 0px;
 	margin : 0px 0px;
 }
-span.Menu-name{
+.Menu-name{
 	color : orange;
 	font-size : 20px;
 	font-weight : bolder;
@@ -354,7 +354,7 @@ table#tbl-comment td:nth-of-type(1){
 	font-weight : bolder;
 }
 
-.comment-date{
+.grey-small{
 	font-size : 10px;
 	color : lightgrey;
 }
@@ -368,3 +368,57 @@ table#tbl-comment td:nth-of-type(1){
     background-color: grey;
     border: solid 1px grey;
 }
+
+
+/*--------orderList.jsp ----------------*/
+
+table#orderplace-table{
+	width: 800px;
+	text-align : center;
+	margin : 0px auto;
+	border-collapse: collapse;
+}
+
+table#orderplace-table tr:nth-of-type(2){
+	border-bottom: 1px solid grey;
+} 
+
+.grey-font{
+	color : grey;
+}
+
+
+
+div#user_info-container{
+	margin-right: auto;
+    margin-left: auto;
+    width: 1000px;
+    margin-top: 50px;
+}
+
+table#user-info-tbl{
+	width : 1000px;
+	border-collapse : collapse;
+}
+
+table#user-info-tbl td, table#user-info-tbl th{
+	border : 1px solid lightgrey;
+}
+
+table#user-info-tbl th{
+	width : 120px;
+	padding : 10px;
+}
+
+.blue-font{
+	color :rgb(0, 70, 172);
+}
+
+.bolder{
+	font-weight : bolder;
+	font-size : 20px;
+}
+    
+
+
+
