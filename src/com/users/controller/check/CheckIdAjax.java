@@ -37,12 +37,12 @@ public class CheckIdAjax extends HttpServlet {
 		
 		
 		UsersService service = new UsersService();
+		System.out.println(userid);
 		int result= service.checkid(userid);
-		
 //		response.getWriter().print((result>0)?"no":"ok");
 //		response.getWriter().write((result>0)?"no":"ok");
 		PrintWriter out = response.getWriter();
-		out.print((result>0)?"no":"ok");
+		out.print(result);
 		/*
 		 * request.getRequestDispatcher("/views/member/join.jsp").forward(request,
 		 * response);

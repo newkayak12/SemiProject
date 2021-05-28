@@ -410,3 +410,15 @@ menu_content-p{
 	width:400px;
 	border-collapse: collapse;
 }
+
+/*  product admin*/
+#productaddbtn-container{
+	display: flex;
+	justify-content: flex-end;
+}
+
+#products_admin_list{
+	display: flex;
+	justify-content: center;
+	
+}

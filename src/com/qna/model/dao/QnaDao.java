@@ -131,11 +131,12 @@ public class QnaDao {
 //				private String qCommentSeq; // 댓글번호
 //				private String qCommentContens; // 댓글 내용
 //				private Date qCommentDate;
+//				
+//				q.setqCommentSeq(rs.getString("q_c_seq"));
+//				q.setqCommentContens(rs.getString("q_c_comment"));
+//				q.setqDate(rs.getDate("q_c_date"));
 				
-				q.setqCommentSeq(rs.getString("q_c_seq"));
-				q.setqCommentContens(rs.getString("q_c_comment"));
-				q.setqDate(rs.getDate("q_c_date"));
-				
+				System.out.println("select QNA"+q);
 				}
 			
 			}catch(SQLException e) {
@@ -150,14 +151,15 @@ public class QnaDao {
 	public int insertQnaComment(Connection conn, QnaComment qc) {
 		PreparedStatement pstmt=null;
 		int result=0;
+		System.out.println("dao에서 " + qc);
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("insertQnaComment"));
 //			insertQnaComment = INSERT INTO QNA_COMMENT VALUES(QC_SEQ.NEXTVAL,?,?,?,?)
 //			USER_ID, Q_C_COMMENT, Q_C_REF = Q_SEQ
-
+			
 			pstmt.setString(1, qc.getUserId());
 			pstmt.setString(2, qc.getqComment());
-			pstmt.setString(3, qc.getqSeq());
+			pstmt.setString(3, qc.getqRef());
 			
 			result=pstmt.executeUpdate();
 			
@@ -176,8 +178,9 @@ public class QnaDao {
 			// selectQnaComment = SELECT * FROM QNA_COMMENT WHERE Q_C_REF = ?
 
 			pstmt=conn.prepareStatement(prop.getProperty("selectQnaComment"));
-			pstmt.setString(1, "q_c_ref");
+			pstmt.setString(1, no);
 			rs=pstmt.executeQuery();
+			
 			
 			while(rs.next()) {
 				QnaComment qc = new QnaComment();
@@ -189,6 +192,7 @@ public class QnaDao {
 				qc.setqDate(rs.getDate("q_c_date"));
 				qc.setqRef(rs.getString("q_c_ref"));
 				list.add(qc);
+				System.out.println("dao 에서 rs 후"+list);
 				
 			}	
 		}catch(SQLException e) {
@@ -198,5 +202,97 @@ public class QnaDao {
 			close(pstmt);
 		}return list;
 
+	}
+
+
+	public int deleteQna(Connection conn, String no) {
+
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteQna"));
+			pstmt.setString(1, no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int deleteQnaComment(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteQnaComment"));			
+			pstmt.setString(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {	
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int modifyQna(Connection conn, Qna q) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		System.out.println("dao"+q);
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("modifyQna"));
+//			UPDATE QNA SET Q_TITLE = ?, Q_CONTENTS=?, Q_DATE=?, Q_DATE=? WHERE Q_SEQ =?
+			pstmt.setString(1, q.getqTitle());
+			pstmt.setString(2, q.getqContents());
+			pstmt.setString(3, q.getqFile());
+			pstmt.setDate(4, q.getqDate());
+			pstmt.setString(5, q.getqSeq());
+			System.out.println("dao 끝자락" +q);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();			
+		} finally {
+			
+			close(pstmt);
+		}
+		System.out.println("성공여부"+result);
+		return result;
+	}
+
+
+	public int modifyQnaComment(Connection conn, String commentNo, String commentContent) {
+PreparedStatement pstmt = null;
+		
+		int result = 0;
+		// modifyQnaComment = UPDATE QNA_COMMENT SET Q_C_COMMENT =?, Q_C_DATE = SYSDATE WHERE Q_C_SEQ =?
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("modifyQnaComment"));
+			
+			pstmt.setString(1, commentContent);
+			pstmt.setString(2, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

@@ -1,6 +1,7 @@
-package com.qna.controller;
+package com.admin.controller.ajax.product.productlist;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qna.model.service.QnaService;
-import com.qna.model.vo.Qna;
+import com.admin.model.service.AdminService;
+import com.admin.model.vo.product.ProductAjax;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class QnaModifyServlet
+ * Servlet implementation class ProductlistAjaxServlet
  */
-@WebServlet("/qna/qnaModi")
-public class QnaModifyStartServlet extends HttpServlet {
+@WebServlet("/product/list/admin")
+public class ProductlistAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaModifyStartServlet() {
+    public ProductlistAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +33,12 @@ public class QnaModifyStartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String no = request.getParameter("qSeq");
+		List<ProductAjax> result = new AdminService().selectAllProductAdmin();
 		
-		Qna q=new QnaService().selectQna(no);
+		response.setContentType("application/json;charset=utf-8");
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
 		
-		request.setAttribute("qna", q);
-		
-		request.getRequestDispatcher("/views/qna/QnaModify.jsp")
-		.forward(request, response);
 	}
 
 	/**

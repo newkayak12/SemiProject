@@ -101,6 +101,7 @@ table#tbl-deatil-notice td:nth-of-type(5){
 .blue{
 	background-color : rgb(0, 70, 172);
 	color : white;
+	border : 1px solid rgb(0, 70, 172);
 }
 
 .white{
@@ -264,7 +265,7 @@ div#qna-detail-container{
 }
 
 table#qna-deatil{
-	margin : 30px auto;
+	margin : 30px auto 0px auto;
 	width : 700px;
 	border-collapse: collapse;
 }
@@ -276,6 +277,10 @@ table#qna-deatil td{
 	padding : 10px;
 }
 
+table#qna-deatil td:nth-of-type(4){
+	border-bottom : none !important;
+}
+
 table#qna-deatil th{
 	border: 1px solid white;	
 }
@@ -285,6 +290,81 @@ table#qna-deatil-notice td{
 	text-align : left;
 	padding : 10px;
 }
+
 input[type="file" i] {
     appearance: none;
+}
+
+.text-center{
+	 text-align: center;
+}
+
+div.comment-editor{
+	display : flex;
+}
+
+div#btn-container{
+	width : 700px;
+	text-align : center;
+	margin : 0px auto 10px auto;
+	padding: 0px 0px 20px 0px;
+	border-bottom : 1px grey solid;
+}
+
+form#qna-co-form{
+	width: 750px;
+	margin : 0 auto;
+	display : inline-block;
+	padding: 0px 60px;
+    box-sizing: border-box;
+}
+
+form#qna-co-form textarea{
+	height: 30px;
+    width: 500px;
+    float: left;
+}
+
+button#btn-insert{
+    float: right;
+    margin-top: 10px;
+}
+
+.qna-btn{
+	width : 80px;
+}
+
+.orange{
+	background-color: orange;
+    color: white;
+    border: solid 1px orange;
+}
+
+table#tbl-comment{
+	margin : auto;
+	width: 650px;
+	order-collapse: collapse;
+}
+
+table#tbl-comment td:nth-of-type(1){
+	text-align: start;
+}
+
+.comment-writer{
+	font-weight : bolder;
+}
+
+.comment-date{
+	font-size : 10px;
+	color : lightgrey;
+}
+
+.border-bottom{
+	border-bottom : 1px solid grey;
+}
+
+.grey{
+	color: white;
+    background-color: grey;
+    border: solid 1px grey;
 }

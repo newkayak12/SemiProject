@@ -1,6 +1,7 @@
-package com.qna.controller;
+package com.admin.controller.ajax.product.productpost;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qna.model.service.QnaService;
-import com.qna.model.vo.Qna;
+import com.admin.model.service.AdminService;
+import com.admin.model.vo.product.ProductAjax;
 
 /**
- * Servlet implementation class QnaModifyServlet
+ * Servlet implementation class ProductPostSevlet
  */
-@WebServlet("/qna/qnaModi")
-public class QnaModifyStartServlet extends HttpServlet {
+@WebServlet("/product/post/admin")
+public class ProductPostSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaModifyStartServlet() {
+    public ProductPostSevlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +31,12 @@ public class QnaModifyStartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
-		String no = request.getParameter("qSeq");
+		List<ProductAjax> category = new AdminService().categorypicker();
+		request.setAttribute("category", category);
+		request.getRequestDispatcher("/views/admin/adminproductpost.jsp").forward(request, response);
 		
-		Qna q=new QnaService().selectQna(no);
-		
-		request.setAttribute("qna", q);
-		
-		request.getRequestDispatcher("/views/qna/QnaModify.jsp")
-		.forward(request, response);
 	}
 
 	/**

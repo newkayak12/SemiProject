@@ -48,7 +48,7 @@ public class UsersDao {
 	
 	
 	public int checkid(Connection conn, String userid) {
-		int result=1;
+		int result=0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -66,6 +66,8 @@ public class UsersDao {
 			close(pstmt);
 			
 		}
+		
+		System.out.println(result);
 		return result;
 	}
 	

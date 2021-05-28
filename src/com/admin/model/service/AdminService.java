@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.admin.model.dao.AdminDao;
+import com.admin.model.vo.product.ProductAjax;
 import com.review.model.vo.Review;
 
 public class AdminService {
@@ -44,22 +45,65 @@ public class AdminService {
 
 
 
-	public int reviewHidden(String reviewNo, String rDelete) {
+
+	public List<ProductAjax> selectAllProductAdmin() {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.reviewHidden(conn, reviewNo, rDelete);
-		
-		if(result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		
+		List<ProductAjax> result = dao.selectAllProductAdmin(conn);
+		// TODO Auto-generated method stub
+				
 		close(conn);
-		
+
 		return result;
 	}
+
+public int reviewHidden(String reviewNo, String rDelete) {
+	
+	Connection conn = getConnection();
+	
+	int result = dao.reviewHidden(conn, reviewNo, rDelete);
+	
+	if(result > 0) {
+		commit(conn);
+	} else {
+		rollback(conn);
+	}
+	
+	close(conn);
+	return result;
+	
+}
+
+
+
+public List<ProductAjax> colorpicker() {
+	// TODO Auto-generated method stub
+	Connection conn= getConnection();
+	List<ProductAjax> color = 	dao.colorpicker(conn);
+	close(conn);
+	return color;
+}
+
+
+
+public List<ProductAjax> sizepicker() {
+	// TODO Auto-generated method stub
+		Connection conn= getConnection();
+		List<ProductAjax> size = 	dao.sizepicker(conn);
+		close(conn);
+	return size;
+}
+
+
+
+public List<ProductAjax> categorypicker() {
+	// TODO Auto-generated method stub
+		Connection conn= getConnection();
+		List<ProductAjax> category = 	dao.categorypicker(conn);
+		close(conn);
+	return category;
+}
 	
 	
 	

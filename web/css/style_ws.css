@@ -3,10 +3,12 @@
 
 /* common */
 .wrap{
-	width:1366px;
+	width:600px;
 	padding-top: 100px; /* 헤더 공간 */
-	height:400px;
+	height:auto;
 	margin-left:0px !important;
+	display:flex;
+	justify-content: center;
 }
 .container_wrap{
 	width: 100%;
