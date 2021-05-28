@@ -164,7 +164,7 @@ public class AdminDao {
 								productajax = new ProductAjax();
 								productajax.setpId(rs.getString("p_id"));
 								productajax.setcId(rs.getString("c_id"));
-								productajax.setpName(rs.getString("pName"));
+								productajax.setpName(rs.getString("p_Name"));
 								productajax.setpPrice(rs.getString("p_price"));
 								productajax.setpFile(rs.getString("p_file"));
 								productajax.setpFiledetail1(rs.getString("p_file_detail1"));
@@ -174,6 +174,8 @@ public class AdminDao {
 								productajax.setColor(rs.getString("P_O_Color"));
 								productajax.setSize(rs.getString("p_o_size"));
 								productajax.setStock(rs.getInt("p_detail_stock"));
+								
+								result.add(productajax);
 								
 							}
 							
@@ -231,6 +233,34 @@ public class AdminDao {
 		
 		return result;
 
+	}
+
+
+
+	public List<ProductAjax> colorpicker(Connection conn) {
+		// TODO Auto-generated method stub
+		List<ProductAjax> color = new ArrayList();
+		
+		return color;
+		
+	}
+
+
+
+	public List<ProductAjax> sizepicker(Connection conn) {
+		// TODO Auto-generated method stub
+		List<ProductAjax> size = new ArrayList();
+		
+		return size;
+	}
+
+
+
+	public List<ProductAjax> categorypicker(Connection conn) {
+		// TODO Auto-generated method stub
+		List<ProductAjax> category = new ArrayList();
+		
+		return category;
 	}
 	
 	

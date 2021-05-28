@@ -74,6 +74,36 @@ public int reviewHidden(String reviewNo, String rDelete) {
 	return result;
 	
 }
+
+
+
+public List<ProductAjax> colorpicker() {
+	// TODO Auto-generated method stub
+	Connection conn= getConnection();
+	List<ProductAjax> color = 	dao.colorpicker(conn);
+	close(conn);
+	return color;
+}
+
+
+
+public List<ProductAjax> sizepicker() {
+	// TODO Auto-generated method stub
+		Connection conn= getConnection();
+		List<ProductAjax> size = 	dao.sizepicker(conn);
+		close(conn);
+	return size;
+}
+
+
+
+public List<ProductAjax> categorypicker() {
+	// TODO Auto-generated method stub
+		Connection conn= getConnection();
+		List<ProductAjax> category = 	dao.categorypicker(conn);
+		close(conn);
+	return category;
+}
 	
 	
 	
