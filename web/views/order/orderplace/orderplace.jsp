@@ -194,26 +194,30 @@
 					<table id = "user-info-tbl">
 						<tr>
 							<th>주문하시는 분</th>
-							<td id ="user_name"><span><%=user.getUserName() %></span></td>
+							<td ><span id ="user_name"><%=user.getUserName() %></span></td>
 						</tr>
-						<%String[] addrs =user.getUserAddr().split("@");  %>
+						<%	String[] addrs = null;
+							if(user.getUserAddr().contains("@")){
+								addrs =user.getUserAddr().split("@"); 
+							}
+						%>
 						<tr>
 							<th rowspan="3">주소</th>
-							<td id = "user_addr"><span style="font-weight: bold;">주소</span> <%= addrs[0]%></td>
+							<td ><span style="font-weight: bold;">주소</span> <span id = "user_addr"><%= user.getUserAddr().contains("@")? addrs[0]:user.getUserAddr()%></span></td>
 						</tr>
 						<tr>
-							<td id = "user_addrdetail"><span style="font-weight: bold; ">상세주소</span> <%=addrs[1] %></td>
+							<td ><span style="font-weight: bold; ">상세주소</span><span id = "user_addrdetail">  <%= user.getUserAddr().contains("@")? addrs[1]:""%></span> </td>
 						</tr>
 						<tr>
-							<td id= "user_zip"> <span style="font-weight: bold;">우편번호</span><%=user.getUserZip() %></td>
+							<td > <span style="font-weight: bold;" >우편번호</span><span id= "user_zip"><%=user.getUserZip() %></span></td>
 						</tr>		
 						<tr>
 							<th>휴대전화</th>
-							<td id ="user_phone"> <span><%=user.getUserPhone() %></span> </td>
+							<td > <span id ="user_phone"><%=user.getUserPhone() %></span> </td>
 						</tr>		
 						<tr>
 							<th>이메일</th>
-							<td id = "user_email"> <span><%=user.getUserEmail() %></span></td>
+							<td > <span id = "user_email"><%=user.getUserEmail() %></span></td>
 							
 						</tr>								
 					</table>
@@ -240,16 +244,17 @@
 							<tr>
 								<th rowspan="3">주소</th>
 								<td id = "user_addr">
-								<span style="font-weight: bold;">주소</span> <%= addrs[0]%>
+								<span style="font-weight: bold;">주소</span> 
+								<input type = "text" id = "receive_addr">
 								<button type="button" class="notice-btn blue" id="addrfind">주소 찾기</button>
 								</td>
 								
 							</tr>
 							<tr>
-								<td id = "user_addrdetail"><span style="font-weight: bold; ">상세주소</span> <%=addrs[1] %></td>
+								<td ><span style="font-weight: bold; ">상세주소</span> <input type = "text" id = "receive_addrdetail"></td>
 							</tr>
 							<tr>
-								<td id= "user_zip"> <span style="font-weight: bold;">우편번호</span><%=user.getUserZip() %></td>
+								<td> <span style="font-weight: bold;">우편번호</span><input type="text" id= "receive_zip"></td>
 							</tr>
 										
 							<tr>
@@ -438,7 +443,6 @@
 	$("#bank-select").change((e)=>{
 		console.log($(e.target).val())
 	})
-})
 
 $("#samepeople").change( ()=>{
 	let flag = $("#sameiam");

@@ -335,7 +335,13 @@
 					
 					
 					<div id="menu_content-qna">
-						qna
+						
+						<table id="qna-table">
+							
+							
+						</table>
+						
+						
 					</div>
 					
 				</div>
@@ -385,6 +391,22 @@
 		$("#menu_content-notice").css("display","none");
 		$("#menu_content-review").css("display","none");
 		$("#menu_content-qna").css("display","flex");
+		
+		let tables = $("#menu_content-qna");
+		
+		<%-- $.ajax({
+			url:"<%=request.getContextPath()%>/product/qna/ajax",
+			data:{"cid":"<%=product[0].get%>",},
+			success: data =>{
+				
+				
+			}
+			
+		})
+		 --%>
+		
+		
+		
 	})
 	
 	
