@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.admin.model.service.AdminService;
 import com.admin.model.vo.product.ProductAjax;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class ProductlistAjaxServlet
@@ -32,7 +33,10 @@ public class ProductlistAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<ProductAjax> resutl = new AdminService().selectAllProductAdmin();
+		List<ProductAjax> result = new AdminService().selectAllProductAdmin();
+		response.setContentType("application/json;charset=utf-8");
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
 		
 	}
 

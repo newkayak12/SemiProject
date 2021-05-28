@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="web/css/style.css">
 
 
-<main id="joinMain">
-	<div class="wrap"style="margin-bottom:40px; margin-left: 0px; ">
+<main id="joinMain" style="display: flex; justify-content: center;">
+	<div class="wrap"style="margin-bottom:40px; margin-left: 0px; wid">
 		<div class="container_wrap" id="join-container" style="margin-bottom:10px; ">
 		
 		<h1>회원가입</h1>
@@ -16,7 +16,7 @@
 			<div id="join_input_section">
 			
 				<p class="input_txt">ID</p>
-				<input class="input_style" type="text"  id= "userId"name="userId" placeholder="ID" onblur="fn_ajaxcheck()" required>
+				<input class="input_style" type="text"  id= "userId" name="userId" placeholder="ID" onkeyup="fn_ajaxcheck()" required>
 				<div id="id_check"></div>
 					
 				<p class="input_txt">PassWord</p>
@@ -99,22 +99,26 @@ new daum.Postcode({
  })
  
  /* $("#userid").click(function(){ */
+	 
+	 
  const fn_ajaxcheck=()=>{
-	 var userid=$('#userId').val();
-	 console.log(userid);
+	 let userid=$('#userId').val();
+	 console.log(userid)
+	 let idval =$("#id_check");
+
 	 $.ajax({
 		 url : "<%=request.getContextPath()%>/check/checkid/ajax",
-		 data :{"userId":$("#userId").val()},
+		 data :{"userId":userid},
 		 success : data=>{
+			 console.log(data)
 			 
-			 let idval =$("#id_check");
 			 
 			 var idReg = /^[A-Za-z0-9]{5,12}$/g;
-			 if(data=="no"){
+			 if(data>0){
 				 idval.text("사용중인아이디");
 				 idval.css("color","red");
-			 }
-			 else{
+			 } else{
+				
 				 if(idReg.test(userid)){
 					 idval.text("사용가능한 아이디");
 					 idval.css("color","green");

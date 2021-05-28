@@ -153,10 +153,43 @@ public class AdminDao {
 	public List<ProductAjax> selectAllProductAdmin(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
+		ProductAjax productajax = null;
+		List<ProductAjax>  result = new ArrayList();
+		
+				try {
+							pstmt=conn.prepareStatement(prop.getProperty("adminproductselect"));
+							rs = pstmt.executeQuery();
+							
+							while(rs.next()) {
+								productajax = new ProductAjax();
+								productajax.setpId(rs.getString("p_id"));
+								productajax.setcId(rs.getString("c_id"));
+								productajax.setpName(rs.getString("pName"));
+								productajax.setpPrice(rs.getString("p_price"));
+								productajax.setpFile(rs.getString("p_file"));
+								productajax.setpFiledetail1(rs.getString("p_file_detail1"));
+								productajax.setpFiledetail2(rs.getString("p_file_detail2"));
+								productajax.setpExplain(rs.getString("p_explain"));
+								productajax.setpDetail(rs.getString("p_detail"));
+								productajax.setColor(rs.getString("P_O_Color"));
+								productajax.setSize(rs.getString("p_o_size"));
+								productajax.setStock(rs.getInt("p_detail_stock"));
+								
+							}
+							
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					
+					close(rs);
+					close(pstmt);
+				}
 		
 		
 		
-		return null;
+		
+		return result;
 
 }
 	

@@ -32,11 +32,22 @@
 </main>
 
 <script>
-	$(function(){
+	
+	const fn_list = () =>{
+		
 		let tr = $("#products_admin_list");
 		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/list/admin",
+			success: data =>{
+				console.log(data)
+			}
+		})
 		
-		
+	}	
+	
+	$(function(){	
+		fn_list();
 	})
 </script>
 

@@ -3,6 +3,7 @@ package com.admin.model.vo.product;
 public class ProductAjax {
 	private String pId, cId, pName, pPrice, pFile, pFiledetail1, pFiledetail2, pExplain, pDetail, color, size;
 	private int stock;
+	
 	public String getpId() {
 		return pId;
 	}
