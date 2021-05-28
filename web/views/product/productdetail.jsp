@@ -60,9 +60,9 @@
 										 		
 											<% 
 												for(int i=0; i<product.size(); i++) {
-													colorflag += "|"+product.get(i).getProductOptionColor()+"|";
-												
+													System.out.println(colorflag);
 													if(i==0){
+													colorflag += "|"+product.get(i).getProductOptionColor()+"|";
 											%>
 											 	
 											 	
@@ -75,7 +75,9 @@
 													} else {
 														
 														
+															System.out.println( "scan" + product.get(i).getProductOptionColor());
 														if( !colorflag.contains(product.get(i).getProductOptionColor())){
+															colorflag += "|"+product.get(i).getProductOptionColor()+"|";
 											%>
 											
 												<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
@@ -105,9 +107,9 @@
 											
 											<% 
 												for(int i=0; i<product.size(); i++) {
-													sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
 												
 														if(i==0){
+													sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
 											%>
 											
 											
@@ -120,8 +122,8 @@
 											
 														} else {
 															
-															if(!colorflag.contains(product.get(i).getProductOptionSize())){
-														
+															if(!sizeflag.contains(product.get(i).getProductOptionSize())){
+																sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
 														
 											%>
 												
@@ -335,7 +337,18 @@
 					
 					
 					<div id="menu_content-qna">
-						qna
+						
+						<table id="qna-table">
+							<!-- <tr>
+								<th>작성자</th>
+								<th>글 제목</th>
+								<th>작성일</th>
+								
+							</tr> -->
+							
+						</table>
+						
+						
 					</div>
 					
 				</div>
@@ -350,10 +363,12 @@
 	
 	<input type = "hidden" id = "cartadder" name="cartadder">
 		
-		
+	
 		
 		
 	</main>
+	
+
 
 <%} %>
 <script>
@@ -385,7 +400,50 @@
 		$("#menu_content-notice").css("display","none");
 		$("#menu_content-review").css("display","none");
 		$("#menu_content-qna").css("display","flex");
+		
+		let tables = $("#qna-table");
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/qna/ajax",
+			data:{"cid":"<%=product.get(0).getCategoryId()%>","pid":"<%=product.get(0).getProductId()%>"},
+			success: data =>{
+				tables.html("");
+				tables.append($("<tr>").append($("<th>").html('작성자')).append($("<th>").html('글 제목')).append($("<th>").html('작성일')))
+				
+					
+
+
+		
+				console.log(data)
+				for(let i =0 ; i<data.length; i++){
+					
+					console.log(data[i]["qnaProductSeq"])
+					tables.append($("<tr>").append($("<td>").css("text-align","center").html(data[i]["qnaUserId"]))
+						.append($("<td>").css("text-align","center").html(data[i]["qnaTitle"]).attr("onclick",'fn_detailshow('+data[i]["qnaProductSeq"]+',"'+data[i]["qnaUserId"]+'")'))
+						.append($("<td>").css("text-align","center").html(data[i]["qnaDate"])))
+					
+				}
+				
+			}
+			
+		})
+		 
+		
+		
+		
 	})
+	
+	
+	const fn_detailshow=(e,f)=>{
+		let info = e;
+		let id = f;
+		
+		console.log(e)
+		console.log(f)
+		
+		
+		window.open("<%=request.getContextPath()%>/qna/product/detail?qseq="+info+"&writer="+id ,'qna','width=500, height=600');
+		
+	}
 	
 	
 	const fn_buynow=()=>{
