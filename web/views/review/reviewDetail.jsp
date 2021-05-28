@@ -121,6 +121,7 @@
 						<button onclick="fn_review_delete();" style="width:70px; height:35px;">삭제</button>
 					<% } %>
 					
+					<button onclick="location.assign('<%=request.getContextPath()%>/review/reviewReportCount')" style="width:70px; height:35px;">신고</button>
 					<button onclick="location.assign('<%=request.getContextPath()%>/review/list')" style="width:70px; height:35px;">목록</button>
 				</div>
 		 	

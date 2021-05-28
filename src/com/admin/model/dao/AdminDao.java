@@ -81,6 +81,8 @@ public class AdminDao {
 				r.setProductName(rs.getString("p_name"));
 				r.setProductFile(rs.getString("p_file"));
 				
+				r.setReviewReportCount(rs.getInt("r_report_count"));
+				
 				// 추가된 필드 세팅
 //				private String commentUserId;
 //				private String reviewComment;
