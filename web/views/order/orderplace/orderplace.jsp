@@ -398,29 +398,25 @@
 		if(confirm('장바구니로 돌아가시겠습니까?')==true){
 			location.assign("<%=request.getContextPath()%>/cart/list")
 		}
+
+	
 	}
-$(function(){
+/* 
+ * 카카오주소 막
+ 
+ 	$(function(){
+	console.log($("#user_addr").val())
+	let flg = $("#user_zip").html();
 	
-	
+	if( flg.include('카카오로그인 사용자는 직접 입력해주십시오')){
+		alert('ss')
+		$("#samepeople").css("display","none")
+		
+	}
+	 */
 
 	$("#pay").click((e)=>{
-		// $("pay-table").html("");
-		// $("#pay-table").append($("<tr>").append($("<th>").html("입금자명")).append($("<td>").html("<%=user.getUserName()%>")));
 		
-
-		// $("#pay-table").append(   $("<tr>").append($("<th>").html("입금자은행")).append($("<td>").append( $("<select>").attr({
-		// 	"id":"bank-select"
-		// 	,"name":"pay_sel"
-			
-		// }).append( $("<option>").attr({"value":"하나은행 661-910265-*****",
-		// 	"name":"pay_sel"
-			
-			
-		// }).html("하나은행 661-910265-*****")).append($("<option>").attr({
-		// 	"value":"신한은행 910-910265-*****",
-		// 	"name":"pay_sel"
-			
-		// }).html("신한은행 910-910265-*****"))  ) ));
 
 	$("#kakaopay").css("display","none");
 	$("#pay-table").css("display","table")
@@ -475,6 +471,7 @@ $("#samepeople").change( ()=>{
 				receive_phone.val("")
 				receive_email.val("")
 				receive_zip.val("")
+				$("#receive_addrdetail").val("")
 				flag.val("0")
 
 			}
