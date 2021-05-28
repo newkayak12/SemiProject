@@ -79,8 +79,8 @@
 			</div>
 			
 			
-			<div id="slideshowcontent" style="width:520px;">
-				test
+			<div id="slideshowcontent" style="width:520px; display: flex; text-align: center; align-items: center;">
+				Breezy fabrics. Bright hues. Statement silhouettes. Embrace the warmer weather in styles you can’t help feeling optimistic in. 
 			</div>
 			
 		</div>
