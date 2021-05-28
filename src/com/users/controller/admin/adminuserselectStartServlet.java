@@ -1,4 +1,4 @@
-package com.main.controller;
+package com.users.controller.admin;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.review.model.service.ReviewService;
-import com.review.model.vo.Review;
+import com.users.model.service.UsersService;
+import com.users.model.vo.Users;
 
 /**
- * Servlet implementation class MainReviewServlet
+ * Servlet implementation class adminuserselectStartServlet
  */
-@WebServlet("/main/review/list/ajax")
-public class MainReviewServlet extends HttpServlet {
+@WebServlet("/admin/userselect/start")
+public class adminuserselectStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainReviewServlet() {
+    public adminuserselectStartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,10 +32,13 @@ public class MainReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Review> result = new ReviewService().selectmain();
-		Gson gson = new Gson();
-		response.setContentType("application/json;charset=utf-8");
-		gson.toJson(result,response.getWriter());
+		
+		
+		
+		List<Users> list = new UsersService().selectadminUsers();
+		request.setAttribute("userlist", list);
+		
+		request.getRequestDispatcher("/views/admin/adminusers.jsp").forward(request, response);
 		
 	}
 

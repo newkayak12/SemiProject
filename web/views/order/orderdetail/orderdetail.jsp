@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_sh.css">
 <meta charset="UTF-8">
 <%
-	List<Order> orderlist = (List<Order>) request.getAttribute("list");
+List<Order> orderlist = (List<Order>) request.getAttribute("list");
 	Users userInfo = (Users) request.getAttribute("user");
 	Order orderInfo =  orderlist.get(0);
 %>
@@ -27,7 +27,9 @@
  </div>   
     <table id="orderdetail-table">
 
-<% for( Order order : orderlist) {%>
+<%
+for( Order order : orderlist) {
+%>
         <tr>
             <td colspan="4">
                 <%=order.getOrderStatus()%>

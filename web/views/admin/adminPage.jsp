@@ -5,6 +5,7 @@
 
 <main>
 
+
 	<ul class="text_align_center">
 		<li class="hrz_li"><a href="">메인페이지 관리</a></li>
 		<li class="hrz_li"><a href="">상품 관리</a></li>
@@ -12,6 +13,7 @@
 		<li class="hrz_li"><a href="">Q&A 관리</a></li>
 		<li class="hrz_li"><a href="">주문 관리</a></li>
 		<li class="hrz_li"><a href="">회원 관리</a></li>
+
 	</ul>
 	
 </main>	

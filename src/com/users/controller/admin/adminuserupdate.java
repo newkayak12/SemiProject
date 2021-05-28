@@ -1,29 +1,25 @@
-package com.main.controller;
+package com.users.controller.admin;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.review.model.service.ReviewService;
-import com.review.model.vo.Review;
+import com.users.model.service.UsersService;
 
 /**
- * Servlet implementation class MainReviewServlet
+ * Servlet implementation class adminuserupdate
  */
-@WebServlet("/main/review/list/ajax")
-public class MainReviewServlet extends HttpServlet {
+@WebServlet("/admin/userupdate/end")
+public class adminuserupdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainReviewServlet() {
+    public adminuserupdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,11 +29,19 @@ public class MainReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Review> result = new ReviewService().selectmain();
-		Gson gson = new Gson();
-		response.setContentType("application/json;charset=utf-8");
-		gson.toJson(result,response.getWriter());
+
+		String userId= request.getParameter("userid");
+		String userStatus = request.getParameter("userstatus");
 		
+		
+		int result = new UsersService().updateadminUsers(userId,userStatus);
+		
+		if(result>0) {
+			request.getRequestDispatcher("/admin/userselect/start").forward(request, response);
+		}
+		else {
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
 	}
 
 	/**

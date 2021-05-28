@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.users.model.vo.Users;
@@ -226,5 +229,60 @@ public class UsersDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public List<Users> selectadminUsers(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Users u = null;
+		List<Users> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectadminUsers"));
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				u=new Users();
+				u.setUserId(rs.getString("user_Id"));
+				u.setUserName(rs.getString("user_name"));
+				u.setUserStatus(rs.getInt("user_status"));
+				
+				list.add(u);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return list;
+		
+	}
+
+	public int updateadminUsers(Connection conn, String userId, String userStatus) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String query=prop.getProperty("adminuserupdate");
+			
+			if(userStatus.equals("1")) {
+				query=query.replace("@", "0");
+			}
+			else {
+				query=query.replace("@", "1");
+			}
+			
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 }

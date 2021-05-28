@@ -468,10 +468,15 @@
 	}
 	
 	$("#product_stock").change((e)=>{
-		
-		
+		$("#product_total-container").html("") 
+		let size = $("#product_size-select").val()
+		let color = $("#product_color-select").val()
 		let total = $("#product_stock").val()*<%=product.get(0).getProductPrice()%>
-		$("#product_total-container").html("<%=product.get(0).getProductName()%><br><%=product.get(0).getProductOptionColor()%>/<%=product.get(0).getProductOptionSize()%>/총 가격 : "+ total+"원");
+		$("#product_total-container").append($("<p>").html("사이즈 :"+size)).append($("<p>").html("색상 :" +color)).append($("<p>").html("총 가격 :" +total))
+		
+		/* result.html(size <br>)
+		
+		<br>color<br>total); */
 	})
 	
 	

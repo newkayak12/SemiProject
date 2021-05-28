@@ -56,9 +56,9 @@
 		
 		<p class="section_title">Today's pick</p>
 		
-		<div id="slideshow">
+		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px;">
 		
-			<div id="slides">
+			<div id="">
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
@@ -75,6 +75,11 @@
 						<iframe width="560" height="315" src="https://www.youtube.com/embed/ZvE_j5psy6Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					
 
+			</div>
+			
+			
+			<div id="slideshowcontent" style="width:520px;">
+				test
 			</div>
 			
 		</div>
@@ -130,11 +135,11 @@ review
 		
 		
 		
-productId: "9"
+/* productId: "9"
 productName: "랩 탑"
 productOptionColor: "gray"
 productOptionSize: "M"
-reviewCount: "7"
+reviewCount: "7" 
 reviewFile: "reviewFileName2"
 reviewNo: "28"
 userId: "qwerty2"
@@ -147,16 +152,33 @@ userId: "qwerty2"
 			success:data2 =>{
 				
 					for(let i=0; i<data2.length; i++){
-
-									container_review.append($("<div>").css({"text-align":"center"}).append($("<p>").html(i+1+"위").css("text-align","center")).append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"250px","height":"350px"})).append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))              )
+						console.log(data2[i]["reviewNo"])
+						let reviewno = data2[i]["reviewNo"]
+						
+						
+						
+						
+						
+						
+									container_review.append($("<div>").css({"text-align":"center"}).append($("<a>").attr({
+										"href": "<%=request.getContextPath()%>/review/detail?no="+reviewno,
+										"width":"300px",
+										"height":"500px",
+										"margin":"0px",
+										"padding":"0px"
+												
+									}).css({"text-decoration":"none","color":"black"})
+									.append($("<p>").html(i+1+"위").css("text-align","center")).append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"250px","height":"350px"})).append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))              )
+									
+									)
+											
+											
+											
+											
 						// let cotents2 =	$("td").css({"text-align":"center"})
 						
 						// 			content2.append($("<p>").html(i+1+"위").css("text-align","center"))
-									
-									
 						// 			content2.append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"200px","height":"200px"}))
-									
-									
 						// 			content2.append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))
 						// 			console.log(contents2);
 									
@@ -214,9 +236,7 @@ userId: "qwerty2"
 							"margin":"0px",
 							"padding" :"0px",
 							"width" : "230px",
-							"height" : "250px",
-							"text-decoration":"none",
-							"color":"black"
+							"height" : "250px"
 							}).css({
 								"display":"flex",
 								"flex-direction":"column",
@@ -224,7 +244,9 @@ userId: "qwerty2"
 								"margin":"0px",
 								"padding":"0px",
 								"box-sizing":"border-box",
-							    "align-items": "center"
+							    "align-items": "center",
+							    "text-decoration":"none",
+							    "color":"black"
 							}).append($("<img>").attr({"src":"<%=request.getContextPath()%>/upload/product/"+productFile,
 					"width":"200px"
 					})).append($("<div>").css({
@@ -289,9 +311,7 @@ userId: "qwerty2"
 								"margin":"0px",
 								"padding" :"0px",
 								"width" : "230px",
-								"height" : "250px",
-								"text-decoration":"none",
-								"color":"black"
+								"height" : "250px"
 								}).css({
 									"display":"flex",
 									"flex-direction":"column",
@@ -299,7 +319,9 @@ userId: "qwerty2"
 									"margin":"0px",
 									"padding":"0px",
 									"box-sizing":"border-box",
-									"align-items": "center"
+									"align-items": "center",
+									"text-decoration":"none",
+									"color":"black"
 								}).append($("<img>").attr({"src":"<%=request.getContextPath()%>/upload/product/"+productFile,
 						"width":"200px"
 						})).append($("<div>").css({
@@ -367,9 +389,7 @@ userId: "qwerty2"
 							"margin":"0px",
 							"padding" :"0px",
 							"width" : "230px",
-							"height" : "250px",
-							"text-decoration":"none",
-							"color":"black"
+							"height" : "250px"
 							}).css({
 								"display":"flex",
 								"flex-direction":"column",
@@ -377,7 +397,9 @@ userId: "qwerty2"
 								"margin":"0px",
 								"padding":"0px",
 								"box-sizing":"border-box",
-								"align-items": "center"
+								"align-items": "center",
+								"text-decoration":"none",
+								"color":"black"
 							}).append($("<img>").attr({"src":"<%=request.getContextPath()%>/upload/product/"+productFile,
 					"width":"200px"
 					})).append($("<div>").css({
@@ -448,9 +470,7 @@ userId: "qwerty2"
 							"margin":"0px",
 							"padding" :"0px",
 							"width" : "230px",
-							"height" : "250px",
-							"text-decoration":"none",
-							"color":"black"
+							"height" : "250px"
 							}).css({
 								"display":"flex",
 								"flex-direction":"column",
@@ -458,7 +478,9 @@ userId: "qwerty2"
 								"margin":"0px",
 								"padding":"0px",
 								"box-sizing":"border-box",
-								"align-itmes":"center"
+								"align-itmes":"center",
+								"text-decoration":"none",
+								"color":"black"
 							}).append($("<img>").attr({"src":"<%=request.getContextPath()%>/upload/product/"+productFile,
 					"width":"200px"
 					})).append($("<div>").css({
