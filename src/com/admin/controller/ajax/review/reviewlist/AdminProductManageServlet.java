@@ -1,4 +1,4 @@
-package com.admin.controller;
+package com.admin.controller.ajax.review.reviewlist;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
