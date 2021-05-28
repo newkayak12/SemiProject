@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.admin.model.vo.product.ProductAjax;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
 
@@ -144,6 +145,17 @@ public class AdminDao {
 		
 		
 		return result;
+	}
+
+
+
+	public List<ProductAjax> selectAllProductAdmin(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		
+		
+		
+		return null;
 	}
 	
 	
