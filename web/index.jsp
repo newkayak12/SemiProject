@@ -56,9 +56,10 @@
 		
 		<p class="section_title">Today's pick</p>
 		
-		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px;">
+		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px; width:1300px">
 		
-			<div id="">
+			<div id="video">
+			
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
