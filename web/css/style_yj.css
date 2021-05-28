@@ -336,4 +336,12 @@
 	
 	/* ------------------------  reviewManage.jsp    -----------------------------*/
 
+	table#admin_reviewlist{
+		border: 1px white solid;
+		border-collapse: collapse;
+	}
 
+
+	table#admin_reviewlist td{
+		border-bottom: 1px solid grey;
+	}

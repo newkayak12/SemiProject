@@ -1,7 +1,9 @@
 package com.admin.model.service;
 
 import static com.common.JDBCTemplate.close;
+import static com.common.JDBCTemplate.commit;
 import static com.common.JDBCTemplate.getConnection;
+import static com.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -43,6 +45,7 @@ public class AdminService {
 
 
 
+
 	public List<ProductAjax> selectAllProductAdmin() {
 		
 		Connection conn = getConnection();
@@ -51,8 +54,26 @@ public class AdminService {
 		// TODO Auto-generated method stub
 				
 		close(conn);
+
 		return result;
 	}
+
+public int reviewHidden(String reviewNo, String rDelete) {
+	
+	Connection conn = getConnection();
+	
+	int result = dao.reviewHidden(conn, reviewNo, rDelete);
+	
+	if(result > 0) {
+		commit(conn);
+	} else {
+		rollback(conn);
+	}
+	
+	close(conn);
+	return result;
+	
+}
 	
 	
 	

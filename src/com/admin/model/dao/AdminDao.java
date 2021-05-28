@@ -149,6 +149,7 @@ public class AdminDao {
 
 
 
+
 	public List<ProductAjax> selectAllProductAdmin(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
@@ -156,6 +157,47 @@ public class AdminDao {
 		
 		
 		return null;
+
+}
+	
+	
+	public int reviewHidden(Connection conn, String reviewNo, String rDelete) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("reviewHidden");
+		
+		if(rDelete.equals("1")) {
+			
+			sql=sql.replace("@", "0");
+			
+		} else {
+			
+			sql=sql.replace("@", "1");
+		}
+		
+		try {
+			
+			// UPDATE REVIEW SET R_DELETE = ? WHERE R_SEQ = ?
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+
 	}
 	
 	

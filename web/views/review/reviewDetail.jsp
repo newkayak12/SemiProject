@@ -116,12 +116,14 @@
 		 	 	<!-- 수정, 삭제 버튼 div -->
 				<div id="reviewDetail-buttons-container" style="display: flex; justify-content: flex-end;">
 				
-					<% if( userid != null && (checkAdmin.equals("1") || userid.equals(review.get(0).getUserId()) ) ) { %>
+					<% if( userid != null && userid.equals(review.get(0).getUserId()) ) { %>
 						<button onclick="fn_review_update();" style="width:70px; height:35px;">수정</button>
+					<% } %>
+					
+					<% if( userid != null && (checkAdmin.equals("1") || userid.equals(review.get(0).getUserId()) ) ) { %>
 						<button onclick="fn_review_delete();" style="width:70px; height:35px;">삭제</button>
 					<% } %>
 					
-					<button onclick="location.assign('<%=request.getContextPath()%>/review/reviewReportCount')" style="width:70px; height:35px;">신고</button>
 					<button onclick="location.assign('<%=request.getContextPath()%>/review/list')" style="width:70px; height:35px;">목록</button>
 				</div>
 		 	
