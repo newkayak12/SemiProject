@@ -167,13 +167,13 @@ public class AdminDao {
 								productajax.setpName(rs.getString("p_Name"));
 								productajax.setpPrice(rs.getString("p_price"));
 								productajax.setpFile(rs.getString("p_file"));
-								productajax.setpFiledetail1(rs.getString("p_file_detail1"));
-								productajax.setpFiledetail2(rs.getString("p_file_detail2"));
+//								productajax.setpFiledetail1(rs.getString("p_file_detail1"));
+//								productajax.setpFiledetail2(rs.getString("p_file_detail2"));
 								productajax.setpExplain(rs.getString("p_explain"));
-								productajax.setpDetail(rs.getString("p_detail"));
-								productajax.setColor(rs.getString("P_O_Color"));
-								productajax.setSize(rs.getString("p_o_size"));
-								productajax.setStock(rs.getInt("p_detail_stock"));
+//								productajax.setpDetail(rs.getString("p_detail"));
+//								productajax.setColor(rs.getString("P_O_Color"));
+//								productajax.setSize(rs.getString("p_o_size"));
+//								productajax.setStock(rs.getInt("p_detail_stock"));
 								
 								result.add(productajax);
 								
@@ -240,6 +240,27 @@ public class AdminDao {
 	public List<ProductAjax> colorpicker(Connection conn) {
 		// TODO Auto-generated method stub
 		List<ProductAjax> color = new ArrayList();
+		ProductAjax pro = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		
+				try {
+							pstmt= conn.prepareStatement(prop.getProperty("colorpicker"));
+							rs= pstmt.executeQuery();
+							
+							while(rs.next()) {
+								pro = new ProductAjax();
+								pro.setColor(rs.getString("p_o_color"));
+								
+								color.add(pro);
+								
+							}
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		
 		return color;
 		
@@ -250,6 +271,27 @@ public class AdminDao {
 	public List<ProductAjax> sizepicker(Connection conn) {
 		// TODO Auto-generated method stub
 		List<ProductAjax> size = new ArrayList();
+		ProductAjax pro = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		
+				try {
+							pstmt= conn.prepareStatement(prop.getProperty("sizepicker"));
+							rs= pstmt.executeQuery();
+								
+								while(rs.next()) {
+									pro = new ProductAjax();
+									pro.setSize(rs.getString("p_o_size"));
+									size.add(pro);
+									
+								}
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+		
 		
 		return size;
 	}
@@ -259,6 +301,27 @@ public class AdminDao {
 	public List<ProductAjax> categorypicker(Connection conn) {
 		// TODO Auto-generated method stub
 		List<ProductAjax> category = new ArrayList();
+		ProductAjax pro = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		
+				try {
+							pstmt= conn.prepareStatement(prop.getProperty("categorypicker"));
+							rs= pstmt.executeQuery();
+							
+							while(rs.next()) {
+								pro = new ProductAjax();
+								pro.setcId(rs.getString("c_id"));
+								pro.setCategoryName(rs.getString("c_name"));
+								category.add(pro);
+								
+							}
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		
 		return category;
 	}

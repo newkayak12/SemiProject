@@ -3,7 +3,14 @@ package com.admin.model.vo.product;
 public class ProductAjax {
 	private String pId, cId, pName, pPrice, pFile, pFiledetail1, pFiledetail2, pExplain, pDetail, color, size;
 	private int stock;
+	private String categoryName;
 	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	public String getpId() {
 		return pId;
 	}
@@ -76,30 +83,15 @@ public class ProductAjax {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	public ProductAjax(String pId, String cId, String pName, String pPrice, String pFile, String pFiledetail1,
-			String pFiledetail2, String pExplain, String pDetail, String color, String size, int stock) {
-		super();
-		this.pId = pId;
-		this.cId = cId;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pFile = pFile;
-		this.pFiledetail1 = pFiledetail1;
-		this.pFiledetail2 = pFiledetail2;
-		this.pExplain = pExplain;
-		this.pDetail = pDetail;
-		this.color = color;
-		this.size = size;
-		this.stock = stock;
-	}
+	
+	
 	@Override
 	public String toString() {
 		return "ProductAjax [pId=" + pId + ", cId=" + cId + ", pName=" + pName + ", pPrice=" + pPrice + ", pFile="
 				+ pFile + ", pFiledetail1=" + pFiledetail1 + ", pFiledetail2=" + pFiledetail2 + ", pExplain=" + pExplain
-				+ ", pDetail=" + pDetail + ", color=" + color + ", size=" + size + ", stock=" + stock + "]";
+				+ ", pDetail=" + pDetail + ", color=" + color + ", size=" + size + ", stock=" + stock
+				+ ", categoryName=" + categoryName + "]";
 	}
-	
-	
 	public ProductAjax() {
 		// TODO Auto-generated constructor stub
 	}

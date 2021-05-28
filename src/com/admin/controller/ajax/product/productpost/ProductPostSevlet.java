@@ -32,9 +32,10 @@ public class ProductPostSevlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<ProductAjax> color = new AdminService().colorpicker();
-		List<ProductAjax> size = new AdminService().sizepicker();
+		
 		List<ProductAjax> category = new AdminService().categorypicker();
+		request.setAttribute("category", category);
+		request.getRequestDispatcher("/views/admin/adminproductpost.jsp").forward(request, response);
 		
 	}
 

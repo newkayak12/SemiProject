@@ -17,9 +17,7 @@
 					<th>카테고리 이름</th>
 					<th>상품명</th>
 					<th>대표 사진</th>
-					<th>색상</th>
-					<th>사이즈</th>
-					<th>재고</th>
+					
 				</tr>
 				
 			
@@ -29,7 +27,7 @@
 </main>
 
 <script>
-	$("#productadd").onclick(()=>{
+	$("#productadd").click(()=>{
 		 window.open("<%=request.getContextPath()%>/product/post/admin","product","width=500,height=600");
 		
 		
@@ -66,11 +64,8 @@
 					let tr = $("<tr>");
 					tr.append($("<td>").append(data[i]["pId"])).css({"border":"1px black solid", "border-collapse":"collapse"})
 					tr.append($("<td>").append(data[i]["cId"])).css({"border":"1px black solid", "border-collapse":"collapse"})
-					tr.append($("<td>").append(data[i]["pName"])).css({"border":"1px black solid", "border-collapse":"collapse"})
+					tr.append($("<td>").append($("<a>").html(data[i]["pName"]).attr("onclick","window.open('<%=request.getContextPath()%>/admin/product/detail','product detail','width=500,height=600')")    )).css({"border":"1px black solid", "border-collapse":"collapse"})
 					tr.append($("<td>").append($("<img>").attr("src","<%=request.getContextPath()%>/upload/product/"+data[i]["pFile"]).css({"width":"100px"}))).css({"border":"1px black solid", "border-collapse":"collapse"})
-					tr.append($("<td>").append(data[i]["color"])).css({"border":"1px black solid", "border-collapse":"collapse"})
-					tr.append($("<td>").append(data[i]["size"])).css({"border":"1px black solid", "border-collapse":"collapse"})
-					tr.append($("<td>").append(data[i]["stock"])).css({"border":"1px black solid", "border-collapse":"collapse"})
 					
 					$("#products_admin_list").append(tr);
 					
