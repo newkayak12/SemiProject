@@ -29,6 +29,7 @@
         		<div class="content-background" name="noticeContent" style="border : 1px solid grey;"><%=n.getnContent() %></div>
         	</td>
         </tr>
+        <%if(userid!=null && checkAdmin.equals("1")){ %>
         <tr>
             <td colspan="2" style="text-align : end;">
                 <input type="button" class="notice-btn blue" value="수정하기" onclick="location.assign('<%=request.getContextPath() %>/notice/modify/start/admin?nSeq=<%=n.getnSeq()%>')">
@@ -36,6 +37,8 @@
                 <input type="button" class="notice-btn white" value="삭제하기" onclick="deleteNotice();">
             </td>
         </tr>
+        <%} %>
+        
     </table>
     </div>
     <script>

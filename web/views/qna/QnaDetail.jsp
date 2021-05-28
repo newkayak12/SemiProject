@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import = "java.util.List, com.qna.model.vo.Qna, java.sql.Date, com.qna.model.vo.QnaComment" %>
+<%@ page import = "com.qna.model.vo.Qna, java.util.List, com.qna.model.vo.QnaComment" %>
 
 <% 
 	Qna q = (Qna)request.getAttribute("qna");
-	List<QnaComment> comments=(List<QnaComment>)request.getAttribute("qna");
+	List<QnaComment> comments = (List<QnaComment>)request.getAttribute("comments"); 
 %>
 
 <%@include file = "/views/common/header.jsp" %>
@@ -15,9 +15,11 @@
 		<!-- Q&A 리스트 뜨는 부분 -->
 
 		<span class = "Menu-name"><%=q.getqTitle() %></span>
+	
 		
         <table id="qna-deatil">
 	        <tr>
+	   
 	            <th class="blue border-white">TITLE</th>
 	            <td><%=q.getqTitle() %></td>
 	        </tr>
@@ -31,18 +33,18 @@
 	            <td><%=q.getqDate() %></td>
 	        </tr>
 	        <tr>
-	        	<td colspan = "2">
-	        		<div class="content-background" name="qnaContent" style="border : 1px solid grey;">
+	        	<td colspan = "2" style="border-bottom : none !important;" >
+	        		<div class="content-background text-center" name="qnaContent" style="border : 1px solid grey;">
 	        			<%if(q.getqFile()!=null){ %>
-	        				<img src = "<%=request.getContextPath() %>/upload/qna/<%=q.getqFile()%>" style="width : 150px; height: auto;"><br>
+	        				<img src = "<%=request.getContextPath() %>/upload/qna/<%=q.getqFile()%>" style="width : 50px; height: auto;"><br>
 	        			<%} else{%>
-	        				<img src = "<%=request.getContextPath() %>/upload/qna/noimage.png">
+	        				<img src = "<%=request.getContextPath() %>/upload/qna/noimage.png" style="width : 50px; height: auto;">
 	        			<%} %>
-	        			<%=q.getqContents() %>
+	        			<br><%=q.getqContents() %>
 	        		</div>
 	        	</td>
 	        </tr>
-	    
+	    </table>
 	    
 	    <!-- Q&A 수정버튼 누르는 거  -->
 	    
@@ -60,63 +62,178 @@
 						checkAdmin = user.getUserAdmin(); // 1이면 admin계정, 0이면 일반사용자
 					}
 		} -->
-	    
-	        <!-- 관리자랑 로그인 사람 중 해당 게시글을 쓴 사람만 수정하기 삭제하기 버튼이 뜸 -->
-	        <%if((userid!=null && userid.equals(q.getUserId())) || (checkAdmin!=null&&checkAdmin.equals("1"))) {%>
-		         <tr>
-	        		<td colspan="2" style="text-align : end; border-bottom : none;">
-		                <input type="button" class="notice-btn blue" value="수정하기" onclick="location.assign('<%=request.getContextPath() %>/qna/qnaModifyStart?qSeq=<%=q.getqSeq()%>')">
-		            </td>
-		          </tr>
-			<%} %> 
-    	</table>
-    	
+	        <!--
+	        	1. 목록 버튼은 항상 뜰 수 있게하기
+	        	2. 삭제하기 버튼은 admin 또는 본인이 쓴 글 안에서만 뜨게 하기
+	         -->
+	         
+	         <div id = "btn-container">
+	         	<%if((userid!=null && checkAdmin.equals("1"))  ||  ( userid!=null&& userid.equals(q.getUserId()))){ %>
+		            <input type="button" class="notice-btn blue qna-btn" value="수정하기" onclick="qnaModi();">
+		        	<%} %>
+		        	<input type="button" class="notice-btn white qna-btn" value="목록" onclick="back();">
+	         </div>
+	        	
     	
     	
     	
     	<!-- 댓글 부분 -->
-    	<div id="comment-container">
+    	<div id="comment-container" style="margin : 0px 0px;">
+    	
 	    
 	    <!-- 댓글 입력하는 부분 -->
 	    	<div class="comment-editor">
-	    		<form action="<%=request.getContextPath() %>/qna/inserQnaComment" method="post">
+	    		<form id = "qna-co-form" action="<%=request.getContextPath() %>/qna/inserQnaComment" method="post">
 	    			<textarea name="content" cols="55" rows="2"></textarea>
-	    			<input type="hidden" name = "userId" value="<%=q.getUserId() %>">
+	    			<input type="hidden" name="userId" id="userId" value="<%=userid%>">
 	    			<input type = "hidden" name = "qnaRef" value = "<%=q.getqSeq() %>">
 	    			<!-- 댓글 시퀀스넘버는 자동부여, 날짜는 sysdate로 집어넣으면 됨. -->
-	    			<button type="submit" id="btn-insert">등록</button>
+	    			<button type="submit" id="btn-insert" class="notice-btn blue qna-btn">등록</button>
 	    		</form>
 	    	</div>
 	    	
-	   	<!-- 입력된 댓글이 나오는 부분 -->
+	    	
+	    	
+	   <!-- 입력된 댓글이 나오는 부분 -->
 	   	<table id="tbl-comment">
-	   	<%for(QnaComment qc : comments){ %>
-		   	<tr class="postedComment">
-		   	
-							<td>
-								<sub class="comment-writer"><%=qc.getUserId()%></sub>
-								<sub class="comment-date"><%=qc.getqDate() %></sub>
-								<br>
-								<%=qc.getqComment() %>
-							</td>
-							<td>
-								<%if(userid!=null){%>
-								<button class="btn-reply" value="<%=qc.getqSeq()%>">답글</button>
-								<%} %>
-								
-								<!-- 1. 로그인한 상태 + 관리자일 경우   /2. 로그인한 상태 + 해당 댓글을 작성한 사람일 경우 -->
-								<%if(userid!=null&& checkAdmin.equals("1") || userid!=null && userid.equals("") )
-										{ %>
-								<button class="btn-delete">삭제</button>
-								<%} %>
-							</td>
-				</tr>
-				<%} %>
-		</table>
+				<%if(comments!=null){ 
+					for(QnaComment qc : comments){%>
+					<tr class="border-bottom">
+						<td>
+							<sub class="comment-writer"><%=qc.getUserId() %></sub><br>
+							<p class="comment-content"><%=qc.getqComment() %></p>
+							<sub class="comment-date"><%=qc.getqDate() %></sub>
+							
+						</td>
+						<td style="text-align: end;">
+							<%if(userid!=null && checkAdmin.equals("1") || userid!=null && userid.equals(qc.getUserId())){ %>
+							<button class="btn-modify notice-btn white qna-btn qna_comment_modify">수정</button>
+							<button class="btn-delete notice-btn grey qna-btn" onclick="qnaCommentDelete();">삭제</button>
+							
+							<!-- 댓글 수정이나 삭제는 seq값들 hidden으로 보내줘야 함 -->
+							<input  type ="hidden"  name = "CommentSeq" value ="<%=qc.getqSeq()%>">
+			 				<input  type ="hidden"  name = "QnaSeq" value ="<%=q.getqSeq()%>">
+							<%} %>
+						</td>
+					</tr>	
+					
+					<%}
+					}%>	 
+			</table>
 
-    </div>
+    </div> 
 	
 </div>
-    
+
+<script>
+	const back=()=>{
+		window.history.back();
+	}
+	
+	const qnaModi=()=>{
+			location.assign('<%=request.getContextPath() %>/qna/qnaModi?qSeq=<%=q.getqSeq()%>')
+	}
+	
+	const qnaCommentDelete=()=>{
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.assign('<%=request.getContextPath() %>/qna/qnaCommentDelete?qSeq=<%=q.getqSeq()%>')
+		}else{
+			return;
+		}
+	}
+	
+	const qnaCommentModify=()=>{
+		location.assign('<%=request.getContextPath() %>/qna/qnaModi?qSeq=<%=q.getqSeq()%>')
+	}
+	
+	
+	
+	// 댓글 수정
+	$(".qna_comment_modify").click( (e) => {
+		
+		
+		
+		// 1. 댓글 수정 버튼을 누르면 원래 댓글 보이던 태그와 수정버튼, 삭제버튼을 감춤
+		$(e.target).parent().find("p").css("display", "none");
+		$(e.target).css("display", "none");
+		$(e.target).next().css("display", "none");
+		
+		
+		
+		// 2. 원래 보이던 댓글을 
+		const oldCommentContent = $(e.target).parent().parent().find("p").text();
+		
+				/* console.log(oldCommentContent); */
+				
+				
+		// 3. 입력창에 띄움 
+		const newComment = $("<textarea>").attr( {
+			
+			name : "",
+			class : "newComment",
+			rows : "2",
+			cols : "35",
+			
+		} ).text( oldCommentContent );
+				
+	   newComment.css(
+		   'vertical-align', 'bottom'
+	   )
+				
+	
+				
+		// 4. 댓글 등록 버튼
+		const newButton = $("<button>").attr( {
+			
+			name : "", 
+			class : "newButton notice-btn grey qna-btn",
+			
+			
+		} ).text("수정완료");
+		
+
+		
+		
+		// 5. td에 댓글입력창과 등록버튼을 추가
+		$(e.target).parent().parent().append(newComment);
+		$(e.target).parent().parent().append(newButton);
+		
+		
+		// 6. 가려져있는 태그에서 코멘트번호와 리뷰번호를 가져옴
+		/* const commentNo = $("#hiddenCommentNo").text(); */ 
+		const commentNo = $(e.target).next().next().val();
+		
+									console.log(commentNo);
+		
+		
+		/* const reviewNo = $("#hiddenReviewNo").text(); */
+		const QnaNo = $(e.target).next().next().next().val();
+		
+									console.log(QnaNo);
+		
+		
+		// 7. 입력창에서 새로 수정한 댓글을 가져옴
+		
+		/* const commentContent = $("#newComment").val();  */
+		// 이렇게 하면 등록버튼을 클릭하기 전에 값을 가져오므로, 수정된 댓글이 아닌 이전 댓글이 불러와진다 두둥 !! 
+		
+				
+		
+		$(".newButton").click( (e) => {
+			
+			const commentContent = $(e.target).prev().val();
+					
+					
+			location.replace("<%=request.getContextPath()%>/qna/commentmodify?qSeq=" + commentNo 
+							 + "&commentContent=" + commentContent 
+							 + "&QnaNo=" + QnaNo + "");
+			
+		} ); 
+		
+		
+		
+	} );
+</script>    
 
 <%@include file="/views/common/footer.jsp"%> 
+
