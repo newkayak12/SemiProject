@@ -80,7 +80,7 @@
 		            </li>
 		            
 		            <li>
-			            <a href="">BOARD</a>
+			            <a href="<%=request.getContextPath()%>/notice/list">BOARD</a>
 			            <ul>
 			            	<li><a href="<%=request.getContextPath()%>/notice/list">NOTICE</a></li>
 			            	<li><a href="<%=request.getContextPath()%>/qna/qnaList">Q&A</a></li>

@@ -10,8 +10,16 @@
 	border: 1px black solid !important;
 }
 
+#login-container{
+	width:500px;
+	
+}
 
-
+#signinMain1{
+	display: flex;
+	justify-content: center;
+	
+}
 
 /*jh */
 

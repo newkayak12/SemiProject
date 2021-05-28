@@ -56,9 +56,10 @@
 		
 		<p class="section_title">Today's pick</p>
 		
-		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px;">
+		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px; width:1300px">
 		
-			<div id="">
+			<div id="video">
+			
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
@@ -78,8 +79,8 @@
 			</div>
 			
 			
-			<div id="slideshowcontent" style="width:520px;">
-				test
+			<div id="slideshowcontent" style="width:520px; display: flex; text-align: center; align-items: center;">
+				Breezy fabrics. Bright hues. Statement silhouettes. Embrace the warmer weather in styles you can’t help feeling optimistic in. 
 			</div>
 			
 		</div>

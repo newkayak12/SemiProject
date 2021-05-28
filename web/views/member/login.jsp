@@ -20,11 +20,11 @@ if (lg != null) {
 
 <!-- 안녕 -->
 
-<main id="signinMain1">
+<main id="signinMain1" style="display: flex; justify-content: center;">
 
 
-	<div class="wrap">
-		<div class="container_wrap" id="signin-container">
+	<div id="login-container" style="width:500px; height:auto; display: flex; justify-content: center;">
+		<div  id="signin-container">
 			<h1>LOGIN</h1>
 			<form action=" <%=request.getContextPath()%>/sign/signin/end"
 				method="post">
@@ -66,12 +66,12 @@ if (lg != null) {
 
 
 
-			<div id="check_signin">
-				<!-- 로그인 검사 -->
+			<!-- <div id="check_signin">
+				로그인 검사
 				<p>
-					<!-- 로그인 실패 아이디 혹은 비밀번호를 확인하세요 -->
+					로그인 실패 아이디 혹은 비밀번호를 확인하세요
 				</p>
-			</div>
+			</div> -->
 			
 			
 			<!-- <div id="logstorsignup-search">
