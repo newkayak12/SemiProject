@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qna.model.service.QnaService;
-import com.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class QnaModifyServlet
+ * Servlet implementation class QnaCommentDeleteServlet
  */
-@WebServlet("/qna/qnaModi")
-public class QnaModifyStartServlet extends HttpServlet {
+@WebServlet("/qna/qnaCommentDelete")
+public class QnaCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaModifyStartServlet() {
+    public QnaCommentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +29,14 @@ public class QnaModifyStartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String no = request.getParameter("qSeq");
 		
-		Qna q=new QnaService().selectQna(no);
+		QnaService service = new QnaService();
 		
-		request.setAttribute("qna", q);
+		int result = service.deleteQnaComment(no);
 		
-		request.getRequestDispatcher("/views/qna/QnaModify.jsp")
-		.forward(request, response);
+			
+		request.getRequestDispatcher("/qna/qnadetail?qSeq=" + no + "").forward(request, response);
 	}
 
 	/**

@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qna.model.service.QnaService;
-import com.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class QnaModifyServlet
+ * Servlet implementation class QnaCommentModiStartServlet
  */
-@WebServlet("/qna/qnaModi")
-public class QnaModifyStartServlet extends HttpServlet {
+@WebServlet("/qna/commentmodify")
+public class QnaCommentModiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaModifyStartServlet() {
+    public QnaCommentModiServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +30,16 @@ public class QnaModifyStartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String no = request.getParameter("qSeq");
+		String commentNo = request.getParameter("qSeq");
+		String commentContent = request.getParameter("commentContent");
+		String QnaNo = request.getParameter("QnaNo");
 		
-		Qna q=new QnaService().selectQna(no);
+		QnaService service = new QnaService();
+		System.out.println("데이터 잘 가져오늕 ㅣ "+commentNo + commentContent + QnaNo);
 		
-		request.setAttribute("qna", q);
+		int result = service.modifyQnaComment(commentNo, commentContent);
 		
-		request.getRequestDispatcher("/views/qna/QnaModify.jsp")
-		.forward(request, response);
+		request.getRequestDispatcher("/qna/qnadetail?qSeq="+ QnaNo).forward(request, response);
 	}
 
 	/**

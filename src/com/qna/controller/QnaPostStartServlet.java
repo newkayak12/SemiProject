@@ -27,7 +27,7 @@ public class QnaPostStartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		// 화면 전환용
+		
 		request.getRequestDispatcher("/views/qna/QnaPost.jsp").forward(request, response);
 	}
 
