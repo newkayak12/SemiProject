@@ -5,12 +5,12 @@
 
 <main>
 
-	<ul class="text_align_center">
-		<li class="hrz_li"><a href="<%=request.getContextPath()%>/admin/product/manage">상품 관리</a></li>
-		<li class="hrz_li"><a href="<%=request.getContextPath()%>/admin/reviewManage">리뷰 관리</a></li>
-		<li class="hrz_li"><a href="">Q&A 관리</a></li>
-		<li class="hrz_li"><a href="">주문 관리</a></li>
-		<li class="hrz_li"><a href="<%=request.getContextPath()%>/admin/userselect/start">회원 관리</a></li>
+	<ul class="text_align_center border_bottom_blue">
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/product/manage">상품 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/reviewManage">리뷰 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="">Q&A 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="">주문 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/userselect/start">회원 관리</a></li>
 	</ul>
 
 
@@ -19,19 +19,21 @@
 		<p style="text-align: center;" class="section_title margin_50">상품 관리</p>
 
 		
-		<div id ="productaddbtn-container" style="display: flex; justify-content: flex-end;">
-			<input type = "button" value="상품 등록" id="productadd" >
+		<div class="text_align_center">
+			<input type = "button" value="상품 등록" id="productadd">
+			<p>* 상품 상세정보 등록은 해당 상품명을 클릭하세요 *</p>
 		</div>
 	
 	
 	
 		<div>
 		
-			<table id="products_admin_list" style="display: flex; justify-content: center">
+			<!-- <table id="products_admin_list" style="display: flex; justify-content: center"> -->
+				<table id="products_admin_list" class="margin_center_width_1000">
 			
-				<tr>
+				<tr class="thead-color">
 					<th>상품 번호</th>
-					<th>카테고리 이름</th>
+					<th>카테고리 번호</th>
 					<th>상품명</th>
 					<th>가격</th>
 					<th>대표 사진</th>
@@ -83,12 +85,40 @@
 		
 				for(let i=0; i<data.length; i++){
 					
+					
+					let pid = "'" + data[i]["pId"] + "'";
+					let cid = "'" + data[i]["cId"] + "'";
+					
+					/* console.log("pid" + pid);
+					console.log("cid" + cid); */
+					
+					
+					<%--
 					let tr = $("<tr>");
+					
 					tr.append($("<td>").append(data[i]["pId"])).css({"border":"1px black solid", "border-collapse":"collapse"})
+
 					tr.append($("<td>").append(data[i]["cId"])).css({"border":"1px black solid", "border-collapse":"collapse"})
-					tr.append($("<td>").append($("<a>").html(data[i]["pName"]).attr("onclick","window.open('<%=request.getContextPath()%>/admin/product/detail','product detail','width=500,height=600')")    )).css({"border":"1px black solid", "border-collapse":"collapse"})
+					
+					tr.append($("<td>").append( $("<a>").html( data[i]["pName"] ).attr( "onclick", "fn_opnerajax("+pid+","+cid+")" )))
+					
 					tr.append($("<td>").append(data[i]["pPrice"])).css({"border":"1px black solid", "border-collapse":"collapse"})
-					tr.append($("<td>").append($("<img>").attr("src","<%=request.getContextPath()%>/upload/product/"+data[i]["pFile"]).css({"width":"100px"}))).css({"border":"1px black solid", "border-collapse":"collapse"})
+					
+					tr.append($("<td>").append($("<img>").attr("src","<%=request.getContextPath()%>/upload/product/"+data[i]["pFile"]).css({"width":"70px"}) ) ).css({"border":"1px black solid", "border-collapse":"collapse"})
+					 --%>
+					
+					let tr = $("<tr>")
+					
+					tr.append($("<td>").append(data[i]["pId"]).css("border-bottom", "1px solid grey"))
+
+					tr.append($("<td>").append(data[i]["cId"]).css("border-bottom", "1px solid grey"))
+					
+					tr.append($("<td>").append( $("<a>").html( data[i]["pName"] ).attr( "onclick", "fn_opnerajax("+pid+","+cid+")" )).css("border-bottom", "1px solid grey"))
+					
+					tr.append($("<td>").append(data[i]["pPrice"]).css("border-bottom", "1px solid grey"))
+					
+					tr.append($("<td>").append($("<img>").attr("src","<%=request.getContextPath()%>/upload/product/"+data[i]["pFile"]).css({"width":"70px"}) ).css("border-bottom", "1px solid grey"))
+					
 					
 					$("#products_admin_list").append(tr);
 					
@@ -99,6 +129,18 @@
 		
 		
 	}	
+
+		const fn_opnerajax=(e,f)=>{
+
+			
+			
+			window.open('<%=request.getContextPath()%>/admin/product/detail?pId='+e+'&cId='+f, 'manage', 'width=400 height=400')
+			
+			
+		}
+
+
+
 	
 	$(function(){	
 		

@@ -26,9 +26,9 @@ public class ProductPostSevlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		List<ProductAjax> category = new AdminService().categorypicker();
+//		List<ProductAjax> category = new AdminService().categorypicker();
 		
-		request.setAttribute("category", category);
+//		request.setAttribute("category", category);
 		
 		request.getRequestDispatcher("/views/admin/adminproductpost.jsp").forward(request, response);
 		

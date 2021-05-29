@@ -238,10 +238,13 @@ public class AdminDao {
 
 
 	public List<ProductAjax> colorpicker(Connection conn) {
-		// TODO Auto-generated method stub
+		
 		List<ProductAjax> color = new ArrayList();
+		
 		ProductAjax pro = null;
+		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rs= null;
 		
 				try {
@@ -257,7 +260,6 @@ public class AdminDao {
 							}
 
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		
@@ -269,10 +271,13 @@ public class AdminDao {
 
 
 	public List<ProductAjax> sizepicker(Connection conn) {
-		// TODO Auto-generated method stub
+		
 		List<ProductAjax> size = new ArrayList();
+		
 		ProductAjax pro = null;
+		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rs= null;
 		
 				try {
@@ -287,7 +292,6 @@ public class AdminDao {
 								}
 					
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		
@@ -298,32 +302,137 @@ public class AdminDao {
 
 
 
-	public List<ProductAjax> categorypicker(Connection conn) {
-		// TODO Auto-generated method stub
-		List<ProductAjax> category = new ArrayList();
+	
+	public ProductAjax categorypicker(String cId, Connection conn) {
+		
+		//List<ProductAjax> category = new ArrayList();
+		
 		ProductAjax pro = null;
+		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rs= null;
 		
 				try {
-							pstmt= conn.prepareStatement(prop.getProperty("categorypicker"));
-							rs= pstmt.executeQuery();
+						pstmt= conn.prepareStatement(prop.getProperty("categorypicker"));
+						
+						pstmt.setString(1,cId);
+						
+						rs= pstmt.executeQuery();
 							
 							while(rs.next()) {
+								
 								pro = new ProductAjax();
 								pro.setcId(rs.getString("c_id"));
 								pro.setCategoryName(rs.getString("c_name"));
-								category.add(pro);
+								//category.add(pro);
 								
 							}
 
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 		
 		
-		return category;
+		return pro;
+	}
+
+
+
+	public int searchProductDetail(Connection conn, String pId, String pColor, String pSize) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs= null;
+		
+		int result = 0;
+		
+		
+		try {
+			
+			// searchProductDetail = 
+			// SELECT COUNT(*) FROM PRODUCT_DETAIL WHERE P_ID = ? AND P_O_COLOR = ? AND P_O_SIZE = ?
+			
+			pstmt = conn.prepareStatement(prop.getProperty("searchProductDetail"));
+			
+			pstmt.setString(1, pId);
+			pstmt.setString(2, pColor);
+			pstmt.setString(3, pSize);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				result = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+
+
+	public int updateProductStock(Connection conn, String pId, String pColor, String pSize, int pstock) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			// updateProductStock = 
+			// UPDATE PRODUCT_DETAIL SET P_DETAIL_STOCK = ? WHERE P_ID = ? AND P_O_COLOR = ? AND P_O_SIZE = ?
+			pstmt = conn.prepareStatement(prop.getProperty("updateProductStock"));
+			
+			pstmt.setInt(1, pstock);
+			pstmt.setString(2, pId);
+			pstmt.setString(3, pColor);
+			pstmt.setString(4, pSize);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return result;	
+		
+	}
+
+
+
+	public int insertProductDetail(Connection conn, String pId, String cId, String pColor, String pSize, int pstock) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("insertProductDetail"));
+			
+			// pdetail, pid, cid, pocolor, posize, pdetailstock
+			pstmt.setString(1, pId);
+			pstmt.setString(2, cId);
+			pstmt.setString(3, pColor);
+			pstmt.setString(4, pSize);
+			pstmt.setInt(5, pstock);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return result;	
+		
 	}
 	
 	

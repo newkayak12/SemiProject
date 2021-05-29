@@ -27,7 +27,7 @@
 	<div>
 		<!-- 상품 이름,  카테고리,  (설명1, 설명2), 가격,  메인사진, -->
 		<table>
-				<tr>
+			<tr>
 				<th>상품명</th>
 				<td><input type="text" id="productname" required="required"></td>
 			</tr>

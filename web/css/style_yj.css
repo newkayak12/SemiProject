@@ -71,6 +71,10 @@
 		padding : 50px;
 	}
 	
+	.border_bottom_blue{
+		border-bottom : 1px solid rgb(9, 74, 169);
+	}
+	
 
 /* ------ reviewList.jsp --------*/
 
