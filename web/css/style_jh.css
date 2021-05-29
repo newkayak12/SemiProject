@@ -631,3 +631,36 @@ div#pw-to-login{
 	margin : 0px auto 0px 60px;
 }
 
+/*-------------ㅡmyPage-------*/
+div#myPage-container{
+	width : 1218px;
+	height : 1000px;
+	margin : 0px auto;
+	text-align : center;
+}
+
+div#myPage-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+ 
+}
+
+div#order-cart, #board-modi{
+ 	width: 100%;
+    margin: 50px auto;
+    display: flex;
+    padding: 0px auto;
+    text-align: center;
+    padding-left: 350px;
+}
+
+div#order-cart a:hover, 
+div#board-modi a:hover,
+div#drop-out a:hover{
+	background-color : rgb(0, 70, 172);
+	color : white; 
+}
+
+
+
+
