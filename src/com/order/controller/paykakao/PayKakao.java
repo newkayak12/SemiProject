@@ -1,22 +1,26 @@
-package com.users.controller.signout;
+package com.order.controller.paykakao;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/sign/signout")
-public class SignoutServlet extends HttpServlet {
+/**
+ * Servlet implementation class PayKakao
+ */
+@WebServlet("/pay/kakao")
+public class PayKakao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignoutServlet() {
+    public PayKakao() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,14 +30,20 @@ public class SignoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-			
-			if(session != null) {
-				session.invalidate();
-			}
-			
-			
-			response.sendRedirect(request.getContextPath()+"/index.jsp");
+		
+		/* POST /v1/payment/ready HTTP/1.1
+		Host: kapi.kakao.com
+		Authorization: KakaoAK {"7be18bb35d4598742bb7e4f4c82ab6d0"}
+		Content-type: application/x-www-form-urlencoded;charset=utf-8
+		 */
+		 
+		URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Authorization", "KakaoAK 7be18bb35d4598742bb7e4f4c82ab6d0");
+		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		conn.setDoInput(true);
+		conn.setDoOutput(true);
 		
 	}
 

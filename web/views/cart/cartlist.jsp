@@ -91,7 +91,9 @@
 						<td id="productPrice">
 							<%= cartlist.get(i).getCartPrice() %>
 						</td>
-						<td>2500원</td>
+						<%if(i==0){  %>
+						<td rowspan="<%=cartlist.size()+1%>" >2500원</td>
+						<%} %>
 					</tr>
 					
 					<%}%>

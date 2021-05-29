@@ -1,22 +1,26 @@
-package com.users.controller.signout;
+package com.productqna.controller.ajax;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/sign/signout")
-public class SignoutServlet extends HttpServlet {
+import com.productqna.model.service.QnaProductService;
+import com.qna.model.service.QnaService;
+
+/**
+ * Servlet implementation class QnaProductCommentPostAjax
+ */
+@WebServlet("/product/qna/post/ajax")
+public class QnaProductCommentPostAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignoutServlet() {
+    public QnaProductCommentPostAjax() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +30,13 @@ public class SignoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-			
-			if(session != null) {
-				session.invalidate();
-			}
-			
-			
-			response.sendRedirect(request.getContextPath()+"/index.jsp");
+		String writer = request.getParameter("writer");
+		String comment = request.getParameter("comment");
+		String qseq = request.getParameter("qseq");
+		System.out.println(writer +":"+ comment +":"+qseq);
+		int result = new QnaProductService().postqnacomment(writer, comment, qseq);
 		
+		response.getWriter().write(result);
 	}
 
 	/**

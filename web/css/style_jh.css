@@ -463,7 +463,65 @@ table#pay-table  th{
 	padding : 10px;
 }
 
+/*-------------orderfinish.jsp-------------*/
+div#order-finish{
+	margin : 250px auto;
+	text-align : center;
+	height : 700px;
+	
+}
 
+div#order-finish>span{
+	display: block;
+	padding-bottom: 25px;
+    
+}
+
+.large-font{
+	color: orange;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+/*------- footer.jsp --------------*/
+span#footer_copyright>p{
+   font-family: 'Dancing Script';
+   font-size: 25px;
+   cursor : pointer;
+}
+
+span#footer_copyright a{
+	 color : white;
+}
+
+span#footer_contactus>p{
+	font-size : 12px;
+}
+
+span#footer_contactus>p:nth-of-type(1){
+	cursor : pointer;
+}
+
+span#footer_contactus>p:hover{
+	color : orange;
+}
+
+span#footer_submenu>p{
+	cursor : pointer;
+	margin : 10px 0px;
+}
+
+span#footer_submenu>p:hover{
+	color : orange;
+}
+
+span#footer_info>p{
+	font-size : 12px;
+}
+
+span#footer_info>p:hover{
+	color : orange;
+}
 
 
 

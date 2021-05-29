@@ -7,9 +7,9 @@
 %>
 <main>
 	
-	<div>
+	<div id = "order-finish">
 	
-			<h1><%=msg %></h1>
+			<span class = "large-font"><%=msg %></span>
 			
 			<p>아래의 은행으로 입금하시면 결제가 완료됩니다.</p>
 			<p> <%=pay %> </p>
