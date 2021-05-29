@@ -411,9 +411,24 @@
 		
 		//은행>>
 		} else {
+			/*  195f3373454374ffb5d7e3d8285bf924  */
+			
+			/* restapikey b7afc7c263972b218c4242f48aac9659 */
+			/* admin 7be18bb35d4598742bb7e4f4c82ab6d0 */
 			
 			
-			
+			/* POST /v1/payment/ready HTTP/1.1
+			Host: kapi.kakao.com
+			Authorization: KakaoAK {"7be18bb35d4598742bb7e4f4c82ab6d0"}
+			Content-type: application/x-www-form-urlencoded;charset=utf-8
+			 */
+			 
+			 <%-- location.assign('<%=request.getContextPath()%>/pay/kakao'); --%>
+			 $.ajax({
+					url:"<%=request.getContextPath()%>/pay/kakao",
+					data:{}
+			 })
+			 
 			
 		}
 		

@@ -146,7 +146,7 @@
 					<%} else { %>
 					
 						<!-- 로그인을 했을 때 --> 
-	                	<li><a href="<%=request.getContextPath()%>/sign/signout" id="logout">SIGN OUT</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/sign/signout" id="logout" >SIGN OUT</a></li>
 	        		
 	        		<%} %>       
 	        		

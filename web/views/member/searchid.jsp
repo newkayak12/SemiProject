@@ -11,8 +11,8 @@
 
 <main id="searchidMain">
 
-	<div class="wrap">
-		<div class="container_wrap" id="searchid-container">
+	<div class="wrap" style="justify-content: center; margin:0px!important">
+		<div class="container_wrap" id="searchid-container" >
 		
 		<h1>아이디 찾기</h1>
 		
