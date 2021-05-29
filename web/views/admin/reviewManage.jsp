@@ -14,12 +14,12 @@
 
 <main>
 
-	<ul class="text_align_center">
-		<li class="hrz_li"><a href="<%=request.getContextPath()%>/product/manage/admin">상품 관리</a></li>
-		<li class="hrz_li"><a href="<%=request.getContextPath()%>/admin/reviewManage">리뷰 관리</a></li>
-		<li class="hrz_li"><a href="">Q&A 관리</a></li>
-		<li class="hrz_li"><a href="">주문 관리</a></li>
-		<li class="hrz_li"><a href="<%=request.getContextPath()%>/admin/userselect/start">회원 관리</a></li>
+	<ul class="text_align_center border_bottom_blue">
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/product/manage">상품 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/reviewManage">리뷰 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="">Q&A 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="">주문 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/userselect/start">회원 관리</a></li>
 	</ul>
 	
 	<p class="text_align_center section_title margin_50">리뷰관리</p>

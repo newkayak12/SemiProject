@@ -63,10 +63,10 @@
 				}
 		}
 %>
-
+<div id = "whole-wrapper">
     <header>
 <!-- -------------------------------- -->    	
-    	<nav>
+    	<nav id = "header-center">
     
 	    	<ul id="header-menuContainer">
 		        

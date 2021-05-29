@@ -11,7 +11,7 @@
 // cart - 1
 
 
-	Users user = null;
+	/* Users user = null; */
 	Object v = request.getAttribute("flag"); 
 	int flag =0;
 	if(v!=null){
@@ -25,10 +25,10 @@
 	if(c!=null){
 		flag2=(String) c;
 	}
-	Object j = request.getSession().getAttribute("user");
+	/* Object j = request.getSession().getAttribute("user");
 	if(j!= null){
 		user = (Users) j;
-	}
+	} */
 	
 	 
 	List<Cart> list = null;
@@ -276,7 +276,7 @@
 			<p class="bolder">&nbsp&nbsp&nbsp결제 방식</p>
 				<div id="payment_selector-contianer">
 					<input type = "radio" name = "payraido" id="pay"  checked> 무통장 입금
-					<input type = "radio" name = "payraido"	id="kakao" > 카카오페이
+					<input type = "radio" name = "payraido"	id="kakao" >  카카오페이 <img id="kakaopay" src="<%=request.getContextPath() %>/images/payment_icon_yellow_large.png" alt="카카오페이" width="50px" style="margin:0px; padding:0px; display: none;">
 					
 				</div>
 				
@@ -299,10 +299,10 @@
 						</tr>
 					</table>
 
-					<div id="kakaopay" style="display: none;">
+					<%-- <div id="kakaopay" style="display: none;">
 
-							<button>카카오페이</button>
-					</div>
+							<img src="<%=request.getContextPath() %>/images/payment_icon_yellow_large.png" alt="카카오페이" width="200px">
+					</div> --%>
 				
 				
 			</div>
@@ -319,6 +319,7 @@
 					<input type ="hidden" id="formzip" name = "formzip" value="">
 					<input type="hidden" name ="totalprice" value="<%=result%>">
 					<input type = "hidden" name ="flag2" value= "<%=flag2%>" >
+					<input type="hidden" name="payflag" id ="formpaymethod" value="bank">
 					
 					<% System.out.println(flag2+" "+flag); %>
 					<input type="hidden" name ="cartflag" value ='<%=flag%>'> 
@@ -378,6 +379,11 @@
 
 
 	const fn_pay = () =>{
+		let flag = $("#formpaymethod").val();
+		
+		
+		if(flag == 'bank'){
+			
 		
 		let bank = $("#bank-select").val();
 		let receive_name = $("#receive_name").val()
@@ -403,6 +409,28 @@
 		<%-- location.assign("<%=request.getContextPath()%>/order/pay") --%>
 		$("#formhidden").submit();
 		
+		//은행>>
+		} else {
+			/*  195f3373454374ffb5d7e3d8285bf924  */
+			
+			/* restapikey b7afc7c263972b218c4242f48aac9659 */
+			/* admin 7be18bb35d4598742bb7e4f4c82ab6d0 */
+			
+			
+			/* POST /v1/payment/ready HTTP/1.1
+			Host: kapi.kakao.com
+			Authorization: KakaoAK {"7be18bb35d4598742bb7e4f4c82ab6d0"}
+			Content-type: application/x-www-form-urlencoded;charset=utf-8
+			 */
+			 
+			 <%-- location.assign('<%=request.getContextPath()%>/pay/kakao'); --%>
+			 $.ajax({
+					url:"<%=request.getContextPath()%>/pay/kakao",
+					data:{}
+			 })
+			 
+			
+		}
 		
 	}
 
@@ -432,12 +460,18 @@
 
 	$("#kakaopay").css("display","none");
 	$("#pay-table").css("display","table")
+	$("#formpaymethod").val("bank")
+	
+	
 		
 	})
 
 	$("#kakao").click(()=>{
-		$("#kakaopay").css("display","block");
+	$("#kakaopay").css("display","inline-block");
 	$("#pay-table").css("display","none")
+	$("#formpaymethod").val("kakao")
+	
+	
 	})
 
 	$("#bank-select").change((e)=>{

@@ -11,44 +11,54 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.admin.model.service.AdminService;
 import com.admin.model.vo.product.ProductAjax;
+import com.product.model.service.ProductService;
+import com.product.model.vo.Product;
 
-/**
- * Servlet implementation class Productdetailservlet
- */
+
 @WebServlet("/admin/product/detail")
 public class Productdetailservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
+	
     public Productdetailservlet() {
-        super();
-        // TODO Auto-generated constructor stub
+      
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String pId = request.getParameter("pId");
+		String cId = request.getParameter("cId");
+		
+			System.out.println("Productdetailservlet에서 테스트, pId : " + pId);
+	
+		
 		List<ProductAjax> color = new AdminService().colorpicker();
+		
 		List<ProductAjax> size = new AdminService().sizepicker();
-		List<ProductAjax> category = new AdminService().categorypicker();
+		
+		ProductAjax category = new AdminService().categorypicker(cId);
+		List<Product> productName = new ProductService().productDetail(pId, cId);
+		
+		request.setAttribute("pName", productName.get(0).getProductName());
+		
+		request.setAttribute("pId", pId);
+		
 		request.setAttribute("category", category);
 		
 		request.setAttribute("color", color);
+		
 		request.setAttribute("size", size);
+		
+		
 		
 		request.getRequestDispatcher("/views/admin/adminproductdetail.jsp").forward(request, response);
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 
