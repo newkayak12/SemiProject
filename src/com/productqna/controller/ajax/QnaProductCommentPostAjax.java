@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.productqna.model.service.QnaProductService;
+import com.qna.model.service.QnaService;
+
 /**
  * Servlet implementation class QnaProductCommentPostAjax
  */
@@ -30,7 +33,10 @@ public class QnaProductCommentPostAjax extends HttpServlet {
 		String writer = request.getParameter("writer");
 		String comment = request.getParameter("comment");
 		String qseq = request.getParameter("qseq");
+		System.out.println(writer +":"+ comment +":"+qseq);
+		int result = new QnaProductService().postqnacomment(writer, comment, qseq);
 		
+		response.getWriter().write(result);
 	}
 
 	/**

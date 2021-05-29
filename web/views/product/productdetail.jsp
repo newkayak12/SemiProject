@@ -336,8 +336,25 @@
 					</div> <!-- div id=menu_content-review -->
 					
 					
-					<div id="menu_content-qna">
+					<div id="menu_content-qna" style="flex-direction: column;">
 						
+						<%if(user!= null) {%>
+						<div>
+							<table>
+								<tr>
+								 	<td id="mainqnauser"><%=user.getUserId()%></td>
+								 	<td>
+								 		<textarea cols="90" rows="2" id="mainqnacontent"></textarea>
+								 	</td>
+								 	<td> 
+								 		<button  onclick = "fn_addcomment()"> 등록 </button>
+								 	</td>
+								</tr>
+							
+							</table>
+						
+						</div>
+						<%} %>
 						<table id="qna-table">
 							<!-- <tr>
 								<th>작성자</th>
@@ -372,6 +389,30 @@
 
 <%} %>
 <script>
+
+	
+	const fn_addcomment =()=>{
+		let mainqnauser = $("#mainqnauser").html()
+		let mainqnacontent = $("#mainqnacontent")
+		let cid = '<%=product.get(0).getCategoryId()%>';
+		let pid = '<%=product.get(0).getProductId()%>';
+		let userid = '<%=user.getUserId()%>'
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/qna/main/post/ajax",
+			data:{"qnauser":mainqnauser,"qnacontent":mainqnacontent.val(), "qnatitle":"문의합니다.", "cid": cid, "pid": pid, "userid":  userid},
+			success:data=>{
+				
+				fn_ajax();	
+				
+				$("#mainqnacontent").val("")
+			}
+		})
+		
+		
+	}
+
+
 	const fn_detail=()=>{
 		
 		
@@ -401,6 +442,16 @@
 		$("#menu_content-review").css("display","none");
 		$("#menu_content-qna").css("display","flex");
 		
+		
+		 fn_ajax();
+		
+		
+		
+	})
+	
+	
+	const fn_ajax =()=>{
+		
 		let tables = $("#qna-table");
 		$.ajax({
 			url:"<%=request.getContextPath()%>/product/qna/ajax",
@@ -418,7 +469,7 @@
 					
 					console.log(data[i]["qnaProductSeq"])
 					tables.append($("<tr>").append($("<td>").css("text-align","center").html(data[i]["qnaUserId"]))
-						.append($("<td>").css("text-align","center").html(data[i]["qnaTitle"]).attr("onclick",'fn_detailshow('+data[i]["qnaProductSeq"]+',"'+data[i]["qnaUserId"]+'")'))
+						.append($("<td>").css("text-align","center").html(data[i]["qnaTitle"]).attr("onclick",'fn_detailshow("'+data[i]["qnaProductSeq"]+'","'+data[i]["qnaUserId"]+'")'))
 						.append($("<td>").css("text-align","center").html(data[i]["qnaDate"])))
 					
 				}
@@ -426,22 +477,19 @@
 			}
 			
 		})
-		 
-		
-		
-		
-	})
+	}
 	
 	
 	const fn_detailshow=(e,f)=>{
 		let info = e;
 		let id = f;
+
 		
-		console.log(e)
-		console.log(f)
+		// console.log(e)
+		// console.log(f)
 		
 		
-		window.open("<%=request.getContextPath()%>/qna/product/detail?qseq="+info+"&writer="+id ,'qna','width=600, height=700');
+		window.open("<%=request.getContextPath()%>/qna/product/detail?qseq="+info+"&writer="+id ,'qna','width=650, height=700');
 		
 	}
 	
