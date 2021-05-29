@@ -3,7 +3,7 @@
 <%@ page import="com.users.model.vo.Users" %>>
 <%@ include file ="/views/common/header.jsp" %>
 <%
-	Users user=(Users)request.getAttribute("usersinfo");
+	/* Users user=(Users)request.getAttribute("usersinfo"); */
 %>
 
 

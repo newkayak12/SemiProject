@@ -1,22 +1,25 @@
-package com.users.controller.signout;
+package com.productqna.controller.ajax;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/sign/signout")
-public class SignoutServlet extends HttpServlet {
+import com.productqna.model.service.QnaProductService;
+
+/**
+ * Servlet implementation class Qnamainpost
+ */
+@WebServlet("/product/qna/main/post/ajax")
+public class Qnamainpost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignoutServlet() {
+    public Qnamainpost() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,13 +29,16 @@ public class SignoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-			
-			if(session != null) {
-				session.invalidate();
-			}
-			response.sendRedirect(request.getContextPath()+"/index.jsp");
+		String qnauser = request.getParameter("qnauser");
+		String qnacontent = request.getParameter("qnacontent");
+		String qnatitle = request.getParameter("qnatitle");
+		String pid = request.getParameter("pid");
+		String cid = request.getParameter("cid");
+		String userid = request.getParameter("userid");
 		
+		int result = QnaProductService.postqnamain(qnauser, qnatitle, qnacontent, pid, cid, userid);
+		
+		response.getWriter().write(result);
 	}
 
 	/**

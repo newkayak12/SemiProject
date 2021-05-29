@@ -76,8 +76,8 @@ public class QnaProductDao {
 		return result;
 	}
 
-	public List<ProductQna> detailShow(String qseq, Connection conn) {
-		List<ProductQna> result = new ArrayList();
+	public ProductQna detailShow(String qseq, Connection conn) {
+		
 		ProductQna pq = null;
 		try {
 			pstmt= conn.prepareStatement(properties.getProperty("qnadetail"));
@@ -94,7 +94,42 @@ public class QnaProductDao {
 				pq.setQnaContent(rs.getString("q_contents"));
 				
 //				
-				pq.setQnaCommentUserId(rs.getString("user_id_comment"));
+//				pq.setQnaCommentUserId(rs.getString("user_id_comment"));
+//				pq.setQnaCommentcontent(rs.getString("q_p_c_comment"));
+//				pq.setQnaCommentDate(rs.getDate("q_p_c_date"));
+				
+				
+				
+				
+			}
+			
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(rs);
+		close(pstmt);
+	}
+
+
+return pq;
+	}
+
+	public List<ProductQna> comment(String qseq, Connection conn) {
+		List<ProductQna> result = new ArrayList();
+		ProductQna pq = null;
+		try {
+			pstmt= conn.prepareStatement(properties.getProperty("comment"));
+			pstmt.setString(1, qseq);
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				pq = new ProductQna();
+				
+				
+//				
+				pq.setQnaCommentUserId(rs.getString("user_id"));
 				pq.setQnaCommentcontent(rs.getString("q_p_c_comment"));
 				pq.setQnaCommentDate(rs.getDate("q_p_c_date"));
 				
@@ -113,6 +148,51 @@ public class QnaProductDao {
 
 
 return result;
+	}
+
+	public int postqnacomment(String writer, String comment, String qseq, Connection conn) {
+		int result = 0;	
+		
+			try {
+						pstmt = conn.prepareStatement(properties.getProperty("insertcomment"));
+						pstmt.setString(1, writer);
+						pstmt.setString(2, comment);
+						pstmt.setString(3, qseq);
+						result = pstmt.executeUpdate();
+						
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		
+		
+		
+		
+		return result;
+	}
+
+	public int postqnamain(String qnauser, String qnatitle, String qnacontent, String cid, String pid,
+			String userid, Connection conn) {
+		int result = 0;
+				try {
+							pstmt=conn.prepareStatement(properties.getProperty("insertqna"));
+							pstmt.setString(1, userid);
+							pstmt.setString(2, qnatitle);
+							
+							pstmt.setString(3, qnacontent);
+							pstmt.setString(4, cid);
+							pstmt.setString(5, pid);
+							
+							result = pstmt.executeUpdate();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally{
+					close(pstmt);
+				}
+		return result;
 	}
 
 }

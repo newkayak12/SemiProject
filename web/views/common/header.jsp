@@ -50,10 +50,11 @@
 	String userid = null;
 	String checkAdmin = null;
 		Object qwerty = session.getAttribute("user");
+	Users user = null;
 		// 로그인한 상태이면
 		if(qwerty!=null){
 			
-			Users user = (Users) qwerty;
+			user = (Users) qwerty;
 			
 				if(user!=null){
 					
