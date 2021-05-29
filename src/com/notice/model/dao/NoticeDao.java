@@ -88,7 +88,12 @@ private Properties prop=new Properties();
 				n.setnSeq(rs.getString("n_seq"));
 				n.setUserId(rs.getString("user_id"));
 				n.setnTitle(rs.getString("n_title"));
-				n.setnContent(rs.getString("n_content"));
+				
+				// 개행처리한 거
+				String content = rs.getString("n_content");
+				n.setnContent(content.replace("\r\n", "<br>"));
+				// 개행처리 안했던 거
+				//n.setnContent(rs.getString("n_content"));
 				n.setnDate(rs.getDate("n_date"));
 				n.setnDelete(rs.getInt("n_delete"));
 				n.setnCount(rs.getInt("n_count"));

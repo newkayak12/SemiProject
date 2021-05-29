@@ -46,7 +46,6 @@
 </head>
 
 <body>
-
 <%
 	String userid = null;
 	String checkAdmin = null;

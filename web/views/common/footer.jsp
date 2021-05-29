@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 	<footer>
 	
 	    <div id="footer-container">
@@ -11,7 +10,7 @@
 	        </span>
 	        
 	        <span id="footer_contactus">
-	
+	        	
 	            <p id = "company-map">서울특별시 강남구 테헤란로 14길 6 남도빌딩</p>
 				<p>1544-9970</p>
 	            <p>Kleidung@naver.com</p>
@@ -41,14 +40,6 @@
 			location.assign("<%=request.getContextPath()%>/qna/qnaList");
 		}
 		
-		$(function (){
-			
-				$("#company-map").click(function (){
-		  		
-				$("#mapToggle").toggle();
-		 
-			});
-		});
 	
 	</script>
 </body>

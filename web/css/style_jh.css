@@ -50,7 +50,7 @@ table#tbl-notice th, table#tbl-notice td{
 /* 공지글 테이블 */
 #notice-detail-container{
 	width : 1368px;
-	height : 1000px;
+	height : 1500px;
 	position : relative;
 	top : 120px;
 	text-align: center;
