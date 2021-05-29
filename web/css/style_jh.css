@@ -6,7 +6,7 @@ div#notice-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 200px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -52,7 +52,7 @@ table#tbl-notice th, table#tbl-notice td{
 	width : 1368px;
 	height : 1500px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -117,7 +117,7 @@ div#post-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -158,7 +158,7 @@ div#modi-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -200,7 +200,7 @@ div#qna-contianer{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -224,7 +224,7 @@ div#qnaPost-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -258,7 +258,7 @@ div#qna-detail-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -367,6 +367,17 @@ table#tbl-comment td:nth-of-type(1){
 	color: white;
     background-color: grey;
     border: solid 1px grey;
+}
+
+/*-------------QnaModi.jsp-------------*/
+div#qnaModi-container{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 150px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
 }
 
 
@@ -523,6 +534,100 @@ span#footer_info>p:hover{
 	color : orange;
 }
 
+/*--- search.jsp---- */
+div#search-container{
+	height : 1000px;
+	margin: 50px auto;
+    text-align: center;
+}
 
+div#search-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
 
+/*--- searchId.jsp---- */
+div#searchid-container{
+	height : 1000px;
+	margin: 50px auto;
+    text-align: center;
+}
+
+div#searchid-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#searchid_input_section, div#searchid_submit_section,
+div#bigBtn_syle{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#searchid_input_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#searchid_submit_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#searchid_to_login{
+	width: 410px;
+    margin-left: 20px;
+    height: 40px;
+	margin : 0px auto;
+}
+
+/*--- searchpw.jsp---- */
+div#searchpw-container{
+	height : 1000px;
+	margin: 50px auto;
+    text-align: center;
+}
+
+div#searchpw-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#searchpw_input_section, div#searchpw_submit_section,
+div#pw-to-login{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#searchpw_input_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#searchpw_submit_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#pw-to-login{
+	width: 410px;
+    margin-left: 20px;
+    height: 40px;
+	margin : 0px auto;
+}
+
+#whole-wrapper{
+	margin : 0px auto 0px 60px;
+}
 

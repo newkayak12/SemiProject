@@ -295,4 +295,35 @@ PreparedStatement pstmt = null;
 		
 		return result;
 	}
+
+
+	public List<Qna> MyQnaList(Connection conn, int cPage, int numPerPage, String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Qna> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("MyQnaList"));
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Qna q = new Qna();
+				q.setqSeq(rs.getString("q_seq"));
+				q.setUserId(rs.getString("user_id"));
+				q.setqTitle(rs.getString("q_title"));
+				q.setqContents(rs.getString("q_contents"));
+				q.setqFile(rs.getString("q_file"));
+				q.setqDate(rs.getDate("q_date"));				
+				list.add(q);
+			}
+		}	catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
+	}
 }

@@ -136,6 +136,13 @@ public class QnaService {
 			close(conn);
 			return result;
 		}
+
+		public List<Qna> MyQnaList(int cPage, int numPerPage, String id) {
+			Connection conn=getConnection();
+			List<Qna> list=dao.MyQnaList(conn,cPage,numPerPage, id);
+			close(conn);
+			return list;
+		}
 	
 
 }
