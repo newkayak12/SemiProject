@@ -441,7 +441,7 @@
 		console.log(f)
 		
 		
-		window.open("<%=request.getContextPath()%>/qna/product/detail?qseq="+info+"&writer="+id ,'qna','width=500, height=600');
+		window.open("<%=request.getContextPath()%>/qna/product/detail?qseq="+info+"&writer="+id ,'qna','width=600, height=700');
 		
 	}
 	

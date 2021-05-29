@@ -115,4 +115,39 @@ public class QnaProductDao {
 return result;
 	}
 
+	public List<ProductQna> comment(String qseq, Connection conn) {
+		List<ProductQna> result = new ArrayList();
+		ProductQna pq = null;
+		try {
+			pstmt= conn.prepareStatement(properties.getProperty("comment"));
+			pstmt.setString(1, qseq);
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				pq = new ProductQna();
+				
+				
+//				
+				pq.setQnaCommentUserId(rs.getString("user_id"));
+				pq.setQnaCommentcontent(rs.getString("q_p_c_comment"));
+				pq.setQnaCommentDate(rs.getDate("q_p_c_date"));
+				
+				
+				result.add(pq);
+				
+			}
+			
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(rs);
+		close(pstmt);
+	}
+
+
+return result;
+	}
+
 }

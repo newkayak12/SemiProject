@@ -35,4 +35,14 @@ public class QnaProductService {
 		return result;
 	}
 
+	public List<ProductQna> comment(String qseq) {
+		Connection conn = getConnection();
+		
+		
+		List<ProductQna> result  = new QnaProductDao().comment(qseq, conn);
+		
+		close(conn);
+		return result;
+	}
+
 }
