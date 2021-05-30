@@ -14,6 +14,39 @@ public class Order {
 	String address,zipcode,phone;
 	int totalPrice;
 	
+	String orderusername, receivername;
+	
+	int howmany;
+	
+	String orderstat;
+	
+	
+	
+	
+	public String getOrderstat() {
+		return orderstat;
+	}
+	public void setOrderstat(String orderstat) {
+		this.orderstat = orderstat;
+	}
+	public int getHowmany() {
+		return howmany;
+	}
+	public void setHowmany(int howmany) {
+		this.howmany = howmany;
+	}
+	public String getOrderusername() {
+		return orderusername;
+	}
+	public void setOrderusername(String orderusername) {
+		this.orderusername = orderusername;
+	}
+	public String getReceivername() {
+		return receivername;
+	}
+	public void setReceivername(String receivername) {
+		this.receivername = receivername;
+	}
 	public String getOrderNumber() {
 		return OrderNumber;
 	}

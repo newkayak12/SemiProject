@@ -51,10 +51,10 @@ if (lg != null) {
 					<div style ="display: flex; justify-content: space-between; flex-direction: row;">
 						<div class="submit_section_idSave" style="display:flex; align-items: center;">
 							<input type="checkbox" name="idsave">
-							<p>아이디 저장</p>
+							<p  class = "darkgrey-small">아이디 저장</p>
 						</div>
 						
-						<div id="logstorsignup-search" style="display:flex; align-content: center">
+						<div id="logstorsignup-search" class = "darkgrey-small" style="display:flex; align-content: center">
 							<a href="<%=request.getContextPath()%>/search/search/start" style="width:150px; margin-left:0px !important;  text-align: right;">
 								아이디/비밀번호 찾기
 							</a>

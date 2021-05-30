@@ -55,7 +55,7 @@ public class OrderList extends HttpServlet {
 							
 						}
 						
-			List<List<Order>> result = new OrderService().showallOrder(cPage, numPerPage, id);
+			List<Order> result = new OrderService().showallOrder(cPage, numPerPage, id);
 			
 			
 			int resultCount = new OrderService().showallOrderCount(id);
@@ -64,6 +64,7 @@ public class OrderList extends HttpServlet {
 				request.setAttribute("pageBar",pageBar);
 				request.setAttribute("result", result);
 				request.setAttribute("orderCount",resultCount);
+				System.out.println("서블릿문제?");
 				request.getRequestDispatcher("/views/order/orderlist/orderlist.jsp").forward(request, response);
 		
 //			response.setContentType("application/json;charset=utf-8");

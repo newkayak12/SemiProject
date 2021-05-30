@@ -75,13 +75,17 @@ h1{
 }
 
 /* 회원가입 btn */
-#lostorsignup-container{margin-top:26px; color:#fff; border : 1px solid #e0e0e0;}
+#lostorsignup-container{
+	
+	color:#fff; 
+	margin-bottom : 50px;
+	
+	}
 #lostorsignup-container a{
 	color:orange; text-align: center;
 	display: block;
-    width: 100%;
+    width: 90%;
     text-align: center;
-    line-height:48px;
 }
 
 
