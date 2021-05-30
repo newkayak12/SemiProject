@@ -6,7 +6,7 @@ div#notice-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 200px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -725,3 +725,108 @@ div#lostorsignup-container{
 	margin : 0px auto;
 }
 
+/*-----------------myQnaList.jsp-----------------*/
+
+div#myQnaList-container{
+	width : 1218px;
+	height : 1200px;
+	margin : 100px auto;
+	text-align : center;
+}
+
+#myQnaList-container>span{
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#General-QNA, div#Product-QNA div#MyReviewList-container{
+	margin : 15px auto;
+	width : 700;
+	border: 1px white solid;
+	border-collapse: collapse;
+	text-align : center;
+	position :relative
+}
+
+table#Myqna-table{
+	margin : 30px auto;
+	width : 900px;
+	border-collapse : collapse;
+}
+
+table#Myqna-table{
+	margin : 50px auto 20px auto;
+	width : 900px;
+	border-collapse : collapse;
+}
+
+table#Myqna-table td{
+	border-bottom : 1px solid grey;
+}
+table#Myqna-table th{
+	border: 1px solid white;	
+}
+
+.thead-color-grey{
+	background-color : darkgrey;
+	color : white;
+}
+
+.Qna-category{
+	display: block;
+    position: absolute;
+    left: 150px;
+    color : orange;
+    font-weight : bolder;
+}
+
+.black-btn{
+	color : white;
+	background-color : black;
+	border : solid 1px black;
+}
+
+.Qna-Post{
+	margin : 0px auto;
+	text-align : end;
+	width : 900px;
+}
+
+.Qna-Post input {
+	display : inline-block;
+	margin-right : 5px;
+}
+
+/*------- 상품 Q&A -------*/
+table#MyProductqna-table{
+	margin : 50px auto 20px auto;
+	width : 900px;
+	border-collapse : collapse;
+}
+
+table#MyProductqna-table td{
+	border-bottom : 1px solid grey;
+}
+table#MyProductqna-table th{
+	border: 1px solid white;	
+}
+
+/*-----------MyReviewlist.jsp-----------*/
+div#MyReviewList-container span.Qna-category{
+	display : block;
+}
+
+span#My-Review-section{
+	display: inline-block;
+    left: 340px;
+    font-weight: bolder;
+    display: inline-block;
+    font-size: 18px;
+    display: block;
+    top: 720px;
+}
+
+id#MyreviewList_pagebar{
+	text-align : center;
+}

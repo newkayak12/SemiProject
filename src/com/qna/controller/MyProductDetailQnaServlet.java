@@ -11,21 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.common.PageBar;
+import com.productqna.model.vo.ProductQna;
 import com.qna.model.service.QnaService;
 import com.qna.model.vo.Qna;
 import com.users.model.vo.Users;
 
 /**
- * Servlet implementation class MyQnaServlet
+ * Servlet implementation class MyProductDetailQnaServlet
  */
-@WebServlet("/MyQna/list")
-public class MyQnaServlet extends HttpServlet {
+@WebServlet("/qna/MyProductDetailQna")
+public class MyProductDetailQnaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyQnaServlet() {
+    public MyProductDetailQnaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +36,13 @@ public class MyQnaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// Product 상세 Qna만 가져오는 서블릿 
+		
+		// 유저 데이터를 보내야 함.
 		HttpSession session = request.getSession(false);
 		Users user = (Users) session.getAttribute("user");
-		String id = user.getUserId();
-		System.out.println("session값으로 가져온 " + id);
+		String id = user.getUserId();	
 		
-		// 일반 QNA에 작성한 거 가져오기 
 		if(id != null) {
 			int cPage = 1;
 			int numPerPage = 5;
@@ -55,24 +57,24 @@ public class MyQnaServlet extends HttpServlet {
 						} catch(NumberFormatException e) {
 							
 						}
-						
-			List<Qna> list = new QnaService().MyQnaList(cPage, numPerPage, id);
-			request.setAttribute("list", list);
-			
-			int totalData = new QnaService().selectMyQnaCount(id);
-			String url = request.getContextPath()+"/MyQna/list";
-			PageBar pageBar = new PageBar();
-			
-			String qnaPageBar = pageBar.pageBar(cPage, numPerPage, totalData, url);
-			request.setAttribute("qnaPageBar",qnaPageBar);
-			
-			
-			request.getRequestDispatcher("/views/qna/MyQnaList.jsp").forward(request, response);
-			
 	
-					
-			}
+		// ProductQna 정보 가져와서 List 뿌려줘야 함.
+		List<ProductQna> list = new QnaService().MyProductDetailQnaList(cPage, numPerPage, id);
+		request.setAttribute("list", list);
+		
+		
+		int totalData = new QnaService().MyProductDetailQnaCount(id);
+		String url = request.getContextPath()+"/qna/MyProductDetailQna";
+		PageBar pageBar = new PageBar();
+		
+		String MyProductDetailQnaPageBar = pageBar.pageBar(cPage, numPerPage, totalData, url);
+		request.setAttribute("MyProductDetailQnaPageBar",MyProductDetailQnaPageBar);
+		
+		request.getRequestDispatcher("/views/qna/MyProductDetailQna.jsp").forward(request, response);
+		
+		
 		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
