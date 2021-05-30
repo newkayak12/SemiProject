@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName = "/InvalidAccessFilter", urlPatterns = {"/*/modify/start","/*/modify/end","/*/delete","/*/post/start","/*/post/end"})
+@WebFilter(filterName = "/InvalidAccessFilter", urlPatterns = {"/*/modify/start","/review/modify/end","/*/delete","/*/post/start","/*/post/end"})
 public class InvalidAccessFilter implements Filter {
 
     /**
@@ -42,7 +42,7 @@ public class InvalidAccessFilter implements Filter {
 		} else {
 			request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
 			request.setAttribute("loc", "/sign/signin/start");
-			request.getRequestDispatcher("/views/common/msg.jsp");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
 		}
 		
 	}
