@@ -667,4 +667,61 @@ div#drop-out a:hover{
 	color : grey;
 }
 
+/*-----userupdate.jsp-----*/
+#user-modify-container{
+	margin : 0px auto;
+}
+
+div#modi-input-container, #join_submit_section{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#modi-input-container input, #join_submit_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+#choice-btn{
+	margin : 0px auto;
+	text-align: center;
+}
+
+.choice-btn{
+	width : 100px;
+	cursor : pointer;
+}
+
+/*------delete.jsp-----*/
+#delete-member-container{
+	width : 1218px;
+	height : 1000px;
+	margin : 100px auto;
+	text-align : center;
+}
+
+#delete-member-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#delete-input-id, #delete-input-pw{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#delete-input-id input, #delete-input-pw input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#lostorsignup-container{
+	width : 442px;
+	margin : 0px auto;
+}
 
