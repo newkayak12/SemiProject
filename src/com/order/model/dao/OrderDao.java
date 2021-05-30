@@ -16,6 +16,8 @@ import java.util.Properties;
 import static com.common.JDBCTemplate.getConnection;
 
 import com.order.model.vo.Order;
+
+import oracle.net.aso.p;
 public class OrderDao {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -298,6 +300,54 @@ public class OrderDao {
 		
 		return o;
 		
+	}
+
+	public int refund(String cid, String pid, String size, String color, String onumber, Connection conn) {
+		int result = 0;
+		
+		try {
+			String sql = properties.getProperty("refund");
+			sql = sql.replace("@", "환불처리중");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cid);
+			pstmt.setString(2, pid);
+			pstmt.setString(3, size);
+			pstmt.setString(4, color);
+			pstmt.setString(5, onumber);
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<Order> refundlist(Connection conn) {
+		List<Order> result = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(properties.getProperty("refundlist"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<Order> adminlist(Connection conn) {
+		List<Order> result = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(properties.getProperty("adminlist"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	

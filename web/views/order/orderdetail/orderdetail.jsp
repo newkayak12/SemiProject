@@ -17,7 +17,7 @@ List<Order> orderlist = (List<Order>) request.getAttribute("list");
 <title>order details</title>
 </head>
 <body>
-
+<script src ="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
  <div id="orderdetail_info-container">
     <h3>주문 상세</h3>
     <span>
@@ -74,9 +74,12 @@ for( Order order : orderlist) {
             <td >
             <!-- 상태 -->
                <%=order.getOrderstat()%>
+               <%if(order.getOrderstat().equals("배송완료")) {%>
+               		<br><button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?pid=<%=order.getProductId()%>&pname=<%=order.getProductName()%>&color=<%=order.getProductColor()%>&size=<%=order.getProductSize()%>&category=<%=order.getCategoryId()%>&file=<%=order.getProductFile()%>&onumber=<%=order.getOrderNumber()%>')">리뷰쓰러가기</button>
+               <%} %>
             </td>
             <td>
-            	<button onclick = " fn_status("+<%=order.getCategoryId() %>+","+<%=order.getProductId() %>+","+<%=order.getProductSize()%>+","+ <%=order.getProductColor() %>+","+<%=order.getOrderNumber() %> +")">환불 신청</button>
+            	<button onclick = " fn_status('<%=order.getCategoryId() %>','<%=order.getProductId() %>','<%=order.getProductSize()%>','<%=order.getProductColor() %>','<%=order.getOrderNumber() %>','this')">환불 신청</button>
             </td>
             
             
@@ -110,6 +113,17 @@ for( Order order : orderlist) {
 <script type="text/javascript">
 	const fn_status = (cid, pid, size, color ,onumber)=>{
 		
+		$.ajax({
+			url : "<%=request.getContextPath()%>/order/refund/ajax",
+			data :{"cid":cid,"pid":pid,"size":size,"color":color,"onumber":onumber},
+			success:data =>{
+				
+				alert(data)
+				location.reload();
+			}
+			
+			
+		})
 		
 	}
 
@@ -118,6 +132,7 @@ for( Order order : orderlist) {
 
  #orderdetail-table{
  	text-align:center !important;
+ 	
  }
 </style>
 

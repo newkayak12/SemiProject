@@ -76,7 +76,7 @@ String pageBar = null;
 			
                 <tr>
                     <td>
-                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&onumber=<%=o.getOrderNumber() %>','_blank','width=700px, height=800px')">
+                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&onumber=<%=o.getOrderNumber() %>','_blank','width=900px, height=800px')">
 	                      <!-- 날짜/주문 번호  -->
 	                        <p><%=o.getOrderDate() %></p>
 	                        <p><%=o.getOrderNumber() %></p>
@@ -86,7 +86,7 @@ String pageBar = null;
                     	<img alt="상품사진" src="<%=request.getContextPath()%>/upload/product/<%=o.getProductFile() %>" width="100px">
                     </td>
                     <td>
-                        <h4> <%=o.getProductName() %>&nbsp;<%=o.getHowmany() %> 등</h4>
+                        <h4> <%=o.getProductName() %>&nbsp;등 <%=o.getHowmany() %> 건  </h4>
                     </td>
                     <td>
                     	<%=o.getOrderusername() %>

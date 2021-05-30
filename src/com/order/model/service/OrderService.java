@@ -96,6 +96,32 @@ public class OrderService {
 		
 		return result;
 	}
+
+	public int refund(String cid, String pid, String size, String color, String onumber) {
+		Connection conn= getConnection();
+		int result = new OrderDao().refund(cid, pid, size, color, onumber, conn);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+	public List<Order> refundlist() {
+		Connection conn = getConnection();
+		
+		List<Order> result = new OrderDao().refundlist(conn);
+		return result;
+	}
+
+	public List<Order> adminlist() {
+		Connection conn = getConnection();
+		
+		List<Order> result = new OrderDao().adminlist(conn);
+		return result;
+	}
 	
 
 }
