@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.admin.model.vo.product.ProductAjax;
+import com.product.model.vo.Product;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
 
@@ -247,21 +248,33 @@ public class AdminDao {
 		
 		ResultSet rs= null;
 		
-				try {
-							pstmt= conn.prepareStatement(prop.getProperty("colorpicker"));
-							rs= pstmt.executeQuery();
+		try {
+			
+			pstmt= conn.prepareStatement(prop.getProperty("colorpicker"));
 							
-							while(rs.next()) {
-								pro = new ProductAjax();
-								pro.setColor(rs.getString("p_o_color"));
+			rs= pstmt.executeQuery();
+							
+							
+			while(rs.next()) {
 								
-								color.add(pro);
+				pro = new ProductAjax();
 								
-							}
+				pro.setColor(rs.getString("p_o_color"));			
+								
+				color.add(pro);
+								
+							
+			}
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+				
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
 		
 		
 		return color;
@@ -280,25 +293,84 @@ public class AdminDao {
 		
 		ResultSet rs= null;
 		
-				try {
-							pstmt= conn.prepareStatement(prop.getProperty("sizepicker"));
-							rs= pstmt.executeQuery();
+				
+		try {
+							
+			pstmt= conn.prepareStatement(prop.getProperty("sizepicker"));
+							
+			rs= pstmt.executeQuery();
 								
-								while(rs.next()) {
-									pro = new ProductAjax();
-									pro.setSize(rs.getString("p_o_size"));
-									size.add(pro);
+								
+			while(rs.next()) {
 									
-								}
+				pro = new ProductAjax();
+									
+				pro.setSize(rs.getString("p_o_size"));
+									
+				size.add(pro);
+									
+								
+			}
 					
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
+		} catch (SQLException e) {
+					
+			e.printStackTrace();
+				
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
 		
 		
 		
 		return size;
 	}
+	
+	
+
+	public List<ProductAjax> categorypicker(Connection conn) {
+		
+		List<ProductAjax> category = new ArrayList();
+		
+		ProductAjax pro = null;
+				
+		PreparedStatement pstmt = null;
+				
+		ResultSet rs= null;
+				
+		try {
+			
+			pstmt= conn.prepareStatement(prop.getProperty("categorypicker"));
+								
+			rs= pstmt.executeQuery();
+									
+			while(rs.next()) {
+										
+				pro = new ProductAjax();
+				
+				pro.setcId(rs.getString("c_id"));
+				pro.setCategoryName(rs.getString("c_name"));
+										
+				category.add(pro);
+										
+			}
+
+		} catch (SQLException e) {
+							
+			e.printStackTrace();
+		
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+				
+				
+		return category;
+	}
+	
 
 
 
@@ -313,26 +385,41 @@ public class AdminDao {
 		
 		ResultSet rs= null;
 		
-				try {
-						pstmt= conn.prepareStatement(prop.getProperty("categorypicker"));
+				
+		try {
 						
-						pstmt.setString(1,cId);
+			pstmt= conn.prepareStatement(prop.getProperty("selectCategory"));
 						
-						rs= pstmt.executeQuery();
+						
+			pstmt.setString(1,cId);
+						
+						
+			rs= pstmt.executeQuery();
 							
-							while(rs.next()) {
+							
+			while(rs.next()) {
 								
-								pro = new ProductAjax();
-								pro.setcId(rs.getString("c_id"));
-								pro.setCategoryName(rs.getString("c_name"));
-								//category.add(pro);
 								
-							}
+				pro = new ProductAjax();
+								
+				pro.setcId(rs.getString("c_id"));
+								
+				pro.setCategoryName(rs.getString("c_name"));
+								
+				//category.add(pro);
+								
+			}
 
-				} catch (SQLException e) {
+				
+		} catch (SQLException e) {
 					
-					e.printStackTrace();
-				}
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
 		
 		
 		return pro;
@@ -370,6 +457,11 @@ public class AdminDao {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
 		}
 		
 		return result;
@@ -399,7 +491,12 @@ public class AdminDao {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			
+		} finally {
+		
+			close(pstmt);
 		}
+		
 		
 		return result;	
 		
@@ -429,16 +526,103 @@ public class AdminDao {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
 		}
 		
 		return result;	
 		
 	}
-	
-	
-	
-	
-	
+
+
+
+	public int postProduct(Connection conn, Product p) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		try {
+			
+			// postProduct = INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?. DEFAULT)
+			pstmt = conn.prepareStatement(prop.getProperty("postProduct"));
+			
+			pstmt.setString(1, p.getCategoryId());
+			pstmt.setString(2, p.getProductName());
+			pstmt.setString(3, p.getProductPrice());
+			pstmt.setString(4, p.getProductFile());
+			pstmt.setString(5, p.getProductFileDetail1());
+			pstmt.setString(6, p.getProductFileDetail2());
+			pstmt.setString(7, p.getProductExplain());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
+
+	public List<Product> selectProductDetails(Connection conn, String pId) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs= null;
+		
+		List<Product> productDetails = new ArrayList<Product>();
+		
+		Product p = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(prop.getProperty("selectProductName"));
+			
+			pstmt.setString(1, pId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				p = new Product();
+				
+				p.setCategoryId(rs.getString("c_id"));
+				p.setProductExplain(rs.getString("p_explain"));
+				p.setProductFile(rs.getString("p_file"));
+				p.setProductFileDetail1(rs.getString("p_file_detail1"));
+				p.setProductFileDetail2(rs.getString("p_file_detail2"));
+				p.setProductId(rs.getInt("p_id"));
+				p.setProductName(rs.getString("p_name"));
+				p.setProductOptionColor(rs.getString("p_o_color"));
+				p.setProductOptionSize(rs.getString("p_o_size"));
+				p.setProductPrice(rs.getString("p_price"));
+				p.setProductStock(rs.getInt("p_detail_stock"));
+				p.setProductViewCount(rs.getInt("p_view_count"));
+				
+				productDetails.add(p);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return productDetails;
+	}
+
+
+
 	
 	
 }
