@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.admin.model.dao.AdminDao;
 import com.admin.model.vo.product.ProductAjax;
+import com.product.model.vo.Product;
 import com.review.model.vo.Review;
 
 public class AdminService {
@@ -104,6 +105,18 @@ public class AdminService {
 		
 		return size;
 	}
+	
+	
+	public List<ProductAjax> categorypicker() {
+		
+		Connection conn= getConnection();
+		
+		List<ProductAjax> category = dao.categorypicker(conn);
+		
+		close(conn);
+		
+		return category;
+	}
 
 
 
@@ -161,6 +174,34 @@ public class AdminService {
 		}
 		
 		return result;
+	}
+
+
+
+	public int postProduct(Product p) {
+		
+		Connection conn= getConnection();
+		
+		int result = dao.postProduct(conn, p);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
+
+
+	public List<Product> selectProductDetails(String pId) {
+		
+		Connection conn= getConnection();
+		
+		List<Product> productDetails = dao.selectProductDetails(conn, pId);
+		
+		return productDetails;
 	}
 
 

@@ -287,4 +287,29 @@ public class UsersDao {
 		return result;
 		
 	}
+
+	public int changepw(String id, String password, Connection conn) {
+		PreparedStatement pstmt= null;
+		int result = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("changepw"));
+			pstmt.setString(1,password);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		return result;
+	}
 }

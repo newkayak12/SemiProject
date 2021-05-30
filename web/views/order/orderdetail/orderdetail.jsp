@@ -17,7 +17,7 @@ List<Order> orderlist = (List<Order>) request.getAttribute("list");
 <title>order details</title>
 </head>
 <body>
-
+<script src ="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
  <div id="orderdetail_info-container">
     <h3>주문 상세</h3>
     <span>
@@ -26,28 +26,62 @@ List<Order> orderlist = (List<Order>) request.getAttribute("list");
     <span>주문번호<%=orderInfo.getOrderNumber()%></span>
  </div>   
     <table id="orderdetail-table">
-
+	<tr>
+		<th>제품사진</th>
+	
+		<th>제품명</th>
+	
+		<th>사이즈</th>
+	
+		<th>색상</th>
+	
+		<th>수량</th>
+	
+		<th>단일 가격 / 합산 가격</th>
+	
+		<th>상태</th>
+	
+		<th>환불</th>
+	</tr>
+	
 <%
 for( Order order : orderlist) {
 %>
-        <tr>
-            <td colspan="4">
-                <%=order.getOrderStatus()%>
-            </td>
-            
-        </tr>
+       
         <tr>
         	<td>
+        	<!-- 사진 -->
+        		<img alt="제품사진" src="<%=request.getContextPath()%>/upload/product/<%=order.getProductFile()%>" width="150px">
+        	</td>
+        	<td>
+        	<!--제품 이름 -->
         		<%=order.getProductName()%>
         	</td>
         	<td>
-        		<img src="<%=request.getContextPath() %>/upload/product/<%=order.getProductFile() %>" alt="상품이미지">
+        	<!-- 사이즈 -->
+        		<%=order.getProductSize() %>
         	</td>
             <td >
-                        <%-- <p> 가격 <%=order.getProductPrice()%> 원</p>
-                        <p> 수량 <%= order.getProductStock()%> 개</p> --%>
-                
+            <!--  색상  -->
+				<%=order.getProductColor() %>	                
             </td>
+            <td>
+            	<%=order.getOrderdetailcount() %>
+        	</td>
+             <td>
+             	<%=order.getProductprice() %>원/<%=Integer.parseInt(order.getProductprice())*order.getOrderdetailcount() %>원
+        	</td>
+            <td >
+            <!-- 상태 -->
+               <%=order.getOrderstat()%>
+               <%if(order.getOrderstat().equals("배송완료")) {%>
+               		<br><button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?pid=<%=order.getProductId()%>&pname=<%=order.getProductName()%>&color=<%=order.getProductColor()%>&size=<%=order.getProductSize()%>&category=<%=order.getCategoryId()%>&file=<%=order.getProductFile()%>&onumber=<%=order.getOrderNumber()%>')">리뷰쓰러가기</button>
+               <%} %>
+            </td>
+            <td>
+            	<button onclick = " fn_status('<%=order.getCategoryId() %>','<%=order.getProductId() %>','<%=order.getProductSize()%>','<%=order.getProductColor() %>','<%=order.getOrderNumber() %>','this')">환불 신청</button>
+            </td>
+            
             
         </tr>
         
@@ -60,7 +94,7 @@ for( Order order : orderlist) {
         <table id="orderdetail_userInfo-table">
             <tr>
                 <th>받는 사람</th>
-                <td><%=userInfo.getUserName()%></td>
+                <td><%=orderlist.get(0).getReceivername()%></td>
             </tr>
             <tr>
                 <th>연락처</th>
@@ -68,14 +102,39 @@ for( Order order : orderlist) {
             </tr>
             <tr>
                 <th>주소</th>
-                <td><%=userInfo.getUserAddr() %></td>
+                <td><%=orderlist.get(0).getAddress()%></td>
             </tr>
+            
         </table>
     </div> 
     
     <!-- users테이블, 주소 테이블 추가 join 필요해보임 -->
     
+<script type="text/javascript">
+	const fn_status = (cid, pid, size, color ,onumber)=>{
+		
+		$.ajax({
+			url : "<%=request.getContextPath()%>/order/refund/ajax",
+			data :{"cid":cid,"pid":pid,"size":size,"color":color,"onumber":onumber},
+			success:data =>{
+				
+				alert(data)
+				location.reload();
+			}
+			
+			
+		})
+		
+	}
 
+</script>
+<style>
+
+ #orderdetail-table{
+ 	text-align:center !important;
+ 	
+ }
+</style>
 
 </body>
 </html>

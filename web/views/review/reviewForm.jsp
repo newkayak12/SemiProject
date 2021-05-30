@@ -1,11 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.review.model.vo.Review"%>    
-    
-<%@ include file = "/views/common/header.jsp"%>
-
+<%@ page import= "com.users.model.vo.Users" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style_yj.css">
+<script src ="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
 <%
-
+	Users user = null;
+	Object o = request.getSession().getAttribute("user");
+	String userid = "";
+	if(o!= null){
+		user = (Users) o;
+		userid = user.getUserId();
+	}
+	
 	Review  selectedProduct = null;
 	Object temp = request.getAttribute("selectedProduct");
 	if(temp != null){
@@ -14,7 +31,7 @@
 %>
 
 <!-- 주석주석 -->
-<main id="reviewForm_main">
+<main id="reviewForm_main" style="width: 100% !important;">
 
 	<div id="reviewForm-container" >
 	
@@ -37,7 +54,7 @@
 					<th>상품</th>
 					<td>
 						<% if(selectedProduct != null) { %>
-							<img src="<%=selectedProduct.getProductFile()%>" name="" id="" width="100px" height="100px">
+							<img src="<%=request.getContextPath() %>/upload/product/<%=selectedProduct.getProductFile()%>" name="" id="" width="100px" height="100px">
 							<span><%=selectedProduct.getProductName() %></span>
 							<span><%=selectedProduct.getProductOptionColor() %></span>
 							<span><%=selectedProduct.getProductOptionSize()%></span>
@@ -83,5 +100,5 @@
 	
 </main>
 
-
-<%@ include file = "/views/common/footer.jsp"%>
+</body>
+</html>

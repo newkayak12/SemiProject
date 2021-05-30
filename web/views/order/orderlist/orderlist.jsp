@@ -25,26 +25,7 @@ String pageBar = null;
 	}
 %>
 
-<%-- 
-<script>
-$(function(){
-	const ajax_order = () =>{
-	
-	$.ajax({
-		url:'<%=request.getContextPath()%>/order/list',
-		data:{"userId":'<%=session.getAttribute("userid")%>'},
-		success: data =>{
 
-
-			
-		}
-	
-	
-	})
-
-
-});
-</script> --%>
 
 
 <!-- order 시작 -->
@@ -54,14 +35,13 @@ $(function(){
     
     	<div id="orderOrrefund_selector-container">
 	        <span id="order_selector" onclick="ajax_order()">주문 내역 조회(<%=request.getAttribute("orderCount")%>)</span>
-	        <span id="refund_selector"onclick="">취소/반품/교환 내역()</span>
     	</div>		
     	
 	    <div id="oderOrrefund-container">
 	    
 	        <p id="orderOrrefundFlag">주문 상품 정보</p>
 	
-	        <table id="orderOrrefund-table" align="center">
+	        <table id="orderOrrefund-table" >
 	        
 	            <tr>
 	                <th>
@@ -74,70 +54,56 @@ $(function(){
 	                <th>
 	                    상품정보
 	                </th>
-	               
+	               	<th>
+	               		주문한 사람
+	               	</th>
+	               	<th>
+	               		받는 사람
+	               	</th>
 	                <th>
-	                    상품 구매 금액
+	                    상품 총 금액
 	                </th>
 	                
-	                <!-- <th>
-	                    취소/교환/반품
-	                </th> -->
+	                
 	            </tr>
 	            
 	            
 			<%
-	            	            			for(Order o : result){
-	            	            			%>
+	          for(Order o : result){
+	        	  
+	          
+	          %>
 			
                 <tr>
                     <td>
-                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&onumber=<%=o.getOrderNumber() %>','_blank','width=500px, height=600px')">
-	                      
+                    	<span onclick="window.open('<%=request.getContextPath()%>/order/detail?userid=<%=userid%>&onumber=<%=o.getOrderNumber() %>','_blank','width=900px, height=800px')">
 	                      <!-- 날짜/주문 번호  -->
-	                      
 	                        <p><%=o.getOrderDate() %></p>
 	                        <p><%=o.getOrderNumber() %></p>
                         </span>
                     </td>
-                    
-             
                     <td>
-                    
-                    	<span onclick = "location.assign('<%=request.getContextPath() %>/---- ?productNumber=<%=o.getProductId() %>')" >
-	                        
-	                        <!--  -->
-	                        <h4> <%=o.getProductName() %></h4>
-	                        <p><%=o.getProductSize() %> / <%=o.getProductColor() %> </p>
-	                    </span>    
+                    	<img alt="상품사진" src="<%=request.getContextPath()%>/upload/product/<%=o.getProductFile() %>" width="100px">
                     </td>
                     <td>
-                    	<img alt="" src="<%=request.getContextPath()%>/upload/product/">
+                        <h4> <%=o.getProductName() %>&nbsp;등 <%=o.getHowmany() %> 건  </h4>
                     </td>
                     <td>
-                    <%--     <%=o.getProductStock()%>
+                    	<%=o.getOrderusername() %>
+                    </td>
+                    <td>
+                    	<%=o.getReceivername() %>
+                    </td>
+                    <td>
+                   		<%=o.getTotalPrice() %>
+                    </td>
                         
-                    </td>
-                    
-                    <td>
-                        <%=o.getProductPrice() %>
-                    </td>
-                    
-                    <td id="td_orderStatus">
-                    	<!-- 결제전/ 결제완료/ 배송중/ 배송완료  -->
-                    	
-                        <%=o.getOrderStatus() %>
-                        
-                        <% if( o.getOrderStatus().equals("배송완료") ) { %> --%>
-                        	<br>
-                        	<button onclick="location.assign('<%=request.getContextPath()%>/review/post/start?pid=<%=o.getProductId()%>&pname=<%=o.getProductName()%>&color=<%=o.getProductColor()%>&size=<%=o.getProductSize()%>&category=<%=o.getCategoryId()%>&file=<%=o.getProductFile()%>&onumber=<%=o.getOrderNumber()%>')">리뷰쓰기</button>
-                        <% } %>
-                    </td>
                     <!-- <td>
                        <button type="button" id="status-button"> 취소/교환/환불 상태</button>
                     </td> -->
                 </tr>
                 
-			<%-- <%	}	%> --%>
+			<%	}	%> 
 			
 	        </table>
 	
@@ -148,7 +114,12 @@ $(function(){
 	<div id="pageBar"><%=pageBar %></div>
 	
 </main>
+<style>
 
+ #orderOrrefund-table{
+ 	text-align:center !important;
+ }
+</style>
 <!-- order 끝 -->
 
 

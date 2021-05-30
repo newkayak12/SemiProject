@@ -1,4 +1,4 @@
-package com.order.controller.orderdetail;
+package com.admin.controller.order.list;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,20 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.order.model.service.OrderService;
 import com.order.model.vo.Order;
-import com.users.model.vo.Users;
 
-@WebServlet("/order/detail")
-public class OrderDetail extends HttpServlet {
+/**
+ * Servlet implementation class OrderlistServlet
+ */
+@WebServlet("/admin/order/list")
+public class OrderlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderDetail() {
+    public OrderlistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,28 +32,13 @@ public class OrderDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userid = request.getParameter("userid");
-//		String productid = request.getParameter("productid");
-//		String category = request.getParameter("category");
-//		String size = request.getParameter("size");
-//		String color = request.getParameter("color");
-		String onumber =  request.getParameter("onumber");
-//		int odnum = Integer.parseInt(request.getParameter("odnum"));
-
-		List<Order> list = new OrderService().showdetailOrder(userid, onumber);
+		List<Order> refund = new OrderService().refundlist();
+		List<Order> list = new OrderService().adminlist();
 		
 		
-		
-		HttpSession session  = request.getSession();
-
-		Users user = (Users) session.getAttribute("user");
-
-		
-		request.setAttribute("user", user);
-		request.setAttribute("list",list);
-		request.getRequestDispatcher("/views/order/orderdetail/orderdetail.jsp").forward(request, response);
-		
-	
+		request.setAttribute("refundlist", refund);
+		request.setAttribute("orderlist", list);
+		request.getRequestDispatcher("/views/admin/adminorder.jsp").forward(request, response);
 	}
 
 	/**
@@ -64,5 +50,3 @@ public class OrderDetail extends HttpServlet {
 	}
 
 }
-
-

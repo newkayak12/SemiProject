@@ -31,24 +31,35 @@ public class Productdetailservlet extends HttpServlet {
 		String cId = request.getParameter("cId");
 		
 			System.out.println("Productdetailservlet에서 테스트, pId : " + pId);
-	
+			System.out.println("Productdetailservlet에서 테스트, cId : " + cId);
 		
-		List<ProductAjax> color = new AdminService().colorpicker();
+			
+		// 모든 컬러 옵션
+		List<ProductAjax> colors = new AdminService().colorpicker();
 		
-		List<ProductAjax> size = new AdminService().sizepicker();
+		// 모든 사이즈 옵션
+		List<ProductAjax> sizes = new AdminService().sizepicker();
 		
+		
+		// 카테고리 번호에 해당하는 카테고리 이름
 		ProductAjax category = new AdminService().categorypicker(cId);
-		List<Product> productName = new ProductService().productDetail(pId, cId);
 		
-		request.setAttribute("pName", productName.get(0).getProductName());
+		// 상품 번호에 해당하는 상품의 디테일 ( 디테일번호, 색상, 사이즈, 재고 )
+//		String productName = new AdminService().selectProductName(pId);
+		List<Product> productDetails = new AdminService().selectProductDetails(pId);
+		
+		
+//		request.setAttribute("pName", productName);
+		
+		request.setAttribute("productDetails", productDetails);
 		
 		request.setAttribute("pId", pId);
 		
 		request.setAttribute("category", category);
 		
-		request.setAttribute("color", color);
+		request.setAttribute("colors", colors);
 		
-		request.setAttribute("size", size);
+		request.setAttribute("sizes", sizes);
 		
 		
 		

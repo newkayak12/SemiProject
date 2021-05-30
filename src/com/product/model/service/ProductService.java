@@ -57,6 +57,15 @@ public class ProductService {
 		
 		return searchResult;
 	}
+
+
+
+	public List<Product> keyword(String keyword) {
+		Connection conn = getConnection();
+		List<Product> result = dao.keyword(conn, keyword);
+		close(conn);
+		return result ;
+	}
 	
 	
 	

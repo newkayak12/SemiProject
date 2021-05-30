@@ -94,11 +94,10 @@
 			<!-- 상품이미지, 상품정보 div -->
 			<div id="reviewDetail-inner2-container">
 			
-				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=review.get(0).getProductId()%>&category=<%=review.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=review.get(0).getProductFile()%>" width="110px" height="160px"></a>
+				<div class="grayText" style="margin : 0; text-align : center;"><%=review.get(0).getProductName() %></div>
+			
+				<a href="<%=request.getContextPath() %>/product/detail?pid=<%=review.get(0).getProductId()%>&category=<%=review.get(0).getCategoryId()%>"><img src="<%=request.getContextPath() %>/upload/product/<%=review.get(0).getProductFile()%>" width="100px" height="140px"></a>
 
-				<br>
-				<span><%=review.get(0).getProductName() %></span>
-				
 			</div>
 			
 		</div>
