@@ -95,6 +95,8 @@ public class ReviewPostEndServlet extends HttpServlet {
 			request.setAttribute("loc", "/");
 		}
 		
+		request.setAttribute("close", "window.close();");
+		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}

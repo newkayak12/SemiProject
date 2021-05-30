@@ -349,6 +349,7 @@ public class ReviewDao {
 			pstmt.setString(7, r.getReviewFile());
 			pstmt.setString(8, r.getOrderNumber());
 			pstmt.setString(9, r.getCategoryId());
+			pstmt.setInt(10, r.getReviewReportCount());
 			
 			
 			result = pstmt.executeUpdate();
