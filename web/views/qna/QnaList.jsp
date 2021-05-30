@@ -15,7 +15,7 @@
 		<span class = "Menu-name"> Q & A</span>
 		
 		<table id="qna-table">
-			<thead class="thead-color">
+			<thead class="thead-color-grey">
 				<th>NO</th>
 				<th>TITLE</th>
 				<th>WRITER</th>
@@ -57,8 +57,8 @@
 		</div>
 	
 
-	<div>
-		<input type="button" value="문의하기" class="notice-btn blue" onclick="qnaPost();">
+	<div class = "Qna-Post">
+		<input type="button" value="문의하기" class="notice-btn black-btn" onclick="qnaPost();">
 	</div>
 </div>
 <script>

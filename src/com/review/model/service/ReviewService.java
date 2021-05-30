@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.order.model.vo.Order;
 import com.product.model.vo.Product;
+import com.productqna.model.vo.ProductQna;
 import com.review.model.dao.ReviewDao;
 import com.review.model.vo.Review;
 import com.review.model.vo.ReviewComment;
@@ -263,6 +264,29 @@ public class ReviewService {
 		List<Review> list = dao.selectmain(conn, 1, 3);
 		close(conn);
 		return list;
+	}
+
+
+
+
+	public List<Review> MyReviewList(int cPage, int numPerPage, String id) {
+		Connection conn=getConnection();
+		List<Review> list=dao.MyReviewList(conn,cPage,numPerPage, id);
+		close(conn);
+		return list;
+	}
+
+
+
+
+	public int countAllMyReview(String id) {
+		Connection conn = getConnection();
+		
+		int count = dao.countAllMyReview(conn, id);
+		
+		close(conn);
+		
+		return count;
 	}
 
 

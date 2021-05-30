@@ -172,7 +172,7 @@ public class ProductDao{
 			close(pstmt);
 		}
 		
-		
+
 		return result;
 	}
 
@@ -271,6 +271,38 @@ public class ProductDao{
 		}
 		
 		return searchResult;
+	}
+
+	public List<Product> keyword(Connection conn, String keyword) {
+		PreparedStatement pstmt= null;
+		ResultSet rs= null;
+		Product p = null;
+		List<Product> result = new ArrayList();
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("keyword"));
+			String keywords = "%"+keyword+"%";
+			pstmt.setString(1, keywords);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				p = new Product();
+				p.setProductName(rs.getString("p_name"));
+				result.add(p);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+				
+		
+		
+		return result;
 	}
 
 	

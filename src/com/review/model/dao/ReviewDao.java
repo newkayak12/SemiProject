@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.order.model.vo.Order;
 import com.product.model.vo.Product;
+import com.productqna.model.vo.ProductQna;
 import com.review.model.vo.Review;
 import com.review.model.vo.ReviewComment;
 
@@ -675,6 +676,69 @@ public class ReviewDao {
 		
 		
 		return list;
+	}
+
+
+
+	public List<Review> MyReviewList(Connection conn, int cPage, int numPerPage, String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Review> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("MyReviewList"));
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Review r = new Review();
+				r.setUserId(rs.getString("user_id"));
+				r.setProductId(rs.getString("p_id"));
+				r.setProductOptionSize(rs.getString("p_o_size"));
+				r.setProductOptionColor(rs.getString("p_o_color"));
+				r.setReviewTitle(rs.getString("r_title"));
+				r.setReviewContents(rs.getString("r_contents"));
+				r.setReviewDate(rs.getDate("r_date"));
+				r.setReviewDelete(rs.getString("r_delete"));
+				r.setReviewCount(rs.getString("r_count"));
+				r.setReviewFile(rs.getString("r_file"));
+				r.setReviewLike(rs.getString("r_like"));
+				r.setOrderNumber(rs.getString("o_number"));
+				r.setCategoryId(rs.getString("c_id"));
+				r.setProductName(rs.getString("p_name"));
+				r.setProductFile(rs.getString("p_file"));
+				r.setReviewNo(rs.getString("r_seq"));
+				
+				
+				list.add(r);
+			}
+		}	catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
+	}
+
+
+
+	public int countAllMyReview(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("MyProductDetailQnaCount"));
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
 	}
 
 

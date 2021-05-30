@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.productqna.model.vo.ProductQna;
 import com.qna.model.vo.Qna;
 import com.qna.model.vo.QnaComment;
 
@@ -325,5 +326,72 @@ PreparedStatement pstmt = null;
 				close(pstmt);
 			}
 			return list;
+	}
+
+
+	public int selectMyQnaCount(Connection conn, String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectMyQnaCount"));
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
+	}
+
+
+	public List<ProductQna> MyProductDetailQnaList(Connection conn, int cPage, int numPerPage, String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<ProductQna> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("MyProductDetailQnaList"));
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ProductQna pq = new ProductQna();
+				pq.setQnaProductSeq(rs.getString("q_p_seq"));
+				pq.setQnaUserId(rs.getString("user_id"));
+				pq.setQnaTitle(rs.getString("q_title"));
+				pq.setQnaContent(rs.getString("q_contents"));
+				pq.setQnaDate(rs.getDate("q_date"));
+				
+				list.add(pq);
+			}
+		}	catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
+	}
+
+
+	public int MyProductDetailQnaCount(Connection conn, String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("MyProductDetailQnaCount"));
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
 	}
 }

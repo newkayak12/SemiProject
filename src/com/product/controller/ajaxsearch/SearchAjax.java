@@ -1,4 +1,4 @@
-package com.admin.controller.order.list;
+package com.product.controller.ajaxsearch;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.order.model.service.OrderService;
-import com.order.model.vo.Order;
+import com.google.gson.Gson;
+import com.product.model.service.ProductService;
+import com.product.model.vo.Product;
 
 /**
- * Servlet implementation class OrderlistServlet
+ * Servlet implementation class SearchAjax
  */
-@WebServlet("/admin/order/list")
-public class OrderlistServlet extends HttpServlet {
+@WebServlet("/product/search/ajax")
+public class SearchAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderlistServlet() {
+    public SearchAjax() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +33,14 @@ public class OrderlistServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Order> refund = new OrderService().refundlist();
-		List<Order> list = new OrderService().adminlist();
+		String keyword = request.getParameter("keyword");
+		List<Product> result= new ProductService().keyword(keyword);
 		
 		
-		request.setAttribute("refundlist", refund);
-		request.setAttribute("orderlist", list);
-		request.getRequestDispatcher("/views/admin/adminorder.jsp").forward(request, response);
+		Gson gson = new Gson();
+		response.setContentType("application/json;charset=utf-8");
+		gson.toJson(result, response.getWriter());
+		
 	}
 
 	/**

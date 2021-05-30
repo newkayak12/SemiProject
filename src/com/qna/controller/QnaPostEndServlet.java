@@ -47,6 +47,8 @@ public class QnaPostEndServlet extends HttpServlet {
 			return;
 		}
 		
+		
+		
 		// qna문의시 사용자가 첨부한 이미지 저장하는 폴더경로
 		String path = request.getServletContext().getRealPath("/upload/qna/");
 		
@@ -57,6 +59,7 @@ public class QnaPostEndServlet extends HttpServlet {
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, new QnaRenamePolicy());
 		
 		Qna q = new Qna();
+		
 		
 		// 1. 가져와야 하는 데이터  : 제목, 작성자, 날짜, 내용, 파일
 	
@@ -73,12 +76,16 @@ public class QnaPostEndServlet extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		q.setqContents(mr.getParameter("qnaContent"));
+		
+		// 개행된 채로 QnaContent 가져오기
+		
+		String contents = mr.getParameter("qnaContent");
+		q.setqContents(contents.replace("\r\n", "<br>"));
+		
 		q.setqFile(mr.getFilesystemName("up_file"));
 		
 		//2. service - dao로 post 데이터 보내자
 		int result = service.postQna(q);
-		System.out.println("등록완료됐잖아");
 		
 		if(result > 0) {
 			// 리뷰 등록 성공

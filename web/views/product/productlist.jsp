@@ -40,10 +40,13 @@
 		<ul>
 			<li>
 				<% if( searchKeyword != null ) { %>
-					<input type="text" value="<%=searchKeyword%>">
+					<input type="text" value="<%=searchKeyword%>" list="datalists" style="width:200px" id="searchbar">
 				<% } else { %>
-					<input type="text">
+					<input type="text" list="datalists" style="width:200px" id="searchbar">
 				<% } %>
+					<datalist id="datalists">
+					
+					</datalist>
 					<button id="search-product">검색</button>
 			</li>
 		</ul>
@@ -146,6 +149,24 @@
 		location.replace("<%=request.getContextPath()%>/product/searchProduct?keyword=" + keyword + "");
 		
 	} );
+	
+	$("#searchbar").keyup(()=>{
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/search/ajax",
+			data:{"keyword":$("#searchbar").val()},
+			success:data=>{
+				console.log(data);
+				$("#datalists").html("");
+				for(let i=0; i<data.length; i++){
+				let option =  $("<option>").attr("value",data[i]["productName"]).html(data[i]["productName"]);
+				$("#datalists").append(option);
+					
+				}
+				
+			}
+		})
+	})
+	
 </script>
 
 

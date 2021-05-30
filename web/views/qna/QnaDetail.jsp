@@ -8,6 +8,11 @@
 	List<QnaComment> comments = (List<QnaComment>)request.getAttribute("comments"); 
 %>
 
+<%
+	pageContext.setAttribute("crcn", "\r\n"); //스페이스나 개행처리
+	pageContext.setAttribute("br", "<br/>"); // br태그
+%>
+
 <%@include file = "/views/common/header.jsp" %>
 
 <div id="qna-detail-container">
