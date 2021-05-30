@@ -355,7 +355,7 @@ table#tbl-comment td:nth-of-type(1){
 }
 
 .grey-small{
-	font-size : 10px;
+	font-size : 12px;
 	color : lightgrey;
 }
 
@@ -661,6 +661,10 @@ div#drop-out a:hover{
 	color : white; 
 }
 
-
+/*--------login.jsp-------*/
+.darkgrey-small{
+	font-size : 12px;
+	color : grey;
+}
 
 
