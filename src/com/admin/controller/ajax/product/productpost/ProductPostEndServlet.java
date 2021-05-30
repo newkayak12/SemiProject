@@ -75,19 +75,21 @@ public class ProductPostEndServlet extends HttpServlet {
 		
 		if(result > 0) {
 			
-			msg = "게시글 등록 성공";
+			msg = "상품 등록 성공";
 			
 		} else {
 			
-			msg = "게시글 등록 실패";
+			msg = "상품 등록 실패";
 		}
+		
 		
 		String loc = "/views/admin/adminproductmanage.jsp";
 		
 		
-		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
+		
+		request.setAttribute("close", "window.close();");
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
