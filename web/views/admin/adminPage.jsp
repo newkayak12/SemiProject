@@ -3,7 +3,7 @@
     
 <%@ include file = "/views/common/header.jsp"%>
 
-<main style="height : 600px !important; display: flex; align-items: center; justify-content: center; flex-direction:column">
+<main >
 
 	<ul class="text_align_center border_bottom_blue">
 		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/product/manage">상품 관리</a></li>
