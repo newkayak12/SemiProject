@@ -812,6 +812,8 @@ table#MyProductqna-table th{
 	border: 1px solid white;	
 }
 
+
+
 /*-----------MyReviewlist.jsp-----------*/
 div#MyReviewList-container span.Qna-category{
 	display : block;
@@ -819,7 +821,7 @@ div#MyReviewList-container span.Qna-category{
 
 span#My-Review-section{
 	display: inline-block;
-    left: 340px;
+    left: 270px;
     font-weight: bolder;
     display: inline-block;
     font-size: 18px;

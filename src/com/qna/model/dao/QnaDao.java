@@ -394,4 +394,39 @@ PreparedStatement pstmt = null;
 			close(pstmt);
 		}return result;
 	}
+
+
+	public ProductQna selectMyProductQnaDetail(Connection conn, String id, String qSeq) {
+
+
+		PreparedStatement pstmt=null;
+		
+		ResultSet rs=null;
+		
+		ProductQna pq=null;
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectMyProductQnaDetail"));
+			pstmt.setString(1, id);
+			pstmt.setString(2, qSeq);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				pq = new ProductQna();
+				
+				pq.setQnaProductSeq(rs.getString("q_p_seq"));
+				pq.setQnaUserId(rs.getString("user_id"));
+				pq.setQnaTitle(rs.getString("q_title"));
+				pq.setQnaContent(rs.getString("q_contents"));
+				pq.setQnaDate(rs.getDate("q_date"));
+
+				}
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}return pq;
+			
+	}
 }

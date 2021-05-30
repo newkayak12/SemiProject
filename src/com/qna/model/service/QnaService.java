@@ -8,12 +8,10 @@ import static com.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-import com.notice.model.vo.Notice;
 import com.productqna.model.vo.ProductQna;
 import com.qna.model.dao.QnaDao;
 import com.qna.model.vo.Qna;
 import com.qna.model.vo.QnaComment;
-import com.review.model.vo.Review;
 
 public class QnaService {
 	
@@ -164,6 +162,13 @@ public class QnaService {
 			int result=dao.MyProductDetailQnaCount(conn, id);
 			close(conn);
 			return result;
+		}
+
+		public ProductQna selectMyProductQnaDetail(String id, String qSeq) {
+			Connection conn=getConnection();
+			ProductQna pq = dao.selectMyProductQnaDetail(conn, id, qSeq);
+			close(conn);
+			return pq;
 		}
 	
 
