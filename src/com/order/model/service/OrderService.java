@@ -1,24 +1,36 @@
 package com.order.model.service;
 
+import static com.common.JDBCTemplate.close;
+import static com.common.JDBCTemplate.commit;
+import static com.common.JDBCTemplate.getConnection;
+import static com.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.order.model.dao.OrderDao;
 import com.order.model.vo.Order;
-import static com.common.JDBCTemplate.getConnection;
-import static com.common.JDBCTemplate.close;
-import static com.common.JDBCTemplate.commit;
-import static com.common.JDBCTemplate.rollback;
 
 public class OrderService {
 
-	public List<List<Order>> showallOrder(int cPage, int numPerPage, String id) {
+	public List<Order> showallOrder(int cPage, int numPerPage, String id) {
 		Connection conn = getConnection();
 		
-		List<List<Order>> result = new OrderDao().showallOrder(cPage, numPerPage, conn, id);
+		List<Order> temp = new OrderDao().showallOrder(cPage, numPerPage, conn, id);
+		List<Order> result = new ArrayList();
+		
+		for(Order a: temp ) {
+			
+			Order b = new OrderDao().plusProduct(a, conn );
+			b = new OrderDao().countProduct (a, conn);
+			result.add(b);
+		}
+		
+		
+		
 		
 		close(conn);
-		System.out.println("서비스문제?-올오더");
 		return result;
 	}
 
@@ -26,15 +38,19 @@ public class OrderService {
 		Connection conn = getConnection();
 		
 		int result = new OrderDao().showallOrderCount(conn, id);
-		System.out.println("서비스문제?-오더카운트");
 		close(conn);
 		return result;
 	}
 
-	public List<Order> showdetailOrder(String userid, String productid, String category, String size,  String color, int onumber, int odnum) {
+	public List<Order> showdetailOrder(String userid, String onumber) {
 		Connection conn=getConnection();
 		
-		List<Order> result = new OrderDao().showdetailOrder(userid, productid, category, size, color, onumber, odnum , conn);
+		List<Order> temp = new OrderDao().showdetailOrder(userid,  onumber , conn);
+		List<Order> result = new ArrayList();
+		for( Order o : temp ) {
+			Order l = new OrderDao().infos(onumber, o, conn);
+			result.add(l);
+		}
 		
 		close(conn);
 		

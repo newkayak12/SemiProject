@@ -10,10 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
+import static com.common.JDBCTemplate.getConnection;
 
 import com.order.model.vo.Order;
 public class OrderDao {
@@ -38,9 +38,8 @@ public class OrderDao {
 				}
 	}
 
-	public List<List<Order>> showallOrder(int cPage, int numPerPage, Connection conn, String id) {
-		List<List<Order>> result = new ArrayList();	
-		List<Order> semi = new ArrayList();
+	public List<Order> showallOrder(int cPage, int numPerPage, Connection conn, String id) {
+		List<Order> result = new ArrayList();	
 		Order o = null;
 				try {
 						pstmt = conn.prepareStatement(properties.getProperty("showall"));
@@ -52,14 +51,17 @@ public class OrderDao {
 						rs = pstmt.executeQuery();
 						
 								while(rs.next()) {
-									o = new Order();
-									o.setOrderNumber(rs.getString("o_number"));
-									o.setOrderDate(rs.getDate("o_date"));
-									o.setProductFile(rs.getString("p_file"));
-									o.setProductName(rs.getString("p_name"));
-									o.setTotalPrice(rs.getInt("o_totalprice"));
-									semi.add(o);
-									result.add(semi);
+										o = new Order();
+										String onum = rs.getString("o_number");
+										o.setOrderNumber(onum);
+										o.setOrderDate(rs.getDate("o_date"));
+										o.setAddress(rs.getString("user_addr_o"));
+										o.setZipcode(rs.getString("user_zip_o"));
+										o.setPhone(rs.getString("o_phone"));
+										o.setOrderusername(rs.getString("o_name"));
+										o.setReceivername(rs.getString("r_name"));
+										o.setTotalPrice(rs.getInt("o_totalprice"));
+									result.add(o);
 									
 								}
 						
@@ -79,26 +81,18 @@ public class OrderDao {
 
 	public int showallOrderCount(Connection conn, String id) {
 		int result = 0;
-		Order order = null;
-		List<Order> semi = new ArrayList<Order>();
+		
+		
 				try {
 						pstmt = conn.prepareStatement(properties.getProperty("showallCount"));
 						pstmt.setString(1, id);
 						
 						rs = pstmt.executeQuery();
 						
-						while(rs.next()) {
-							order = new Order();
-							
-							order.setOrderNumber(rs.getString("o_number"));
-							order.setOrderDate(rs.getDate("o_date"));
-							order.setProductFile(rs.getString("p_file"));
-							order.setProductName(rs.getString("p_name"));
-							order.setTotalPrice(rs.getInt("o_totalprice"));
-							semi.add(order);
-							
-							
+						if(rs.next()) {
+							result = rs.getInt(1);
 						}
+						
 						
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -108,29 +102,38 @@ public class OrderDao {
 					close(pstmt);
 				}
 				
-				result = semi.size();
+				
 		
 		return result;
 	}
 
-	public List<Order> showdetailOrder(String userid, String productid, String category, String size,  String color, int onumber, int odnum, Connection conn) {
+	public List<Order> showdetailOrder(String userid, String onumber, Connection conn) {
 		List<Order> result = new ArrayList();	
 		Order order = null;
 				try {
 						pstmt = conn.prepareStatement(properties.getProperty("showdetail"));
-						pstmt.setString(1, userid);
-						pstmt.setInt(2, onumber);
-						pstmt.setInt(3, odnum);
-						pstmt.setString(4, productid);
-						pstmt.setString(5, category);
-						pstmt.setString(6, size);
-						pstmt.setString(7, color);
+						
+						pstmt.setString(1, onumber);
+						
 						
 						rs = pstmt.executeQuery();
 						
 								while(rs.next()) {
 									
 									order = new Order();
+									order.setCategoryId(rs.getString("c_id"));
+									order.setProductId(rs.getString("p_id"));
+									order.setProductSize(rs.getString("p_o_size"));
+									order.setProductColor(rs.getString("P_O_color"));
+									order.setOrderdetailcount(rs.getInt("o_d_count"));
+									order.setOrderstat(rs.getString("o_status"));
+									order.setProductName(rs.getString("p_name"));
+									order.setProductFile(rs.getString("p_file"));
+									order.setProductprice(rs.getString("p_price"));
+									order.setOrderNumber(onumber);
+									
+									
+									
 									
 									result.add(order);
 									
@@ -226,4 +229,77 @@ public class OrderDao {
 		return result;
 	}
 
+	public Order plusProduct(Order a, Connection conn) {
+		
+		try {
+				pstmt = conn.prepareStatement(properties.getProperty("showallproduct"));
+				pstmt.setString(1, a.getOrderNumber());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					a.setProductFile(rs.getString("p_file"));
+					a.setProductName(rs.getString("p_name"));
+					
+				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return a;
+	}
+
+	public Order countProduct(Order a, Connection conn) {
+		try {
+			pstmt = conn.prepareStatement(properties.getProperty("productcount"));
+			pstmt.setString(1, a.getOrderNumber());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				a.setHowmany(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return a;
+	}
+
+	public Order infos(String onumber, Order o, Connection conn) {
+
+		
+		try {
+			pstmt = conn.prepareStatement(properties.getProperty("info"));
+			pstmt.setString(1, onumber);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				o.setAddress(rs.getString("User_addr_o"));
+				o.setReceivername(rs.getString("r_name"));
+				o.setZipcode(rs.getString("user_zip_o"));
+				o.setOrderDate(rs.getDate("o_date"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close (rs);
+			close(pstmt);
+		}
+		
+		return o;
+		
+	}
+	
+	
+	
 }

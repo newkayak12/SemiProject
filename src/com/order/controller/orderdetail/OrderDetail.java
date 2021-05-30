@@ -32,14 +32,14 @@ public class OrderDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String userid = request.getParameter("userid");
-		String productid = request.getParameter("productid");
-		String category = request.getParameter("category");
-		String size = request.getParameter("size");
-		String color = request.getParameter("color");
-		int onumber = Integer.parseInt(request.getParameter("onumber"));
-		int odnum = Integer.parseInt(request.getParameter("odnum"));
+//		String productid = request.getParameter("productid");
+//		String category = request.getParameter("category");
+//		String size = request.getParameter("size");
+//		String color = request.getParameter("color");
+		String onumber =  request.getParameter("onumber");
+//		int odnum = Integer.parseInt(request.getParameter("odnum"));
 
-		List<Order> list = new OrderService().showdetailOrder(userid, productid, category, size, color, onumber, odnum);
+		List<Order> list = new OrderService().showdetailOrder(userid, onumber);
 		
 		
 		
