@@ -707,6 +707,7 @@ public class ReviewDao {
 				r.setCategoryId(rs.getString("c_id"));
 				r.setProductName(rs.getString("p_name"));
 				r.setProductFile(rs.getString("p_file"));
+				r.setReviewNo(rs.getString("r_seq"));
 				
 				
 				list.add(r);
