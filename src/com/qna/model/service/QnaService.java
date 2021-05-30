@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.notice.model.vo.Notice;
+import com.productqna.model.vo.ProductQna;
 import com.qna.model.dao.QnaDao;
 import com.qna.model.vo.Qna;
 import com.qna.model.vo.QnaComment;
@@ -142,6 +143,27 @@ public class QnaService {
 			List<Qna> list=dao.MyQnaList(conn,cPage,numPerPage, id);
 			close(conn);
 			return list;
+		}
+
+		public int selectMyQnaCount(String id) {
+			Connection conn=getConnection();
+			int result=dao.selectMyQnaCount(conn, id);
+			close(conn);
+			return result;
+		}
+
+		public List<ProductQna> MyProductDetailQnaList(int cPage, int numPerPage, String id) {
+			Connection conn=getConnection();
+			List<ProductQna> list=dao.MyProductDetailQnaList(conn,cPage,numPerPage, id);
+			close(conn);
+			return list;
+		}
+
+		public int MyProductDetailQnaCount(String id) {
+			Connection conn=getConnection();
+			int result=dao.MyProductDetailQnaCount(conn, id);
+			close(conn);
+			return result;
 		}
 	
 

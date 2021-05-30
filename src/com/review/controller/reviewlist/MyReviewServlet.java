@@ -1,4 +1,4 @@
-package com.qna.controller;
+package com.review.controller.reviewlist;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.common.PageBar;
-import com.qna.model.service.QnaService;
-import com.qna.model.vo.Qna;
+import com.review.model.service.ReviewService;
+import com.review.model.vo.Review;
 import com.users.model.vo.Users;
 
 /**
- * Servlet implementation class MyQnaServlet
+ * Servlet implementation class MyReviewServlet
  */
-@WebServlet("/MyQna/list")
-public class MyQnaServlet extends HttpServlet {
+@WebServlet("/review/MyReviewList")
+public class MyReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyQnaServlet() {
+    public MyReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +35,11 @@ public class MyQnaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 유저 데이터를 보내야 함.
 		HttpSession session = request.getSession(false);
 		Users user = (Users) session.getAttribute("user");
-		String id = user.getUserId();
-		System.out.println("session값으로 가져온 " + id);
+		String id = user.getUserId();	
 		
-		// 일반 QNA에 작성한 거 가져오기 
 		if(id != null) {
 			int cPage = 1;
 			int numPerPage = 5;
@@ -55,25 +54,27 @@ public class MyQnaServlet extends HttpServlet {
 						} catch(NumberFormatException e) {
 							
 						}
-						
-			List<Qna> list = new QnaService().MyQnaList(cPage, numPerPage, id);
-			request.setAttribute("list", list);
 			
-			int totalData = new QnaService().selectMyQnaCount(id);
-			String url = request.getContextPath()+"/MyQna/list";
+			
+			// 내가 쓴 리뷰 가져오기
+			List<Review> list = new ReviewService().MyReviewList(cPage, numPerPage, id);
+			request.setAttribute("list", list);
+		
+			//페이지 바
+			int totalData = new ReviewService().countAllMyReview(id);
+			String url = request.getContextPath() + "/review/MyReviewList";
 			PageBar pageBar = new PageBar();
 			
-			String qnaPageBar = pageBar.pageBar(cPage, numPerPage, totalData, url);
-			request.setAttribute("qnaPageBar",qnaPageBar);
-			
-			
-			request.getRequestDispatcher("/views/qna/MyQnaList.jsp").forward(request, response);
-			
-	
-					
-			}
-		}
+			String reviewPageBar = pageBar.pageBar(cPage, numPerPage, totalData, url);
 
+			request.setAttribute("reviewList", list);
+			request.setAttribute("reviewPageBar", reviewPageBar);
+			
+			request.getRequestDispatcher("/views/review/MyReviewList.jsp").forward(request, response);
+			
+		}
+	
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

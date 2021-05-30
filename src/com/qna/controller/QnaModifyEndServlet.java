@@ -63,7 +63,10 @@ public class QnaModifyEndServlet extends HttpServlet {
 		q.setqSeq(mr.getParameter("qSeq"));
 		q.setqTitle(mr.getParameter("qnaTitle"));
 		q.setUserId(mr.getParameter("qnaWriter"));
-		q.setqContents(mr.getParameter("qnaContent"));
+		
+		// 개행된 content가져오기
+		String contents = mr.getParameter("qnaContent");
+		q.setqContents(contents.replace("\r\n", "<br>"));
 		
 		// 파일데이터 가져오기 
 		String ori = mr.getParameter("oriFile");

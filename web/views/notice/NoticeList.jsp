@@ -13,7 +13,7 @@
 		<span class = "Menu-name">Notice</span>
 		
         <table id="tbl-notice">
-            <thead class="thead-color">
+            <thead class="thead-color-grey">
                 <th>NO</th>
                 <th>TITLE</th>
                 <th>WRITER</th>
@@ -48,7 +48,9 @@
         </table>
         
         <%if(session.getAttribute("user")!=null &&checkAdmin.equals("1")) {%>
-        	<input type="button" value="공지작성" class="notice-btn blue" onclick="noticeWrite();">
+	        <div class = "Qna-Post">
+	        	<input type="button" value="공지작성" class="notice-btn black-btn" onclick="noticeWrite();">
+			</div>
 		<%} %> 
 		
 		<div>
