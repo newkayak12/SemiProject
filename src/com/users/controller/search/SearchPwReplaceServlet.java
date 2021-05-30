@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.users.model.service.UsersService;
-import com.users.model.vo.Users;
 
 /**
- * Servlet implementation class SearchPwEndServlet
+ * Servlet implementation class SearchPwReplaceServlet
  */
-@WebServlet("/search/searchpw/end")
-public class SearchPwEndServlet extends HttpServlet {
+@WebServlet("/user/search/replace")
+public class SearchPwReplaceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPwEndServlet() {
+    public SearchPwReplaceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,41 +29,21 @@ public class SearchPwEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userid=request.getParameter("userid");
-		String userPhone=request.getParameter("userPhone");
+		String password = request.getParameter("password");
+		String id = request.getParameter("id");
 		
-		System.out.println(userid + "  end");
-		System.out.println(userPhone + "  end");
+		int result = new UsersService().changepw(id,password);
 		
-		
-		
-		
-		Users u = new Users();
-		u.setUserId(userid);
-		u.setUserPhone(userPhone);
-		
-		Users userpwtemp=new UsersService().searchpw(u);
-		
-		
-		/*
-		 * request.setAttribute("userpwtemp", userpwtemp);
-		 * request.getRequestDispatcher("/views/member/searchpw.jsp").forward(request,
-		 * response);
-		 */
-		
-		String msg="";
-		String loc="";
-		
-		if(userpwtemp!=null) {
-			request.setAttribute("id", userid);
-			request.getRequestDispatcher("/views/member/replacepw.jsp").forward(request, response);
-		}
-		else {
-			request.setAttribute("msg", "아이디 또는 번호가 틀렸습니다.");
-			request.setAttribute("loc", "/search/searchid/start");
+		if(result >0) {
+			request.setAttribute("close", "window.close()");
+			request.setAttribute("msg", "변경이 완료되었습니다.");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			
+		} else {
+			request.setAttribute("close", "window.close()");
+			request.setAttribute("msg", "변경에 실패했습니다..");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		
 		
 		
 		
