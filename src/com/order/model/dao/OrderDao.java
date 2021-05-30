@@ -330,23 +330,112 @@ public class OrderDao {
 
 	public List<Order> refundlist(Connection conn) {
 		List<Order> result = new ArrayList();
+		Order o= null;
 		try {
-			pstmt=conn.prepareStatement(properties.getProperty("refundlist"));
+			String sql = properties.getProperty("refundlist");
+			sql= sql.replace("@", "환불처리중");
+			sql= sql.replace("#", "환불완료");
+					
+			pstmt=conn.prepareStatement(sql);
+	rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				o = new Order();
+				o.setOrderNumber(rs.getString("o_number"));
+				o.setUserid(rs.getString("user_id"));
+				o.setAddress(rs.getString("user_addr_o"));
+				o.setZipcode(rs.getString("user_zip_o"));
+				o.setOrderDate(rs.getDate("o_date"));
+				o.setOrderusername(rs.getString("o_name"));
+				o.setPhone(rs.getString("o_phone").substring(1,6)+"*******");
+				o.setReceivername(rs.getString("r_name"));
+				o.setTotalPrice(rs.getInt("o_totalPrice"));
+				o.setProductColor(rs.getString("p_o_color"));
+				o.setProductSize(rs.getString("p_o_size"));
+				o.setHowmany(rs.getInt("o_d_count"));
+				o.setOrderstat(rs.getString("o_status"));
+				o.setProductName(rs.getString("p_name"));
+				o.setO_d_no(rs.getString("o_d_no"));
+				
+				
+				
+				result.add(o);
+				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+			
 		}
 		return result;
 	}
 
 	public List<Order> adminlist(Connection conn) {
 		List<Order> result = new ArrayList();
+		Order o= null;
 		try {
-			pstmt=conn.prepareStatement(properties.getProperty("adminlist"));
+			String sql = properties.getProperty("adminlist");
+			sql= sql.replace("@", "환불처리중");
+			sql= sql.replace("#", "환불완료");
+			
+			pstmt=conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				o = new Order();
+				o.setOrderNumber(rs.getString("o_number"));
+				o.setUserid(rs.getString("user_id"));
+				o.setAddress(rs.getString("user_addr_o"));
+				o.setZipcode(rs.getString("user_zip_o"));
+				o.setOrderDate(rs.getDate("o_date"));
+				o.setOrderusername(rs.getString("o_name"));
+				o.setPhone(rs.getString("o_phone").substring(1,6)+"*******");
+				o.setReceivername(rs.getString("r_name"));
+				o.setTotalPrice(rs.getInt("o_totalPrice"));
+				o.setProductColor(rs.getString("p_o_color"));
+				o.setProductSize(rs.getString("p_o_size"));
+				o.setHowmany(rs.getInt("o_d_count"));
+				o.setOrderstat(rs.getString("o_status"));
+				o.setProductName(rs.getString("p_name"));
+				o.setO_d_no(rs.getString("o_d_no"));
+				
+				
+				result.add(o);
+				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+			
 		}
+		return result;
+	}
+
+	public int update(String no, String value, Connection conn) {
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(properties.getProperty("updatestatus"));
+			pstmt.setString(1, value);
+			pstmt.setString(2, no);
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
 		return result;
 	}
 	

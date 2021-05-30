@@ -122,6 +122,21 @@ public class OrderService {
 		List<Order> result = new OrderDao().adminlist(conn);
 		return result;
 	}
+
+	public int update(String no, String value) {
+		// TODO Auto-generated method stub
+			Connection conn = getConnection();
+		
+		int result = new OrderDao().update(no, value, conn);
+		if(result>0) {
+			 commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
 	
 
 }

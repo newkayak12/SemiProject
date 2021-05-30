@@ -19,10 +19,24 @@ public class Order {
 	int howmany;
 	
 	String orderstat;
+	String userid;
+	String o_d_no;
 	
 	
 	
 	
+	public String getO_d_no() {
+		return o_d_no;
+	}
+	public void setO_d_no(String o_d_no) {
+		this.o_d_no = o_d_no;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public String getOrderstat() {
 		return orderstat;
 	}
