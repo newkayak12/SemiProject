@@ -46,15 +46,15 @@
 </head>
 
 <body>
-
 <%
 	String userid = null;
 	String checkAdmin = null;
 		Object qwerty = session.getAttribute("user");
+	Users user = null;
 		// 로그인한 상태이면
 		if(qwerty!=null){
 			
-			Users user = (Users) qwerty;
+			user = (Users) qwerty;
 			
 				if(user!=null){
 					
@@ -63,10 +63,10 @@
 				}
 		}
 %>
-
+<div id = "whole-wrapper">
     <header>
 <!-- -------------------------------- -->    	
-    	<nav>
+    	<nav id = "header-center">
     
 	    	<ul id="header-menuContainer">
 		        
@@ -80,7 +80,7 @@
 		            </li>
 		            
 		            <li>
-			            <a href="">BOARD</a>
+			            <a href="<%=request.getContextPath()%>/notice/list">BOARD</a>
 			            <ul>
 			            	<li><a href="<%=request.getContextPath()%>/notice/list">NOTICE</a></li>
 			            	<li><a href="<%=request.getContextPath()%>/qna/qnaList">Q&A</a></li>

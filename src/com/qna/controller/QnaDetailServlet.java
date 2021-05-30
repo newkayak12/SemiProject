@@ -37,28 +37,20 @@ public class QnaDetailServlet extends HttpServlet {
 		String no = request.getParameter("qSeq");
 		
 		// Qna에 있는 거 가져오기
-		QnaService service = new QnaService();
-		Qna q = service.selectQna(no);
-		request.setAttribute("no", no);
+		Qna q = new QnaService().selectQna(no);
 		
 		// Qna_Comment에 있는 거 List로 쫙 가져오기
-		List<QnaComment> comments = service.selectQnaComment(no);
-		
-		request.setAttribute("comments", comments);
-		System.out.println(comments);
-		
-	//-------------------------------------------------------------------
+		List<QnaComment> comments = new QnaService().selectQnaComment(no);
 		
 		// Qna 상세페이지로 넘어가게 하기
-		request.setAttribute("qna", q);
+		request.setAttribute("qna",q);
+		request.setAttribute("comments", comments);
 		request.getRequestDispatcher("/views/qna/QnaDetail.jsp").forward(request,response);
 
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

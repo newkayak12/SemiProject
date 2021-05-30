@@ -47,7 +47,14 @@ public class NoticePostEndServlet extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		n.setnContent(request.getParameter("noticeContent"));
+		
+		// 개행된 채로 noticeContent 가져오기
+		String contents = request.getParameter("noticeContent");
+		n.setnContent(contents.replace("\r\n", "<br>"));
+		
+		
+//		개행 안된 채로 보냈던 noticeContent
+//		n.setnContent(request.getParameter("noticeContent"));
 		int result=new NoticeService().postNotice(n);
 		
 		String msg="";

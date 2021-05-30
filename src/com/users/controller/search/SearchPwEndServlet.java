@@ -33,6 +33,12 @@ public class SearchPwEndServlet extends HttpServlet {
 		String userid=request.getParameter("userid");
 		String userPhone=request.getParameter("userPhone");
 		
+		System.out.println(userid + "  end");
+		System.out.println(userPhone + "  end");
+		
+		
+		
+		
 		Users u = new Users();
 		u.setUserId(userid);
 		u.setUserPhone(userPhone);
@@ -50,15 +56,15 @@ public class SearchPwEndServlet extends HttpServlet {
 		String loc="";
 		
 		if(userpwtemp!=null) {
-			request.setAttribute("msg", "찾아시는 비밀번호는 "+userpwtemp.getUserPwd()+"입니다.");
-			request.setAttribute("loc", "/sign/signin/start");
+			request.setAttribute("id", userid);
+			request.getRequestDispatcher("/views/member/replacepw.jsp").forward(request, response);
 		}
 		else {
 			request.setAttribute("msg", "아이디 또는 번호가 틀렸습니다.");
 			request.setAttribute("loc", "/search/searchid/start");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 		
 		

@@ -17,12 +17,14 @@
 <div id="qnaModi-container">
 	<span class = "Menu-name"> Q & A 수정 </span>
     <form action="<%=request.getContextPath() %>/qna/qnaModifyEnd" method="post" enctype="multipart/form-data">
-  
+  		
+  		<input type="hidden" name = "qSeq" value="<%=q.getqSeq()%>">
+        
         <table id="tbl-qnaPost">
 	        <tr>
 	            <th class="blue border-white">TITLE</th>
 	            <td>
-	            	<input type="text" name="qnaTitle" id="qnaTitle"  value ="상품문의" style="height : 10px; width : 250px;" readonly>
+	            	<input type="text" name="qnaTitle" id="qnaTitle"  value ="문의합니다." style="height : 10px; width : 250px;" readonly>
 	            </td>
 	        </tr>
 	        <tr>
@@ -48,20 +50,29 @@
 	        <tr>
 	        	<!-- 기존에 있던 파일값 첨부파일에 들어있고, 새로 파일 집어넣으면 갱신되는 로직 -->
 				<td colspan="2">
+				
 				<span>첨부파일</span> 
 				<%if(q.getqFile()!=null){ %>
-	            	<input type="file" name="up_file" id="up_file" style="width : 72px;">
+				
+				
+	            	<input type="file" name="up_file" id="up_file">
+	            	
 	            	<input type="hidden" name="oriFile" value="<%=q.getqFile()%>">
-	            	<span id="fname" style="margin: 0;"><%=q.getqFile()%></span>
+	        
+	        
+	        		 <span id="fname" style="margin: 0;"><%=q.getqFile()%></span>
+	        		 
 	            	<%} else{%>
-	            	<input type="file" name="up_file">
+	            	
+	            		<input type="file" name="up_file">
 	            	<%} %>
             	</td>
+            	<%System.out.println(q.getqFile()); %>
 			</tr>
 	        
 	        <tr>
 	            <td colspan="2" style="text-align : end;">
-	                <input type="submit" value="등록하기" class="notice-btn blue"  onclick="">
+	                <input type="submit" value="등록하기" class="notice-btn blue" >
 	            	<input type="button" value="취소하기" class="notice-btn white" onclick="goBack();">
 	            </td>
 	        </tr>
@@ -77,12 +88,14 @@
     	$(function(){
     		$("input[name=up_file]").change(e => {
     			if($(e.target).val()==""){
-    				$("#fname").show();
+    				$("#fname").css({"display" : "inline-block"});
     			}else{
-    				$("#fname").hide();
+    				$("#fname").css({"display" : "none"});
     			}
     		});
     	});
+    	
+
 
  </script>
  

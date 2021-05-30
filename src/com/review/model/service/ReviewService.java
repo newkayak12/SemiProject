@@ -265,4 +265,12 @@ public class ReviewService {
 		return list;
 	}
 
+
+
+//	// 리뷰디테일에서 신고버튼누르면 
+//	public int increaseReportCount(String reviewNo) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+
 }

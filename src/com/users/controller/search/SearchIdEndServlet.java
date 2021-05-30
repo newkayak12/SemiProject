@@ -31,6 +31,7 @@ public class SearchIdEndServlet extends HttpServlet {
 		String username=request.getParameter("username");
 		String userPhone=request.getParameter("userPhone");
 		
+		
 		Users u = new Users();
 		u.setUserName(username);
 		u.setUserPhone(userPhone);
@@ -48,8 +49,9 @@ public class SearchIdEndServlet extends HttpServlet {
 		String loc = "";
 		if(useridtemp != null) {
 			
-			request.setAttribute("msg", "찾으시는 아이디는 "+useridtemp.getUserId()+"입니다.");
+			request.setAttribute("msg", "찾으시는 아이디는 "+useridtemp.getUserId().substring(1,4)+"****"+"입니다.");
 			request.setAttribute("loc", "/sign/signin/start");
+			request.setAttribute("close", "window.close()");
 			
 		}
 		else {

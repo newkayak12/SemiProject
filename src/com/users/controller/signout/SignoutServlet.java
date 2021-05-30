@@ -28,7 +28,10 @@ public class SignoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 			
-			session.invalidate();
+			if(session != null) {
+				session.invalidate();
+			}
+			
 			
 			response.sendRedirect(request.getContextPath()+"/index.jsp");
 		

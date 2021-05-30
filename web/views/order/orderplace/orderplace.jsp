@@ -11,7 +11,7 @@
 // cart - 1
 
 
-	Users user = null;
+	/* Users user = null; */
 	Object v = request.getAttribute("flag"); 
 	int flag =0;
 	if(v!=null){
@@ -25,10 +25,10 @@
 	if(c!=null){
 		flag2=(String) c;
 	}
-	Object j = request.getSession().getAttribute("user");
+	/* Object j = request.getSession().getAttribute("user");
 	if(j!= null){
 		user = (Users) j;
-	}
+	} */
 	
 	 
 	List<Cart> list = null;
@@ -70,118 +70,118 @@
 
 		<div id="orderplace-container">	
 			<div id = "orderplace_title-container">
-				<h1>주문결제</h1>
+				<h1 class="Menu-name">주문결제</h1>
 				<hr>
 			</div>
 			<div id="product_info-container">
 				
 				
 				<table id="orderplace-table">
-				<tr>
-					<th>사진</th>
-					<th>제품명</th>
-					<th>사이즈</th>
-					<th>색상</th>
-					<th>가격</th>
-					<th>개수</th>
-					
-				</tr>
-				
-<!-- // detail - 0
-// cart - 1		
- -->				
-				<%if( flag2.equals("page")||flag==1) {%>
-				
-				
-				 <!-- 페이지 -->
-				<tr>
-					<td>
-						<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>" class="order-img">
-					</td>
-					<td>
-					 	<%= cart.getCartName() %> 
-					</td>
-					<td>
-						 <%=cart.getCartOptionSize() %> 
-					</td>
-					<td>
-						<%=cart.getCartOptionColor() %>
-					</td>
-					<td>
-						 <%=cart.getCartPrice()%>
-					</td>
-					<td>
-						 <%=cart.getCartStock() %> 
-					</td>
-				</tr>
-				
-				<%
-				
-					}  else {
-						for(Cart temp : list){
-				%>
-					
-				<tr>
-					<td>
-							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>" class="order-img">
-					</td>
-					<td>
-					 	<%= temp.getCartName() %> 
-					</td>
-					<td>
-						 <%=temp.getCartOptionSize() %> 
-					</td>
-					<td>
-						<%=temp.getCartOptionColor() %>
-					</td>
-					<td>
-						 <%=temp.getCartPrice()%>
-					</td>
-					<td>
-						 <%=temp.getCartStock() %> 
-					</td>
-				
-				</tr>
-				
-				<%
-					}				
-						} %>
+					<tr>
+						<th >사진</th>
+						<th >제품명</th>
+						<th >사이즈</th>
+						<th>색상</th>
+						<th>가격</th>
+						<th>개수</th>
 						
-				
-				
-				<tr>
-					<td rowspan="5">
+					</tr>
 					
-					총 가격 : ( 배송비 ) 2500원 +
-			
-			
+	<!-- // detail - 0
+	// cart - 1		
+	 -->				
+					<%if( flag2.equals("page")||flag==1) {%>
+					
+					
+					 <!-- 페이지 -->
+					<tr>
+						<td>
+							<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= cart.getProductFile()%>" class="order-img">
+						</td>
+						<td>
+						 	<%= cart.getCartName() %> 
+						</td>
+						<td>
+							 <%=cart.getCartOptionSize() %> 
+						</td>
+						<td>
+							<%=cart.getCartOptionColor() %>
+						</td>
+						<td>
+							 <%=cart.getCartPrice()%>
+						</td>
+						<td>
+							 <%=cart.getCartStock() %> 
+						</td>
+					</tr>
+					
+					<%
+					
+						}  else {
+							for(Cart temp : list){
+					%>
+						
+					<tr>
+						<td>
+								<img alt="사진" src="<%=request.getContextPath()%>/upload/product/<%= temp.getProductFile()%>" class="order-img">
+						</td>
+						<td>
+						 	<%= temp.getCartName() %> 
+						</td>
+						<td>
+							 <%=temp.getCartOptionSize() %> 
+						</td>
+						<td>
+							<%=temp.getCartOptionColor() %>
+						</td>
+						<td>
+							 <%=temp.getCartPrice()%>
+						</td>
+						<td>
+							 <%=temp.getCartStock() %> 
+						</td>
+					
+					</tr>
+					
+					<%
+						}				
+							} %>
 							
-<!-- // detail - 0
-// cart - 1		
- -->				
+					
+					
+					<tr>
+						<td colspan="6" style="padding-top: 20px;">
 						
-						<% 
-						
-						if(flag2.equals("page")||flag==1){
-							result = 0;
-							 result = cart.getCartPrice(); 
-						%>
-						
-							( 상품 가격 ) <%=cart.getCartPrice() %>원  = <%=result +2500 %> 원  
+						총 가격 : <span class="grey-font">( 배송비 )</span> 2500원 +
+				
+				
+								
+	<!-- // detail - 0
+	// cart - 1		
+	 -->				
 							
-						<%}  else {
-							for(Cart l : list){
+							<% 
+							
+							if(flag2.equals("page")||flag==1){
 								result = 0;
-								result += l.getCartPrice()*l.getCartStock();
-							}
-						%>
+								 result = cart.getCartPrice(); 
+							%>
 							
-							( 상품 가격 ) <%=result %>원  = <%=result + 2500 %>원
-						
-						
-						<%} %>
-					</td>
-				</tr>
+								<span class="grey-font">( 상품 가격 )</span> <%=cart.getCartPrice() %>원  = <span class="blue-font bolder"><%=result +2500 %> 원</span>  
+								
+							<%}  else {
+								for(Cart l : list){
+									result = 0;
+									result += l.getCartPrice()*l.getCartStock();
+								}
+							%>
+								
+								<span class="grey-font">(상품 가격)</span> <%=result %>원  = <span class="blue-font bolder"><%=result + 2500 %>원</span>
+							
+							
+							<%} %>
+						</td>
+					</tr>
 				</table> 
 				
 				
@@ -189,82 +189,94 @@
 			</div>
 			
 			<div id = "user_info-container" class ="order-tables">
-				<p>주문 정보</p>
+				<p class="bolder">&nbsp&nbsp&nbsp&nbsp주문 정보</p>
 				<div>	
-					<table>
+					<table id = "user-info-tbl">
 						<tr>
 							<th>주문하시는 분</th>
-							<td id ="user_name"><%=user.getUserName() %></td>
+							<td ><span id ="user_name"><%=user.getUserName() %></span></td>
+						</tr>
+						<%	String[] addrs = null;
+							if(user.getUserAddr().contains("@")){
+								addrs =user.getUserAddr().split("@"); 
+							}
+						%>
+						<tr>
+							<th rowspan="3">주소</th>
+							<td ><span style="font-weight: bold;">주소</span> <span id = "user_addr"><%= user.getUserAddr().contains("@")? addrs[0]:user.getUserAddr()%></span></td>
 						</tr>
 						<tr>
-							<th>우편번호</th>
-							<td id= "user_zip"> <%=user.getUserZip() %></td>
-						</tr>
-						<%String[] addrs =user.getUserAddr().split("@");  %>
-						<tr>
-							<th>주소</th>
-							<td id = "user_addr"> <%= addrs[0]%></td>
+							<td ><span style="font-weight: bold; ">상세주소</span><span id = "user_addrdetail">  <%= user.getUserAddr().contains("@")? addrs[1]:""%></span> </td>
 						</tr>
 						<tr>
-							<th>상세 주소</th>
-							<td id = "user_addrdetail"> <%=addrs[1] %></td>
+							<td > <span style="font-weight: bold;" >우편번호</span><span id= "user_zip"><%=user.getUserZip() %></span></td>
 						</tr>		
 						<tr>
 							<th>휴대전화</th>
-							<td id ="user_phone"> <%=user.getUserPhone() %> </td>
+							<td > <span id ="user_phone"><%=user.getUserPhone() %></span> </td>
 						</tr>		
 						<tr>
 							<th>이메일</th>
-							<td id = "user_email"> <%=user.getUserEmail() %></td>
+							<td > <span id = "user_email"><%=user.getUserEmail() %></span></td>
 							
 						</tr>								
 					</table>
+					<table>
+						
+					
+					</table>
 				</div>
 				<div>
+				<p class="bolder">&nbsp&nbsp&nbsp배송 정보</p>
 					<p>주문하는 분과 받는 분이 같습니다. <input type="checkbox" id = "samepeople"></p>
-					<table class ="order-tables">
-					<input type="hidden" id="sameiam" value= "0">
-						<tr>
-							<th>받는 분</th>
-							<td>
-								<input type ="text" name="receive_name" id="receive_name" required>
-							</td>
-						</tr>
-						<tr>
-							<th>우편번호</th>
-							<td><input type="text" id= "receive_zip" name = "receive_zip" required> </td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td> <input type ="text" name="receive_addr" id="receive_addr" required>
-							<button type="button" class="smallBtn_syle" id="addrfind">주소 찾기</button>
-							</td>
-						</tr>	
-						<tr>
-							<th>상세 주소</th>
-							<td> 
-								<input type ="text" name="receive_addrdetail" id="receive_addrdetail" required>
-							</td>
-						</tr>			
-						<tr>
-							<th>휴대전화</th>
-							<td> <input type ="text" name="receive_phone" id="receive_phone" required></td>
-						</tr>		
-						<tr>
-							<th>이메일</th>
-							<td><input type ="text" name="receive_email" id="receive_email" required></td>
-							
-						</tr>	
 					
+					
+					
+					<table class ="order-tables">
+						<input type="hidden" id="sameiam" value= "0">
+							<tr>
+								<th>받는 분</th>
+								<td>
+									<input type ="text" name="receive_name" id="receive_name" required>
+								</td>
+							</tr>
+							
+							<tr>
+								<th rowspan="3">주소</th>
+								<td id = "user_addr">
+								<span style="font-weight: bold;">주소</span> 
+								<input type = "text" id = "receive_addr">
+								<button type="button" class="notice-btn blue" id="addrfind">주소 찾기</button>
+								</td>
+								
+							</tr>
+							<tr>
+								<td ><span style="font-weight: bold; ">상세주소</span> <input type = "text" id = "receive_addrdetail"></td>
+							</tr>
+							<tr>
+								<td> <span style="font-weight: bold;">우편번호</span><input type="text" id= "receive_zip"></td>
+							</tr>
+										
+							<tr>
+								<th>휴대전화</th>
+								<td> <input type ="text" name="receive_phone" id="receive_phone" required></td>
+							</tr>		
+							<tr>
+								<th>이메일</th>
+								<td><input type ="text" name="receive_email" id="receive_email" required></td>
+								
+							</tr>	
+						
 					</table>
 				</div>
 				
 			</div>
 			
 			<div id = "payment-container">
+			<p class="bolder">&nbsp&nbsp&nbsp결제 방식</p>
 				<div id="payment_selector-contianer">
 					<input type = "radio" name = "payraido" id="pay"  checked> 무통장 입금
-					<input type = "radio" name = "payraido"	id="kakao" > 카카오페이
+					<input type = "radio" name = "payraido"	id="kakao" >  카카오페이 <img id="kakaopay" src="<%=request.getContextPath() %>/images/payment_icon_yellow_large.png" alt="카카오페이" width="50px" style="margin:0px; padding:0px; display: none;">
 					
 				</div>
 				
@@ -272,7 +284,7 @@
 					<table id="pay-table">
 						<tr>
 							<th>예금주</th>
-							<td>die Kleidung</td>
+							<td>&nbsp&nbspdie Kleidung</td>
 						</tr>
 						<tr>
 							<th>입금 은행</th>
@@ -287,15 +299,15 @@
 						</tr>
 					</table>
 
-					<div id="kakaopay" style="display: none;">
+					<%-- <div id="kakaopay" style="display: none;">
 
-							<button>카카오페이</button>
-					</div>
+							<img src="<%=request.getContextPath() %>/images/payment_icon_yellow_large.png" alt="카카오페이" width="200px">
+					</div> --%>
 				
 				
 			</div>
 			
-			<div>
+			<div id = "pay-choice">
 				<form action="<%=request.getContextPath()%>/order/pay " id="formhidden">
 					<input type ="hidden" id="formnameo" name = "formnameo" value = "<%=user.getUserName() %>" >
 					<input type ="hidden" id="formid" name ="formid" value ="<%=user.getUserId() %>">
@@ -307,6 +319,7 @@
 					<input type ="hidden" id="formzip" name = "formzip" value="">
 					<input type="hidden" name ="totalprice" value="<%=result%>">
 					<input type = "hidden" name ="flag2" value= "<%=flag2%>" >
+					<input type="hidden" name="payflag" id ="formpaymethod" value="bank">
 					
 					<% System.out.println(flag2+" "+flag); %>
 					<input type="hidden" name ="cartflag" value ='<%=flag%>'> 
@@ -331,8 +344,8 @@
 						
 						
 					<%} %>	
-					<input type="button" value ="결제" onclick="fn_pay()">
-					<input type="button" value ="취소" onclick="fn_cancel()">
+					<input type="button" class ="btn-width blue" value ="결제" onclick="fn_pay()">
+					<input type="button" class ="btn-width white" value ="취소" onclick="fn_cancel()">
 				</form>
 				
 			</div>
@@ -366,6 +379,11 @@
 
 
 	const fn_pay = () =>{
+		let flag = $("#formpaymethod").val();
+		
+		
+		if(flag == 'bank'){
+			
 		
 		let bank = $("#bank-select").val();
 		let receive_name = $("#receive_name").val()
@@ -391,6 +409,28 @@
 		<%-- location.assign("<%=request.getContextPath()%>/order/pay") --%>
 		$("#formhidden").submit();
 		
+		//은행>>
+		} else {
+			/*  195f3373454374ffb5d7e3d8285bf924  */
+			
+			/* restapikey b7afc7c263972b218c4242f48aac9659 */
+			/* admin 7be18bb35d4598742bb7e4f4c82ab6d0 */
+			
+			
+			/* POST /v1/payment/ready HTTP/1.1
+			Host: kapi.kakao.com
+			Authorization: KakaoAK {"7be18bb35d4598742bb7e4f4c82ab6d0"}
+			Content-type: application/x-www-form-urlencoded;charset=utf-8
+			 */
+			 
+			 <%-- location.assign('<%=request.getContextPath()%>/pay/kakao'); --%>
+			 $.ajax({
+					url:"<%=request.getContextPath()%>/pay/kakao",
+					data:{}
+			 })
+			 
+			
+		}
 		
 	}
 
@@ -398,44 +438,45 @@
 		if(confirm('장바구니로 돌아가시겠습니까?')==true){
 			location.assign("<%=request.getContextPath()%>/cart/list")
 		}
+
+	
 	}
-$(function(){
+/* 
+ * 카카오주소 막
+ 
+ 	$(function(){
+	console.log($("#user_addr").val())
+	let flg = $("#user_zip").html();
 	
-	
+	if( flg.include('카카오로그인 사용자는 직접 입력해주십시오')){
+		alert('ss')
+		$("#samepeople").css("display","none")
+		
+	}
+	 */
 
 	$("#pay").click((e)=>{
-		// $("pay-table").html("");
-		// $("#pay-table").append($("<tr>").append($("<th>").html("입금자명")).append($("<td>").html("<%=user.getUserName()%>")));
 		
-
-		// $("#pay-table").append(   $("<tr>").append($("<th>").html("입금자은행")).append($("<td>").append( $("<select>").attr({
-		// 	"id":"bank-select"
-		// 	,"name":"pay_sel"
-			
-		// }).append( $("<option>").attr({"value":"하나은행 661-910265-*****",
-		// 	"name":"pay_sel"
-			
-			
-		// }).html("하나은행 661-910265-*****")).append($("<option>").attr({
-		// 	"value":"신한은행 910-910265-*****",
-		// 	"name":"pay_sel"
-			
-		// }).html("신한은행 910-910265-*****"))  ) ));
 
 	$("#kakaopay").css("display","none");
 	$("#pay-table").css("display","table")
+	$("#formpaymethod").val("bank")
+	
+	
 		
 	})
 
 	$("#kakao").click(()=>{
-		$("#kakaopay").css("display","block");
+	$("#kakaopay").css("display","inline-block");
 	$("#pay-table").css("display","none")
+	$("#formpaymethod").val("kakao")
+	
+	
 	})
 
 	$("#bank-select").change((e)=>{
 		console.log($(e.target).val())
 	})
-})
 
 $("#samepeople").change( ()=>{
 	let flag = $("#sameiam");
@@ -475,6 +516,7 @@ $("#samepeople").change( ()=>{
 				receive_phone.val("")
 				receive_email.val("")
 				receive_zip.val("")
+				$("#receive_addrdetail").val("")
 				flag.val("0")
 
 			}

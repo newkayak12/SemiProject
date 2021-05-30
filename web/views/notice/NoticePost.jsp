@@ -37,7 +37,7 @@
 	 
 	        <tr>
 	            <td colspan = "2" style="border : 1px solid grey;">
-	            	<textarea rows="30" cols="90" class="content-background" name="noticeContent"></textarea>
+	            	<textarea rows="30" cols="90" id = "notice-text" class="content-background" name="noticeContent"></textarea>
 	            </td>
 	        </tr>
 	        <tr>
@@ -54,6 +54,9 @@
     	const goBack=()=>{
     		window.history.back();
     	}
+    	
+    	// notice작성 시 DB에 개행처리하여 들어가기
+    	$("#notice-text").val().replace(/\n/g, "<br>");
     </script>
 
 <%@include file="/views/common/footer.jsp"%>

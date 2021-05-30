@@ -91,7 +91,9 @@
 						<td id="productPrice">
 							<%= cartlist.get(i).getCartPrice() %>
 						</td>
-						<td>2500원</td>
+						<%if(i==0){  %>
+						<td rowspan="<%=cartlist.size()+1%>" >2500원</td>
+						<%} %>
 					</tr>
 					
 					<%}%>
@@ -129,15 +131,16 @@
 		<%if(cartlist!=null){
 				
 					%>
-		<div>
+		<div id = "choice-btn">
+			
 			<span>
-				<button type="button" onclick ="location.assign('<%=request.getContextPath()%>/')">돌아가기</button>
+				<button class="choice-btn blue" type="button" onclick ="fn_buy()">구매하기</button>
 			</span>
 			<span>
-				<button type="button" onclick ="fn_buy()">구매하기</button>
+				<button class="choice-btn white" type="button" onclick = "fn_cart()"  >선택항목 삭제</button>
 			</span>
 			<span>
-				<button type="button" onclick = "fn_cart()"  >선택항목 삭제</button>
+				<button class = "choice-btn grey" type="button" onclick ="location.assign('<%=request.getContextPath()%>/')">돌아가기</button>
 			</span>
 		</div>
 		

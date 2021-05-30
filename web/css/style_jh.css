@@ -6,12 +6,12 @@ div#notice-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 200px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
 }
-span.Menu-name{
+.Menu-name{
 	color : orange;
 	font-size : 20px;
 	font-weight : bolder;
@@ -50,9 +50,9 @@ table#tbl-notice th, table#tbl-notice td{
 /* 공지글 테이블 */
 #notice-detail-container{
 	width : 1368px;
-	height : 1000px;
+	height : 1500px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -101,6 +101,7 @@ table#tbl-deatil-notice td:nth-of-type(5){
 .blue{
 	background-color : rgb(0, 70, 172);
 	color : white;
+	border : 1px solid rgb(0, 70, 172);
 }
 
 .white{
@@ -116,7 +117,7 @@ div#post-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -157,7 +158,7 @@ div#modi-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -199,7 +200,7 @@ div#qna-contianer{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -223,7 +224,7 @@ div#qnaPost-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
@@ -257,14 +258,14 @@ div#qna-detail-container{
 	width : 1368px;
 	height : 1000px;
 	position : relative;
-	top : 120px;
+	top : 150px;
 	text-align: center;
 	padding : 0px 0px;
 	margin : 0px 0px;
 }
 
 table#qna-deatil{
-	margin : 30px auto;
+	margin : 30px auto 0px auto;
 	width : 700px;
 	border-collapse: collapse;
 }
@@ -276,6 +277,10 @@ table#qna-deatil td{
 	padding : 10px;
 }
 
+table#qna-deatil td:nth-of-type(4){
+	border-bottom : none !important;
+}
+
 table#qna-deatil th{
 	border: 1px solid white;	
 }
@@ -285,6 +290,438 @@ table#qna-deatil-notice td{
 	text-align : left;
 	padding : 10px;
 }
+
 input[type="file" i] {
     appearance: none;
 }
+
+.text-center{
+	 text-align: center;
+}
+
+div.comment-editor{
+	display : flex;
+}
+
+div#btn-container{
+	width : 700px;
+	text-align : center;
+	margin : 0px auto 10px auto;
+	padding: 0px 0px 20px 0px;
+	border-bottom : 1px grey solid;
+}
+
+form#qna-co-form{
+	width: 750px;
+	margin : 0 auto;
+	display : inline-block;
+	padding: 0px 60px;
+    box-sizing: border-box;
+}
+
+form#qna-co-form textarea{
+	height: 30px;
+    width: 500px;
+    float: left;
+}
+
+button#btn-insert{
+    float: right;
+    margin-top: 10px;
+}
+
+.btn-width{
+	width : 80px;
+}
+
+.orange{
+	background-color: orange;
+    color: white;
+    border: solid 1px orange;
+}
+
+table#tbl-comment{
+	margin : auto;
+	width: 650px;
+	order-collapse: collapse;
+}
+
+table#tbl-comment td:nth-of-type(1){
+	text-align: start;
+}
+
+.comment-writer{
+	font-weight : bolder;
+}
+
+.grey-small{
+	font-size : 12px;
+	color : lightgrey;
+}
+
+.border-bottom{
+	border-bottom : 1px solid grey;
+}
+
+.grey{
+	color: white;
+    background-color: grey;
+    border: solid 1px grey;
+}
+
+/*-------------QnaModi.jsp-------------*/
+div#qnaModi-container{
+	width : 1368px;
+	height : 1000px;
+	position : relative;
+	top : 150px;
+	text-align: center;
+	padding : 0px 0px;
+	margin : 0px 0px;
+}
+
+
+/*--------orderplace.jsp ----------------*/
+
+/*----- 주문정보 부분 ---------*/
+table#orderplace-table{
+	width: 800px;
+	text-align : center;
+	margin : 0px auto;
+	border-collapse: collapse;
+}
+
+table#orderplace-table tr:nth-of-type(2){
+	border-bottom: 1px solid grey;
+} 
+
+.grey-font{
+	color : grey;
+}
+
+
+
+div#user_info-container{
+	margin-right: auto;
+    margin-left: auto;
+    width: 1000px;
+    margin-top: 50px;
+}
+
+table#user-info-tbl{
+	width : 1000px;
+	border-collapse : collapse;
+}
+
+table#user-info-tbl td, table#user-info-tbl th{
+	border : 1px solid lightgrey;
+}
+
+table#user-info-tbl th{
+	width : 120px;
+	padding : 10px;
+}
+
+.blue-font{
+	color :rgb(0, 70, 172);
+}
+
+.bolder{
+	font-weight : bolder;
+	font-size : 20px;
+}
+
+
+/*----- 배송정보 부분 ---------*/
+table.order-tables{
+	width: 1000px;
+	text-align : start;
+	border-collapse: collapse;
+}
+
+table.order-tables td, table.order-tables th{
+	border : 1px solid lightgrey;
+}
+
+table.order-tables th{
+	width : 120px;
+	padding : 10px;
+}
+
+/*----------결제방식 부분-------------*/
+div#payment-container{
+	width: 1000px;
+	margin : 0px auto;
+}
+
+table#pay-table{
+	border-collapse: collapse;
+    width: 1000px;
+    margin-left: 15px;
+}
+
+table#pay-table td, table#pay-table th{
+	border : 1px solid lightgrey;
+}
+
+div#pay-choice{
+	margin: 0px auto;
+    text-align: center;
+}
+
+table#pay-table  th{
+	width : 120px;
+	padding : 10px;
+}
+
+/*-------------orderfinish.jsp-------------*/
+div#order-finish{
+	margin : 250px auto;
+	text-align : center;
+	height : 700px;
+	
+}
+
+div#order-finish>span{
+	display: block;
+	padding-bottom: 25px;
+    
+}
+
+.large-font{
+	color: orange;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+/*------- footer.jsp --------------*/
+span#footer_copyright>p{
+   font-family: 'Dancing Script';
+   font-size: 25px;
+   cursor : pointer;
+}
+
+span#footer_copyright a{
+	 color : white;
+}
+
+span#footer_contactus>p{
+	font-size : 12px;
+}
+
+span#footer_contactus>p:nth-of-type(1){
+	cursor : pointer;
+}
+
+span#footer_contactus>p:hover{
+	color : orange;
+}
+
+span#footer_submenu>p{
+	cursor : pointer;
+	margin : 10px 0px;
+}
+
+span#footer_submenu>p:hover{
+	color : orange;
+}
+
+span#footer_info>p{
+	font-size : 12px;
+}
+
+span#footer_info>p:hover{
+	color : orange;
+}
+
+/*--- search.jsp---- */
+div#search-container{
+	height : 1000px;
+	margin: 50px auto;
+    text-align: center;
+}
+
+div#search-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+/*--- searchId.jsp---- */
+div#searchid-container{
+	height : 1000px;
+	margin: 50px auto;
+    text-align: center;
+}
+
+div#searchid-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#searchid_input_section, div#searchid_submit_section,
+div#bigBtn_syle{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#searchid_input_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#searchid_submit_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#searchid_to_login{
+	width: 410px;
+    margin-left: 20px;
+    height: 40px;
+	margin : 0px auto;
+}
+
+/*--- searchpw.jsp---- */
+div#searchpw-container{
+	height : 1000px;
+	margin: 50px auto;
+    text-align: center;
+}
+
+div#searchpw-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#searchpw_input_section, div#searchpw_submit_section,
+div#pw-to-login{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#searchpw_input_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#searchpw_submit_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#pw-to-login{
+	width: 410px;
+    margin-left: 20px;
+    height: 40px;
+	margin : 0px auto;
+}
+
+#whole-wrapper{
+	margin : 0px auto 0px 60px;
+}
+
+/*-------------ㅡmyPage-------*/
+div#myPage-container{
+	width : 1218px;
+	height : 1000px;
+	margin : 0px auto;
+	text-align : center;
+}
+
+div#myPage-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+ 
+}
+
+div#order-cart, #board-modi{
+ 	width: 100%;
+    margin: 50px auto;
+    display: flex;
+    padding: 0px auto;
+    text-align: center;
+    padding-left: 350px;
+}
+
+div#order-cart a:hover, 
+div#board-modi a:hover,
+div#drop-out a:hover{
+	background-color : rgb(0, 70, 172);
+	color : white; 
+}
+
+/*--------login.jsp-------*/
+.darkgrey-small{
+	font-size : 12px;
+	color : grey;
+}
+
+/*-----userupdate.jsp-----*/
+#user-modify-container{
+	margin : 0px auto;
+}
+
+div#modi-input-container, #join_submit_section{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#modi-input-container input, #join_submit_section input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+#choice-btn{
+	margin : 0px auto;
+	text-align: center;
+}
+
+.choice-btn{
+	width : 100px;
+	cursor : pointer;
+}
+
+/*------delete.jsp-----*/
+#delete-member-container{
+	width : 1218px;
+	height : 1000px;
+	margin : 100px auto;
+	text-align : center;
+}
+
+#delete-member-container span:nth-of-type(1){
+	display: block;
+    font-size: 25px;
+    margin: 50px;
+}
+
+div#delete-input-id, #delete-input-pw{
+	width : 442px;
+	margin : 0px auto;
+}
+
+div#delete-input-id input, #delete-input-pw input{
+	margin-bottom: 26px;
+    width: 95%;
+    height: 45px;
+    border: 1px solid #e0e0e0;	
+}
+
+div#lostorsignup-container{
+	width : 442px;
+	margin : 0px auto;
+}
+

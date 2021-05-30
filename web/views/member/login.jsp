@@ -20,11 +20,11 @@ if (lg != null) {
 
 <!-- 안녕 -->
 
-<main id="signinMain1">
+<main id="signinMain1" style="display: flex; justify-content: center;">
 
 
-	<div class="wrap">
-		<div class="container_wrap" id="signin-container">
+	<div id="login-container" style="width:500px; height:auto; display: flex; justify-content: center;">
+		<div  id="signin-container">
 			<h1>LOGIN</h1>
 			<form action=" <%=request.getContextPath()%>/sign/signin/end"
 				method="post">
@@ -51,10 +51,10 @@ if (lg != null) {
 					<div style ="display: flex; justify-content: space-between; flex-direction: row;">
 						<div class="submit_section_idSave" style="display:flex; align-items: center;">
 							<input type="checkbox" name="idsave">
-							<p>아이디 저장</p>
+							<p  class = "darkgrey-small">아이디 저장</p>
 						</div>
 						
-						<div id="logstorsignup-search" style="display:flex; align-content: center">
+						<div id="logstorsignup-search" class = "darkgrey-small" style="display:flex; align-content: center">
 							<a href="<%=request.getContextPath()%>/search/search/start" style="width:150px; margin-left:0px !important;  text-align: right;">
 								아이디/비밀번호 찾기
 							</a>
@@ -66,12 +66,12 @@ if (lg != null) {
 
 
 
-			<div id="check_signin">
-				<!-- 로그인 검사 -->
+			<!-- <div id="check_signin">
+				로그인 검사
 				<p>
-					<!-- 로그인 실패 아이디 혹은 비밀번호를 확인하세요 -->
+					로그인 실패 아이디 혹은 비밀번호를 확인하세요
 				</p>
-			</div>
+			</div> -->
 			
 			
 			<!-- <div id="logstorsignup-search">
@@ -114,18 +114,18 @@ if (lg != null) {
 	          
 	          success: function (response) {
 	        	  console.log(response)
-	        	  
+	        	  console.log(response["properties"]["nickname"])
 	        	  
 	        	  
 	        		 $.ajax({
 	        	  	 	url:"<%=request.getContextPath()%>/sign/signin/ajax",
-	        	  	 	data:{"signin": response["id"]},
+	        	  	 	data:{"signin": response["id"], "username":response["properties"]["nickname"]},
 	        	  	 	success: data=>{
 	        	  	 		location.assign("<%=request.getContextPath()%>/")
 	        	  			
 	        	  	 	} 
 	        		 })
-	        	  
+	        	   
 	        	  
 	        	  
 	          },

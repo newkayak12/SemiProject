@@ -12,9 +12,9 @@ import com.qna.model.service.QnaService;
 import com.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class QnaModifyStartServlet
+ * Servlet implementation class QnaModifyServlet
  */
-@WebServlet("/qna/qnaModifyStart")
+@WebServlet("/qna/qnaModi")
 public class QnaModifyStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,14 +30,15 @@ public class QnaModifyStartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String no = request.getParameter("qSeq");
+		
 		Qna q=new QnaService().selectQna(no);
 		
 		request.setAttribute("qna", q);
 		
 		request.getRequestDispatcher("/views/qna/QnaModify.jsp")
 		.forward(request, response);
-	
 	}
 
 	/**

@@ -61,6 +61,9 @@ public class QnaService {
 
 	public int insertQnaComment(QnaComment qc) {
 		Connection conn=getConnection();
+		System.out.println("service에서 qc" + qc);
+		
+		
 		int result=dao.insertQnaComment(conn,qc);
 		if(result>0) commit(conn);
 		else rollback(conn);
@@ -73,6 +76,70 @@ public class QnaService {
 		public List<QnaComment> selectQnaComment(String no){
 			Connection conn=getConnection();
 			List<QnaComment> list=dao.selectQnaComment(conn,no);
+			close(conn);
+			return list;
+		}
+
+		public int deleteQna(String no) {
+			Connection conn=getConnection();
+			int result=dao.deleteQna(conn,no);
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			
+			return result;
+		}
+
+		public int deleteQnaComment(String no) {
+			Connection conn = getConnection();
+			
+			int result = dao.deleteQnaComment(conn, no);
+			
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+			
+			return result;
+		}
+
+		public int modifyQna(Qna q) {
+			Connection conn = getConnection();
+			System.out.println("서비스" + q);
+			int result = dao.modifyQna(conn, q);
+			
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			return result;
+		}
+
+		public int modifyQnaComment(String commentNo, String commentContent) {
+			Connection conn = getConnection();
+			int result = dao.modifyQnaComment(conn, commentNo, commentContent);
+			
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+			return result;
+		}
+
+		public List<Qna> MyQnaList(int cPage, int numPerPage, String id) {
+			Connection conn=getConnection();
+			List<Qna> list=dao.MyQnaList(conn,cPage,numPerPage, id);
 			close(conn);
 			return list;
 		}

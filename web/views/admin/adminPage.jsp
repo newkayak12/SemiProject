@@ -1,31 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ include file = "/views/common/header.jsp"%>
 
-<style>
-	ul>li{
-		display : inline-block;
-	}
-	
-	ul{
-		text-align : center;
-	}
-	h1{
-		text-align : center;
-	}
-</style>
+<main style="height : 700px">
 
-<main>
-
-	<h1>관리자페이지</h1>
-	
-	<ul>
-		<li><a href="">상품 관리</a></li>
-		<li><a href="">리뷰 관리</a></li>
-		<li><a href="">Q&A 관리</a></li>
-		<li><a href="">공지 관리</a></li>
-		<li><a href="">주문 관리</a></li>
-		<li><a href="<%=request.getContextPath() %>/admin/userselect/start">회원 관리</a></li>
+	<ul class="text_align_center border_bottom_blue">
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/product/manage">상품 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/reviewManage">리뷰 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="">Q&A 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="">주문 관리</a></li>
+		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/userselect/start">회원 관리</a></li>
 	</ul>
 	
 </main>	

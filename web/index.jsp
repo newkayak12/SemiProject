@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.product.model.vo.Product, java.util.List" %>
+
 <%@ include file = "/views/common/header.jsp"%>
+
 <%
 	List<Product> products = (List<Product>)request.getAttribute("products");
 %>
+
 
 <main id="mainPage-main">
 
@@ -15,7 +18,7 @@
 			
 			<div id="review_bestReviewerTable" style="display: flex; align-items: center;">
 			
-				<div style="padding:auto; margin: auto; width : 1000px; display:flex; justify-content: space-around; background-color: white;" id="reviewmain-table">
+				<div style="padding:auto; margin: auto; width : 1000px; display:flex; justify-content: space-around; background-color: rgb(9, 74, 169);" id="reviewmain-table">
 					
 					<!-- <tr id="reviewmain-table">
 						
@@ -54,11 +57,12 @@
 	
 	<div id="todayspick">
 		
-		<p class="section_title">Today's pick</p>
+		<p class="section_title">FASHION FILM</p>
 		
-		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px;">
+		<div id="slideshow" style="display: flex; justify-content: space-around !important; margin: 0px; padding:0px; width:1300px">
 		
-			<div id="">
+			<div id="video">
+			
 			
 				<!-- <button id="btn_prev">&lang;</button> -->
 			
@@ -78,8 +82,8 @@
 			</div>
 			
 			
-			<div id="slideshowcontent" style="width:520px;">
-				test
+			<div id="slideshowcontent" style="width:520px; display: flex; text-align: center; align-items: center;">
+				Breezy fabrics. Bright hues. Statement silhouettes. Embrace the warmer weather in styles you can’t help feeling optimistic in. 
 			</div>
 			
 		</div>
@@ -91,11 +95,13 @@
 	
 	<div id="contents">
 	
+		<p class="section_title padding_50">PRODUCT</p>
+	
 		<div id="contents_sort">
 			<span id="popularity">인기순</span>
 			<span id="highest">높은가격순</span>
 			<span id="lowest">낮은가격순</span>
-		<div>
+		</div>
 		
 		<div id="contents_imgs">
 		

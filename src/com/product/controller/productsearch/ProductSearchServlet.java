@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.PageBar;
 import com.product.model.service.ProductService;
 import com.product.model.vo.Product;
 
@@ -29,6 +30,7 @@ public class ProductSearchServlet extends HttpServlet {
 		
 		ProductService service = new ProductService();
 		
+		
 		List<Product> searchResult = service.searchProduct(keyword);
 		
 		
@@ -40,18 +42,38 @@ public class ProductSearchServlet extends HttpServlet {
 		// 페이지바 만드는 과정 있어야함
 		// jsp에 검색결과 출력용 페이지바가 따로 필요하기 떄문에
 		
+		PageBar pb = new PageBar();
 		
 		
+		int cPage;
+		
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		} catch (NumberFormatException e) {
+			cPage = 1;
+		}
 		
 		
+		int numPerPage;
+		
+		try {
+			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
+		} catch (NumberFormatException e) {
+			numPerPage = 5;
+		}
 		
 		
+		int totalData = searchResult.size();
+		
+		String url = request.getContextPath() + "/product/searchProduct";
+		
+		String searchType = "productName";
 		
 		
+		String pageBar = pb.pageBar(cPage, numPerPage, totalData, url, keyword, searchType);
 		
 		
-		
-		request.setAttribute("pageBar", keyword);
+		request.setAttribute("pageBar", pageBar);
 		
 		
 	

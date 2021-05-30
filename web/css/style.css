@@ -16,7 +16,7 @@ html,head,body{
     margin: 5px 5px 5px 5px; 
     padding: 5px 5px 5px 5px; 
  
-    border: 1px black solid;
+    /* border: 1px black solid; */
     list-style: none; 
    
     /* 
@@ -64,7 +64,7 @@ header{
     justify-content: space-between;
     align-items: center;
     
-    margin: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 65px !important;
     padding : 0 0 0 0;
     
     text-align: center;
@@ -115,7 +115,7 @@ footer>div#footer-container{
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin: 5px 0px 0px 0px !important;
+    margin: 5px 0px 0px 65px !important;
     
    /*  height: fit-content; */
     
@@ -393,7 +393,7 @@ div#todayspick>p.section_title{
 }
 
 div#todayspick{
-	background-color : rgb(240, 240, 240);
+	background-color : rgb(220, 220, 220);
 	margin : 0 0 0 0;
 }
 
@@ -409,7 +409,7 @@ div#todayspick div#disc{
 
 div#slideshow{
 	/* clear : both; */
-	width : 500px;
+	width : 1000px;
 	height : 400px;
 	/* overflow : hidden; */
 	position : relative;
@@ -482,7 +482,7 @@ div#slides>button:focus{
 
 div#contents{
 	
-	background-color : rgb(220, 220, 220);
+	background-color : rgb(250, 250, 250);
 	margin : 0 0 0 0;
 }
 
@@ -505,17 +505,16 @@ div#contents .img{
 }
 
 div#contents_sort{
-	text-align : left;
+	text-align : center;
 	font-size : 15px;
 	margin : 0 0 0 0;
-	padding : 50px;
 	
 }
 
 div#contents_sort>span{
-	padding-left : 100px;
+	padding : 20px 50px 20px 50px;
 	margin : 0 0 0 0;
-	color : white;
+	color : black;
 }
 
 div#contents_sort>span:hover{
@@ -736,6 +735,10 @@ div#submit_section span{
 }
 
  */
+ 
+ 
+ 
+ 
 /* cart  */
 #cart-main{
 	display:flex;

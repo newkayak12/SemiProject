@@ -60,9 +60,9 @@
 										 		
 											<% 
 												for(int i=0; i<product.size(); i++) {
-													colorflag += "|"+product.get(i).getProductOptionColor()+"|";
-												
+													System.out.println(colorflag);
 													if(i==0){
+													colorflag += "|"+product.get(i).getProductOptionColor()+"|";
 											%>
 											 	
 											 	
@@ -75,7 +75,9 @@
 													} else {
 														
 														
+															System.out.println( "scan" + product.get(i).getProductOptionColor());
 														if( !colorflag.contains(product.get(i).getProductOptionColor())){
+															colorflag += "|"+product.get(i).getProductOptionColor()+"|";
 											%>
 											
 												<option name="prodcut_color-select" value="<%=product.get(i).getProductOptionColor() %>">
@@ -105,9 +107,9 @@
 											
 											<% 
 												for(int i=0; i<product.size(); i++) {
-													sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
 												
 														if(i==0){
+													sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
 											%>
 											
 											
@@ -120,8 +122,8 @@
 											
 														} else {
 															
-															if(!colorflag.contains(product.get(i).getProductOptionSize())){
-														
+															if(!sizeflag.contains(product.get(i).getProductOptionSize())){
+																sizeflag += "|"+product.get(i).getProductOptionSize()+"|";
 														
 											%>
 												
@@ -334,8 +336,36 @@
 					</div> <!-- div id=menu_content-review -->
 					
 					
-					<div id="menu_content-qna">
-						qna
+					<div id="menu_content-qna" style="flex-direction: column;">
+						
+						<%if(user!= null) {%>
+						<div>
+							<table>
+								<tr>
+								 	<td id="mainqnauser"><%=user.getUserId()%></td>
+								 	<td>
+								 		<textarea cols="90" rows="2" id="mainqnacontent"></textarea>
+								 	</td>
+								 	<td> 
+								 		<button  onclick = "fn_addcomment()"> 등록 </button>
+								 	</td>
+								</tr>
+							
+							</table>
+						
+						</div>
+						<%} %>
+						<table id="qna-table">
+							<!-- <tr>
+								<th>작성자</th>
+								<th>글 제목</th>
+								<th>작성일</th>
+								
+							</tr> -->
+							
+						</table>
+						
+						
 					</div>
 					
 				</div>
@@ -350,13 +380,39 @@
 	
 	<input type = "hidden" id = "cartadder" name="cartadder">
 		
-		
+	
 		
 		
 	</main>
+	
+
 
 <%} %>
 <script>
+
+	
+	const fn_addcomment =()=>{
+		let mainqnauser = $("#mainqnauser").html()
+		let mainqnacontent = $("#mainqnacontent")
+		let cid = '<%=product.get(0).getCategoryId()%>';
+		let pid = '<%=product.get(0).getProductId()%>';
+		let userid = '<%=user.getUserId()%>'
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/qna/main/post/ajax",
+			data:{"qnauser":mainqnauser,"qnacontent":mainqnacontent.val(), "qnatitle":"문의합니다.", "cid": cid, "pid": pid, "userid":  userid},
+			success:data=>{
+				
+				fn_ajax();	
+				
+				$("#mainqnacontent").val("")
+			}
+		})
+		
+		
+	}
+
+
 	const fn_detail=()=>{
 		
 		
@@ -385,7 +441,57 @@
 		$("#menu_content-notice").css("display","none");
 		$("#menu_content-review").css("display","none");
 		$("#menu_content-qna").css("display","flex");
+		
+		
+		 fn_ajax();
+		
+		
+		
 	})
+	
+	
+	const fn_ajax =()=>{
+		
+		let tables = $("#qna-table");
+		$.ajax({
+			url:"<%=request.getContextPath()%>/product/qna/ajax",
+			data:{"cid":"<%=product.get(0).getCategoryId()%>","pid":"<%=product.get(0).getProductId()%>"},
+			success: data =>{
+				tables.html("");
+				tables.append($("<tr>").append($("<th>").html('작성자')).append($("<th>").html('글 제목')).append($("<th>").html('작성일')))
+				
+					
+
+
+		
+				console.log(data)
+				for(let i =0 ; i<data.length; i++){
+					
+					console.log(data[i]["qnaProductSeq"])
+					tables.append($("<tr>").append($("<td>").css("text-align","center").html(data[i]["qnaUserId"]))
+						.append($("<td>").css("text-align","center").html(data[i]["qnaTitle"]).attr("onclick",'fn_detailshow("'+data[i]["qnaProductSeq"]+'","'+data[i]["qnaUserId"]+'")'))
+						.append($("<td>").css("text-align","center").html(data[i]["qnaDate"])))
+					
+				}
+				
+			}
+			
+		})
+	}
+	
+	
+	const fn_detailshow=(e,f)=>{
+		let info = e;
+		let id = f;
+
+		
+		// console.log(e)
+		// console.log(f)
+		
+		
+		window.open("<%=request.getContextPath()%>/qna/product/detail?qseq="+info+"&writer="+id ,'qna','width=650, height=700');
+		
+	}
 	
 	
 	const fn_buynow=()=>{
