@@ -41,30 +41,24 @@ public class OrderDao {
 	public List<List<Order>> showallOrder(int cPage, int numPerPage, Connection conn, String id) {
 		List<List<Order>> result = new ArrayList();	
 		List<Order> semi = new ArrayList();
-		Order order = null;
+		Order o = null;
 				try {
-					
-						String sql = properties.getProperty("showall");
-						
-						pstmt = conn.prepareStatement(sql);
+						pstmt = conn.prepareStatement(properties.getProperty("showall"));
+			
 						pstmt.setString(1,id);
 						pstmt.setInt(2, (cPage-1)*numPerPage+1);
 						pstmt.setInt(3, cPage*numPerPage);
+						System.out.println("다오문제?");
 						rs = pstmt.executeQuery();
 						
 								while(rs.next()) {
-									order = new Order();
-									
-									order.setOrderNumber(rs.getString("o_number"));
-									order.setOrderDate(rs.getDate("o_date"));
-									order.setProductFile(rs.getString("p_file"));
-									order.setProductName(rs.getString("p_name"));
-									order.setTotalPrice(rs.getInt("o_totalprice"));
-									
-								
-									
-									
-									semi.add(order);
+									o = new Order();
+									o.setOrderNumber(rs.getString("o_number"));
+									o.setOrderDate(rs.getDate("o_date"));
+									o.setProductFile(rs.getString("p_file"));
+									o.setProductName(rs.getString("p_name"));
+									o.setTotalPrice(rs.getInt("o_totalprice"));
+									semi.add(o);
 									result.add(semi);
 									
 								}
@@ -77,7 +71,7 @@ public class OrderDao {
 					close(pstmt);
 				}
 				
-				
+				System.out.println("다오문제?-트라이 끝나고");
 		
 		
 		return result;
@@ -86,7 +80,7 @@ public class OrderDao {
 	public int showallOrderCount(Connection conn, String id) {
 		int result = 0;
 		Order order = null;
-		List<Order> semi = new ArrayList();
+		List<Order> semi = new ArrayList<Order>();
 				try {
 						pstmt = conn.prepareStatement(properties.getProperty("showallCount"));
 						pstmt.setString(1, id);
@@ -101,10 +95,6 @@ public class OrderDao {
 							order.setProductFile(rs.getString("p_file"));
 							order.setProductName(rs.getString("p_name"));
 							order.setTotalPrice(rs.getInt("o_totalprice"));
-							
-						
-							
-							
 							semi.add(order);
 							
 							

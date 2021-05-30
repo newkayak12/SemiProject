@@ -86,8 +86,10 @@ $(function(){
 	            
 	            
 			<%
-	            	            			for(Order o : result){
-	            	            			%>
+	          for(Order o : result){
+	        	  
+	          
+	          %>
 			
                 <tr>
                     <td>

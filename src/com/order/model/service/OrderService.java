@@ -18,6 +18,7 @@ public class OrderService {
 		List<List<Order>> result = new OrderDao().showallOrder(cPage, numPerPage, conn, id);
 		
 		close(conn);
+		System.out.println("서비스문제?-올오더");
 		return result;
 	}
 
@@ -25,7 +26,7 @@ public class OrderService {
 		Connection conn = getConnection();
 		
 		int result = new OrderDao().showallOrderCount(conn, id);
-		
+		System.out.println("서비스문제?-오더카운트");
 		close(conn);
 		return result;
 	}
