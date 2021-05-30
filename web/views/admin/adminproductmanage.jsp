@@ -8,7 +8,6 @@
 	<ul class="text_align_center border_bottom_blue">
 		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/product/manage">상품 관리</a></li>
 		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/reviewManage">리뷰 관리</a></li>
-		<li class="hrz_li"><a class="blackText" href="">Q&A 관리</a></li>
 		<li class="hrz_li"><a class="blackText" href="">주문 관리</a></li>
 		<li class="hrz_li"><a class="blackText" href="<%=request.getContextPath()%>/admin/userselect/start">회원 관리</a></li>
 	</ul>
@@ -20,7 +19,7 @@
 
 		
 		<div class="text_align_center">
-			<input type = "button" value="상품 등록" id="productadd">
+			<input type = "button" value="상품 등록" id="productadd" class="white_button">
 			<p>* 상품 상세정보 등록은 해당 상품명을 클릭하세요 *</p>
 		</div>
 	
@@ -134,7 +133,7 @@
 
 			
 			
-			window.open('<%=request.getContextPath()%>/admin/product/detail?pId='+e+'&cId='+f, 'manage', 'width=400 height=400')
+			window.open('<%=request.getContextPath()%>/admin/product/detail?pId='+e+'&cId='+f, 'manage', 'width=500 height=600')
 			
 			
 		}
