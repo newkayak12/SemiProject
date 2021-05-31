@@ -344,7 +344,7 @@
 						
 						
 					<%} %>	
-					<input type="button" class ="btn-width blue" value ="결제" onclick="fn_pay()">
+					<input type="button" class ="btn-width blue" value ="결제" id="bankpaybtn" onclick="fn_pay()">
 					<input type="button" class ="btn-width white" value ="취소" onclick="fn_cancel()">
 				</form>
 				
@@ -426,7 +426,10 @@
 			 <%-- location.assign('<%=request.getContextPath()%>/pay/kakao'); --%>
 			 $.ajax({
 					url:"<%=request.getContextPath()%>/pay/kakao",
-					data:{}
+					data:{"Authorization":"KakaoAK 7be18bb35d4598742bb7e4f4c82ab6d0", "cid":"TC0ONETIME", "partner_order_id":"Kleidung", "partner_user_id":"bs", "item_name":"초코파이", "quantity":"1", "total_amount":"2200", "vat_amount":"200", "tax_free_amount":"0", "approval_url": "<%=request.getContextPath()%>/views/pay/success.jsp", "fail_url":"<%=request.getContextPath()%>/views/pay/fail.jsp","cancel_url":"<%=request.getContextPath()%>/views/pay/cancel.jsp"},
+					success : data=>{
+						console.log(data);
+					}
 			 })
 			 
 			
