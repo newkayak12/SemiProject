@@ -95,6 +95,7 @@ public class PayKakao extends HttpServlet {
 		
 		
 		conn.getOutputStream().write(string_params.getBytes());
+		
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		
 		JSONParser parser = new JSONParser();
