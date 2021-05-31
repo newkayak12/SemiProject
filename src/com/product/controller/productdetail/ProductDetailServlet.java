@@ -36,7 +36,8 @@ public class ProductDetailServlet extends HttpServlet {
 		
 		List<Review> reviews = new ReviewService().selectProductReview(productid);
 		
-		
+		int result = new ProductService().counting(productid, category);
+		System.out.println(result);
 		
 		request.setAttribute("productlist", product);
 		
