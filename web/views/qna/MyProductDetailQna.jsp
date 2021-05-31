@@ -9,9 +9,8 @@
 	
 %>
  
- <div id = "Product-QNA">
 		
-		<span id = "Product-Qna-section" class="Qna-category" style="cursor : pointer; left: 270px;">상품 Q&A</span>
+		<span id = "Product-Qna-section" class="Qna-category" style="cursor : pointer;">상품 Q&A</span>
 		
 		<!-- 여기에 Ajax로 상품 Q&A 뜰 거임. -->
 		<table id="MyProductqna-table">
@@ -55,8 +54,6 @@
 			<%=MyProductDetailQnaPageBar %>
 		</div> 
 			
-	
-	</div>
 	
 	<script>
 	 $("#MyProductqna-detail-title").click(function(){

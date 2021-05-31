@@ -19,7 +19,7 @@
 	        <tr>
 	            <th class="blue border-white">TITLE</th>
 	            <td>
-	            	<input type="text" name="qnaTitle" id="qnaTitle"  value ="상품문의" style="height : 10px; width : 250px;" readonly>
+	            	<input type="text" name="qnaTitle" id="qnaTitle"  value ="문의합니다" style="height : 10px; width : 250px;" readonly>
 	            </td>
 	        </tr>
 	        <tr>

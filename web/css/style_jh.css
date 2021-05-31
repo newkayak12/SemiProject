@@ -729,7 +729,7 @@ div#lostorsignup-container{
 
 div#myQnaList-container{
 	width : 1218px;
-	height : 1200px;
+	height : 1400px;
 	margin : 100px auto;
 	text-align : center;
 }
@@ -740,7 +740,7 @@ div#myQnaList-container{
     margin: 50px;
 }
 
-div#General-QNA, div#Product-QNA div#MyReviewList-container{
+div#General-QNA, div#Product-QNA, div#My-Review {
 	margin : 15px auto;
 	width : 700;
 	border: 1px white solid;
@@ -819,14 +819,24 @@ div#MyReviewList-container span.Qna-category{
 	display : block;
 }
 
+div#MyReviewList-container{
+	margin : 15px auto;
+	width : 700;
+	border: 1px white solid;
+	border-collapse: collapse;
+	text-align : center;
+	position :relative
+}
+
 span#My-Review-section{
 	display: inline-block;
-    left: 270px;
+    left: 150px;
     font-weight: bolder;
     display: inline-block;
     font-size: 18px;
     display: block;
-    top: 720px;
+    bottom: 850px;
+    margin-top: 50px;
 }
 
 id#MyreviewList_pagebar{
