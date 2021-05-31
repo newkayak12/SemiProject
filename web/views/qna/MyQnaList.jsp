@@ -91,7 +91,7 @@
 	
 	
 	<!-- 내가 쓴 리뷰 보여주기 -->
-	<div id ="My-Review">
+	<div id ="My-Review" >
 		<span id = "My-Review-section" class="Qna-category" style="color : white;">Review</span>
 	
 	</div>

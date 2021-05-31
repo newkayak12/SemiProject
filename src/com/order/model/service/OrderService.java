@@ -24,6 +24,7 @@ public class OrderService {
 			
 			Order b = new OrderDao().plusProduct(a, conn );
 			b = new OrderDao().countProduct (a, conn);
+			System.out.println(b);
 			result.add(b);
 		}
 		

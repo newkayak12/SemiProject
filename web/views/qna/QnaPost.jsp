@@ -25,10 +25,9 @@
            <tr>
                <th class="blue border-white">WRITER</th>
                <td>
-                  <input type="text" name="qnaWriter" id="qnaWriter"  readonly value="<%=user.getUserId()%>"placeholder="아이디를 입력하시오." style="height : 10px; width : 250px;"" required>
+                  <input type="text" name="qnaWriter" id="qnaWriter" readonly value="<%=user.getUserId()%>"placeholder="아이디를 입력하시오." style="height : 10px; width : 250px;"" required>
                </td>
            </tr>
-           <!-- 수정됨 -->
            
            <tr>
                <th class="blue border-white">DATE</th>
@@ -55,6 +54,8 @@
                   <input type="button" value="취소하기" class="notice-btn white" onclick="goBack();">
                </td>
            </tr>
+           
+           
        </table>
     </form>
 </div>

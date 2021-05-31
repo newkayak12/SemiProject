@@ -729,7 +729,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 		int result = 0;
 		try {
-			pstmt=conn.prepareStatement(prop.getProperty("MyProductDetailQnaCount"));
+			pstmt=conn.prepareStatement(prop.getProperty("countAllMyReview"));
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) result=rs.getInt(1);

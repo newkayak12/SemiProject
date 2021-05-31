@@ -12,6 +12,7 @@
 List<Order> orderlist = (List<Order>) request.getAttribute("list");
 	Users userInfo = (Users) request.getAttribute("user");
 	Order orderInfo =  orderlist.get(0);
+	int result =0;
 %>
 
 <title>order details</title>
@@ -69,6 +70,7 @@ for( Order order : orderlist) {
             	<%=order.getOrderdetailcount() %>
         	</td>
              <td>
+             <%result += Integer.parseInt(order.getProductprice())*order.getOrderdetailcount(); %>
              	<%=order.getProductprice() %>원/<%=Integer.parseInt(order.getProductprice())*order.getOrderdetailcount() %>원
         	</td>
             <td >
@@ -86,6 +88,13 @@ for( Order order : orderlist) {
         </tr>
         
  <%} %>       
+ 
+ 		<tr>
+ 			<td colspan="8">
+ 			
+ 				총 가격 : <%=result %>
+ 			</td>
+ 		</tr>
         
     </table>
     
