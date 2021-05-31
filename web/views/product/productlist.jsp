@@ -144,18 +144,18 @@
 	// 검색부분
 	$("#search-product").click( (e) => {
 		
-		const keyword = $(e.target).prev().val();
+		const keyword = $("#searchbar").val()
+		console.log(keyword);
 		
-		
-		if(keyword.length == 0) {
+		 if(keyword.length == 0) {
 			
 			alert("검색어를 입력해주세요.");
 			return;
-		}
+		} 
 		
 				/* console.log(keyword); */
 				
-		location.replace("<%=request.getContextPath()%>/product/searchProduct?keyword=" + keyword + "");
+		location.replace("<%=request.getContextPath()%>/product/searchProduct?keyword=" + keyword);
 		
 	} );
 	
