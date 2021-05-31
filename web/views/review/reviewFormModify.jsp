@@ -36,7 +36,7 @@
 					<th>상품</th>
 					
 					<td>
-						<img src="<%=reviewList.get(0).getProductFile()%>" name="" id="" width="100px" height="100px">
+						<img src="<%=request.getContextPath() %>/upload/product/<%=reviewList.get(0).getProductFile()%>" name="" id="" width="100px" height="100px">
 						<span><%=reviewList.get(0).getProductName() %></span>
 						<span><%=reviewList.get(0).getProductOptionColor() %></span>
 						<span><%=reviewList.get(0).getProductOptionSize()%></span>
@@ -56,7 +56,7 @@
 				
 				<tr>
 					<th>첨부파일</th>
-					<td><input type="file" name="up_file" value="<%=reviewList.get(0).getReviewFile() %>"></td>
+					<td><input type="file" name="up_file" value="<%=request.getContextPath() %>/upload/review/<%=reviewList.get(0).getReviewFile() %>"></td>
 				</tr>
 				
 				<tr>
