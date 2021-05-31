@@ -41,35 +41,41 @@ public class ProductDetailServlet extends HttpServlet {
 		Cookie[] procookie = request.getCookies();
 		
 		
-		if(procookie!=null) {
+		String productRead = "";
+		boolean readFlag = false;
 		
-			for(Cookie c : procookie) {
+		
+		if(procookie != null) {
+			
+			for(Cookie c: procookie ) {
+				String name = c.getName();
+				String value = c.getValue();
 				
-				if(c.getName().equals("products")) {
+				if(name.equals("productRead")) {
 					
-					if(c.getValue().contains("|"+productid+"_"+category+"|")){
-						
-					} else {
-						String val = c.getValue();
-						val+="|"+productid+"_"+category+"|";
-						Cookie addcookie = new Cookie("products", val);
-						addcookie.setMaxAge(60*60*24);
-//						addcookie.setPath("/");
-						response.addCookie(addcookie);
-						int result = new ProductService().counting(productid, category);
+					productRead = value;
+					
+					if(value.contains("|"+productid+"_"+category+"|")) {
+						readFlag = true;
+						break;
 					}
 					
-				} else {
-					
-					String val = "|"+productid+"_"+category+"|";
-					Cookie addcookie = new Cookie("products", val);
-					addcookie.setMaxAge(60*60*24);
-					response.addCookie(addcookie);
-//					addcookie.setPath("/");
-					int result = new ProductService().counting(productid, category);
 				}
 			}
+		}
+		
+		
+		
+		if(!readFlag) {
+			Cookie c = new Cookie("productRead", productRead+"|"+productid+"_"+category+"|");
+			c.setMaxAge(60*60*24);
+			response.addCookie(c);
+		}
+		
+		
+		if(!readFlag && product != null) {
 			
+			new ProductService().counting(productid, category);
 		}
 		
 		request.setAttribute("productlist", product);
