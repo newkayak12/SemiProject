@@ -25,7 +25,7 @@
            <tr>
                <th class="blue border-white">WRITER</th>
                <td>
-                  <input type="text" name="qnaWriter" id="qnaWriter"  readonly value="<%=user.getUserId()%>"placeholder="아이디를 입력하시오." style="height : 10px; width : 250px;"" required>
+                  <input type="text" name="qnaWriter" id="qnaWriter" readonly value="<%=user.getUserId()%>"placeholder="아이디를 입력하시오." style="height : 10px; width : 250px;"" required>
                </td>
            </tr>
            
