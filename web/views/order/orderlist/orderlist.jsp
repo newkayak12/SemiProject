@@ -60,9 +60,7 @@ String pageBar = null;
 	               	<th>
 	               		받는 사람
 	               	</th>
-	                <th>
-	                    상품 총 금액
-	                </th>
+	                
 	                
 	                
 	            </tr>
@@ -94,9 +92,7 @@ String pageBar = null;
                     <td>
                     	<%=o.getReceivername() %>
                     </td>
-                    <td>
-                   		<%=o.getTotalPrice() %>
-                    </td>
+                   
                         
                     <!-- <td>
                        <button type="button" id="status-button"> 취소/교환/환불 상태</button>

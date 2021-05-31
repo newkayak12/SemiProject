@@ -1,7 +1,9 @@
 package com.product.model.service;
 
 import static com.common.JDBCTemplate.close;
+import static com.common.JDBCTemplate.commit;
 import static com.common.JDBCTemplate.getConnection;
+import static com.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -49,11 +51,11 @@ public class ProductService {
 	
 	
 
-	public List<Product> searchProduct(String keyword) {
+	public List<Product> searchProduct(String keyword, int cPage, int numPerPage) {
 		
 		Connection conn = getConnection();
 		
-		List<Product> searchResult = dao.searchProduct(conn, keyword);
+		List<Product> searchResult = dao.searchProduct(conn, keyword, cPage, numPerPage);
 		
 		return searchResult;
 	}
@@ -67,7 +69,20 @@ public class ProductService {
 		return result ;
 	}
 	
-	
+	public int counting(String productid, String category) {
+		Connection conn = getConnection();
+		
+		int count = dao.counting(productid, category, conn);
+		
+		if(count>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return count;
+		
+	}
 	
 
 }

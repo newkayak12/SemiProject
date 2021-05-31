@@ -56,7 +56,7 @@ public class ProductDao{
 			if(sort.equals("p_view_count")) {
 //				sort = "f.".concat(sort);
 //				System.out.println(sort);
-				query = query.replace("#"," order by '"+ sort +"' desc");
+				query = query.replace("#"," order by p_view_count desc");
 				
 				
 			} else {
@@ -227,7 +227,7 @@ public class ProductDao{
 	
 	
 	// 상품 검색 
-	public List<Product> searchProduct(Connection conn, String keyword) {
+	public List<Product> searchProduct(Connection conn, String keyword, int cPage, int numPerPage) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -240,6 +240,8 @@ public class ProductDao{
 			pstmt = conn.prepareStatement(prop.getProperty("searchProduct"));
 			
 			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			
 			rs = pstmt.executeQuery();
 			
@@ -305,6 +307,26 @@ public class ProductDao{
 		return result;
 	}
 
-	
+	public int counting(String productid, String category, Connection conn) {
+		PreparedStatement pstmt = null ; 
+		
+		int result =0 ;
+		
+			try {
+				pstmt=conn.prepareStatement(prop.getProperty("counting"));
+				pstmt.setString(1, productid);
+				pstmt.setString(2, category);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+		
+		return result;
+	}
 		
 }

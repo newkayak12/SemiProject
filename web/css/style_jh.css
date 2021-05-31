@@ -834,11 +834,17 @@ span#My-Review-section{
     font-weight: bolder;
     display: inline-block;
     font-size: 18px;
-    display: block;
-    bottom: 850px;
     margin-top: 50px;
 }
 
 id#MyreviewList_pagebar{
 	text-align : center;
+}
+
+table#MyreviewTable{
+	width : 1000px;
+	margin : 100px auto;
+	padding : 0 0 0 0;
+	border-bottom : 1px solid gray;
+	border-top : 1px solid gray;
 }

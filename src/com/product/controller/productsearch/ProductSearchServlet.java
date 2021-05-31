@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.common.PageBar;
 import com.product.model.service.ProductService;
 import com.product.model.vo.Product;
+import static com.common.PageBar.*;
 
 
 @WebServlet("/product/searchProduct")
@@ -31,11 +32,11 @@ public class ProductSearchServlet extends HttpServlet {
 		ProductService service = new ProductService();
 		
 		
-		List<Product> searchResult = service.searchProduct(keyword);
+		
 		
 		
 		// productlist.jsp 에서 request.getAttribute("result");로 불러오기떄문에 key를 맞춰줘야함
-		request.setAttribute("result", searchResult);
+
 		
 		
 		
@@ -59,18 +60,19 @@ public class ProductSearchServlet extends HttpServlet {
 		try {
 			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
 		} catch (NumberFormatException e) {
-			numPerPage = 5;
+			numPerPage = 9;
 		}
 		
-		
-		int totalData = searchResult.size();
-		
+		List<Product> searchResult = service.searchProduct(keyword, cPage, numPerPage);
+		int totalData = service.keyword(keyword).size();
+		System.out.println(totalData +"seach all datas");
+		request.setAttribute("result", searchResult);
 		String url = request.getContextPath() + "/product/searchProduct";
 		
 		String searchType = "productName";
 		
 		
-		String pageBar = pb.pageBar(cPage, numPerPage, totalData, url, keyword, searchType);
+		String pageBar = pageBar(cPage, numPerPage, totalData, url, keyword, searchType);
 		
 		
 		request.setAttribute("pageBar", pageBar);
