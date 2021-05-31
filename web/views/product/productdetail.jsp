@@ -17,10 +17,16 @@
 			product = (List<Product>) o;				
 		}
 		
-	List<Review> reviewList = (List<Review>)request.getAttribute("reviewlist");
+	List<Review> reviewList =null;
+	Object d = request.getAttribute("reviewlist");
+	if(d!=null){
+		reviewList = (List<Review>) d;
+	}
 
 %>
 
+
+<!--product null처리 -->
 <%if(product !=null){ %>
 
 	<main id="productdetail-main">
@@ -388,15 +394,20 @@
 
 
 <%} %>
+<!-- 맨 처음 productnull 처리 끝 -->
 <script>
 
 	
 	const fn_addcomment =()=>{
 		let mainqnauser = $("#mainqnauser").html()
 		let mainqnacontent = $("#mainqnacontent")
+		<%
+		System.out.println(product.get(0).getCategoryId());
+		System.out.println(product.get(0).getProductId());
+		%>
 		let cid = '<%=product.get(0).getCategoryId()%>';
 		let pid = '<%=product.get(0).getProductId()%>';
-		let userid = '<%=user.getUserId()%>'
+		let userid = '<%=user!=null? user.getUserId():""%>'
 		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/product/qna/main/post/ajax",
