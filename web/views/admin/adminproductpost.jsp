@@ -51,8 +51,8 @@
 	.text_align_center{
 		text-align : center;
 	}
-	.width_520{
-		width : 520px;
+	.width_550{
+		width : 550px;
 	}
 	.th-color{
 		background-color : rgb(0, 70, 172);
