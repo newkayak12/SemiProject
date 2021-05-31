@@ -9,8 +9,6 @@
 	
 	List<Review> bestReviewList = (List<Review>)request.getAttribute("bestReviewList");
 %>
-<div id = "MyReviewList-container" style="margin-top: 50px;">
-
 	<span id = "My-Review-section" class="Qna-category">Review</span>
 	
 	
@@ -59,9 +57,7 @@
 				<p>아직 작성된 리뷰가 없습니다.</p>
 				
 			<% } %>
-			
-			
-		</div>
+
 		
 		
 		

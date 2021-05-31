@@ -3,9 +3,9 @@ package com.order.controller.paykakao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
 
 
 
@@ -77,8 +79,8 @@ public class PayKakao extends HttpServlet {
 		params.put("total_amount", "2000");
 		params.put("tax_free_amount", "0");
 		params.put("approval_url", request.getContextPath()+"/order/pay/kakao/receive");
-		params.put("cancel_url", request.getContextPath()+"/views/pay/cancel.jsp");
-		params.put("fail_url", request.getContextPath()+"/views/pay/fail.jsp");
+		params.put("cancel_url", request.getContextPath()+"/order/pay/kakao/cancel");
+		params.put("fail_url", request.getContextPath()+"/order/pay/kakao/fail");
 		
 		
 		
@@ -93,20 +95,27 @@ public class PayKakao extends HttpServlet {
 		
 		
 		conn.getOutputStream().write(string_params.getBytes());
+		
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		
 		JSONParser parser = new JSONParser();
-			try {
-				JSONObject obj = (JSONObject)parser.parse(in);
-				String successUrl = (String)obj.get(request.getContextPath()+"/views/pay/temp.jsp");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			conn.connect();
+//			try {
+////				JSONObject obj = (JSONObject)parser.parse(in);
+////				String successUrl = (String)obj.get(request.getContextPath()+"/views/pay/temp.jsp");
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			System.out.println("connencted");
+		
+			
+			response.setContentType("application/json;charset=utf-8;");
+			Gson gson = new Gson();
+			gson.toJson(in,response.getWriter());
+			
 	}
 
 	/**
