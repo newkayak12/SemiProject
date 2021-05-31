@@ -59,8 +59,7 @@ public class ReviewModifyEndServlet extends HttpServlet {
 		int maxSize = 1024*1024*10;
 		
 		String encode = "utf-8";
-		
-//		yjyj hearto
+
 		
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, new ReviewRenamePolicy());
 
@@ -69,7 +68,7 @@ public class ReviewModifyEndServlet extends HttpServlet {
 		
 		r.setReviewNo(mr.getParameter("reviewNo"));
 		r.setReviewTitle(mr.getParameter("reviewTitle"));
-		r.setReviewFile(mr.getParameter("up_file"));
+		r.setReviewFile(mr.getFilesystemName("up_file"));
 		r.setReviewContents(mr.getParameter("reviewContent"));
 		
 //				System.out.println("ReviewModifyEndServelt에서 테스트, r : " + r);
