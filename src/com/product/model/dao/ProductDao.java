@@ -74,7 +74,7 @@ public class ProductDao{
 			}
 			
 			
-			
+			System.out.println(query);
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, (cPage-1)*numPerpage+1);
 			pstmt.setInt(2, cPage*numPerpage);

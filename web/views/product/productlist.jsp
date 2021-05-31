@@ -19,7 +19,16 @@
 	String sortFlag = (String)request.getAttribute("sortFlag");
 	
 	String searchKeyword = (String)request.getAttribute("keyword");
+	list.get(0).getCategoryId();
 	
+	String cate = "all";
+	Object z = request.getAttribute("category");
+	
+	
+	if(z!=null){
+		cate = (String)z;
+		 
+	}
 %>
 
 
@@ -56,9 +65,9 @@
 	
 		<div id="sort-container">
 			<ul>
-				<li><a href= "<%=request.getContextPath()%>/product/list?category=all&sort=p_view_count">인기순</a></li>
-				<li><a href= "<%=request.getContextPath()%>/product/list?category=all&sort=high">높은가격순</a></li>
-				<li><a href= "<%=request.getContextPath()%>/product/list?category=all&sort=low">낮은가격순</a></li>
+				<li><a href= "<%=request.getContextPath()%>/product/list?category=<%=cate %>&sort=p_view_count">인기순</a></li>
+				<li><a href= "<%=request.getContextPath()%>/product/list?category=<%=cate %>&sort=high">높은가격순</a></li>
+				<li><a href= "<%=request.getContextPath()%>/product/list?category=<%=cate %>&sort=low">낮은가격순</a></li>
 			</ul>
 		</div>
 	

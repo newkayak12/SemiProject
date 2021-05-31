@@ -59,7 +59,7 @@ public class ProductListServlet extends HttpServlet {
 		request.setAttribute("category", category);
 		
 		
-		int cPage;
+		int cPage=1;
 		
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -68,7 +68,7 @@ public class ProductListServlet extends HttpServlet {
 		}
 		
 		
-		int numPerPage;
+		int numPerPage=9;
 		
 		try {
 			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
