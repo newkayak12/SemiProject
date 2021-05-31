@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.PageBar;
 import com.product.model.service.ProductService;
 import com.product.model.vo.Product;
 import static com.common.PageBar.pageBar;
@@ -58,16 +59,24 @@ public class ProductListServlet extends HttpServlet {
 		request.setAttribute("category", category);
 		
 		
-		int cPage = 1;
+		int cPage;
 		
-			try {
-				cPage = Integer.parseInt(request.getParameter("cPage"));
-			}catch(NumberFormatException e) {
-				
-			
-			}
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		} catch (NumberFormatException e) {
+			cPage = 1;
+		}
 		
-		int numPerPage = 9;
+		
+		int numPerPage;
+		
+		try {
+			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
+		} catch (NumberFormatException e) {
+			numPerPage = 9;
+		}
+		
+		
 		
 		List<Product> result = new ProductService().selectAllProduct(cPage, numPerPage,sort,category);
 		
@@ -77,7 +86,14 @@ public class ProductListServlet extends HttpServlet {
 		
 		String url = request.getContextPath()+"/product/list";
 		
-		request.setAttribute("pageBar",pageBar(cPage, numPerPage, count, url , category, sort, null));
+		PageBar pb = new PageBar();
+		
+		String pageBar = pb.pageBar(cPage, numPerPage, count, url, category, sort, null);
+		
+		request.setAttribute("pageBar", pageBar);
+		
+//		request.setAttribute("pageBar", pageBar(cPage, numPerPage, count, url , category, sort, null));
+		
 		
 		
 		// 정렬기준을 보이게 할 flag

@@ -11,7 +11,7 @@
  
  <div id = "Product-QNA">
 		
-		<span id = "Product-Qna-section" class="Qna-category" style="cursor : pointer; left: 340px;">상품 Q&A</span>
+		<span id = "Product-Qna-section" class="Qna-category" style="cursor : pointer; left: 270px;">상품 Q&A</span>
 		
 		<!-- 여기에 Ajax로 상품 Q&A 뜰 거임. -->
 		<table id="MyProductqna-table">
@@ -21,7 +21,6 @@
 					<th>WRITER</th>
 					<th>DATE</th>
 				</thead>
-		
 		
 				<%if(list.isEmpty()){ %>
 			        		<td colspan="5">조회하실 Q&A가 없습니다.</td>
@@ -33,8 +32,7 @@
 								<%=pq.getQnaProductSeq() %> 
 							</td>
 												
-							<td class="notice-title">
-								<a href = ""></a>
+							<td id ="MyProductqna-detail-title" class="notice-title" style="cursor : pointer;">
 								<%=pq.getQnaTitle() %>
 							</td>
 							
@@ -59,5 +57,14 @@
 			
 	
 	</div>
+	
+	<script>
+	 $("#MyProductqna-detail-title").click(function(){
+		 location.assign("<%=request.getContextPath()%>/qna/MyProDetailQnaDetailStartServlet?qSeq=<%=list.get(0).getQnaProductSeq()%>")
+		 
+	 })
+	</script>
+	
+	
 		
 		
