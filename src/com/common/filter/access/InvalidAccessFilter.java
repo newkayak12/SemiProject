@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.users.model.vo.Users;
+
 @WebFilter(filterName = "/InvalidAccessFilter", urlPatterns = {"/*/modify/start","/review/modify/end","/*/delete","/*/post/start","/*/post/end"})
 public class InvalidAccessFilter implements Filter {
 
@@ -36,8 +38,8 @@ public class InvalidAccessFilter implements Filter {
 		HttpServletRequest rq = (HttpServletRequest)request;
 		HttpSession session = rq.getSession(false);
 		
-		String userid = (String)session.getAttribute("userid");
-		if(userid != null) {
+		Users user = (Users)session.getAttribute("user");
+		if(user != null) {
 			chain.doFilter(request, response);
 		} else {
 			request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
