@@ -429,7 +429,7 @@
 			 */
 			  let kname = $("#receive_name").val()
 			  let kemail = $("#receive_email").val()
-			  let kamount = '<%=result%>';
+			  let kamount = '<%=result+2500%>';
 			  let kaddr = $("#receive_addr").val() + $("#receive_addrdetail").val();
 			  let kzip = $("#receive_zip").val();
 			  let kpname = '<%=cart.getCartName()%>'+" 등";
@@ -453,14 +453,17 @@
 				    buyer_tel : kphone,
 				    buyer_addr : kaddr,
 				    buyer_postcode : kzip,
-				    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+				    m_redirect_url : '<%=request.getContextPath()%>/views/pay/success.jsp'
 				}, function(rsp) {
 				    if ( rsp.success ) {
 				        var msg = '결제가 완료되었습니다.';
-				        msg += '고유ID : ' + rsp.imp_uid;
+				        /* msg += '고유ID : ' + rsp.imp_uid;
 				        msg += '상점 거래ID : ' + rsp.merchant_uid;
 				        msg += '결제 금액 : ' + kamount;
-				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				        msg += '카드 승인번호 : ' + rsp.apply_num; */
+				        
+				        
+				        location.assign('<%=request.getContextPath()%>/views/pay/success.jsp');
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
