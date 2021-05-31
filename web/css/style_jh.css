@@ -145,7 +145,7 @@ table#tbl-post td:nth-of-type(4){
 }
 
 .content-background{
-	background-image: url("../images/contentBack.jpg");
+	background-image: url("../images/contentBack.PNG");
 	background-repeat : no-repeat;
 	background-size : cover;
 }

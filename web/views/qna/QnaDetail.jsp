@@ -42,8 +42,6 @@
 	        		<div class="content-background text-center" name="qnaContent" style="border : 1px solid grey;">
 	        			<%if(q.getqFile()!=null){ %>
 	        				<img src = "<%=request.getContextPath() %>/upload/qna/<%=q.getqFile()%>" style="width : 100px; height: auto;"><br>
-	        			<%} else{%>
-	        				<img src = "<%=request.getContextPath() %>/upload/qna/noimage.png" style="width : 100px; height: auto;">
 	        			<%} %>
 	        			<br><%=q.getqContents() %>
 	        		</div>
