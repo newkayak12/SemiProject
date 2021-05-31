@@ -277,7 +277,7 @@
 				<div id="payment_selector-contianer">
 					<input type = "radio" name = "payraido" id="pay"  checked> 무통장 입금
 					<input type = "radio" name = "payraido"	id="kakao" >  카카오페이 <img id="kakaopay" src="<%=request.getContextPath() %>/images/payment_icon_yellow_large.png" alt="카카오페이" width="50px" style="margin:0px; padding:0px; display: none;">
-					
+				
 				</div>
 				
 				
@@ -353,9 +353,14 @@
 			
 		</div>
 </main>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+
+
+
 	$("#addrfind").click(()=>{
 		new daum.Postcode({
 		    oncomplete: function(data) {
@@ -422,15 +427,46 @@
 			Authorization: KakaoAK {"7be18bb35d4598742bb7e4f4c82ab6d0"}
 			Content-type: application/x-www-form-urlencoded;charset=utf-8
 			 */
-			 
+			  let kname = $("#receive_name").val()
+			  let kemail = $("#receive_email").val()
+			  let kamount = '<%=result%>';
+			  let kaddr = $("#receive_addr").val() + $("#receive_addrdetail").val();
+			  let kzip = $("#receive_zip").val();
+			  let kpname = '<%=cart.getCartName()%>'+" 등";
+			  let kphone = $("#recevice_phone").val()
+			  
+			  
+			  
+			  
 			 <%-- location.assign('<%=request.getContextPath()%>/pay/kakao'); --%>
-			 $.ajax({
-					url:"<%=request.getContextPath()%>/pay/kakao",
-					data:{"Authorization":"KakaoAK 7be18bb35d4598742bb7e4f4c82ab6d0", "cid":"TC0ONETIME", "partner_order_id":"Kleidung", "partner_user_id":"bs", "item_name":"초코파이", "quantity":"1", "total_amount":"2200", "vat_amount":"200", "tax_free_amount":"0", "approval_url": "<%=request.getContextPath()%>/views/pay/success.jsp", "fail_url":"<%=request.getContextPath()%>/views/pay/fail.jsp","cancel_url":"<%=request.getContextPath()%>/views/pay/cancel.jsp"},
-					success : data=>{
-						console.log(data);
-					}
-			 })
+			 var IMP = window.IMP; 
+			 IMP.init('imp29380166');
+			 
+			 IMP.request_pay({
+				    pg : 'kakao', // version 1.1.0부터 지원.
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : kpname,
+				    amount : kamount ,
+				    buyer_email : kemail,
+				    buyer_name : kname,
+				    buyer_tel : kphone,
+				    buyer_addr : kaddr,
+				    buyer_postcode : kzip,
+				    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + kamount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				});
 			 
 			
 		}
