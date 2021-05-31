@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +37,40 @@ public class ProductDetailServlet extends HttpServlet {
 		
 		List<Review> reviews = new ReviewService().selectProductReview(productid);
 		
-		int result = new ProductService().counting(productid, category);
-		System.out.println(result);
+		
+		Cookie[] procookie = request.getCookies();
+		
+		
+		if(procookie!=null) {
+		
+			for(Cookie c : procookie) {
+				
+				if(c.getName().equals("products")) {
+					
+					if(c.getValue().contains("|"+productid+"_"+category+"|")){
+						
+					} else {
+						String val = c.getValue();
+						val+="|"+productid+"_"+category+"|";
+						Cookie addcookie = new Cookie("products", val);
+						addcookie.setMaxAge(60*60*24);
+//						addcookie.setPath("/");
+						response.addCookie(addcookie);
+						int result = new ProductService().counting(productid, category);
+					}
+					
+				} else {
+					
+					String val = "|"+productid+"_"+category+"|";
+					Cookie addcookie = new Cookie("products", val);
+					addcookie.setMaxAge(60*60*24);
+					response.addCookie(addcookie);
+//					addcookie.setPath("/");
+					int result = new ProductService().counting(productid, category);
+				}
+			}
+			
+		}
 		
 		request.setAttribute("productlist", product);
 		
