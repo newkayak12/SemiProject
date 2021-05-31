@@ -9,12 +9,14 @@
 	
 	List<Review> bestReviewList = (List<Review>)request.getAttribute("bestReviewList");
 %>
+	
+	
 	<span id = "My-Review-section" class="Qna-category">Review</span>
 	
 	
 	<% if(reviewList != null && reviewList.size() != 0) { %>
 				
-					<table id="reviewTable">
+					<table id="MyreviewTable">
 							
 						<% for(Review r : reviewList) { %>
 						
