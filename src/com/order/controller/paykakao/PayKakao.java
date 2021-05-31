@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
+/*import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+*/
 import com.google.gson.Gson;
 
 
@@ -98,7 +98,7 @@ public class PayKakao extends HttpServlet {
 		
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		
-		JSONParser parser = new JSONParser();
+		/* JSONParser parser = new JSONParser(); */
 //			try {
 ////				JSONObject obj = (JSONObject)parser.parse(in);
 ////				String successUrl = (String)obj.get(request.getContextPath()+"/views/pay/temp.jsp");

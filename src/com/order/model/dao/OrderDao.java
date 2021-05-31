@@ -77,8 +77,9 @@ public class OrderDao {
 				
 				System.out.println("다오문제?-트라이 끝나고");
 		
-		
+		System.out.println(result);
 		return result;
+		
 	}
 
 	public int showallOrderCount(Connection conn, String id) {
@@ -178,7 +179,7 @@ public class OrderDao {
 		}
 		
 //		id, add, zip, oname, ophone, rname
-		
+		System.out.println("insertOrder  result"+result);
 		return result;
 	}
 
@@ -227,7 +228,7 @@ public class OrderDao {
 				} finally {
 					close(pstmt);
 				}
-		
+		System.out.println("insertDetail "+ result );
 		return result;
 	}
 
