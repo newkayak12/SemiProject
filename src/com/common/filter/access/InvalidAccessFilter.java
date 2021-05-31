@@ -14,7 +14,44 @@ import javax.servlet.http.HttpSession;
 
 import com.users.model.vo.Users;
 
-@WebFilter(filterName = "/InvalidAccessFilter", urlPatterns = {"/*/modify/start","/review/modify/end","/*/delete","/*/post/start","/*/post/end"})
+@WebFilter(filterName = "/InvalidAccessFilter", urlPatterns = {
+		"/cart/list" ,
+		"/cart/post",
+		"/cart/update",
+		"/notice/delete/admin",
+		"/notcie/modify/start/admin",
+		"/notice/modify/end/admin",
+		"/notcie/post/start/admin",
+		"/notcie/post/end/admin",
+		"/order/detail",
+		"/order/pay",
+		"/order/list",
+		"/order/place/cart/start",
+		"/order/place/page/start",
+		"/qna/MyProDetailQnaDetailStartServlet",
+		"/qna/MyProductDetailQna",
+		"/MyQna/list",
+		"/qna/qnaCommentDelete",
+		"/qna/inserQnaComment",
+		"/qna/commentmodify",
+		"/qna/qnaModifyEnd",
+		"/qna/qnaModi",
+		"/qna/qnaPostEnd",
+		"/qna/qnaPostStart",
+		"/review/commentdelete",
+		"/review/commentmodify",
+		"/review/insertReviewComment",
+		"/review/delete",
+		"/review/modify/end",
+		"/review/modify/start",
+		"/review/post/end",
+		"/review/post/start",
+		"/sign/modify/end",
+		"/sign/modify/start",
+		"/sign/mypage/start",
+		"/sign/signoff/end",
+		"/sign/signoff/start",
+})
 public class InvalidAccessFilter implements Filter {
 
     /**
