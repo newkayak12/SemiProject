@@ -31,14 +31,72 @@
 	}
 %>
 
+<style>
+ a{
+ 	text-decoration: none;
+ 	color:orange;
+ }
+ 
+ #category-bar a{
+ 
+ 
+ text-decoration: none;
+ 	color: rgb(9, 74, 169);
+ }
+ 
+ 	
+ 	<%if(cate.equals("all")){%>
+ 	
+ 	#catebarall{
+ 		color:orange !important;
+ 	}
+ 	
+ 	<%} else if(cate.equals("c01")){%>
+ 	
+ 	#catebarc01{
+ 		color:orange !important;
+ 	}
+ 	
+ 	
+ 	<%} else if(cate.equals("c02")){%>
+ 	
+ 	#catebarc02{
+ 		color:orange !important;
+ 	}
+ 	
+ 	
+ 	<%} else if(cate.equals("c03")) {%>
+ 	
+ 	#catebarc03{
+ 		color:orange !important;
+ 	}
+ 	
+ 	
+ 	<%} else {%>
+ 	
+ 	#catebarc04{
+ 		color:orange !important;
+ 	}
+ 	
+ 	
+ 	<%} %>
+ 	
+ 	
+ 	
+ 
+ 
+ 
+</style>
+
+
 
 	<nav class="category-bar">
 		<ul id="category-bar">
-			<li><a href= "<%=request.getContextPath()%>/product/list?category=all">ALL</a></li>
-			<li><a href= "<%=request.getContextPath()%>/product/list?category=c01">OUTTER</a></li>
-			<li><a href= "<%=request.getContextPath()%>/product/list?category=c02">TOP</a></li>
-			<li><a href= "<%=request.getContextPath()%>/product/list?category=c03">BOTTOM</a></li>
-			<li><a href= "<%=request.getContextPath()%>/product/list?category=c04">ETC</a></li>
+			<li><a  id="catebarall" href= "<%=request.getContextPath()%>/product/list?category=all">ALL</a></li>
+			<li><a id="catebarc01" href= "<%=request.getContextPath()%>/product/list?category=c01">OUTTER</a></li>
+			<li><a id="catebarc02" href= "<%=request.getContextPath()%>/product/list?category=c02">TOP</a></li>
+			<li><a id="catebarc03" href= "<%=request.getContextPath()%>/product/list?category=c03">BOTTOM</a></li>
+			<li><a id="catebarc04" href= "<%=request.getContextPath()%>/product/list?category=c04">ACC</a></li>
 		</ul> 
 	</nav>
 	
