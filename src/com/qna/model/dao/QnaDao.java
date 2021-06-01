@@ -282,6 +282,7 @@ PreparedStatement pstmt = null;
 			
 			pstmt.setString(1, commentContent);
 			pstmt.setString(2, commentNo);
+			System.out.println("수정된 내용 잘 넘어오는 가"+commentContent);
 			
 			result = pstmt.executeUpdate();
 			
