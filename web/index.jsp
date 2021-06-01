@@ -174,7 +174,7 @@ userId: "qwerty2"
 										"padding":"0px"
 												
 									}).css({"text-decoration":"none","color":"black"})
-									.append($("<p>").html(i+1+"위").css("text-align","center")).append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"250px","height":"350px"})).append($("<div>").append($("<span>").html(data2[i]["productName"])).append($("<span>").html(data2[i]["productPrice"])))              )
+									.append($("<p>").html(i+1).css({"text-align":"center","color":"white","font-size":"18px","font-weight":"bolder"})).append( $("<img>").attr({"src":"<%=request.getContextPath()%>/upload/review/"+data2[i]["reviewFile"],"width":"250px","height":"350px"})).append($("<div>").append($("<span>").css("color","white").html(data2[i]["productName"])).append($("<span>").css("color","white").html(data2[i]["productPrice"])))              )
 									
 									)
 											
