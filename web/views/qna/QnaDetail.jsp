@@ -151,13 +151,14 @@
 	
 	
 	
-	// 댓글 수정
-	$(".qna_comment_modify").click( (e) => {
+	// 댓글 수정하는 부분
+
+		$(".qna_comment_modify").click( (e) => {
 		
 		
 		
 		// 1. 댓글 수정 버튼을 누르면 원래 댓글 보이던 태그와 수정버튼, 삭제버튼을 감춤
-		$(e.target).parent().find("p").css("display", "none");
+		$(e.target).parent().parent().find("p").css("display", "none");
 		$(e.target).css("display", "none");
 		$(e.target).next().css("display", "none");
 		
@@ -174,8 +175,8 @@
 			
 			name : "",
 			class : "newComment",
-			rows : "2",
-			cols : "35",
+			rows : "4",
+			cols : "50",
 			
 		} ).text( oldCommentContent );
 				
@@ -194,7 +195,6 @@
 			
 		} ).text("수정완료");
 		
-
 		
 		
 		// 5. td에 댓글입력창과 등록버튼을 추가
@@ -230,6 +230,7 @@
 			location.replace("<%=request.getContextPath()%>/qna/commentmodify?qSeq=" + commentNo 
 							 + "&commentContent=" + commentContent 
 							 + "&QnaNo=" + QnaNo + "");
+			
 			
 		} ); 
 		
