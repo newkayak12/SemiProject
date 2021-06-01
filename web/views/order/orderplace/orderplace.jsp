@@ -308,7 +308,7 @@
 			</div>
 			
 			<div id = "pay-choice">
-				<form action="<%=request.getContextPath()%>/order/pay " id="formhidden">
+				<form action="<%=request.getContextPath()%>/order/pay" id="formhidden">
 					<input type ="hidden" id="formnameo" name = "formnameo" value = "<%=user.getUserName() %>" >
 					<input type ="hidden" id="formid" name ="formid" value ="<%=user.getUserId() %>">
 					<input type ="hidden" id="formbank" name = "formbank"value="">
@@ -320,7 +320,7 @@
 					<input type="hidden" name ="totalprice" value="<%=result%>">
 					<input type = "hidden" name ="flag2" value= "<%=flag2%>" >
 					<input type="hidden" name="payflag" id ="formpaymethod" value="bank">
-					
+					<input type ="hidden" name = "location" id = "location" value ="/views/order/orderfinish/orderfinish.jsp">
 					<% System.out.println(flag2+" "+flag); %>
 					<input type="hidden" name ="cartflag" value ='<%=flag%>'> 
 					
@@ -426,13 +426,49 @@
 			Host: kapi.kakao.com
 			Authorization: KakaoAK {"7be18bb35d4598742bb7e4f4c82ab6d0"}
 			Content-type: application/x-www-form-urlencoded;charset=utf-8
-			 */
+			
+			
+			
+			
+			
+			 */	
+			 	let bank = $("#bank-select").val();
+				let receive_name = $("#receive_name").val()
+				let receive_addr = $("#receive_addr").val()
+				let receive_addrdetail = $("#receive_addrdetail").val()
+				let receive_phone = $("#receive_phone").val()
+				let receive_zip = $("#receive_zip").val()
+				
+				let receive_email = $("#receive_email").val()
+				$("#formnamer").val(receive_name)
+				$("#formaddr").val(receive_addr+"@"+receive_addrdetail)
+				$("#formphone").val(receive_phone)
+				$("#formzip").val(receive_zip)
+			 
+			 
+			 
+			 
+			 
 			  let kname = $("#receive_name").val()
 			  let kemail = $("#receive_email").val()
 			  let kamount = '<%=result+2500%>';
 			  let kaddr = $("#receive_addr").val() + $("#receive_addrdetail").val();
 			  let kzip = $("#receive_zip").val();
+			  
+			  <%if(flag2.equals("page")||flag==1){%>
 			  let kpname = '<%=cart.getCartName()%>'+" 등";
+			  
+			  <%} else {%>
+			  
+			  
+			  let kpname = '<%=list.get(0).getCartName() %>'+" 등";
+			  
+			  <%} %>
+			  
+			  
+			  
+			  
+			  
 			  let kphone = $("#recevice_phone").val()
 			  
 			  
@@ -457,10 +493,27 @@
 				}, function(rsp) {
 				    if ( rsp.success ) {
 				        var msg = '결제가 완료되었습니다.';
-				        /* msg += '고유ID : ' + rsp.imp_uid;
-				        msg += '상점 거래ID : ' + rsp.merchant_uid;
-				        msg += '결제 금액 : ' + kamount;
-				        msg += '카드 승인번호 : ' + rsp.apply_num; */
+				       	$.ajax({
+				       		
+				       		url:'<%=request.getContextPath()%>/order/pay',
+				       		<%if(flag2.equals("page")){ %>
+							
+							data:{"payflag":"kakao","cartflag":"<%=flag%>","flag2":'<%=flag2%>',"totalprice":'<%=result%>',"formnameo":$("#formnameo").val(), "formid":$("#formid").val(), "formbank":$("#formbank").val(), "formnamer":$("#receive_name").val(), "formaddr":$("#formaddr").val(),"formphone":$("#receive_phone").val(), "formzip":kzip, "pid":'<%=cart.getProductId()%>', "size":"<%=cart.getCartOptionSize()%>", "color":"<%=cart.getCartOptionColor()%>",price:"<%=cart.getCartPrice()%>","stock":"<%=cart.getCartStock()%>", "category":"<%=cart.getCategoryId()%>"},
+						<%} else { %>	
+							data:{"payflag":"kakao","cartflag":"<%=flag%>","flag2":'<%=flag2%>',"totalprice":'<%=result%>',"formnameo":$("#formnameo").val(), "formid":$("#formid").val(), "formbank":$("#formbank").val(), "formnamer":$("#receive_name").val(), "formaddr":$("#formaddr").val(),"formphone":$("#receive_phone").val(), "formzip":kzip},
+				       	<%}%>	
+				       	
+				       	
+				       		success:data=>{
+				       			
+				       			
+				       			
+				       		}
+				       		
+				       	})
+				       	
+
+				        
 				        
 				        
 				        location.assign('<%=request.getContextPath()%>/views/pay/success.jsp');
@@ -503,6 +556,7 @@
 	$("#kakaopay").css("display","none");
 	$("#pay-table").css("display","table")
 	$("#formpaymethod").val("bank")
+	$("#location").val("/views/order/orderfinish/orderfinish.jsp");
 	
 	
 		
@@ -512,6 +566,8 @@
 	$("#kakaopay").css("display","inline-block");
 	$("#pay-table").css("display","none")
 	$("#formpaymethod").val("kakao")
+	console.log($("#formpaymethod").val())
+	$("#location").val("/views/pay/success.jsp");
 	
 	
 	})

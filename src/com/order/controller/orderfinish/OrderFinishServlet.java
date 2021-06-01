@@ -41,6 +41,9 @@ public class OrderFinishServlet extends HttpServlet {
 		int totalprice = Integer.parseInt(request.getParameter("totalprice"));
 		
 		String flag = request.getParameter("flag2");
+		String payflag  = request.getParameter("payflag");
+		
+		System.out.println(oname +":"+ id +":"+ pay +":"+rname +":"+ addr +":"+ phone+":"+ zip+":"+flag+":"+payflag);
 		
 		
 		//카트 cart/ 페이지 page
@@ -190,14 +193,22 @@ public class OrderFinishServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 //		order table insert
 		}
-		request.setAttribute("msg", msg);
+		
+		
+		
+			
+			request.setAttribute("msg", msg);
 //		
-		request.setAttribute("pay", pay);
-		
-		
-		
-		
-		request.getRequestDispatcher("/views/order/orderfinish/orderfinish.jsp").forward(request, response);
+			request.setAttribute("pay", pay);
+			
+			
+			
+			String location = request.getParameter("location");
+			
+			
+			if(location!=null) {
+				request.getRequestDispatcher(location).forward(request, response);
+			}
 	}
 
 	/**
